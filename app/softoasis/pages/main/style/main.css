@@ -1,0 +1,89 @@
+.company-intro {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.company-service {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.company-service>ul>li {
+  display: inline-block;
+  margin: 0 15px;
+  font-size: 18px;
+  list-style: none;
+  box-shadow: 3px 3px 2px gray;
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+
+.company-app {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.company-apps {
+  display: grid;
+  justify-content: center;
+  gap: 20px;
+  max-width: max-content;
+  margin: auto;
+}
+
+/* 모바일 (600px 이하) → 1칸 */
+@media (max-width: 600px) {
+  .company-apps {
+    grid-template-columns: 1fr;
+  }
+  .company-solution {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 태블릿 (601px ~ 900px) → 2칸 */
+@media (min-width: 601px) and (max-width: 900px) {
+  .company-apps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .company-solution {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 데스크탑 (901px 이상) → 3칸 */
+@media (min-width: 901px) {
+  .company-apps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .company-solution {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.wrap-app {
+  text-align: center;
+  width: 300px;
+  height: 300px;
+  box-shadow: 5px 5px 5px gray;
+  border-radius: 10px;
+  margin: 10px;
+  overflow: hidden;
+  /* 텍스트가 넘치지 않도록 */
+}
+
+.wrap-app>p {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #f8f8f8;
+  bottom: 0;
+  /* 아래쪽에 붙이기 */
+  width: 100%;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.company-solution {
+  text-align: center;
+  margin-top: 10px;
+}

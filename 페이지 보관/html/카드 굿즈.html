@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SoftOasis Neon Tech Card (CR80)</title>
+    <style>
+        :root {
+            /* 카드 실물 규격 (CR80) */
+            --card-w: 85.60mm;
+            --card-h: 53.98mm;
+            --radius: 3mm;
+
+            /* 인쇄 가이드 */
+            --bleed: 3mm;
+            /* 재단 여유 */
+            --safe: 3mm;
+            /* 안전 영역 */
+
+            /* 컬러 */
+            --bg0: #070a12;
+            --bg1: #0b1230;
+            --ink: rgba(255, 255, 255, .92);
+            --muted: rgba(255, 255, 255, .66);
+
+            --n1: #7aa7ff;
+            --n2: #9c7bff;
+            --n3: #ff5fd7;
+            --n4: #00ffd1;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Apple SD Gothic Neo, "Noto Sans KR", sans-serif;
+            background:
+                radial-gradient(900px 600px at 15% 10%, rgba(122, 167, 255, .22), transparent 55%),
+                radial-gradient(900px 600px at 90% 10%, rgba(255, 95, 215, .16), transparent 55%),
+                radial-gradient(900px 700px at 50% 110%, rgba(0, 255, 209, .10), transparent 55%),
+                #050812;
+            color: var(--ink);
+        }
+
+        .wrap {
+            display: grid;
+            gap: 18px;
+            justify-items: center;
+        }
+
+        .controls {
+            width: min(900px, 100%);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .controls label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .03);
+            backdrop-filter: blur(8px);
+        }
+
+        .controls input {
+            width: 140px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 999px;
+            padding: 8px 10px;
+            background: rgba(255, 255, 255, .04);
+            color: var(--ink);
+            outline: none;
+            font-size: 13px;
+        }
+
+        .controls select {
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 999px;
+            padding: 8px 10px;
+            background: rgba(255, 255, 255, .04);
+            color: var(--ink);
+            outline: none;
+            font-size: 13px;
+        }
+
+        .hint {
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.5;
+            max-width: 820px;
+        }
+
+        /* 인쇄용 보드: bleed 포함 */
+        .printBoard {
+            position: relative;
+            width: calc(var(--card-w) + (var(--bleed) * 2));
+            height: calc(var(--card-h) + (var(--bleed) * 2));
+            border-radius: calc(var(--radius) + var(--bleed));
+            background: rgba(255, 255, 255, .02);
+            border: 1px dashed rgba(255, 255, 255, .18);
+            padding: var(--bleed);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
+        }
+
+        /* 카드 본체 */
+        .card {
+            position: relative;
+            width: var(--card-w);
+            height: var(--card-h);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: radial-gradient(120% 120% at 20% 10%, rgba(122, 167, 255, .18), transparent 55%),
+                radial-gradient(120% 120% at 85% 25%, rgba(156, 123, 255, .14), transparent 55%),
+                radial-gradient(120% 120% at 60% 120%, rgba(0, 255, 209, .08), transparent 60%),
+                linear-gradient(180deg, rgba(11, 18, 48, 1), rgba(7, 10, 18, 1));
+        }
+
+        /* 은은한 패턴(물결/입자) */
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: -20%;
+            background:
+                radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, .20), transparent 60%),
+                radial-gradient(2px 2px at 60% 50%, rgba(255, 255, 255, .14), transparent 60%),
+                radial-gradient(2px 2px at 80% 20%, rgba(255, 255, 255, .12), transparent 60%),
+                radial-gradient(2px 2px at 30% 80%, rgba(255, 255, 255, .10), transparent 60%),
+                radial-gradient(2px 2px at 75% 85%, rgba(255, 255, 255, .08), transparent 60%);
+            opacity: .55;
+            filter: blur(.2px);
+            pointer-events: none;
+        }
+
+        .card::after {
+            /* 네온 라인/글로우 */
+            content: "";
+            position: absolute;
+            inset: -30%;
+            background:
+                conic-gradient(from 180deg at 50% 50%,
+                    rgba(122, 167, 255, .0),
+                    rgba(122, 167, 255, .18),
+                    rgba(156, 123, 255, .16),
+                    rgba(255, 95, 215, .14),
+                    rgba(0, 255, 209, .12),
+                    rgba(122, 167, 255, .0));
+            opacity: .55;
+            filter: blur(18px);
+            pointer-events: none;
+        }
+
+        /* 안전영역 박스(옵션 표시) */
+        .safeGuide {
+            position: absolute;
+            inset: var(--safe);
+            border-radius: calc(var(--radius) - 0.2mm);
+            border: 1px dashed rgba(255, 255, 255, .18);
+            pointer-events: none;
+            display: none;
+        }
+
+        .showGuides .safeGuide {
+            display: block;
+        }
+
+        .showGuides .cutGuide {
+            display: block;
+        }
+
+        /* 재단선(카드 외곽) 표시(옵션) */
+        .cutGuide {
+            position: absolute;
+            inset: var(--bleed);
+            border-radius: calc(var(--radius) + 0mm);
+            border: 1px dashed rgba(255, 255, 255, .22);
+            pointer-events: none;
+            display: none;
+        }
+
+        /* 콘텐츠 레이아웃 */
+        .content {
+            position: absolute;
+            inset: var(--safe);
+            display: flex;
+            flex-direction: column;
+            gap: 3.2mm;
+            z-index: 2;
+        }
+
+        .topRow {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 3mm;
+        }
+
+        .brandBlock {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2mm;
+            min-width: 0;
+        }
+
+        .brand {
+            font-weight: 800;
+            letter-spacing: .8px;
+            font-size: 3.2mm;
+            line-height: 1;
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tag {
+            font-size: 2.4mm;
+            letter-spacing: 1.6px;
+            color: var(--muted);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .badge {
+            flex: 0 0 auto;
+            font-size: 2.4mm;
+            letter-spacing: 1.4px;
+            padding: 1.6mm 2.6mm;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(255, 255, 255, .04);
+            color: rgba(255, 255, 255, .78);
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background: linear-gradient(135deg, rgba(122, 167, 255, .35), rgba(255, 95, 215, .22), rgba(0, 255, 209, .18));
+            filter: blur(14px);
+            opacity: .55;
+        }
+
+        .badge span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .nick {
+            margin-top: 4mm;
+            font-size: 8.5mm;
+            font-weight: 900;
+            letter-spacing: .5mm;
+            line-height: 1;
+            text-transform: uppercase;
+            text-shadow:
+                0 0 6px rgba(122, 167, 255, .25),
+                0 0 12px rgba(156, 123, 255, .18),
+                0 0 18px rgba(255, 95, 215, .12);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .bottomRow {
+            margin-top: auto;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 3mm;
+        }
+
+        .meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4mm;
+            min-width: 0;
+        }
+
+        .kv {
+            display: flex;
+            gap: 2mm;
+            align-items: baseline;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .k {
+            font-size: 2.5mm;
+            letter-spacing: 1.2px;
+            color: rgba(255, 255, 255, .62);
+            text-transform: uppercase;
+            flex: 0 0 auto;
+        }
+
+        .v {
+            font-size: 3.1mm;
+            font-weight: 750;
+            color: rgba(255, 255, 255, .90);
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .microSeal {
+            width: 12mm;
+            height: 12mm;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background:
+                radial-gradient(9mm 9mm at 35% 35%, rgba(122, 167, 255, .32), transparent 65%),
+                radial-gradient(10mm 10mm at 75% 55%, rgba(255, 95, 215, .20), transparent 70%),
+                rgba(255, 255, 255, .03);
+            position: relative;
+            flex: 0 0 auto;
+            box-shadow:
+                0 0 0 2mm rgba(122, 167, 255, .05),
+                0 14px 26px rgba(0, 0, 0, .35);
+        }
+
+        .microSeal::after {
+            content: "SO";
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            font-weight: 900;
+            letter-spacing: .6px;
+            font-size: 4mm;
+            color: rgba(255, 255, 255, .80);
+            text-transform: uppercase;
+        }
+
+        /* 뒷면(Back) */
+        .back {
+            background: radial-gradient(120% 120% at 20% 10%, rgba(0, 255, 209, .10), transparent 55%),
+                radial-gradient(120% 120% at 85% 25%, rgba(122, 167, 255, .14), transparent 55%),
+                radial-gradient(120% 120% at 60% 120%, rgba(255, 95, 215, .08), transparent 60%),
+                linear-gradient(180deg, rgba(7, 10, 18, 1), rgba(11, 18, 48, 1));
+        }
+
+        .stripe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 9mm;
+            background: linear-gradient(90deg,
+                    rgba(122, 167, 255, .32),
+                    rgba(156, 123, 255, .28),
+                    rgba(255, 95, 215, .20),
+                    rgba(0, 255, 209, .18));
+            filter: blur(.0px);
+            opacity: .9;
+        }
+
+        .backContent {
+            position: absolute;
+            inset: var(--safe);
+            display: flex;
+            flex-direction: column;
+            gap: 3mm;
+            z-index: 2;
+        }
+
+        .backRow {
+            margin-top: 10mm;
+            display: flex;
+            justify-content: space-between;
+            gap: 4mm;
+            align-items: flex-start;
+        }
+
+        .idBlock {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6mm;
+            min-width: 0;
+        }
+
+        .idBlock .label {
+            font-size: 2.5mm;
+            letter-spacing: 1.2px;
+            color: rgba(255, 255, 255, .62);
+            text-transform: uppercase;
+        }
+
+        .idBlock .id {
+            font-size: 3.4mm;
+            font-weight: 800;
+            letter-spacing: .3mm;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .note {
+            margin-top: auto;
+            font-size: 2.6mm;
+            color: rgba(255, 255, 255, .60);
+            line-height: 1.35;
+        }
+
+        .qr {
+            width: 16mm;
+            height: 16mm;
+            border-radius: 2mm;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(255, 255, 255, .04);
+            display: grid;
+            place-items: center;
+            color: rgba(255, 255, 255, .55);
+            font-size: 2.6mm;
+            letter-spacing: .3mm;
+            flex: 0 0 auto;
+            user-select: none;
+        }
+
+        /* 카드 뒤집기 */
+        .stage {
+            display: grid;
+            gap: 14px;
+            justify-items: center;
+        }
+
+        .flipWrap {
+            perspective: 1200px;
+        }
+
+        .flip {
+            position: relative;
+            width: calc(var(--card-w) + (var(--bleed) * 2));
+            height: calc(var(--card-h) + (var(--bleed) * 2));
+            transform-style: preserve-3d;
+            transition: transform .7s cubic-bezier(.2, .9, .15, 1);
+        }
+
+        .isFlipped .flip {
+            transform: rotateY(180deg);
+        }
+
+        .face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+        }
+
+        .face.backFace {
+            transform: rotateY(180deg);
+        }
+
+        .btnRow {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(255, 255, 255, .03);
+            color: var(--ink);
+            padding: 10px 12px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: transform .06s ease, border-color .15s ease, background .15s ease;
+        }
+
+        .btn:hover {
+            border-color: rgba(122, 167, 255, .45);
+            background: rgba(122, 167, 255, .10);
+        }
+
+        .btn:active {
+            transform: scale(.99);
+        }
+
+        /* 인쇄 시(선택): 배경 제거/가이드 제거 */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+
+            .controls,
+            .btnRow,
+            .hint {
+                display: none !important;
+            }
+
+            .printBoard {
+                box-shadow: none;
+                border: none;
+                background: transparent;
+            }
+
+            .cutGuide,
+            .safeGuide {
+                display: none !important;
+            }
+        }
+    </style>
+    <script>
+        // ... (기존 코드 아래/위 아무데나)
+
+        const downloadHtmlBtn = document.getElementById("downloadHtmlBtn");
+
+        function downloadHTML() {
+            // 현재 입력값까지 포함해서 "완성본"으로 저장되도록 input 값을 속성에 반영
+            document.querySelectorAll("input").forEach(inp => inp.setAttribute("value", inp.value));
+            document.querySelectorAll("select").forEach(sel => {
+                [...sel.options].forEach(o => o.selected = (o.value === sel.value));
+            });
+
+            const htmlText = "<!doctype html>\n" + document.documentElement.outerHTML;
+            const blob = new Blob([htmlText], { type: "text/html;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "softoasis-card.html";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+
+        downloadHtmlBtn.addEventListener("click", downloadHTML);
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="controls">
+            <label>닉네임 <input id="nickInput" value="NANO" /></label>
+            <label>이름 <input id="nameInput" value="한민섭" /></label>
+            <label>
+                회원등급
+                <select id="tierInput">
+                    <option value="BASIC">BASIC</option>
+                    <option value="PRO" selected>PRO</option>
+                    <option value="PARTNER">PARTNER</option>
+                    <option value="VIP">VIP</option>
+                </select>
+            </label>
+            <label>
+                카드 ID <input id="idInput" value="SO-000123" />
+            </label>
+        </div>
+
+        <div class="stage">
+            <div class="flipWrap" id="flipWrap">
+                <div class="flip" id="flip">
+                    <!-- FRONT -->
+                    <div class="face frontFace">
+                        <div class="printBoard" id="boardFront">
+                            <div class="cutGuide"></div>
+                            <div class="card" id="cardFront">
+                                <div class="safeGuide"></div>
+
+                                <div class="content">
+                                    <div class="topRow">
+                                        <div class="brandBlock">
+                                            <div class="brand">SOFTOASIS</div>
+                                            <div class="tag">NEON TECH</div>
+                                        </div>
+                                        <div class="badge"><span id="tierText">PRO</span></div>
+                                    </div>
+
+                                    <div class="nick" id="nickText">NANO</div>
+
+                                    <div class="bottomRow">
+                                        <div class="meta">
+                                            <div class="kv">
+                                                <div class="k">NAME</div>
+                                                <div class="v" id="nameText">한민섭</div>
+                                            </div>
+                                            <div class="kv">
+                                                <div class="k">TIER</div>
+                                                <div class="v" id="tierText2">PRO</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="microSeal" aria-hidden="true"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BACK -->
+                    <div class="face backFace">
+                        <div class="printBoard" id="boardBack">
+                            <div class="cutGuide"></div>
+                            <div class="card back" id="cardBack">
+                                <div class="safeGuide"></div>
+                                <div class="stripe" aria-hidden="true"></div>
+
+                                <div class="backContent">
+                                    <div class="backRow">
+                                        <div class="idBlock">
+                                            <div class="label">SOFTOASIS CARD ID</div>
+                                            <div class="id" id="idText">SO-000123</div>
+
+                                            <div class="label" style="margin-top:2mm;">NEON TECH PASS</div>
+                                            <div class="id"
+                                                style="font-size:3.1mm; font-weight:700; color:rgba(255,255,255,.78);">
+                                                Tap to verify / Access
+                                            </div>
+                                        </div>
+
+                                        <div class="qr">QR</div>
+                                    </div>
+
+                                    <div class="note">
+                                        · 이 카드는 SoftOasis 시스템에서 회원 인증/출입용으로 사용할 수 있습니다.<br />
+                                        · NFC/QR 동작은 발급 정책에 따라 달라질 수 있습니다.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="btnRow">
+                <button class="btn" id="flipBtn" type="button">앞/뒤 뒤집기</button>
+                <button class="btn" id="guidesBtn" type="button">재단/안전 가이드</button>
+                <button class="btn" type="button" onclick="window.print()">인쇄(PDF)</button>
+            </div>
+        </div>
+
+        <div class="hint">
+            • 실제 인쇄는 <b>85.60×53.98mm</b> (CR80) 기준이며, 바깥 점선은 블리드/재단 가이드입니다.<br />
+            • 닉네임/이름/등급은 위 입력칸에서 바꾸면 카드에 바로 반영됩니다.
+        </div>
+    </div>
+
+    <script>
+        const nickInput = document.getElementById("nickInput");
+        const nameInput = document.getElementById("nameInput");
+        const tierInput = document.getElementById("tierInput");
+        const idInput = document.getElementById("idInput");
+
+        const nickText = document.getElementById("nickText");
+        const nameText = document.getElementById("nameText");
+        const tierText = document.getElementById("tierText");
+        const tierText2 = document.getElementById("tierText2");
+        const idText = document.getElementById("idText");
+
+        const flipWrap = document.getElementById("flipWrap");
+        const flipBtn = document.getElementById("flipBtn");
+        const guidesBtn = document.getElementById("guidesBtn");
+
+        const boardFront = document.getElementById("boardFront");
+        const boardBack = document.getElementById("boardBack");
+
+        function sync() {
+            const nick = (nickInput.value || "").trim() || "NANO";
+            const name = (nameInput.value || "").trim() || "한민섭";
+            const tier = (tierInput.value || "PRO").trim();
+            const cid = (idInput.value || "").trim() || "SO-000123";
+
+            nickText.textContent = nick.toUpperCase();
+            nameText.textContent = name;
+            tierText.textContent = tier;
+            tierText2.textContent = tier;
+            idText.textContent = cid;
+        }
+
+        nickInput.addEventListener("input", sync);
+        nameInput.addEventListener("input", sync);
+        tierInput.addEventListener("change", sync);
+        idInput.addEventListener("input", sync);
+
+        flipBtn.addEventListener("click", () => {
+            document.body.classList.toggle("isFlipped");
+        });
+
+        guidesBtn.addEventListener("click", () => {
+            boardFront.classList.toggle("showGuides");
+            boardBack.classList.toggle("showGuides");
+        });
+
+        sync();
+    </script>
+</body>
+
+</html>

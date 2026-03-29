@@ -1,0 +1,55 @@
+/* ===== Layout: page centering + responsive grid ===== */
+
+:root {
+    --page-max: 960px;
+    --page-pad: 16px;
+    --grid-gap: 18px;
+    --card-min: 220px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--page-pad);
+}
+
+/* container */
+.sellect_list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* grid */
+.sellect_list>ul {
+    width: min(var(--page-max), 100%);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-min), 1fr));
+    gap: var(--grid-gap);
+
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+/* card sizing */
+.sellect_list li {
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    aspect-ratio: 16 / 9;
+}

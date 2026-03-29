@@ -1,0 +1,314 @@
+:root {
+    --bg1: #070A12;
+    --bg2: #0B1022;
+    --card: #0E1633;
+    --card2: #0C1228;
+    --line: rgba(255, 255, 255, .10);
+    --text: rgba(255, 255, 255, .92);
+    --muted: rgba(255, 255, 255, .65);
+    --neon: #7C5CFF;
+    --neon2: #00E6FF;
+    --danger: #FF4D7D;
+    --ok: #33D69F;
+    --shadow: 0 14px 40px rgba(0, 0, 0, .45);
+    --r: 16px;
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Apple SD Gothic Neo", "Noto Sans KR", Arial;
+    background: radial-gradient(1100px 700px at 20% 10%, rgba(124, 92, 255, .26), transparent 60%),
+        radial-gradient(900px 650px at 90% 30%, rgba(0, 230, 255, .18), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+    min-height: 100vh;
+}
+
+.wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 28px 16px 40px
+}
+
+header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.title h1 {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: .2px
+}
+
+.title p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 13px
+}
+
+.badge {
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+    box-shadow: 0 10px 22px rgba(0, 0, 0, .25);
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 14px
+}
+
+@media (max-width:900px) {
+    .grid {
+        grid-template-columns: 1fr
+    }
+}
+
+.card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .03));
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.card .hd {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: linear-gradient(180deg, rgba(124, 92, 255, .12), rgba(0, 230, 255, .06));
+}
+
+.card .hd strong {
+    font-size: 14px
+}
+
+.card .bd {
+    padding: 14px 16px
+}
+
+.worlds {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px
+}
+
+@media (max-width:700px) {
+    .worlds {
+        grid-template-columns: 1fr
+    }
+}
+
+.world {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px;
+    background: linear-gradient(180deg, rgba(14, 22, 51, .72), rgba(12, 18, 40, .72));
+    cursor: pointer;
+    transition: transform .12s ease, border-color .12s ease;
+    position: relative;
+    min-height: 86px;
+}
+
+.world:hover {
+    transform: translateY(-2px);
+    border-color: rgba(124, 92, 255, .45)
+}
+
+.world.selected {
+    border-color: rgba(0, 230, 255, .55);
+    box-shadow: 0 0 0 2px rgba(0, 230, 255, .18) inset;
+}
+
+.world .name {
+    font-weight: 700;
+    font-size: 14px
+}
+
+.world .desc {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.35
+}
+
+.world .tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, .72);
+    padding: 6px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: rgba(0, 0, 0, .18);
+}
+
+label {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 12px 0 6px
+}
+
+select,
+input {
+    width: 100%;
+    padding: 12px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: rgba(8, 12, 24, .55);
+    color: var(--text);
+    outline: none;
+}
+
+select:disabled {
+    opacity: .55;
+    cursor: not-allowed
+}
+
+.priceBox {
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(0, 230, 255, .10), rgba(124, 92, 255, .08));
+    border-radius: 14px;
+    padding: 14px;
+}
+
+.rows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 13px
+}
+
+.row span {
+    color: var(--muted)
+}
+
+.row strong {
+    font-size: 14px
+}
+
+.total {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255, 255, 255, .16);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.total .t {
+    color: rgba(255, 255, 255, .75);
+    font-size: 12px
+}
+
+.total .v {
+    font-size: 18px;
+    letter-spacing: .2px
+}
+
+.qty {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 10px;
+    background: rgba(0, 0, 0, .16);
+}
+
+.qty button {
+    width: 44px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02));
+    color: var(--text);
+    cursor: pointer;
+}
+
+.qty button:disabled {
+    opacity: .45;
+    cursor: not-allowed
+}
+
+.qty .n {
+    min-width: 34px;
+    text-align: center;
+    font-weight: 800
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px
+}
+
+.btn {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    cursor: pointer;
+    font-weight: 800;
+    letter-spacing: .2px;
+}
+
+.btn.primary {
+    border-color: rgba(0, 230, 255, .45);
+    background: linear-gradient(90deg, rgba(0, 230, 255, .22), rgba(124, 92, 255, .22));
+    box-shadow: 0 10px 26px rgba(0, 230, 255, .14);
+}
+
+.btn.ghost {
+    background: rgba(255, 255, 255, .04);
+    color: rgba(255, 255, 255, .85);
+}
+
+.hint {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.45
+}
+
+.mini {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 10px 12px;
+    border-top: 1px solid var(--line);
+    background: rgba(0, 0, 0, .18);
+}
+
+.warn {
+    color: rgba(255, 255, 255, .82);
+    font-size: 12px
+}
+
+.warn b {
+    color: var(--danger)
+}

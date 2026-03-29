@@ -1,0 +1,17 @@
+.view_bestseller{
+    
+}
+.view_bestseller > ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    padding: 10px;
+}
+.view_bestseller > ul > li{
+    list-style: none;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 5px;
+
+}

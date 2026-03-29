@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계정 찾기</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./find.js" defer></script>
+    <link rel="icon" type="image/png" href="/image/UI/neologo.svg">
+</head>
+
+<body>
+
+    <main class="login_container">
+        <div class="wrap_login">
+
+            <!-- 로고 -->
+            <div class="logo">
+                <div class="circle"></div>
+                <div class="slash"></div>
+            </div>
+
+            <!-- 타이틀 -->
+            <h2 class="login_title">RECOVER NODE</h2>
+
+            <!-- 🔥 탭 (radio 방식) -->
+            <input type="radio" name="tab" id="tab_id" checked hidden>
+            <input type="radio" name="tab" id="tab_pw" hidden>
+
+            <div class="tabs">
+                <label for="tab_id" class="tab">아이디 찾기</label>
+                <label for="tab_pw" class="tab">비밀번호 찾기</label>
+            </div>
+
+            <!-- 🔥 아이디 찾기 -->
+            <div class="login_form tab_content id_content">
+                <label>
+                    전화번호
+                    <input type="number" placeholder="01012345678">
+                </label>
+
+                <button class="btn_login">인증번호 전송</button>
+
+                <label>
+                    인증번호
+                    <input type="number" placeholder="6자리 입력">
+                </label>
+
+                <button class="btn_login">비밀번호 재설정</button>
+            </div>
+
+            <!-- 🔥 비밀번호 찾기 -->
+            <div class="login_form tab_content pw_content">
+                <label>
+                    아이디
+                    <input type="text" placeholder="아이디 입력">
+                </label>
+
+                <label>
+                    전화번호
+                    <input type="text" placeholder="01012345678">
+                </label>
+
+                <button class="btn_login">SEND SIGNAL</button>
+
+                <label>
+                    인증번호
+                    <input type="text" placeholder="6자리 입력">
+                </label>
+
+                <button class="btn_login">VERIFY NODE</button>
+            </div>
+
+            <!-- 하단 -->
+            <div class="account">
+                <a href="/acount/login">로그인</a>
+                <span>|</span>
+                <a href="/acount/signup">회원가입</a>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

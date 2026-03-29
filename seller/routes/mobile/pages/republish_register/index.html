@@ -1,0 +1,99 @@
+<main data-page="seller-product-batch">
+  <h1>판매자 상품 등록 (리스트 누적 → 일괄 전송)</h1>
+  <div class="hint">
+    1) 아래 폼에 입력 → “리스트에 추가”
+    2) 여러 개 쌓인 뒤 “전체 전송(POST)”
+  </div>
+
+  <section class="panel stack" aria-label="입력">
+    <div class="grid">
+      <div>
+        <label>제조사 (manufacturer)</label>
+        <input id="manufacturer" placeholder="예: Samsung" list="manufacturerList" autocomplete="off" />
+        <datalist id="manufacturerList"></datalist>
+      </div>
+
+      <div>
+        <label>시리즈 (series)</label>
+        <select id="series" disabled>
+          <option value="">제조사 먼저 선택</option>
+        </select>
+      </div>
+
+      <div>
+        <label>모델코드 (model_code)</label>
+        <input id="model_code" placeholder="예: SM-S926N" />
+      </div>
+
+      <div>
+        <label>모델명 (model_name)</label>
+        <input id="model_name" placeholder="예: Galaxy S24+" />
+      </div>
+
+      <div>
+        <label>금액 (price)</label>
+        <input id="price" type="number" min="0" step="1" placeholder="예: 1350000" />
+      </div>
+    </div>
+
+    <div>
+      <div class="hint" style="margin-bottom:8px;">
+        등급 입력: name(등급명), price(차감액)
+      </div>
+
+      <div id="gradesBox" class="stack"></div>
+
+      <div class="right">
+        <button type="button" id="addGrade">+ 등급 줄 추가</button>
+      </div>
+    </div>
+
+    <div class="right">
+      <button type="button" class="primary" id="addToList">리스트에 추가</button>
+    </div>
+  </section>
+
+  <section class="panel" aria-label="누적 리스트">
+    <div class="list-header">
+      <div>
+        <b>누적 리스트</b>
+        <span id="countBadge" class="badge">0 items</span>
+      </div>
+
+      <div class="row-actions">
+        <button type="button" id="clearAll" class="danger" disabled>전체 비우기</button>
+        <button type="button" id="sendAll" class="primary" disabled>전체 전송(POST)</button>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>제조사 / 시리즈</th>
+          <th>모델</th>
+          <th>가격 / 등급</th>
+          <th>작업</th>
+        </tr>
+      </thead>
+      <tbody id="listBody">
+        <tr>
+          <td colspan="4" class="hint">아직 추가된 항목이 없습니다.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="hint" style="margin-top:10px;">
+      서버 전송 주소:
+      <span class="mono">/api/seller/products/batch</span>
+    </div>
+  </section>
+
+  <section class="panel" aria-label="로그">
+    <b>결과 로그</b>
+    <pre id="log" class="mono">ready</pre>
+  </section>
+</main>
+
+<!-- 파일 분리 -->
+<link rel="stylesheet" href="/css/seller-product-batch.css" />
+<script defer src="/js/seller-product-batch.js"></script>

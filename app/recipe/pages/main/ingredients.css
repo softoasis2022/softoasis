@@ -1,0 +1,47 @@
+.ingredients{
+    width: 100%;
+}
+.ingredients > ul{
+    padding-inline-start: 0px;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin: 0px;
+}
+
+.ingredients > ul > li{
+    list-style: none;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 3px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ingredients > ul > li a{
+    width: max-content;
+}
+
+.ingredients > ul > li img{
+    width: 140px;
+    height: 176px;
+}
+
+.ingredients > ul::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+.ingredients > ul::-webkit-scrollbar {
+    display: none;
+}
+
+.text_ingredients{
+    
+}
+
+.img_ingredients {
+
+}

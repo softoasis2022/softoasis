@@ -1,0 +1,27 @@
+.youtube{
+    width: 100%;
+    height: fit-content;
+}
+
+.content-name{
+    background-color: black;
+    
+}
+.content-name > p{
+    color: white;
+    padding: 5px;
+}
+
+.youtube .itemlist{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    
+}
+.wrapcontent{
+    width: 192px;
+    height: 108px;
+    margin: 5px;
+    border-radius: 20px;
+    border: 1px solid black;
+}

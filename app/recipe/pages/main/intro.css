@@ -1,0 +1,9 @@
+.intro {
+    width: 100%;
+    height: 700px;
+    padding: 0px;
+    background-image: url("./kichen.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

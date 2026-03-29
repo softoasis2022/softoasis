@@ -1,0 +1,92 @@
+.mainplatform {
+  background: linear-gradient(135deg, #e0f7fa, #80deea); /* 투명도 제거 */
+  padding: 20px 40px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  animation: fadeInDown 1s ease-out;
+}
+
+.mainplatform {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* 줄바꿈 허용 */
+  gap: 10px;        /* 요소 간 여백 */
+}
+
+a{
+  text-decoration: none;
+  color: #004d40;
+}
+
+.searchbox{
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+}
+
+.searchbox > .inputsearch{
+  min-width: 500px;
+  border: 2px solid black;
+  padding: 10px;
+  border-radius: 10px;
+  
+}
+
+.searchpage{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.searchpage > a{
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+  
+}
+
+header h1 {
+  font-size: 28px;
+  color: #00796b;
+  margin: 0;
+  flex-shrink: 0; /* 줄어들지 않게 */
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap; /* 메뉴 줄바꿈 허용 */
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #004d40;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+nav ul li a:hover {
+  background-color: #b2dfdb;
+  transform: translateY(-2px);
+}
+
+/* 모바일 대응 */
+@media (max-width: 600px) {
+  header > div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+}
+

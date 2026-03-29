@@ -1,0 +1,368 @@
+<!-- ticket_pay_done.html -->
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SoftOasis - 결제 완료</title>
+  <style>
+    :root{
+      --bg1:#070A12; --bg2:#0B1022;
+      --line:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.65);
+      --neon:#7C5CFF;
+      --neon2:#00E6FF;
+      --danger:#FF4D7D;
+      --ok:#33D69F;
+      --shadow: 0 14px 40px rgba(0,0,0,.45);
+      --r:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Apple SD Gothic Neo", "Noto Sans KR", Arial;
+      background: radial-gradient(1100px 700px at 20% 10%, rgba(124,92,255,.26), transparent 60%),
+                  radial-gradient(900px 650px at 90% 30%, rgba(0,230,255,.18), transparent 55%),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px 16px;
+    }
+    .wrap{width:min(980px, 100%);}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hd{
+      padding:18px 18px 14px;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(124,92,255,.12), rgba(0,230,255,.06));
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{
+      display:flex; gap:10px; align-items:center;
+      color:rgba(255,255,255,.88);
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .chip{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.18);
+      font-size:12px;
+      color:var(--muted);
+    }
+    .bd{padding:18px}
+
+    .hero{
+      display:flex; gap:14px; align-items:flex-start;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(51,214,159,.22);
+      background:linear-gradient(180deg, rgba(51,214,159,.14), rgba(0,0,0,.08));
+      margin-bottom:14px;
+    }
+    .icon{
+      width:46px; height:46px;
+      border-radius:14px;
+      display:grid; place-items:center;
+      border:1px solid rgba(51,214,159,.35);
+      background:rgba(51,214,159,.14);
+      box-shadow: 0 12px 28px rgba(0,0,0,.22);
+      flex:0 0 auto;
+    }
+    .icon svg{width:26px; height:26px}
+    .hero h1{margin:0; font-size:20px}
+    .hero p{margin:6px 0 0; color:var(--muted); font-size:13px; line-height:1.45}
+
+    .grid{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    @media (max-width:860px){ .grid{grid-template-columns:1fr} }
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(0,0,0,.16);
+      padding:14px;
+    }
+
+    .kvs{display:flex; flex-direction:column; gap:10px}
+    .kv{display:flex; justify-content:space-between; gap:12px; font-size:13px}
+    .kv span{color:var(--muted)}
+    .kv b{color:rgba(255,255,255,.92)}
+    .total{
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px dashed rgba(255,255,255,.16);
+      display:flex; justify-content:space-between; align-items:baseline;
+    }
+    .total .t{color:rgba(255,255,255,.72); font-size:12px}
+    .total .v{font-size:22px; font-weight:900}
+
+    .ticketList{
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .ticket{
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.06));
+      border-radius:16px;
+      padding:12px;
+    }
+    .ticketTop{display:flex; justify-content:space-between; gap:12px; align-items:center}
+    .ticketTop b{font-size:14px}
+    .tag{
+      font-size:11px;
+      padding:6px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      color:rgba(255,255,255,.76);
+      background:rgba(0,0,0,.18);
+    }
+    .tag.self{border-color: rgba(0,230,255,.28); background: rgba(0,230,255,.08)}
+    .tag.gift{border-color: rgba(255,77,125,.28); background: rgba(255,77,125,.08)}
+    .ticketMeta{margin-top:8px; color:var(--muted); font-size:12px; line-height:1.45}
+
+    .actions{
+      display:flex; gap:10px; margin-top:14px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      flex:1;
+      min-width:200px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      cursor:pointer;
+      font-weight:900;
+      letter-spacing:.2px;
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.9);
+    }
+    .btn.primary{
+      border-color: rgba(0,230,255,.45);
+      background: linear-gradient(90deg, rgba(0,230,255,.22), rgba(124,92,255,.22));
+      box-shadow: 0 10px 26px rgba(0,230,255,.14);
+    }
+    .btn.ok{
+      border-color: rgba(51,214,159,.45);
+      background: linear-gradient(90deg, rgba(51,214,159,.22), rgba(0,230,255,.18));
+      box-shadow: 0 10px 26px rgba(51,214,159,.12);
+    }
+
+    .foot{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+      text-align:center;
+    }
+
+    .err{
+      display:none;
+      margin-top:12px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,77,125,.35);
+      background: rgba(255,77,125,.10);
+      color: rgba(255,255,255,.92);
+      font-size:12px;
+    }
+    .err.show{display:block}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="card">
+      <div class="hd">
+        <div class="brand">SoftOasis • Ticket</div>
+        <div class="chip">Payment Complete</div>
+      </div>
+
+      <div class="bd">
+        <div class="hero">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="rgba(255,255,255,.95)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h1>결제가 완료되었습니다</h1>
+            <p>
+              티켓이 발급(또는 선물 발송 준비)되었습니다. 아래에서 티켓 상태를 확인할 수 있어요.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <!-- 결제 요약 -->
+          <div class="panel">
+            <div class="kvs">
+              <div class="kv"><span>주문번호</span><b id="orderId">-</b></div>
+              <div class="kv"><span>결제수단</span><b id="payMethod">-</b></div>
+              <div class="kv"><span>월드</span><b id="worldVal">-</b></div>
+              <div class="kv"><span>역</span><b id="stationVal">-</b></div>
+              <div class="kv"><span>수량</span><b id="qtyVal">-</b></div>
+              <div class="kv"><span>개인사용 / 선물</span><b id="modeVal">-</b></div>
+            </div>
+            <div class="total">
+              <div class="t">최종 결제금액</div>
+              <div class="v" id="finalTotal">-</div>
+            </div>
+
+            <div class="err" id="errBox"></div>
+          </div>
+
+          <!-- 티켓 발급/발송 내역 -->
+          <div class="panel">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px;">
+              <b style="font-size:14px;">티켓 내역</b>
+              <span class="mini">발급/선물 정보</span>
+            </div>
+            <div class="ticketList" id="ticketList"></div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn ok" id="goWalletBtn" type="button">내 티켓함 보기</button>
+          <button class="btn primary" id="goStationBtn" type="button">역으로 이동</button>
+          <button class="btn" id="homeBtn" type="button">홈으로</button>
+        </div>
+
+        <div class="foot">
+          * 실제 서비스에서는 결제 승인/취소/환불 상태는 서버에서 최종 확정됩니다.<br/>
+          이 화면은 결제 성공 후 사용자에게 “완료 상태”를 보여주는 UI 템플릿입니다.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    function fmt(n){
+      if (!Number.isFinite(n)) return "-";
+      return n.toLocaleString("ko-KR") + "원";
+    }
+
+    // 결제 화면(ticket_pay.html)에서 저장한 payload 사용:
+    // localStorage 'SO_TICKET_PAYMENT'
+    const raw = localStorage.getItem("SO_TICKET_PAYMENT");
+    const errBox = $("errBox");
+
+    function showErr(msg){
+      if (!msg){ errBox.classList.remove("show"); errBox.textContent=""; return; }
+      errBox.textContent = msg;
+      errBox.classList.add("show");
+    }
+
+    if (!raw){
+      showErr("결제 정보가 없습니다. (localStorage 'SO_TICKET_PAYMENT'가 비어있음) 결제 화면으로 돌아가세요.");
+    }
+
+    const data = raw ? JSON.parse(raw) : {};
+
+    // 주문번호(데모용): 실제론 서버에서 내려줘야 함
+    const orderId = data.orderId || ("SO-" + Date.now().toString(36).toUpperCase());
+
+    // 결제수단 매핑
+    const methodMap = {
+      BANK: "계좌이체",
+      CARD: "카드결제",
+      MOBILE: "핸드폰 결제",
+      GIFTICON: "기프티콘"
+    };
+    const methodKey = data.payment?.method || "";
+    const methodText = methodMap[methodKey] || "-";
+
+    const finalTotal = Number(data.payment?.finalTotal ?? data.totalPrice ?? 0);
+    const qty = data.qty ?? (data.tickets ? data.tickets.length : 0);
+
+    const selfCount = data.counts?.self ?? (data.tickets?.filter(t=>t.mode==="SELF").length ?? 0);
+    const giftCount = data.counts?.gift ?? (data.tickets?.filter(t=>t.mode==="GIFT").length ?? 0);
+
+    $("orderId").textContent = orderId;
+    $("payMethod").textContent = methodText;
+    $("worldVal").textContent = data.worldId ?? "-";
+    $("stationVal").textContent = data.stationId ?? "-";
+    $("qtyVal").textContent = qty ? `${qty}장` : "-";
+    $("modeVal").textContent = `${selfCount} / ${giftCount}`;
+    $("finalTotal").textContent = fmt(finalTotal);
+
+    // 티켓 리스트 렌더링
+    const list = $("ticketList");
+    const tickets = Array.isArray(data.tickets) ? data.tickets : [];
+
+    if (tickets.length === 0){
+      list.innerHTML = `
+        <div class="ticket">
+          <div class="ticketTop">
+            <b>티켓 정보 없음</b>
+            <span class="tag">-</span>
+          </div>
+          <div class="ticketMeta">이 페이지는 이전 단계에서 티켓 payload가 있어야 정상 표시됩니다.</div>
+        </div>
+      `;
+    } else {
+      list.innerHTML = "";
+      tickets.forEach((t) => {
+        const isGift = t.mode === "GIFT";
+        const tagClass = isGift ? "gift" : "self";
+        const tagText  = isGift ? "선물" : "개인사용";
+
+        const receiver = isGift ? (t.receiver?.value || t.receiver || "") : "";
+        const message  = isGift ? (t.message || "") : "";
+
+        const div = document.createElement("div");
+        div.className = "ticket";
+        div.innerHTML = `
+          <div class="ticketTop">
+            <b>티켓 #${t.ticketNo ?? "?"}</b>
+            <span class="tag ${tagClass}">${tagText}</span>
+          </div>
+          <div class="ticketMeta">
+            ${isGift
+              ? `받는 사람: <b style="color:rgba(255,255,255,.92)">${escapeHtml(receiver || "-")}</b><br/>`
+              : `내 티켓함에 저장됨<br/>`
+            }
+            ${isGift && message ? `메시지: <span style="color:rgba(255,255,255,.82)">${escapeHtml(message)}</span><br/>` : ""}
+            상태: <span style="color:rgba(255,255,255,.82)">${isGift ? "발송 예정" : "발급 완료"}</span>
+          </div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function escapeHtml(str){
+      return String(str ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    // 버튼 동작 (원하는 라우트로 바꿔서 사용)
+    $("goWalletBtn").addEventListener("click", () => {
+      // 예: location.href = "/tickets/wallet";
+      alert("내 티켓함으로 이동(라우트 연결 필요)");
+    });
+
+    $("goStationBtn").addEventListener("click", () => {
+      // 예: location.href = "/station";
+      alert("역 화면으로 이동(라우트 연결 필요)");
+    });
+
+    $("homeBtn").addEventListener("click", () => {
+      // 예: location.href = "/";
+      alert("홈으로 이동(라우트 연결 필요)");
+    });
+  </script>
+</body>
+</html>

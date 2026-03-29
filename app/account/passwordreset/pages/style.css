@@ -1,0 +1,42 @@
+/* 🔥 설명 텍스트 */
+.sub_text {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+/* 🔥 입력 강조 */
+.login_form input {
+    transition: 0.2s;
+}
+
+.login_form input:focus {
+    border: 1px solid #5bc0ff;
+    box-shadow: 0 0 10px rgba(91, 192, 255, 0.5);
+}
+
+/* 🔥 버튼 애니메이션 강화 */
+.btn_login {
+    transition: 0.2s;
+}
+
+.btn_login:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(0, 200, 255, 0.7);
+}
+
+/* 🔥 성공 느낌 (옵션) */
+.success_text {
+    margin-top: 15px;
+    color: #00ffcc;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* 🔥 에러 느낌 (옵션) */
+.error_text {
+    margin-top: 15px;
+    color: #ff5b5b;
+    font-size: 14px;
+    text-align: center;
+}

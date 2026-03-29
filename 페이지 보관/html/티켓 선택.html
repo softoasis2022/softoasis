@@ -1,0 +1,432 @@
+<!-- ticket_buy.html -->
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SoftOasis - 티켓 구매</title>
+  <style>
+    :root{
+      --bg1:#070A12; --bg2:#0B1022;
+      --card:#0E1633; --card2:#0C1228;
+      --line:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.65);
+      --neon:#7C5CFF;
+      --neon2:#00E6FF;
+      --danger:#FF4D7D;
+      --ok:#33D69F;
+      --shadow: 0 14px 40px rgba(0,0,0,.45);
+      --r:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Apple SD Gothic Neo", "Noto Sans KR", Arial;
+      background: radial-gradient(1100px 700px at 20% 10%, rgba(124,92,255,.26), transparent 60%),
+                  radial-gradient(900px 650px at 90% 30%, rgba(0,230,255,.18), transparent 55%),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+    }
+    .wrap{max-width:980px; margin:0 auto; padding:28px 16px 40px}
+    header{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin-bottom:18px;
+    }
+    .title h1{margin:0; font-size:22px; letter-spacing:.2px}
+    .title p{margin:6px 0 0; color:var(--muted); font-size:13px}
+    .badge{
+      padding:10px 12px; border:1px solid var(--line); border-radius:999px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: 0 10px 22px rgba(0,0,0,.25);
+      color:var(--muted); font-size:12px;
+    }
+
+    .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:14px}
+    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      background:linear-gradient(180deg, rgba(124,92,255,.12), rgba(0,230,255,.06));
+    }
+    .card .hd strong{font-size:14px}
+    .card .bd{padding:14px 16px}
+
+    .worlds{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px}
+    @media (max-width:700px){ .worlds{grid-template-columns:1fr} }
+    .world{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      background:linear-gradient(180deg, rgba(14,22,51,.72), rgba(12,18,40,.72));
+      cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease;
+      position:relative;
+      min-height:86px;
+    }
+    .world:hover{transform: translateY(-2px); border-color: rgba(124,92,255,.45)}
+    .world.selected{
+      border-color: rgba(0,230,255,.55);
+      box-shadow: 0 0 0 2px rgba(0,230,255,.18) inset;
+    }
+    .world .name{font-weight:700; font-size:14px}
+    .world .desc{margin-top:4px; color:var(--muted); font-size:12px; line-height:1.35}
+    .world .tag{
+      position:absolute; top:10px; right:10px;
+      font-size:11px; color:rgba(255,255,255,.72);
+      padding:6px 8px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.18);
+    }
+
+    label{display:block; font-size:12px; color:var(--muted); margin:12px 0 6px}
+    select, input{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(8,12,24,.55);
+      color:var(--text);
+      outline:none;
+    }
+    select:disabled{opacity:.55; cursor:not-allowed}
+
+    .priceBox{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(0,230,255,.10), rgba(124,92,255,.08));
+      border-radius:14px;
+      padding:14px;
+    }
+    .rows{display:flex; flex-direction:column; gap:8px}
+    .row{display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:13px}
+    .row span{color:var(--muted)}
+    .row strong{font-size:14px}
+    .total{
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px dashed rgba(255,255,255,.16);
+      display:flex; justify-content:space-between; align-items:baseline;
+    }
+    .total .t{color:rgba(255,255,255,.75); font-size:12px}
+    .total .v{font-size:18px; letter-spacing:.2px}
+
+    .qty{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      border:1px solid var(--line); border-radius:14px; padding:10px;
+      background:rgba(0,0,0,.16);
+    }
+    .qty button{
+      width:44px; height:40px; border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      color:var(--text); cursor:pointer;
+    }
+    .qty button:disabled{opacity:.45; cursor:not-allowed}
+    .qty .n{min-width:34px; text-align:center; font-weight:800}
+
+    .actions{display:flex; gap:10px; margin-top:14px}
+    .btn{
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      cursor:pointer;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .btn.primary{
+      border-color: rgba(0,230,255,.45);
+      background: linear-gradient(90deg, rgba(0,230,255,.22), rgba(124,92,255,.22));
+      box-shadow: 0 10px 26px rgba(0,230,255,.14);
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.85);
+    }
+
+    .hint{margin-top:10px; color:var(--muted); font-size:12px; line-height:1.45}
+    .mini{
+      font-size:12px; color:var(--muted);
+      padding:10px 12px; border-top:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+    }
+    .warn{color: rgba(255,255,255,.82); font-size:12px}
+    .warn b{color: var(--danger)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>월드 이동 티켓 구매</h1>
+        <p>월드와 역을 선택하고, 티켓 수량을 정한 뒤 다음 단계로 이동합니다.</p>
+      </div>
+      <div class="badge">SoftOasis NodeSphere • Ticket</div>
+    </header>
+
+    <div class="grid">
+      <!-- LEFT -->
+      <section class="card">
+        <div class="hd">
+          <strong>1) 월드 선택</strong>
+          <span class="warn">선택 후 <b>역 선택</b>이 활성화됩니다</span>
+        </div>
+        <div class="bd">
+          <div id="worldList" class="worlds"></div>
+
+          <label for="stationSelect">2) 해당 월드 내 역 선택</label>
+          <select id="stationSelect" disabled>
+            <option value="">월드를 먼저 선택하세요</option>
+          </select>
+
+          <div class="hint">
+            - 역 선택 시 요금이 자동 반영됩니다.<br/>
+            - 다음 화면에서 각 티켓의 사용방식(개인/선물)을 지정합니다.
+          </div>
+        </div>
+        <div class="mini">Tip: “환승역”이면 추후 월드 이동 흐름(환승 UX)도 자연스럽게 연결됩니다.</div>
+      </section>
+
+      <!-- RIGHT -->
+      <aside class="card">
+        <div class="hd">
+          <strong>3) 금액 • 4) 수량</strong>
+          <span class="warn">총액은 자동 계산</span>
+        </div>
+        <div class="bd">
+          <div class="priceBox" aria-live="polite">
+            <div class="rows">
+              <div class="row"><span>기본요금(1장)</span><strong id="basePrice">-</strong></div>
+              <div class="row"><span>수수료(1장)</span><strong id="feePrice">-</strong></div>
+            </div>
+            <div class="total">
+              <div>
+                <div class="t">합계(현재 수량 기준)</div>
+              </div>
+              <div class="v" id="totalPrice">-</div>
+            </div>
+          </div>
+
+          <label>티켓 갯수 선택</label>
+          <div class="qty">
+            <button id="minusBtn" type="button">-</button>
+            <div class="n" id="qtyVal">1</div>
+            <button id="plusBtn" type="button">+</button>
+          </div>
+
+          <div class="actions">
+            <button class="btn ghost" id="resetBtn" type="button">초기화</button>
+            <button class="btn primary" id="nextBtn" type="button" disabled>다음 (사용방식 선택)</button>
+          </div>
+
+          <div class="hint" id="guide">
+            월드와 역을 선택하면 “다음” 버튼이 활성화됩니다.
+          </div>
+        </div>
+        <div class="mini">결제는 마지막 화면에서 진행합니다. (현재는 2단계까지 제공)</div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    // 샘플 데이터 (서버에서 내려주는 구조로 교체하면 됨)
+    const WORLDS = [
+      {
+        worldId: "W-001",
+        name: "네온테크 월드",
+        desc: "미래 도시, 디바이스/테크 상점이 많은 월드",
+        tag: "추천",
+        stations: [
+          { stationId: "S-001", name: "센트럴 게이트", line: "1호선", transfer: true, base: 3000, fee: 150 },
+          { stationId: "S-002", name: "디바이스 마켓", line: "1호선", transfer: false, base: 3500, fee: 150 },
+          { stationId: "S-003", name: "클라우드 타워", line: "2호선", transfer: true, base: 4000, fee: 200 },
+        ]
+      },
+      {
+        worldId: "W-002",
+        name: "소프트오아시스 월드",
+        desc: "커뮤니티/상점/이벤트 스테이션 중심",
+        tag: "Hot",
+        stations: [
+          { stationId: "S-101", name: "오아시스 플라자", line: "A라인", transfer: true, base: 2800, fee: 100 },
+          { stationId: "S-102", name: "셀러 터미널", line: "A라인", transfer: false, base: 3200, fee: 120 }
+        ]
+      },
+      {
+        worldId: "W-003",
+        name: "메타역사 월드",
+        desc: "월드 간 환승이 잦은 허브 월드",
+        tag: "Hub",
+        stations: [
+          { stationId: "S-201", name: "환승 라운지", line: "H라인", transfer: true, base: 4200, fee: 250 },
+          { stationId: "S-202", name: "타임 플랫폼", line: "H라인", transfer: true, base: 4500, fee: 250 }
+        ]
+      }
+    ];
+
+    const $ = (id) => document.getElementById(id);
+
+    const worldList = $("worldList");
+    const stationSelect = $("stationSelect");
+
+    const basePriceEl = $("basePrice");
+    const feePriceEl  = $("feePrice");
+    const totalPriceEl = $("totalPrice");
+
+    const minusBtn = $("minusBtn");
+    const plusBtn = $("plusBtn");
+    const qtyValEl = $("qtyVal");
+
+    const nextBtn = $("nextBtn");
+    const resetBtn = $("resetBtn");
+    const guide = $("guide");
+
+    const state = {
+      worldId: "",
+      stationId: "",
+      unitBase: 0,
+      unitFee: 0,
+      qty: 1
+    };
+
+    function fmt(n){
+      if (!Number.isFinite(n)) return "-";
+      return n.toLocaleString("ko-KR") + "원";
+    }
+
+    function renderWorlds(){
+      worldList.innerHTML = "";
+      WORLDS.forEach(w => {
+        const div = document.createElement("div");
+        div.className = "world";
+        div.dataset.worldId = w.worldId;
+        div.innerHTML = `
+          <div class="tag">${w.tag}</div>
+          <div class="name">${w.name}</div>
+          <div class="desc">${w.desc}</div>
+        `;
+        div.addEventListener("click", () => selectWorld(w.worldId));
+        worldList.appendChild(div);
+      });
+    }
+
+    function selectWorld(worldId){
+      state.worldId = worldId;
+      state.stationId = "";
+      state.unitBase = 0;
+      state.unitFee = 0;
+
+      [...worldList.children].forEach(el => {
+        el.classList.toggle("selected", el.dataset.worldId === worldId);
+      });
+
+      const w = WORLDS.find(x => x.worldId === worldId);
+      stationSelect.disabled = false;
+      stationSelect.innerHTML = `<option value="">역을 선택하세요</option>`;
+      w.stations.forEach(s => {
+        const opt = document.createElement("option");
+        opt.value = s.stationId;
+        opt.textContent = `${s.name}  · ${s.line}${s.transfer ? " · 환승역" : ""}`;
+        stationSelect.appendChild(opt);
+      });
+
+      updatePriceUI();
+      validate();
+    }
+
+    function selectStation(stationId){
+      state.stationId = stationId;
+
+      const w = WORLDS.find(x => x.worldId === state.worldId);
+      const s = w?.stations.find(x => x.stationId === stationId);
+
+      if (s){
+        state.unitBase = s.base;
+        state.unitFee = s.fee;
+      } else {
+        state.unitBase = 0;
+        state.unitFee = 0;
+      }
+
+      updatePriceUI();
+      validate();
+    }
+
+    function updatePriceUI(){
+      if (!state.stationId){
+        basePriceEl.textContent = "-";
+        feePriceEl.textContent = "-";
+        totalPriceEl.textContent = "-";
+        return;
+      }
+      basePriceEl.textContent = fmt(state.unitBase);
+      feePriceEl.textContent = fmt(state.unitFee);
+      const total = (state.unitBase + state.unitFee) * state.qty;
+      totalPriceEl.textContent = fmt(total);
+    }
+
+    function setQty(n){
+      const min = 1, max = 10;
+      state.qty = Math.max(min, Math.min(max, n));
+      qtyValEl.textContent = String(state.qty);
+      minusBtn.disabled = state.qty <= min;
+      plusBtn.disabled  = state.qty >= max;
+      updatePriceUI();
+      validate();
+    }
+
+    function validate(){
+      const ok = !!state.worldId && !!state.stationId && state.qty >= 1;
+      nextBtn.disabled = !ok;
+      guide.textContent = ok
+        ? "준비 완료! 다음 화면에서 각 티켓의 사용방식(개인/선물)을 지정합니다."
+        : "월드와 역을 선택하면 “다음” 버튼이 활성화됩니다.";
+    }
+
+    stationSelect.addEventListener("change", (e) => selectStation(e.target.value));
+    minusBtn.addEventListener("click", () => setQty(state.qty - 1));
+    plusBtn.addEventListener("click", () => setQty(state.qty + 1));
+    resetBtn.addEventListener("click", () => {
+      state.worldId = "";
+      state.stationId = "";
+      state.unitBase = 0;
+      state.unitFee = 0;
+      setQty(1);
+      stationSelect.disabled = true;
+      stationSelect.innerHTML = `<option value="">월드를 먼저 선택하세요</option>`;
+      [...worldList.children].forEach(el => el.classList.remove("selected"));
+      updatePriceUI();
+      validate();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      const payload = {
+        worldId: state.worldId,
+        stationId: state.stationId,
+        qty: state.qty,
+        unitPrice: state.unitBase + state.unitFee,
+        unitBase: state.unitBase,
+        unitFee: state.unitFee,
+        totalPrice: (state.unitBase + state.unitFee) * state.qty
+      };
+
+      // 화면 전환용: localStorage로 넘김 (서버 연동시에는 세션/토큰/쿼리 등으로 교체)
+      localStorage.setItem("SO_TICKET_BUY", JSON.stringify(payload));
+      location.href = "ticket_use.html";
+    });
+
+    renderWorlds();
+    setQty(1);
+    validate();
+  </script>
+</body>
+</html>

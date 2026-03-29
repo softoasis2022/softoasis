@@ -1,0 +1,93 @@
+<!-- ticket_buy.html -->
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SoftOasis - 티켓 구매</title>
+    <link rel="stylesheet" href="pages/ticketsellect/css/main.css" />
+    <script type="module" defer src="pages/ticketsellect/js/main.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="title">
+                <h1>월드 이동 티켓 구매</h1>
+                <p>월드와 역을 선택하고, 티켓 수량을 정한 뒤 다음 단계로 이동합니다.</p>
+            </div>
+            <div class="badge">SoftOasis NodeSphere • Ticket</div>
+        </header>
+
+        <div class="grid">
+            <!-- LEFT -->
+            <section class="card">
+                <div class="hd">
+                    <strong>1) 월드 선택</strong>
+                    <span class="warn">선택 후 <b>역 선택</b>이 활성화됩니다</span>
+                </div>
+                <div class="bd">
+                    <label for="worldKeyword">1) 월드 검색</label>
+                    <div class="worldSearch">
+                        <input id="worldKeyword" type="text" placeholder='예) "소프트오아시스"' autocomplete="off" />
+                        <button id="worldSearchBtn" type="button">검색</button>
+                    </div>
+
+                    <label for="stationSelect">2) 해당 월드 내 역 선택</label>
+                    <select id="stationSelect" disabled>
+                        <option value="">월드를 검색해서 역 목록을 불러오세요</option>
+                    </select>
+
+                    <div class="hint" id="worldSearchHint">
+                        월드 이름을 입력하고 검색을 누르면, 서버 응답으로 역 목록이 채워집니다.
+                    </div>
+                </div>
+                <div class="mini">Tip: “환승역”이면 추후 월드 이동 흐름(환승 UX)도 자연스럽게 연결됩니다.</div>
+            </section>
+
+            <!-- RIGHT -->
+            <aside class="card">
+                <div class="hd">
+                    <strong>3) 금액 • 4) 수량</strong>
+                    <span class="warn">총액은 자동 계산</span>
+                </div>
+                <div class="bd">
+                    <div class="priceBox" aria-live="polite">
+                        <div class="rows">
+                            <div class="row"><span>기본요금(1장)</span><strong id="basePrice">-</strong></div>
+                            <div class="row"><span>수수료(1장)</span><strong id="feePrice">-</strong></div>
+                        </div>
+                        <div class="total">
+                            <div>
+                                <div class="t">합계(현재 수량 기준)</div>
+                            </div>
+                            <div class="v" id="totalPrice">-</div>
+                        </div>
+                    </div>
+
+                    <label>티켓 갯수 선택</label>
+                    <div class="qty">
+                        <button id="minusBtn" type="button">-</button>
+                        <div class="n" id="qtyVal">1</div>
+                        <button id="plusBtn" type="button">+</button>
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn ghost" id="resetBtn" type="button">초기화</button>
+                        <button class="btn primary" id="nextBtn" type="button" disabled>다음 (사용방식 선택)</button>
+                    </div>
+
+                    <div class="hint" id="guide">
+                        월드와 역을 선택하면 “다음” 버튼이 활성화됩니다.
+                    </div>
+                </div>
+                <div class="mini">결제는 마지막 화면에서 진행합니다. (현재는 2단계까지 제공)</div>
+            </aside>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

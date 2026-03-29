@@ -1,0 +1,20 @@
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0px;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;  /* 가로 */
+          /* 세로 */
+}
+
+.wrap_menu{
+    min-width: 150px;
+    background-color: darkgray;
+}
+
+.menutitle{
+    display: flex;
+    justify-content: center;
+}

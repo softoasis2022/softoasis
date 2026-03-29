@@ -1,0 +1,146 @@
+/* seller-product-batch.css */
+
+main[data-page="seller-product-batch"] {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+main[data-page="seller-product-batch"] h1 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.panel {
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 10px;
+  padding: 14px;
+  background: #fff;
+  margin-top: 12px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 720px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 6px;
+  opacity: 0.9;
+}
+
+input, select, button, textarea {
+  font: inherit;
+}
+
+input, select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.18);
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: rgba(0,0,0,0.35);
+}
+
+.hint {
+  font-size: 12px;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.15);
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  cursor: pointer;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.18);
+  background: #f6f6f6;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+button.danger {
+  background: #fff0f0;
+  border-color: rgba(255,0,0,0.25);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+th, td {
+  border-top: 1px solid rgba(0,0,0,0.12);
+  padding: 10px 8px;
+  vertical-align: top;
+  text-align: left;
+  font-size: 13px;
+}
+
+thead th {
+  border-top: none;
+  opacity: 0.75;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+}
+
+/* 등급 입력 줄 */
+.grade-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.grade-row button {
+  padding: 10px 10px;
+}

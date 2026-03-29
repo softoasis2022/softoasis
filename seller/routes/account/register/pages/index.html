@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>회원가입</title>
+
+  <!-- ✅ 분리한 CSS 연결 -->
+  <link rel="stylesheet" href="./style/sssss.css" />
+  <script src="./script/ssssss.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>회원가입</h1>
+
+      <form class="form" id="registerForm" action="/seller/account/register" method="post" autocomplete="on">
+        <!-- ✅ 아이디 + 중복체크 -->
+        <div class="field">
+          <label for="userId">아이디</label>
+
+          <div class="row-inline">
+            <input class="input" id="userId" name="userId" type="text" placeholder="아이디를 입력하세요" required />
+            <button class="btn-sub" type="button" id="btnIdCheck">중복체크</button>
+          </div>
+
+          <!-- 결과 메시지 -->
+          <p class="msg" id="idCheckMsg"></p>
+
+          <!-- ✅ 서버로 제출할 때 같이 보낼 상태값 -->
+          <input type="hidden" name="idChecked" id="idChecked" value="0" />
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="password">비밀번호</label>
+            <input class="input" id="password" name="password" type="password" placeholder="비밀번호를 입력하세요" required />
+          </div>
+
+          <div class="field">
+            <label for="password2">비밀번호 확인</label>
+            <input class="input" id="password2" name="passwordConfirm" type="password" placeholder="비밀번호를 다시 입력하세요" required />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="name">이름</label>
+            <input class="input" id="name" name="name" type="text" placeholder="이름을 입력하세요" required />
+          </div>
+
+          <div class="field">
+            <label for="phone">휴대폰</label>
+            <input class="input" id="phone" name="phone" type="tel" placeholder="010-0000-0000" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">이메일</label>
+          <input class="input" id="email" name="email" type="email" placeholder="example@softoasis.org" />
+        </div>
+
+        <button class="btn" type="submit">가입하기</button>
+
+        <div class="bottom">
+          <a href="/seller/account/login">로그인</a>
+          <span class="divider">|</span>
+          <a href="/seller/account/find">아이디 / 비밀번호 찾기</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: coral;
+    max-height: 60px;
+    position: sticky;
+    top: 0px;
+}
+
+header .logo > img{
+    max-width: 150px;
+    position: relative;
+    top: 10px;
+}
+.wrap_menu{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.menu{
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    padding: 5px;
+    border: 2px solid darkorange;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(120, 60, 0, 0.35);
+    margin: 10px;
+    background-color: white
+}

@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>미래열차 탑승권 · 초대권</title>
+
+  <!-- 공유 미리보기(메신저) 기본값 -->
+  <meta property="og:title" content="미래열차 탑승권 (초대권)" />
+  <meta property="og:description" content="미래 이동수단 탑승을 위한 디지털 보딩패스" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg1:#060A17;
+      --bg2:#081A2A;
+      --glass1: rgba(255,255,255,0.10);
+      --glass2: rgba(255,255,255,0.05);
+      --line: rgba(255,255,255,0.14);
+      --cyan: rgba(0,255,255,0.85);
+      --pink: rgba(255,0,200,0.65);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --danger: rgba(255,120,120,0.90);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1000px 520px at 12% 14%, rgba(0,255,255,0.13), transparent 60%),
+        radial-gradient(900px 460px at 88% 26%, rgba(255,0,200,0.10), transparent 62%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:22px;
+    }
+
+    /* 별 점 느낌 */
+    .stars{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 48px 48px, 72px 72px;
+      background-position: 0 0, 20px 30px;
+      opacity:0.35;
+      mix-blend-mode: screen;
+    }
+
+    .wrap{ width:min(980px, 100%); }
+
+    .ticket{
+      position:relative;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--glass1), var(--glass2));
+      border: 2px solid rgba(0,255,255,0.30);
+      box-shadow: 0 16px 60px rgba(0,0,0,0.48);
+      overflow:hidden;
+    }
+
+    /* “스캔 라인” 애니메이션 */
+    .scanline{
+      position:absolute;
+      inset:-40% 0;
+      pointer-events:none;
+      background: linear-gradient(to bottom,
+        rgba(0,255,255,0) 0%,
+        rgba(0,255,255,0.10) 45%,
+        rgba(0,255,255,0.22) 50%,
+        rgba(0,255,255,0.10) 55%,
+        rgba(0,255,255,0) 100%);
+      opacity:0.30;
+      animation: scan 3.4s linear infinite;
+      mix-blend-mode: screen;
+    }
+    @keyframes scan{
+      0%{ transform: translateY(-25%); }
+      100%{ transform: translateY(25%); }
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,0.18);
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .brand .t1{
+      font-weight:900;
+      letter-spacing:0.5px;
+      font-size:15px;
+      color: rgba(255,255,255,0.85);
+    }
+    .brand .t2{
+      font-size:12px;
+      color: rgba(255,255,255,0.60);
+    }
+    .badge{
+      padding:8px 12px;
+      border-radius:999px;
+      border: 1px solid rgba(255,0,200,0.35);
+      background: rgba(0,0,0,0.25);
+      color: rgba(255,255,255,0.85);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .content{
+      display:grid;
+      grid-template-columns: 1.25fr 0.75fr;
+    }
+
+    @media (max-width: 900px){
+      .content{ grid-template-columns:1fr; }
+      .right{ border-top: 1px dashed rgba(255,255,255,0.22); }
+    }
+
+    .left{
+      padding:22px;
+    }
+
+    .route{
+      margin: 8px 0 8px;
+      font-weight:950;
+      font-size: 34px;
+      line-height:1.15;
+      color: rgba(0,255,255,0.95);
+      text-shadow: 0 0 18px rgba(0,255,255,0.14);
+    }
+    .subtitle{
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.5;
+      margin-bottom: 16px;
+    }
+
+    .kv{
+      display:grid;
+      grid-template-columns: 120px 1fr;
+      gap:10px 12px;
+      padding: 14px 0;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    .k{
+      font-size:12px;
+      color: rgba(255,255,255,0.60);
+      letter-spacing:0.3px;
+    }
+    .v{
+      font-size:14px;
+      font-weight:800;
+      color: rgba(255,255,255,0.92);
+      word-break: break-word;
+    }
+    .note{
+      margin-top: 10px;
+      font-size:12px;
+      color: rgba(255,255,255,0.58);
+      line-height:1.45;
+    }
+
+    .keybox{
+      margin-top: 16px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.26);
+      border: 1px solid rgba(0,255,255,0.30);
+      padding: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .keytitle{
+      font-size:12px;
+      color: rgba(255,255,255,0.60);
+      margin-bottom: 4px;
+    }
+    .keyvalue{
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: 0.8px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .btns{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    a.btn, button.btn{
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.35);
+      color: rgba(255,255,255,0.92);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 900;
+      font-size: 13px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+    a.btn.primary{
+      border-color: rgba(0,255,255,0.33);
+      box-shadow: 0 0 0 2px rgba(0,255,255,0.10) inset;
+    }
+    a.btn.primary:hover{
+      box-shadow: 0 0 0 2px rgba(0,255,255,0.16) inset, 0 10px 30px rgba(0,255,255,0.06);
+    }
+    button.btn:hover, a.btn:hover{
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    .right{
+      position:relative;
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+    }
+
+    /* 디지털 절취선 느낌 */
+    .divider{
+      position:absolute;
+      top: 18px;
+      bottom: 18px;
+      left: 0;
+      width: 0;
+      border-left: 2px dashed rgba(255,255,255,0.20);
+    }
+
+    .qrpanel{
+      width: 260px;
+      height: 260px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.30);
+      border: 1px solid rgba(255,0,200,0.32);
+      padding: 10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 0 0 2px rgba(255,0,200,0.06) inset;
+    }
+    .qrpanel img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      border-radius: 12px;
+      background:#fff;
+      padding: 8px;
+    }
+    .qrlabel{
+      font-weight:900;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing:0.5px;
+    }
+    .hint{
+      text-align:center;
+      font-size:12px;
+      color: rgba(255,255,255,0.62);
+      line-height:1.45;
+      max-width: 320px;
+    }
+
+    .footer{
+      padding:14px 20px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      font-size:12px;
+      color: rgba(255,255,255,0.60);
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      background: rgba(0,0,0,0.12);
+    }
+
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+    .warn{
+      color: var(--danger);
+      font-weight:800;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars"></div>
+
+  <div class="wrap">
+    <div class="ticket" id="ticket">
+      <div class="scanline"></div>
+
+      <div class="topbar">
+        <div class="brand">
+          <div class="t1">SOFTOASIS FUTURE TRANSIT</div>
+          <div class="t2">Boarding Pass · 미래 이동수단 탑승 인증</div>
+        </div>
+        <div class="badge">초대권 · 1회 탑승</div>
+      </div>
+
+      <div class="content">
+        <!-- LEFT -->
+        <div class="left">
+          <div class="route" id="routeText">ANDONG HUB → SOFTOASIS CORE</div>
+          <div class="subtitle">
+            이 티켓은 플랫폼에 “탑승(초대 수락)”하기 위한 보딩패스입니다.<br/>
+            아래 QR을 스캔하거나 버튼으로 탑승 절차를 진행하세요.
+          </div>
+
+          <div class="kv">
+            <div class="k">승객</div><div class="v" id="passenger">GUEST</div>
+            <div class="k">노선</div><div class="v" id="route">NODELINE-7</div>
+            <div class="k">출발</div><div class="v" id="depart">2026-02-08 19:30</div>
+            <div class="k">베이/포드</div><div class="v" id="baypod">BAY-03 / POD-Δ12</div>
+          </div>
+
+          <div class="keybox">
+            <div>
+              <div class="keytitle">INVITE KEY</div>
+              <div class="keyvalue mono" id="inviteKey">FUTURE-INVITE-0000</div>
+            </div>
+            <div class="btns">
+              <a class="btn primary" id="acceptBtn" href="#" rel="noopener">탑승(초대 수락)</a>
+              <button class="btn" id="copyBtn" type="button">링크 복사</button>
+            </div>
+          </div>
+
+          <div class="note">
+            <span class="warn">주의:</span> 이 초대권은 공유될 수 있습니다. 중요한 권한이 있다면 서버에서 1회용/만료/서명 처리하세요.
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="right">
+          <div class="divider"></div>
+
+          <div class="qrlabel">SCAN TO BOARD</div>
+          <div class="qrpanel">
+            <img id="qrImg" alt="QR" src="" />
+          </div>
+          <div class="hint">
+            QR 인식이 안되면 “링크 복사”로 직접 열어주세요.<br/>
+            모바일에서는 버튼을 누르면 바로 이동합니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>Issued by SoftOasis Transit</div>
+        <div>Invite URL: <span class="mono" id="inviteUrlText">-</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * ✅ 여기만 바꾸면 바로 커스터마이징 가능
+     * (나중에 Node.js에서 이 값들을 서버가 만들어서 내려주면 됨)
+     */
+    const ticketData = {
+      passengerName: "한민섭",
+      from: "ANDONG HUB",
+      to: "SOFTOASIS CORE",
+      route: "NODELINE-7",
+      depart: "2026-02-08 19:30",
+      bay: "BAY-03",
+      pod: "POD-Δ12",
+      inviteKey: "SOFT-7F3K9A",
+      // ✅ 실제 초대 수락 URL(네 시스템에 맞춰 바꿔)
+      inviteUrl: "https://softoasis.org/invite/accept?code=SOFT-7F3K9A"
+    };
+
+    // 텍스트 반영
+    document.getElementById("passenger").textContent = ticketData.passengerName;
+    document.getElementById("routeText").textContent = ticketData.from + " → " + ticketData.to;
+    document.getElementById("route").textContent = ticketData.route;
+    document.getElementById("depart").textContent = ticketData.depart;
+    document.getElementById("baypod").textContent = ticketData.bay + " / " + ticketData.pod;
+    document.getElementById("inviteKey").textContent = ticketData.inviteKey;
+    document.getElementById("inviteUrlText").textContent = ticketData.inviteUrl;
+
+    // 버튼 링크
+    const acceptBtn = document.getElementById("acceptBtn");
+    acceptBtn.href = ticketData.inviteUrl;
+
+    // ✅ QR 이미지(외부 API)
+    // 서버 없이 HTML만으로 QR 생성하려면 보통 이 방법이 제일 간단함.
+    // (나중에 서버에서 QR을 dataURL로 만들어 넣으면 외부 의존성 제거 가능)
+    const qrImg = document.getElementById("qrImg");
+    qrImg.src =
+      "https://api.qrserver.com/v1/create-qr-code/?" +
+      "size=320x320&data=" + encodeURIComponent(ticketData.inviteUrl);
+
+    // 링크 복사
+    const copyBtn = document.getElementById("copyBtn");
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(ticketData.inviteUrl);
+        copyBtn.textContent = "복사됨!";
+        setTimeout(() => (copyBtn.textContent = "링크 복사"), 1200);
+      } catch (e) {
+        alert("복사 실패! 아래 URL을 길게 눌러 복사해줘.\n\n" + ticketData.inviteUrl);
+      }
+    });
+  </script>
+</body>
+</html>

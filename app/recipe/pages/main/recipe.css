@@ -1,0 +1,94 @@
+.recipe {
+    width: 100%;
+}
+
+.recipe>ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding-inline-start: 0px;
+
+}
+
+.recipe>ul>li {
+    min-width: 700px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 5px 5px 5px gray;
+}
+
+.recipe>ul>li a {
+    width: fit-content;
+}
+
+.wrap_recipe {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.wrap_image {
+  width: fit-content;      /* 원하는 카드 크기 */
+  max-width: 220px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;  /* 넘치면 자르기 */
+  border-radius: 30px;
+}
+
+.wrap_image img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+.recipe_info {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  padding: 5px;
+}
+.recipe_info > div{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    
+}
+.recipe_info > div p{
+    border-radius: 10px;
+    padding: 2px;
+}
+.subimage > ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    overflow-x: scroll;
+    padding-inline-start: 0px;
+}
+.subimage > ul > li{
+    list-style: none;
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    
+}
+.subimage > ul::-webkit-scrollbar{
+    display: none;
+}
+
+.subimage > ul > li img{
+    width: 50px;
+    aspect-ratio: 9/16;
+}

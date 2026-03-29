@@ -1,0 +1,78 @@
+.login_container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrap_login {
+    width: 360px;
+    padding: 32px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.login_title {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.login_form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.login_form input {
+    margin-top: 6px;
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+.login_form input:focus {
+    border-color: #4a7cff;
+}
+
+.btn_login {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    background: #4a7cff;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn_login:hover {
+    background: #3b6ae0;
+}
+
+.account {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.account a {
+    color: #666;
+    text-decoration: none;
+}
+
+.account a:hover {
+    text-decoration: underline;
+}
+
+.account span {
+    margin: 0 6px;
+    color: #ccc;
+}

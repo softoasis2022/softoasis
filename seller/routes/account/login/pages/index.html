@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계정로그인</title>
+    <link rel="stylesheet" href="./style/aaaa.css">
+    <script src="./script/aaa.js"></script>
+</head>
+
+<body>
+    <main class="login_container">
+        <div class="wrap_login">
+            <h2 class="login_title">로그인</h2>
+
+            <form id="login" class="login_form">
+                <label>
+                    아이디
+                    <input type="text" name="userId" placeholder="아이디를 입력하세요" required />
+                </label>
+
+                <label>
+                    비밀번호
+                    <input type="password" name="password" placeholder="비밀번호를 입력하세요" required  minlength="8" maxlength="28"/>
+                </label>
+
+                <button type="submit" class="btn_login">로그인</button>
+            </form>
+
+            <div class="account">
+                <a href="/find-account">아이디 / 비밀번호 찾기</a>
+                <span>|</span>
+                <a href="/signup">회원가입</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

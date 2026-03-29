@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계정로그인</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./login.js" defer></script>
+    <link rel="icon" type="image/png" href="/image/UI/neologo.svg">
+</head>
+
+<body>
+
+    <main class="login_container">
+
+        <div class="wrap_login">
+
+            <!-- 🔥 로고 -->
+            <div class="logo">
+                <div class="circle"></div>
+                <div class="slash"></div>
+            </div>
+
+            <!-- 타이틀 -->
+            <h2 class="login_title">NEO ACCESS</h2>
+
+            <!-- 기존 폼 유지 -->
+            <form id="login" class="login_form">
+
+                <label>
+                    아이디
+                    <input type="text" name="userId" placeholder="아이디를 입력하세요" required />
+                </label>
+
+                <label>
+                    비밀번호
+                    <input type="password" name="password" placeholder="비밀번호를 입력하세요" required minlength="8" maxlength="28" />
+                </label>
+
+                <button type="submit" class="btn_login">ENTER NODE</button>
+
+            </form>
+
+            <!-- 기존 링크 유지 -->
+            <div class="account">
+                <a href="/acount/find">아이디 / 비밀번호 찾기</a>
+                <span>|</span>
+                <a href="/acount/signup">회원가입</a>
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

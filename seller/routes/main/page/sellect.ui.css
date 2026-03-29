@@ -1,0 +1,123 @@
+/* ===== UI: cards, hover, typography ===== */
+
+:root {
+  --bg: #0b0f17;
+  --panel: rgba(255,255,255,0.06);
+  --panel-border: rgba(255,255,255,0.12);
+  --panel-hover: rgba(255,255,255,0.10);
+
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.70);
+
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.25);
+  --shadow-hover: 0 18px 45px rgba(0,0,0,0.35);
+}
+
+/* background */
+body {
+  color: var(--text);
+  background:
+    radial-gradient(900px 500px at 20% 10%, rgba(120, 150, 255, 0.20), transparent 60%),
+    radial-gradient(700px 450px at 90% 20%, rgba(255, 140, 120, 0.16), transparent 55%),
+    radial-gradient(650px 450px at 40% 90%, rgba(90, 255, 200, 0.10), transparent 55%),
+    var(--bg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
+}
+
+/* remove default p spacing */
+p { margin: 0; }
+
+/* card link area */
+.sellect_list a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* card style */
+.sellect_list li {
+  position: relative;
+  overflow: hidden;
+
+  border-radius: var(--radius);
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+/* glossy top highlight */
+.sellect_list li::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.02) 40%, transparent 60%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* bottom accent line */
+.sellect_list li::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(120,150,255,0.9), rgba(90,255,200,0.9), rgba(255,140,120,0.9));
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.sellect_list li:hover {
+  transform: translateY(-6px);
+  background: var(--panel-hover);
+  border-color: rgba(255,255,255,0.22);
+  box-shadow: var(--shadow-hover);
+}
+
+/* keyboard focus */
+.sellect_list a:focus-visible {
+  outline: 2px solid rgba(120,150,255,0.85);
+  outline-offset: 4px;
+  border-radius: calc(var(--radius) + 6px);
+}
+
+/* label */
+.sellect_list a p {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+
+  color: var(--text);
+  text-shadow: 0 8px 18px rgba(0,0,0,0.35);
+}
+
+/* subtle subtitle if you ever add <small> */
+.sellect_list a small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* tap feedback (mobile) */
+@media (hover: none) {
+  .sellect_list li:active {
+    transform: translateY(-2px) scale(0.99);
+  }
+}

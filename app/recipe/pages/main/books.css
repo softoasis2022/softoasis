@@ -1,0 +1,31 @@
+.books{
+    width: 100%;
+    height: fit-content;
+
+}
+.books > .title{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.books > .title p{
+    margin: 0px;
+}
+
+.books > ul{
+    padding-inline-start: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.books > ul > li{
+    list-style: none;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    
+}

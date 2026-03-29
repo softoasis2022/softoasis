@@ -1,0 +1,501 @@
+<main>
+    <div class="filter">
+        <!-- 브랜드 -->
+        <select name="brand" id="brand">
+            <option value="">브랜드 전체</option>
+            <option value="samsung">삼성</option>
+            <option value="apple">애플</option>
+            <option value="lg">LG</option>
+            <option value="xiaomi">샤오미</option>
+            <option value="google">구글</option>
+        </select>
+
+        <!-- 기기유형 -->
+        <select name="type" id="type">
+            <option value="">기기유형 전체</option>
+            <option value="smartphone">스마트폰</option>
+            <option value="tablet">태블릿</option>
+            <option value="earphone">이어폰</option>
+            <option value="laptop">노트북</option>
+            <option value="watch">워치</option>
+            <option value="router">라우터</option>
+            <option value="kids">키즈폰</option>
+        </select>
+
+        <!-- 가격대 -->
+        <select name="price" id="price">
+            <option value="">가격대</option>
+            <option value="low">30만원 이하</option>
+            <option value="mid">30~70만원</option>
+            <option value="high">70~120만원</option>
+            <option value="flagship">120만원 이상</option>
+        </select>
+
+        <!-- 통신망 -->
+        <select name="network" id="network">
+            <option value="">통신망</option>
+            <option value="4g">4G (LTE)</option>
+            <option value="5g">5G</option>
+            <option value="wifi">Wi-Fi Only</option>
+        </select>
+
+        <!-- 출시년도 -->
+        <select name="year" id="year">
+            <option value="">출시년도</option>
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+        </select>
+
+        <!-- RAM -->
+        <select name="ram" id="ram">
+            <option value="">RAM</option>
+            <option value="4">4GB</option>
+            <option value="6">6GB</option>
+            <option value="8">8GB</option>
+            <option value="12">12GB</option>
+            <option value="16">16GB</option>
+        </select>
+
+        <!-- 저장용량 -->
+        <select name="storage" id="storage">
+            <option value="">저장용량</option>
+            <option value="64">64GB</option>
+            <option value="128">128GB</option>
+            <option value="256">256GB</option>
+            <option value="512">512GB</option>
+            <option value="1024">1TB</option>
+        </select>
+
+        <!-- 5G 지원 -->
+        <select name="fiveg" id="fiveg">
+            <option value="">5G 지원</option>
+            <option value="yes">지원</option>
+            <option value="no">미지원</option>
+        </select>
+
+        <!-- eSIM -->
+        <select name="esim" id="esim">
+            <option value="">eSIM</option>
+            <option value="yes">지원</option>
+            <option value="no">미지원</option>
+        </select>
+
+        <!-- 상태 -->
+        <select name="condition" id="condition">
+            <option value="">제품상태</option>
+            <option value="new">새상품</option>
+            <option value="used">중고</option>
+            <option value="refurb">리퍼</option>
+            <option value="demo">전시상품</option>
+        </select>
+    </div>
+    <div class="sort">
+        <p>정렬</p>
+        <select name="sort" id="sort">
+            <option value="release_desc">최신 출시순</option>
+            <option value="release_asc">오래된 출시순</option>
+            <option value="price_low">가격 낮은순</option>
+            <option value="price_high">가격 높은순</option>
+            <option value="ram_high">RAM 높은순</option>
+            <option value="storage_high">저장용량 많은순</option>
+            <option value="popular">인기순</option>
+            <option value="sales">판매량순</option>
+        </select>
+    </div>
+    <div class="searchbar">
+        <input id="q" type="text" placeholder="모델명 / 모델코드 / 브랜드로 검색 (예: S24, A3105, Apple)">
+        <button id="btnSearch" type="button">검색</button>
+        <button id="btnReset" type="button" class="btn-ghost">초기화</button>
+        <p class="search-hint">Enter로 검색 · ESC로 초기화</p>
+    </div>
+    <div>
+        <table border="1">
+            <tr>
+                <th>브랜드</th>
+                <th>기기유형</th>
+                <th>모델명</th>
+                <th>모델코드</th>
+                <th>램</th>
+                <th>스토리지</th>
+                <th>색상</th>
+            </tr>
+
+            <!-- ===================== Apple (20) ===================== -->
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 15 Pro Max</td>
+                <td>A3105</td>
+                <td>8GB</td>
+                <td>512GB</td>
+                <td>Black Titanium</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 15 Pro</td>
+                <td>A3102</td>
+                <td>8GB</td>
+                <td>256GB</td>
+                <td>Natural Titanium</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 15 Plus</td>
+                <td>A3094</td>
+                <td>6GB</td>
+                <td>256GB</td>
+                <td>Green</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 15</td>
+                <td>A3090</td>
+                <td>6GB</td>
+                <td>128GB</td>
+                <td>Pink</td>
+            </tr>
+
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 14 Pro Max</td>
+                <td>A2894</td>
+                <td>6GB</td>
+                <td>256GB</td>
+                <td>Space Black</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 14 Pro</td>
+                <td>A2890</td>
+                <td>6GB</td>
+                <td>256GB</td>
+                <td>Deep Purple</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 14 Plus</td>
+                <td>A2886</td>
+                <td>6GB</td>
+                <td>128GB</td>
+                <td>Blue</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 14</td>
+                <td>A2882</td>
+                <td>6GB</td>
+                <td>128GB</td>
+                <td>Midnight</td>
+            </tr>
+
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 13 Pro Max</td>
+                <td>A2484</td>
+                <td>6GB</td>
+                <td>256GB</td>
+                <td>Sierra Blue</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 13 Pro</td>
+                <td>A2483</td>
+                <td>6GB</td>
+                <td>256GB</td>
+                <td>Graphite</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 13</td>
+                <td>A2633</td>
+                <td>4GB</td>
+                <td>128GB</td>
+                <td>Midnight</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 13 mini</td>
+                <td>A2628</td>
+                <td>4GB</td>
+                <td>128GB</td>
+                <td>Starlight</td>
+            </tr>
+
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 12 Pro Max</td>
+                <td>A2411</td>
+                <td>6GB</td>
+                <td>256GB</td>
+                <td>Pacific Blue</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 12 Pro</td>
+                <td>A2407</td>
+                <td>6GB</td>
+                <td>128GB</td>
+                <td>Graphite</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 12</td>
+                <td>A2403</td>
+                <td>4GB</td>
+                <td>128GB</td>
+                <td>Blue</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone 12 mini</td>
+                <td>A2399</td>
+                <td>4GB</td>
+                <td>64GB</td>
+                <td>Green</td>
+            </tr>
+
+            <tr>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>iPhone SE (3rd Gen)</td>
+                <td>A2783</td>
+                <td>4GB</td>
+                <td>64GB</td>
+                <td>Red</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Tablet</td>
+                <td>iPad Pro 11</td>
+                <td>A2759</td>
+                <td>8GB</td>
+                <td>256GB</td>
+                <td>Space Gray</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Tablet</td>
+                <td>iPad Air (5th Gen)</td>
+                <td>A2588</td>
+                <td>8GB</td>
+                <td>64GB</td>
+                <td>Blue</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Tablet</td>
+                <td>iPad (10th Gen)</td>
+                <td>A2696</td>
+                <td>4GB</td>
+                <td>64GB</td>
+                <td>Yellow</td>
+            </tr>
+
+            <!-- ===================== Samsung (20) ===================== -->
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy S24 Ultra</td>
+                <td>SM-S928N</td>
+                <td>12GB</td>
+                <td>512GB</td>
+                <td>Titanium Gray</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy S24+</td>
+                <td>SM-S926N</td>
+                <td>12GB</td>
+                <td>256GB</td>
+                <td>Onyx Black</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy S24</td>
+                <td>SM-S921N</td>
+                <td>8GB</td>
+                <td>256GB</td>
+                <td>Marble Gray</td>
+            </tr>
+
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy S23 Ultra</td>
+                <td>SM-S918N</td>
+                <td>12GB</td>
+                <td>512GB</td>
+                <td>Phantom Black</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy S23+</td>
+                <td>SM-S916N</td>
+                <td>8GB</td>
+                <td>256GB</td>
+                <td>Cream</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy S23</td>
+                <td>SM-S911N</td>
+                <td>8GB</td>
+                <td>256GB</td>
+                <td>Green</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy S23 FE</td>
+                <td>SM-S711N</td>
+                <td>8GB</td>
+                <td>256GB</td>
+                <td>Purple</td>
+            </tr>
+
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy Z Fold5</td>
+                <td>SM-F946N</td>
+                <td>12GB</td>
+                <td>512GB</td>
+                <td>Icy Blue</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy Z Flip5</td>
+                <td>SM-F731N</td>
+                <td>8GB</td>
+                <td>256GB</td>
+                <td>Mint</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy Z Fold4</td>
+                <td>SM-F936N</td>
+                <td>12GB</td>
+                <td>256GB</td>
+                <td>Graygreen</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy Z Flip4</td>
+                <td>SM-F721N</td>
+                <td>8GB</td>
+                <td>256GB</td>
+                <td>Bora Purple</td>
+            </tr>
+
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy A55</td>
+                <td>SM-A556N</td>
+                <td>8GB</td>
+                <td>256GB</td>
+                <td>Ice Blue</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy A54</td>
+                <td>SM-A546N</td>
+                <td>8GB</td>
+                <td>128GB</td>
+                <td>Lime</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy A35</td>
+                <td>SM-A356N</td>
+                <td>6GB</td>
+                <td>128GB</td>
+                <td>Awesome Navy</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy A34</td>
+                <td>SM-A346N</td>
+                <td>6GB</td>
+                <td>128GB</td>
+                <td>Silver</td>
+            </tr>
+
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy M34</td>
+                <td>SM-M346K</td>
+                <td>6GB</td>
+                <td>128GB</td>
+                <td>Navy</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>Galaxy A15</td>
+                <td>SM-A155N</td>
+                <td>4GB</td>
+                <td>128GB</td>
+                <td>Black</td>
+            </tr>
+
+            <tr>
+                <td>Samsung</td>
+                <td>Tablet</td>
+                <td>Galaxy Tab S9</td>
+                <td>SM-X710</td>
+                <td>8GB</td>
+                <td>128GB</td>
+                <td>Graphite</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Tablet</td>
+                <td>Galaxy Tab S9+</td>
+                <td>SM-X810</td>
+                <td>12GB</td>
+                <td>256GB</td>
+                <td>Beige</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Tablet</td>
+                <td>Galaxy Tab A9+</td>
+                <td>SM-X210</td>
+                <td>6GB</td>
+                <td>64GB</td>
+                <td>Silver</td>
+            </tr>
+        </table>
+    </div>
+</main>
