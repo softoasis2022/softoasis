@@ -1,6 +1,9 @@
 // 도메인
 // www.softoasis.org, m.softoasis.org, neo.softoasis.org ...
 
+//업로드 git push -u origin main --force
+//다운로드 git clone https://github.com/softoasis2022/softoasis.git
+
 const fs = require("fs");
 const path = require("path");
 const https = require("https");
@@ -69,13 +72,15 @@ app.use("/", require("./app/softoasis/app"));
 app.use("/softoasis", require("./app/softoasis/app"));
 app.use("/mobile", require("./app/mobile/app"));
 app.use("/recipe", require("./app/recipe/app"));
-app.use("/contant", require("./contants/app"));
+
+app.use("/contant", require("./neo/app"));
 
 //셀러 판매자센터 seller.softoasis.org , 제공 제한 : 없음 (로그인이 필요한 것들은 제한, 개별 로그인 사용)
 app.use("/seller", require("./seller/app"));
 
 //neo에서 사용하는 메인 컨텐츠 neo.softoasis.org, 제공 제한 : 없음 (로그인이 필요한 것들은 제한, 개별 로그인 사용)
 app.use("/world", require("./app/world/app"));
+app.use("/neo", require("./neo/app"));
 
 //소프트오아이스 사내 네트워크 워크플레이스 admin.softoasis.org , 제공제한 : 사내 허용된 아이디 또는 ip에서 접근 가능
 app.use("/admin", require("./admin/app"));

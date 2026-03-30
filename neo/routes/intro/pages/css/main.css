@@ -1,0 +1,7 @@
+main{
+    padding-left: 1.125%;
+    padding-right: 1.125%;
+}
+main > section{
+    width: 100%;
+}

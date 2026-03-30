@@ -1,0 +1,81 @@
+.content_list {
+    width: fit-content;
+    display: grid;
+    gap: 10px;
+    padding: 0.125%;
+
+    /* 🔥 최소 1개 ~ 최대 3개 */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    
+
+    /*가운데 로 모음*/
+    margin: 0 auto; /* 🔥 이거 추가 */
+    
+}
+
+/* 🔥 반응형 */
+@media (max-width: 900px) {
+    .content_list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 500px) {
+    .content_list {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
+
+/* 카드 */
+.wrap_content {
+    width: fit-content;
+    height: fit-content;
+    min-width: 300px;
+    min-height: 350px;
+    
+    /* ❌ max-width 제거 */
+    /* max-width: 300px; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px 5px gray;
+    padding: 10px;
+    border-radius: 10px;
+
+    /* ❌ 가운데 정렬 제거 (grid가 담당) */
+    /* margin: 0 auto; */
+}
+
+/* 이미지 */
+.wrap_content > img {
+    width: 270px;
+    height: 270px;
+}
+
+/* 하단 리스트 */
+.content_infolist {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding: 10px;
+    gap: 5px;
+    padding-inline-start: 0;
+    margin: 0px;
+}
+
+.content_infolist > li {
+    list-style: none;
+}
+
+.content_infolist > li img {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px 3px gray;
+}

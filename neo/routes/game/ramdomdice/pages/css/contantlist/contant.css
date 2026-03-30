@@ -1,0 +1,54 @@
+/* 전체 기본 세팅 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f5f6f8;
+}
+
+/* 🔥 앱 화면 기준 핵심 */
+main {
+    width: 100%;
+    max-width: 480px;           /* 모바일 기준 */
+    margin: 0 auto;             /* 가운데 정렬 */
+    height: 100vh;              /* 화면 꽉 채우기 */
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+/* 리스트 */
+.contantlist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+/* 카드 스타일 */
+.contantlist li {
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+    font-size: 16px;
+    font-weight: 500;
+
+    /* 터치 UX */
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    /* 그림자 */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* 눌렀을 때 */
+.contantlist li:active {
+    transform: scale(0.97);
+    background-color: #f0f0f0;
+}
