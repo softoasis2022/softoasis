@@ -36,7 +36,8 @@
   .company-apps {
     grid-template-columns: 1fr;
   }
-  .company-solution {
+
+  .company-solutions {
     grid-template-columns: 1fr;
   }
 }
@@ -46,7 +47,8 @@
   .company-apps {
     grid-template-columns: repeat(2, 1fr);
   }
-  .company-solution {
+
+  .company-solutions {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -56,20 +58,30 @@
   .company-apps {
     grid-template-columns: repeat(3, 1fr);
   }
-  .company-solution {
+
+  .company-solutions {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 .wrap-app {
   text-align: center;
-  width: 300px;
-  height: 300px;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  
   box-shadow: 5px 5px 5px gray;
   border-radius: 10px;
   margin: 10px;
   overflow: hidden;
   /* 텍스트가 넘치지 않도록 */
+}
+.wrap-app > img{
+  width: fit-content;
+  height: fit-content;
+  max-width: 300px;
+  max-height: 300px;
 }
 
 .wrap-app>p {
@@ -86,4 +98,12 @@
 .company-solution {
   text-align: center;
   margin-top: 10px;
+}
+
+.company-solutions {
+  display: grid;
+  justify-content: center;
+  gap: 20px;
+  max-width: max-content;
+  margin: auto;
 }
