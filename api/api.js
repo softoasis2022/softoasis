@@ -7,5 +7,10 @@ const deviceroute = require("./mobile/device");
 
 routes.use("/device",deviceroute);
 
+routes.get((req,res)=>{
+    const {} = req.body;
+    
+});
+
 
 module.exports = routes;
