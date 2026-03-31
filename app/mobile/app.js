@@ -77,7 +77,8 @@ const PAGE_MAP = {
     css: [
       "/mobile/pages/main/style/main.css",
       "/mobile/pages/main/style/news.css",
-      "/mobile/pages/main/style/introdevice.css"
+      "/mobile/pages/main/style/introdevice.css",
+      "/mobile/pages/main/style/telecomlist.css"
     ],
     js: ["/mobile/pages/main/script/news.js"],
     img : [

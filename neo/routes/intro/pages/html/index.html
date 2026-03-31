@@ -4,179 +4,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게임 컨텐츠사 미리 보기 만들기</title>
-    <link rel="stylesheet" href="./intro/css/content.css">
-    <link rel="stylesheet" href="./intro/css/searchbox.css">
-    <link rel="stylesheet" href="./intro/css/main.css">
-    <link rel="stylesheet" href="./intro/css/header.css">
-    <link rel="stylesheet" href="./intro/css/contentrerative.css">
-    <link rel="stylesheet" href="./intro/css/footer.css">
-    <link rel="stylesheet" href="./intro/css/wrap_CScontent.css">
-    <link rel="icon" type="image/png" href="/image/UI/softoasislogo.png">
+    <title>네오</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/router.js"></script>
+    <script src="js/intro.js"></script>
+    <script src="js/world.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/personal.js"></script>
+    <script src="js/setting.js"></script>
+    <link rel="icon" type="image/png" href="/image/UI/neologo.svg">
 </head>
 
 <body>
-    <header>
-        <ul class="contentrerative">
-            <li>주사위 굴리기</li>
-            <li>주사위 굴리기</li>
-            <li>주사위 굴리기</li>
-            <li>주사위 굴리기</li>
-        </ul>
-        <div class="searchbox">
-            <input name="search_q" id="search_q" class="search_q" type="text" placeholder="검색어를 입력하세요">
-            <button class="btn_search">
-                <img src="/image/UI/search.svg" alt="">
-            </button>
-        </div>
-        <ul class="search_log" style="display: flex; flex-direction: row; ">
-            <li>최근검색</li>
-            <li>최근검색</li>
-            <li>최근검색</li>
-        </ul>
+    <!-- 헤더 -->
+    <header class="header">
+        <img src="assets/logo.png" class="logo" alt="neo logo">
+        <nav>
+            <ul class="nav">
+                <li><a href="#intro">소개</a></li>
+                <li><a href="#world">월드</a></li>
+                <li><a href="#chat">채팅</a></li>
+                <li><a href="#personal">개인 기능</a></li>
+                <li><a href="#setting">설정</a></li>
+            </ul>
+        </nav>
     </header>
-    <main>
-        <section style="border-top: 1px solid black;">
-            <p style="text-align: center;">이런 컨텐츠를 제공 하고 있어요</p>
-            <div class="content_list">
-                <div class="wrap_content">
-                    <img src="/image/UI/cartoon-dice.png" alt="">
-                    <p>주사위 굴리기</p>
-                    <div>
-                        <p>적용가능한 플렛폼</p>
-                        <ul class="content_infolist">
-                            <li>
-                                <a href="www.softoasis.org/neo">
-                                    <img src="https://www.softoasis.org/image/UI/neologo.svg" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.kakaocorp.com/">
-                                    <img src="/image/UI/kakaotalk.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.naver.com/">
-                                    <img src="https://ssl.pstatic.net/sstatic/search/favicon/favicon_32x32_240820.ico" alt="">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="wrap_content">
-                    <img src="/image/UI/cartoon-dice.png" alt="">
-                    <p>가위바위보</p>
-                    <div>
-                        <p>적용가능한 플렛폼</p>
-                        <ul class="content_infolist">
-                            <li>
-                                <a href="www.softoasis.org/neo">
-                                    <img src="https://www.softoasis.org/image/UI/neologo.svg" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.kakaocorp.com/">
-                                    <img src="/image/UI/kakaotalk.png" alt="">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="wrap_content">
-                    <img src="/image/UI/cartoon-dice.png" alt="">
-                    <p>가위바위보</p>
-                    <div>
-                        <p>적용가능한 플렛폼</p>
-                        <ul class="content_infolist">
-                            <li>
-                                <a href="www.softoasis.org/neo">
-                                    <img src="https://www.softoasis.org/image/UI/neologo.svg" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.kakaocorp.com/">
-                                    <img src="/image/UI/kakaotalk.png" alt="">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
 
-                </div>
-            </div>
-        </section>
-        <section>
-            <p style="text-align: center;">지금 만들어 지고 있는 컨텐츠입니다.</p>
+    <!-- 메인 비주얼 -->
+    <section class="hero" id="intro">
+        <h1>네오앱 (NEO App)</h1>
+        <p>현실과 가상의 중간지점, 당신의 새로운 디지털 생활 공간.</p>
+        <button class="btn-start">지금 시작하기</button>
+    </section>
+
+    <!-- 월드 섹션 -->
+    <section class="section" id="world">
+        <h2>🌐 월드 시스템</h2>
+        <p>네오앱의 중심 공간. 여러 월드를 여행하고, 유저들과 실시간으로 상호작용할 수 있는 메타버스 기반 기능.</p>
+        <div class="content-box">
+            <img src="assets/world.png" alt="world UI">
             <ul>
-                <li></li>
-            </ul>
-        </section>
-        <section>
-            <p style="text-align: center;">저희와 파트너를 맺고 있는 팁입니다.</p>
-        </section>
-        <section>
-            <p style="text-align: center;">준비 중인 굿즈 입니다.</p>
-        </section>
-        <section class="wrap_CScontent">
-            <p style="text-align: center;">이런 컨텐츠를 원해요</p>
-            <div>
-                <ul>
-                    <li>
-                        <p>제목</p>
-                        <textarea class="title" type="text" placeholder="간단하게 적어주세요" minlength="3" maxlength="30" required></textarea>
-                    </li>
-                    <li>
-                        <p>내용</p>
-                        <textarea class="coment" name="" id=""></textarea>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <section>
-            <p style="text-align: center;">다른 플렛폼에도 적용 시켜주세요.</p>
-            <div>
-                <ul>
-                    <li>
-                        <p></p>
-                        <input type="text" placeholder="">
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <div class="companyinfo">
-            <ul>
-                <li>
-                    <p>기업 이름</p>
-                    <a href="https://www.softoasis.org">
-                        <p>소프트오아시스</p>
-                    </a>
-                </li>
-                <li>
-                    <p>사업자 등록번호</p>
-                    <a href="https://www.softoasis.org/image/UI/company.png">
-                        <p>238-27-01654</p>
-                    </a>
-                </li>
+                <li>실시간 접속 월드 목록</li>
+                <li>월드 이동 포탈</li>
+                <li>개별 월드 인터랙션</li>
+                <li>3D/2D 혼합 UI 기반</li>
             </ul>
         </div>
-        <div class="projectinfo">
+    </section>
+
+    <!-- 채팅 섹션 -->
+    <section class="section" id="chat">
+        <h2>💬 채팅 시스템</h2>
+        <p>월드 채팅, 일방채팅 등 다양한 소통 방식 제공</p>
+        <div class="content-box reverse">
+            <img src="assets/chat.png" alt="chat UI">
             <ul>
-                <li>
-                    <p>프로텍트 이름</p>
-                    <a href="https://neo.softoasis.org">
-                        <p>네오</p>
-                    </a>
-                </li>
-                <li>
-                    <p>프로텍트 번호</p>
-                    <a href="https://neo.softoasis.org">
-                        <p>01-202603-01</p>
-                    </a>
-                </li>
+                <li>월드 채팅 : 같은 월드 유저와 대화</li>
+                <li>일방 채팅 : 1:1 대화 가능</li>
+                <li>실시간 소켓 기반 초고속 메시징</li>
+                <li>안드로이드 안정화를 위한 WebSocket 강제 적용</li>
             </ul>
         </div>
+    </section>
+
+    <!-- 개인 기능 -->
+    <section class="section" id="personal">
+        <h2>🙋 개인 기능</h2>
+        <p>내 정보와 활동을 관리하는 개인 메뉴.</p>
+        <div class="content-box">
+            <img src="assets/profile.png" alt="profile ui">
+            <ul>
+                <li>프로필 이미지 관리</li>
+                <li>나의 활동 기록</li>
+                <li>나의 아이템, 환경 설정</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 설정 -->
+    <section class="section" id="setting">
+        <h2>⚙ 설정 메뉴</h2>
+        <p>앱 환경을 세부적으로 조절할 수 있는 개인 설정 영역.</p>
+        <div class="content-box reverse">
+            <img src="assets/setting.png" alt="setting ui">
+            <ul>
+                <li>알림 설정</li>
+                <li>계정 보안</li>
+                <li>데이터 관리</li>
+                <li>앱 테마/모드 변경</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="footer">
+        © 2026 SoftOasis — NEO Platform
     </footer>
+
+    <script src="js/main.js"></script>
 </body>
 
 </html>

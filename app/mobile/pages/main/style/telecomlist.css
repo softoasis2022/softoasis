@@ -1,0 +1,53 @@
+/* 기본: 모바일 (1열) */
+.telecomlist {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+    align-items: center;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 18px;
+    justify-content: center;
+    text-align: center;
+
+}
+
+/* 태블릿: 600px 이상 → 2열 */
+@media (min-width: 600px) {
+    .telecomlist {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 데스크탑: 1024px 이상 → 3열 */
+@media (min-width: 1024px) {
+    .telecomlist {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px; /* 중앙 정렬용 */
+    }
+}
+
+/* 카드 디자인 */
+.telecomlist .wrap_telecom {
+    border: 1px solid #eee;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    background: #fff;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 로고 이미지 */
+.telecomlist .wrap_telecom img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+}

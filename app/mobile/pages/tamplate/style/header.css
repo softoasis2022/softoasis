@@ -7,30 +7,53 @@
 
 .mainplatform {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap; /* 줄바꿈 허용 */
   gap: 10px;        /* 요소 간 여백 */
 }
+.mainplatform > div{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
 
 a{
   text-decoration: none;
-  color: #004d40;
+}
+
+.wrap_search{
+  display: flex;
+  width: 100%;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .searchbox{
   display: flex;
   flex-direction: row;
-
+  width: 90%;
   justify-content: center;
+  border: 2px solid black;
+  padding: 5px;
 }
 
 .searchbox > .inputsearch{
-  min-width: 500px;
-  border: 2px solid black;
+  width: 80%;
+  border: none;
   padding: 10px;
   border-radius: 10px;
-  
+  outline: none;
+}
+.searchbox > button{
+  width: 20%;
+  background-color: #80deea;
+  color: black;
+  border: none;
+  border-radius: 10px;
 }
 
 .searchpage{
@@ -54,6 +77,13 @@ header h1 {
   margin: 0;
   flex-shrink: 0; /* 줄어들지 않게 */
 }
+header h2 {
+  font-size: 28px;
+  color: #004d40;
+  margin: 0;
+  flex-shrink: 0; /* 줄어들지 않게 */
+}
+
 nav ul {
   list-style: none;
   display: flex;

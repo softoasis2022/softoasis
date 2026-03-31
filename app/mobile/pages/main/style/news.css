@@ -1,12 +1,110 @@
-.newslist{
-  width: 100%;
-  max-width: 700px;   /* 너가 원하는 폭으로 */
-  margin: 0 auto;     /* ✅ 가운데 정렬 핵심 */
-  padding: 0;
-  list-style: none;
+/* 공통 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 링크 클릭 시 포커스 border 제거 */
+a:focus,
+input:focus,
+textarea:focus {
+    outline: none !important;
+}
+
+/* 전체 뉴스 박스 */
+.news {
+    width: 100%;
+    padding: 16px;
+    background: #ffffff;
+    border-radius: 12px;
+}
+
+/* 타이틀 */
+.news .title p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* 리스트 */
+.newslist {
+    list-style: none;
+    width: 100%;
+}
+
+/* 각 뉴스 박스 */
+.news-item {
+    padding: 16px;
+    margin-bottom: 14px;
+    border-radius: 12px;
+    background: #fafafa;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: 0.25s;
+}
+
+.news-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 제목 */
+.news-title p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #222;
+}
+
+/* 설명 텍스트 */
+.news-desc {
+    font-size: 14px;
+    color: #555;
+    margin-top: 4px;
+    line-height: 1.4em;
+}
+
+/* 날짜 */
+.news-meta {
+    margin-top: 8px;
+}
+
+.news-date {
+    font-size: 12px;
+    color: #777;
 }
 
 
-.news-item{
-    width:  100%;
+/***********************************
+        📱 모바일 디자인
+***********************************/
+@media (max-width: 768px) {
+    .news-item {
+        padding: 14px;
+    }
+    .news-title p {
+        font-size: 15px;
+    }
+    .news-desc {
+        font-size: 13px;
+    }
+}
+
+/***********************************
+        💻 데스크탑 디자인
+***********************************/
+@media (min-width: 769px) {
+    .newslist {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 두 칼럼 카드형 배치 */
+        gap: 16px;
+    }
+
+    .news-item {
+        margin-bottom: 0;
+        min-height: 160px;
+    }
+
+    .news-title p {
+        font-size: 17px;
+    }
 }

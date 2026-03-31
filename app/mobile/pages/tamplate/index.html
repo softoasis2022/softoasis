@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/mobile/pages/tamplate/style/header.css">
     <link rel="stylesheet" href="/mobile/pages/tamplate/style/footer.css">
     <link rel="stylesheet" href="/mobile/pages/tamplate/style/menu.css">
+    <link rel="stylesheet" href="/mobile/pages/tamplate/style/main.css">
     <link rel="icon" type="image/png" href="/image/UI/softoasislogo.png">
 </head>
 
@@ -18,11 +19,12 @@
                 <a href="/">
                     <h1>소프트오아시스</h1>
                 </a>
-                <h2>for mobile</h2>
+                <a href="/mobile">
+                    <h2>for mobile</h2>
+                </a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#">홈</a></li>
                     <li><a href="#">회사 소개</a></li>
                     <li><a href="#">서비스</a></li>
                     <li><a href="#">파트너스</a></li>
@@ -68,7 +70,7 @@
                 </li>
             </ul>
         </div>
-        <div>
+        <div class="wrap_search">
             <form class="searchbox" action="/mobile/search" method="get">
                 <input type="hidden" name="type" value="total">
                 <input class="inputsearch" type="text" name="q" placeholder="검색어를 입력하세요" value="">
@@ -83,15 +85,6 @@
     </header>
     <main><!-- MAIN_CONTENT --></main>
     <footer>
-        <nav>
-            <ul>
-                <li><a href="/">홈</a></li>
-                <li><a href="#">회사 소개</a></li>
-                <li><a href="#">서비스</a></li>
-                <li><a href="#">파트너스</a></li>
-                <li><a href="#">문의하기</a></li>
-            </ul>
-        </nav>
     </footer>
 </body>
 

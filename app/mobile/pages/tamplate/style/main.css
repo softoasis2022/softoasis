@@ -1,6 +1,6 @@
-main>div {
+main {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: center;
-    width: 100%;
+    align-items: center;
 }

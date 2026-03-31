@@ -4,13 +4,10 @@ const fs = require("fs");
 const routes = express.Router();
 
 const deviceroute = require("./mobile/device");
+const developercenter = require("./routes/developercenter");
 
 routes.use("/device",deviceroute);
-
-routes.get((req,res)=>{
-    const {} = req.body;
-    
-});
+routes.use("/",developercenter);
 
 
 module.exports = routes;
