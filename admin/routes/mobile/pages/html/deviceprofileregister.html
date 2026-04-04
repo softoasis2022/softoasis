@@ -1,9 +1,16 @@
 <main>
     <link rel="stylesheet" href="./css/deviceprofileregister.css">
-    <div class="filter">
+
+    <form id="device-register-form" class="device-form">
+
+        <!-- 모델명 -->
+        <label for="model">모델명</label>
+        <input type="text" id="model" name="model" placeholder="예: Galaxy S24, iPhone 15" required>
+
         <!-- 브랜드 -->
-        <select name="brand" id="brand">
-            <option value="">브랜드 전체</option>
+        <label for="brand">브랜드</label>
+        <select name="brand" id="brand" required>
+            <option value="">선택하세요</option>
             <option value="samsung">삼성</option>
             <option value="apple">애플</option>
             <option value="lg">LG</option>
@@ -12,8 +19,9 @@
         </select>
 
         <!-- 기기유형 -->
-        <select name="type" id="type">
-            <option value="">기기유형 전체</option>
+        <label for="type">기기유형</label>
+        <select name="type" id="type" required>
+            <option value="">선택하세요</option>
             <option value="smartphone">스마트폰</option>
             <option value="tablet">태블릿</option>
             <option value="earphone">이어폰</option>
@@ -22,85 +30,67 @@
             <option value="router">라우터</option>
             <option value="kids">키즈폰</option>
         </select>
-        <input type="number" name="price" placeholder="가격" required>
+
+        <!-- 가격 -->
+        <label for="price">가격</label>
+        <input type="number" id="price" name="price" placeholder="000000" min="0" required>
+
+        <!-- 색상 이름 -->
+        <label for="colorName">색상 이름</label>
+        <input type="text" id="colorName" name="colorName" placeholder="예: 블랙, 스타라이트, 미드나잇 블루">
+
+        <!-- 색상 코드 -->
+        <label for="colorCode">색상 코드</label>
+        <input type="color" id="colorCode" name="colorCode" value="#000000">
 
         <!-- 통신망 -->
+        <label for="network">통신망</label>
         <select name="network" id="network">
-            <option value="">통신망</option>
+            <option value="">선택하세요</option>
             <option value="4g">4G (LTE)</option>
             <option value="5g">5G</option>
             <option value="wifi">Wi-Fi Only</option>
         </select>
 
-        <!-- 출시년도 -->
-        <select name="year" id="year">
-            <option value="">출시년도</option>
-            <option value="2026">2026</option>
-            <option value="2025">2025</option>
-            <option value="2024">2024</option>
-            <option value="2023">2023</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
-        </select>
+        <!-- 출시일 -->
+        <label>출시일</label>
+        <div class="date-wrap">
+            <select id="year" name="year">
+                <option value="">년도</option>
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+            </select>
 
-        <!-- 출시 월 -->
-        <select name="month" id="month">
-            <option value="">출시 월</option>
-            <option value="01">1월</option>
-            <option value="02">2월</option>
-            <option value="03">3월</option>
-            <option value="04">4월</option>
-            <option value="05">5월</option>
-            <option value="06">6월</option>
-            <option value="07">7월</option>
-            <option value="08">8월</option>
-            <option value="09">9월</option>
-            <option value="10">10월</option>
-            <option value="11">11월</option>
-            <option value="12">12월</option>
-        </select>
+            <select id="month" name="month">
+                <option value="">월</option>
+                <option value="01">1월</option>
+                <option value="02">2월</option>
+                <option value="03">3월</option>
+                <option value="04">4월</option>
+                <option value="05">5월</option>
+                <option value="06">6월</option>
+                <option value="07">7월</option>
+                <option value="08">8월</option>
+                <option value="09">9월</option>
+                <option value="10">10월</option>
+                <option value="11">11월</option>
+                <option value="12">12월</option>
+            </select>
 
-        <!-- 출시 일 -->
-        <select name="day" id="day">
-            <option value="">출시 일</option>
-            <!-- 1~31 -->
-            <!-- 필요 시 JS로 자동 생성 가능 -->
-            <option value="01">1일</option>
-            <option value="02">2일</option>
-            <option value="03">3일</option>
-            <option value="04">4일</option>
-            <option value="05">5일</option>
-            <option value="06">6일</option>
-            <option value="07">7일</option>
-            <option value="08">8일</option>
-            <option value="09">9일</option>
-            <option value="10">10일</option>
-            <option value="11">11일</option>
-            <option value="12">12일</option>
-            <option value="13">13일</option>
-            <option value="14">14일</option>
-            <option value="15">15일</option>
-            <option value="16">16일</option>
-            <option value="17">17일</option>
-            <option value="18">18일</option>
-            <option value="19">19일</option>
-            <option value="20">20일</option>
-            <option value="21">21일</option>
-            <option value="22">22일</option>
-            <option value="23">23일</option>
-            <option value="24">24일</option>
-            <option value="25">25일</option>
-            <option value="26">26일</option>
-            <option value="27">27일</option>
-            <option value="28">28일</option>
-            <option value="29">29일</option>
-            <option value="30">30일</option>
-            <option value="31">31일</option>
-        </select>
+            <select id="day" name="day">
+                <option value="">일</option>
+                <!-- JS로 자동 생성 예정 -->
+            </select>
+        </div>
 
         <!-- RAM -->
+        <label for="ram">RAM</label>
         <select name="ram" id="ram">
-            <option value="">RAM</option>
+            <option value="">선택하세요</option>
             <option value="4">4GB</option>
             <option value="6">6GB</option>
             <option value="8">8GB</option>
@@ -109,8 +99,9 @@
         </select>
 
         <!-- 저장용량 -->
+        <label for="storage">저장용량</label>
         <select name="storage" id="storage">
-            <option value="">저장용량</option>
+            <option value="">선택하세요</option>
             <option value="64">64GB</option>
             <option value="128">128GB</option>
             <option value="256">256GB</option>
@@ -118,27 +109,33 @@
             <option value="1024">1TB</option>
         </select>
 
-        <!-- 5G 지원 -->
+        <!-- 5G -->
+        <label for="fiveg">5G 지원</label>
         <select name="fiveg" id="fiveg">
-            <option value="">5G 지원</option>
+            <option value="">선택하세요</option>
             <option value="yes">지원</option>
             <option value="no">미지원</option>
         </select>
 
         <!-- eSIM -->
+        <label for="esim">eSIM</label>
         <select name="esim" id="esim">
-            <option value="">eSIM</option>
+            <option value="">선택하세요</option>
             <option value="yes">지원</option>
             <option value="no">미지원</option>
         </select>
 
         <!-- 상태 -->
+        <label for="condition">제품상태</label>
         <select name="condition" id="condition">
-            <option value="">제품상태</option>
+            <option value="">선택하세요</option>
             <option value="new">새상품</option>
             <option value="used">중고</option>
             <option value="refurb">리퍼</option>
             <option value="demo">전시상품</option>
         </select>
-    </div>
+
+        <button type="submit" class="submit-btn">등록하기</button>
+
+    </form>
 </main>
