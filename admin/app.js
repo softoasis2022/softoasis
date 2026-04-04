@@ -13,8 +13,10 @@ routes.use("/pages", express.static(PAGES_DIR));
 
 const mobileroutes = require("./routes/mobile/app");
 const HRroutes = require("./routes/HR/app");
+const userroutes = require("./routes/user/app");
 routes.use("/mobile", mobileroutes);
 routes.use("/HR", HRroutes);
+routes.use("/user", userroutes);
 // 기본 페이지 (root 요청)
 routes.get("/", (req, res) => {
     const pagePath = path.join(PAGES_DIR, "main", "pages", "html", "index.html");

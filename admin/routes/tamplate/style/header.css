@@ -1,4 +1,6 @@
-/* ===== Layout (Sidebar + Main) ===== */
+/* =========================================
+   Layout (Sidebar + Main)
+========================================= */
 body {
   margin: 0;
   display: grid;
@@ -7,21 +9,26 @@ body {
   background: #f5f6f8;
 }
 
-/* 왼쪽 메뉴 영역 */
+/* 오른쪽 메인 영역 */
+body > div:last-child {
+  padding: 18px 18px;
+}
+
+/* =========================================
+   Sidebar (menulist)
+========================================= */
 .menulist {
   position: sticky;
   top: 0;
   height: 100vh;
   overflow-y: auto;
-
-  background: #7f7f7f; /* 스샷 느낌 */
+  background: gray;                /* 통일 */
   padding: 14px 12px;
   box-sizing: border-box;
-
   border-right: 1px solid rgba(0,0,0,0.18);
 }
 
-/* 스크롤바 (선택) */
+/* 스크롤바 */
 .menulist::-webkit-scrollbar {
   width: 10px;
 }
@@ -33,12 +40,14 @@ body {
   background: rgba(0,0,0,0.05);
 }
 
-/* 오른쪽 메인 영역 */
-body > div:last-child {
-  padding: 18px 18px;
+/* 메뉴 최소 크기 */
+.wrap_menu {
+  min-width: 150px;
 }
 
-/* ===== Menu blocks ===== */
+/* =========================================
+   Menu block (ul)
+========================================= */
 .menulist ul {
   list-style: none;
   padding: 0;
@@ -50,11 +59,16 @@ body > div:last-child {
   overflow: hidden;
 }
 
-/* 제목 (현재 ul 안 div 구조 대응) */
+/* =========================================
+   Menu Title
+========================================= */
 .menutitle {
   padding: 12px 12px;
   background: rgba(0,0,0,0.16);
   border-bottom: 1px solid rgba(255,255,255,0.08);
+
+  display: flex;
+  justify-content: center;
 }
 
 .menutitle p {
@@ -65,7 +79,9 @@ body > div:last-child {
   font-size: 14px;
 }
 
-/* ===== Menu item ===== */
+/* =========================================
+   Menu Items
+========================================= */
 .menulist li {
   margin: 0;
 }
@@ -77,21 +93,21 @@ body > div:last-child {
 
   padding: 11px 12px;
   text-decoration: none;
-
   color: rgba(255,255,255,0.92);
   font-size: 13.5px;
   line-height: 1.2;
 
   border-bottom: 1px solid rgba(255,255,255,0.08);
+
   transition: background .15s ease, transform .05s ease, color .15s ease;
 }
 
-/* 마지막 라인 제거 */
+/* 마지막 아이템 border 제거 */
 .menulist li:last-child a {
   border-bottom: none;
 }
 
-/* 왼쪽 점(●) 느낌 아이콘 */
+/* ● 아이콘 */
 .menulist li a::before {
   content: "•";
   opacity: 0.8;
@@ -103,25 +119,26 @@ body > div:last-child {
   background: rgba(255,255,255,0.10);
 }
 
-/* 눌림 */
+/* active 눌림 */
 .menulist li a:active {
   transform: translateY(1px);
 }
 
-/* 빈 링크(내용 없는 a) 숨기기 */
+/* 빈 링크 숨기기 */
 .menulist li a:empty {
   display: none;
 }
 
-/* (선택) 현재 페이지 active 스타일
-   a에 class="active" 붙이면 강조됨 */
+/* active 상태 강조 */
 .menulist li a.active {
   background: rgba(255,255,255,0.16);
   color: #fff;
   font-weight: 800;
 }
 
-/* ===== Responsive ===== */
+/* =========================================
+   Responsive
+========================================= */
 @media (max-width: 980px) {
   body {
     grid-template-columns: 1fr;
