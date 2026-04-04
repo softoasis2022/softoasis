@@ -6,7 +6,7 @@ const routes = express.Router();
 // 폴더 기준
 const ROOT = __dirname; // mobile 폴더
 // 네 환경 그대로
-const database = path.join("D:", "database");
+const database = path.join(ROOT, "database");
 const PAGES_DIR = path.join(ROOT, "pages");
 const imgDB= path.join(database, "image");
 
