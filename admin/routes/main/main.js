@@ -10,28 +10,7 @@ const TEMPLATE_DIR = path.join(__dirname, "../tamplate", "html");
 // /pages 경로로 정적 파일 제공
 routes.use("/pages", express.static(PAGES_DIR));
 
-/**
- * 특정 page.html 파일을 template/index.html 의 <main></main> 안에 삽입하는 함수
- */
-function renderTemplate(pagePath) {
-    const templatePath = path.join(TEMPLATE_DIR, "index.html");
 
-    try {
-        let template = fs.readFileSync(templatePath, "utf-8");
-        const pageContent = fs.readFileSync(pagePath, "utf-8");
-
-        // 템플릿 안의 <main>...</main> 영역을 교체
-        template = template.replace(
-            /<main[\s\S]*?<\/main>/,
-            `<main>\n${pageContent}\n</main>`
-        );
-
-        return template;
-    } catch (err) {
-        console.error("템플릿 렌더링 실패:", err);
-        return null;
-    }
-}
 
 /**
  * 기본 페이지

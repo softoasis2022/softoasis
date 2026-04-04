@@ -9,14 +9,29 @@ routes.use("/css", express.static(path.join(__dirname,"pages","css")));
 routes.use("/js", express.static(path.join(__dirname,"pages","js")));
 
 routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR, "index.html");
+    const pagePath = path.join(PAGES_DIR,"deviceprofile.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");
 
     res.send(result);
 });
+routes.get("/devicepofileedit", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"devicepofileedit.html");
 
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+routes.get("/deviceprofileregister", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"deviceprofileregister.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
 /**
  * 템플릿 렌더링
  */
@@ -33,5 +48,6 @@ function renderTemplate(pagePath) {
         return null;
     }
 }
+
 
 module.exports = routes;
