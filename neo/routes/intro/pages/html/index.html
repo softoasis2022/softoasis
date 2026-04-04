@@ -18,7 +18,7 @@
 <body>
     <!-- 헤더 -->
     <header class="header">
-        <img src="assets/logo.png" class="logo" alt="neo logo">
+        <img src="/image/UI/neologo.svg" class="logo" alt="neo logo" onclick="location.href='/neo'">
         <nav>
             <ul class="nav">
                 <li><a href="#intro">소개</a></li>
@@ -33,8 +33,8 @@
     <!-- 메인 비주얼 -->
     <section class="hero" id="intro">
         <h1>네오앱 (NEO App)</h1>
-        <p>현실과 가상의 중간지점, 당신의 새로운 디지털 생활 공간.</p>
-        <button class="btn-start">지금 시작하기</button>
+        <p>현실과 가상의 조화, 당신의 새로운 디지털 생활 공간.</p>
+        <button class="btn-start" onclick="location.href='/neo'">지금 시작하기</button>
     </section>
 
     <!-- 월드 섹션 -->
@@ -80,12 +80,29 @@
             </ul>
         </div>
     </section>
+    <section class="section" id="contant">
+        <h2>🙋 네오앱에서 제공하는 다양한 컨텐츠</h2>
+        <p>네오앱의 월드, 채팅방, 개인 대화 안에서 유저가 즐기고 참여할 수 있는 다양한 컨텐츠를 제공합니다.</p>
+
+        <div class="content-box reverse">
+            <img src="/image/profile.png" alt="neo contents">
+
+            <ul>
+                <li>🎲 **주사위·가위바위보 미니게임** — 채팅방/개인대화에서 즉석으로 즐기는 미니게임</li>
+                <li>💘 **매칭·소개팅 기능** — 개인 대화 기반 자동 추천 및 실시간 매칭</li>
+                <li>🏆 **월드 미션/퀘스트 시스템** — 월드 탐험 중 수행 가능한 미니 퀘스트</li>
+                <li>🛒 **아이템 교환·거래 콘텐츠** — 유저 간 아이템 교환이나 월드 내 상점 시스템</li>
+                <li>⭐ **호감도·친밀도 시스템** — 대화·활동에 따라 상대방과의 친밀도 상승</li>
+                <li>📊 **랭킹·이벤트 시스템** — 월드 참여도/게임 결과에 따라 랭킹 제공</li>
+            </ul>
+        </div>
+    </section>
 
     <!-- 설정 -->
     <section class="section" id="setting">
         <h2>⚙ 설정 메뉴</h2>
         <p>앱 환경을 세부적으로 조절할 수 있는 개인 설정 영역.</p>
-        <div class="content-box reverse">
+        <div class="content-box">
             <img src="assets/setting.png" alt="setting ui">
             <ul>
                 <li>알림 설정</li>

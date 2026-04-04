@@ -5,7 +5,9 @@ const routes = express.Router();
 
 
 const dice = require("./routes/game/ramdomdice/app");
+const rock = require("./routes/game/rock/app");
 routes.use("/dice",dice);
+routes.use("/rock",rock);
 
 
 module.exports = routes;

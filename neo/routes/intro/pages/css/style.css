@@ -1,3 +1,4 @@
+/* 기본 초기화 */
 * {
     margin: 0;
     padding: 0;
@@ -10,9 +11,12 @@ body {
     color: #eee;
 }
 
+/* ===========================
+   HEADER
+=========================== */
 .header {
     width: 100%;
-    padding: 15px 40px;
+    padding: 15px 20px;
     background: #000;
     display: flex;
     justify-content: space-between;
@@ -22,13 +26,40 @@ body {
     z-index: 999;
 }
 
+/* 로고 반응형 */
 .logo {
-    width: 140px;
+    max-width: 120px;
+    border-radius: 10%;
 }
 
+/* 모바일  → 작은 로고 */
+@media (max-width: 480px) {
+    .logo {
+        max-width: 70px;
+        border-radius: 10%;
+    }
+}
+
+/* 태블릿 */
+@media (min-width: 768px) {
+    .logo {
+        max-width: 150px;
+        border-radius: 10%;
+    }
+}
+
+/* 데스크탑 */
+@media (min-width: 1024px) {
+    .logo {
+        max-width: 120px;
+        border-radius: 10%;
+    }
+}
+
+/* 메뉴 */
 .nav {
     display: flex;
-    gap: 25px;
+    gap: 18px;
 }
 
 .nav li {
@@ -38,29 +69,42 @@ body {
 .nav a {
     text-decoration: none;
     color: #eee;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
 }
 
+/* 데스크탑 폰트 */
+@media (min-width: 1024px) {
+    .nav a {
+        font-size: 16px;
+    }
+}
+
+/* ===========================
+   HERO (인트로)
+=========================== */
 .hero {
     height: 70vh;
     background: linear-gradient(135deg, #1b1b1b, #222);
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
-    padding-top: 80px;
+    padding-top: 120px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .hero h1 {
-    font-size: 50px;
-    margin-bottom: 20px;
+    font-size: 36px;
+    margin-bottom: 15px;
 }
 
 .hero p {
-    font-size: 20px;
-    margin-bottom: 30px;
+    font-size: 16px;
+    margin-bottom: 25px;
+    color: #ccc;
 }
 
 .btn-start {
@@ -68,52 +112,133 @@ body {
     background: #27a6ff;
     border: none;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 16px;
     color: white;
     cursor: pointer;
 }
 
+/* 태블릿 */
+@media (min-width: 768px) {
+    .hero h1 { font-size: 48px; }
+    .hero p { font-size: 18px; }
+    .btn-start { font-size: 17px; }
+}
+
+/* 데스크탑 */
+@media (min-width: 1024px) {
+    .hero h1 { font-size: 54px; }
+    .hero p { font-size: 20px; }
+    .btn-start { font-size: 18px; }
+}
+
+/* ===========================
+   SECTION 기본 Layout
+=========================== */
 .section {
-    padding: 90px 40px;
+    padding: 70px 20px;
     border-top: 1px solid #333;
 }
 
 .section h2 {
-    font-size: 32px;
-    margin-bottom: 15px;
+    font-size: 26px;
+    margin-bottom: 12px;
 }
 
 .section p {
     margin-bottom: 25px;
     color: #ccc;
+    font-size: 15px;
 }
 
+/* 태블릿 */
+@media (min-width: 768px) {
+    .section {
+        padding: 90px 40px;
+    }
+    .section h2 {
+        font-size: 30px;
+    }
+    .section p {
+        font-size: 17px;
+    }
+}
+
+/* 데스크탑 */
+@media (min-width: 1024px) {
+    .section h2 { font-size: 34px; }
+    .section p { font-size: 18px; }
+}
+
+/* ===========================
+   CONTENT BOX (이미지 + 리스트)
+=========================== */
 .content-box {
     display: flex;
+    flex-direction: column;
+    gap: 25px;
     align-items: center;
-    gap: 40px;
+}
+
+/* 태블릿부터는 좌우 나누기 */
+@media (min-width:768px) {
+    .content-box {
+        flex-direction: row;
+        gap: 40px;
+    }
 }
 
 .content-box.reverse {
-    flex-direction: row-reverse;
+    flex-direction: column-reverse;
 }
 
+/* 태블릿 이상 reverse 적용 */
+@media (min-width:768px) {
+    .content-box.reverse {
+        flex-direction: row-reverse;
+    }
+}
+
+/* 이미지 반응형 */
 .content-box img {
-    width: 45%;
+    width: 100%;
+    max-width: 400px;
     border-radius: 10px;
     background: #222;
     padding: 10px;
 }
 
-.content-box ul li {
-    margin-bottom: 10px;
-    font-size: 18px;
+/* 리스트 */
+.content-box ul {
+    width: 100%;
 }
 
+.content-box ul li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* 데스크탑 */
+@media (min-width:1024px) {
+    .content-box img {
+        max-width: 450px;
+    }
+    .content-box ul li {
+        font-size: 18px;
+    }
+}
+
+/* ===========================
+   FOOTER
+=========================== */
 .footer {
     text-align: center;
     padding: 20px;
     background: #000;
     color: #888;
     margin-top: 50px;
+    font-size: 14px;
+}
+
+@media (min-width: 1024px) {
+    .footer { font-size: 15px; }
 }

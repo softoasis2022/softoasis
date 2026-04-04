@@ -5,8 +5,8 @@ const routes = express.Router();
 
 const social = require("./routes/social/social");
 const contant = require("./routes/contant/app");
-const mainpageroute = require("./routes/intro/app");
-
+const intropageroute = require("./routes/intro/app");
+const mainpageroute = require("./routes/main/app");
 
 routes.use(express.json());
 
@@ -14,7 +14,7 @@ routes.use("/social",social);
 
 
 routes.use("/",mainpageroute);
-routes.use("/intro",mainpageroute);
+routes.use("/intro",intropageroute);
 
 routes.use("/contant",contant);
 
