@@ -1,0 +1,17 @@
+{
+    "name" : "softoasis",
+    "bill" : [
+        {
+            "price" : 500,
+            "count" : 30000
+        },
+        {
+            "price" : 520,
+            "count" : 30000
+        },
+        {
+            "price" : 120,
+            "count" : 30000
+        }
+    ]
+}
