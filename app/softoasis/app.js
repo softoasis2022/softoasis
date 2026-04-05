@@ -8,14 +8,13 @@ const ROOT = __dirname; // mobile 폴더
 // 네 환경 그대로
 const PAGES_DIR = path.join(ROOT, "pages");
 const imgDB = path.join(database, "image");
-const TEMPLATE_PATH = path.join(PAGES_DIR, "tamplate", "index.html");
+const TEMPLATE_PATH = path.join(PAGES_DIR,"html", "tamplate.html");
 
-routes.use("/pages", express.static(path.join(__dirname, "pages")));
-routes.use("/css", express.static(path.join(__dirname, "pages")));
-routes.use("/js", express.static(path.join(__dirname, "pages")));
+routes.use("/css", express.static(path.join(__dirname, "pages","css")));
+routes.use("/js", express.static(path.join(__dirname, "pages","js")));
 
 routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR, "main", "index.html");
+    const pagePath = path.join(PAGES_DIR,"html", "main.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");
