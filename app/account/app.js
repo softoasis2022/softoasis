@@ -10,5 +10,17 @@ routes.use("/login",loginroute);
 routes.use("/find",findroute);
 routes.use("/passwordreset",passwordresetroute);
 routes.use("/signup",registerroute);
+routes.get("/check", (req, res) => {
+  const userid = req.cookies?.userid;
+
+  if (!userid) {
+    return res.json({ login: false });
+  }
+
+  return res.json({
+    login: true,
+    userid
+  });
+});
 
 module.exports = routes;

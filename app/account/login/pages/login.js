@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      const res = await fetch("/login", {
+      const res = await fetch("/acount/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,6 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (res.ok) {
         console.log("로그인 성공");
         // 예: location.href = "/main";
+        console.log(data);
+        if (data.success === true) {
+          // ✅ 홈으로 이동
+          window.location.href = "/";
+        }
       } else {
         console.warn("로그인 실패");
       }
