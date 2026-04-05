@@ -49,7 +49,7 @@ routes.post("/", (req, res) => {
   try {
     const userPath = path.join(database, "app", "user", `${userId}.json`);
     const userinfo = JSON.parse(fs.readFileSync(userPath, "utf8"));
-    console.log(userinfo.password);
+    console.log(typeof (password), typeof (userinfo.password));
     if (password === userinfo.password) {
       // ✅ userinfo.usernumber 를 쿠키로 전달
       // ✅ 쿠키 이름은 userid
@@ -67,6 +67,10 @@ routes.post("/", (req, res) => {
       res.cookie("sessionid", sessionId, {
         httpOnly: true,
         path: "/"
+      });
+      return res.status(200).json({
+        success: true,
+        message: "로그인 성공"
       });
     } else {
       return res.status(401).json({
