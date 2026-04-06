@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // 🔥 추가
+        credentials: "include",
         body: JSON.stringify(payload),
       });
 

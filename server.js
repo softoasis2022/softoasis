@@ -62,6 +62,16 @@ app.use((req, res, next) => {
 
   next();
 });
+// 🔥 neo 서브도메인 라우팅
+app.use((req, res, next) => {
+  const host = req.headers.host || "";
+
+  if (host.startsWith("neo.")) {
+    return require("./neo/app")(req, res, next);
+  }
+
+  next();
+});
 
 // ======================
 // 라우터
@@ -80,7 +90,6 @@ app.use("/seller", require("./seller/app"));
 
 //neo에서 사용하는 메인 컨텐츠 neo.softoasis.org, 제공 제한 : 없음 (로그인이 필요한 것들은 제한, 개별 로그인 사용)
 app.use("/world", require("./app/world/app"));
-app.use("/neo", require("./neo/app"));
 
 //소프트오아이스 사내 네트워크 워크플레이스 admin.softoasis.org , 제공제한 : 사내 허용된 아이디 또는 ip에서 접근 가능
 app.use("/admin", require("./admin/app"));
