@@ -1,0 +1,12 @@
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0px;
+    position: absolute;
+    display: flex;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+    background: #f5f6f8;
+    flex-direction: row;
+    justify-content: left;
+}

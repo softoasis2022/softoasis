@@ -11,12 +11,14 @@ routes.use("/js", express.static(path.join(__dirname, "routes", "tamplate", "scr
 // 정적 파일 제공
 routes.use("/pages", express.static(PAGES_DIR));
 
-const mobileroutes = require("./routes/mobile/app");
+const mobileroutes = require("./routes/app"); 
 const HRroutes = require("./routes/HR/app");
 const userroutes = require("./routes/user/app");
+const approutes =  require("./routes/main/main");
 routes.use("/mobile", mobileroutes);
 routes.use("/HR", HRroutes);
 routes.use("/user", userroutes);
+routes.use("/", approutes);
 // 기본 페이지 (root 요청)
 routes.get("/", (req, res) => {
     const pagePath = path.join(PAGES_DIR, "main", "pages", "html", "index.html");
