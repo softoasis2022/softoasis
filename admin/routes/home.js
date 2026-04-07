@@ -4,13 +4,13 @@ const fs = require("fs");
 const routes = express.Router();
 
 // 페이지 폴더
-const PAGES_DIR = path.join(__dirname, "pages");
-const TEMPLATE_DIR = path.join(__dirname, "../tamplate", "html");
-routes.use("/css", express.static(path.join(__dirname, "pages", "style")));
-routes.use("/js", express.static(path.join(__dirname, "pages", "script")));
+const PAGES_DIR = path.join(__dirname, "../pages");
+const TEMPLATE_DIR = path.join(__dirname, "../pages","tamplate", "tamplate.html");
+routes.use("/css", express.static(path.join(PAGES_DIR)));
+routes.use("/js", express.static(path.join(PAGES_DIR)));
 
 routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR,"html","home","index.html");
+    const pagePath = path.join(PAGES_DIR,"home","index.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");

@@ -3,11 +3,19 @@ const path = require("path");
 const fs = require("fs");
 const routes = express.Router();
 
-const PAGES_DIR = path.join(__dirname, "pages","html");
-const TEMPLATE_DIR = path.join(__dirname, "../tamplate", "html");
+const PAGES_DIR = path.join(__dirname, "../pages" , "mobile");
+const TEMPLATE_DIR = path.join(__dirname ,"../pages", "tamplate", "tamplate.html");
 routes.use("/css", express.static(path.join(__dirname,"pages","css")));
 routes.use("/js", express.static(path.join(__dirname,"pages","js")));
 
+routes.get("/", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"index.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
 routes.get("/deviceprofile", (req, res) => {
     const pagePath = path.join(PAGES_DIR,"deviceprofile.html");
 
@@ -41,7 +49,7 @@ routes.get("/", (req, res) => {
     res.send(result);
 });
 function renderTemplate(pagePath) {
-    const templatePath = path.join(TEMPLATE_DIR, "index.html");
+    const templatePath = path.join(TEMPLATE_DIR);
 
     try {
         let template = fs.readFileSync(templatePath, "utf-8");
