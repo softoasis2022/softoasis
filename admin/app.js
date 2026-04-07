@@ -4,12 +4,13 @@ const fs = require("fs");
 const routes = express.Router();
 
 const PAGES_DIR = path.join(__dirname, "pages");
-const TEMPLATE_DIR = path.join(__dirname, "routes", "tamplate", "html");
-routes.use("/css", express.static(path.join(__dirname, "routes", "tamplate", "style")));
-routes.use("/js", express.static(path.join(__dirname, "routes", "tamplate", "script")));
-
+const TEMPLATE_DIR = path.join(__dirname, "pages","html","tamplate.html");
 // 정적 파일 제공
+routes.use("/css", express.static(path.join(PAGES_DIR, "css")));
+routes.use("/js", express.static(path.join(PAGES_DIR, "js")));
 routes.use("/pages", express.static(PAGES_DIR));
+
+
 
 const mobileroutes = require("./routes/mobile"); 
 const HRroutes = require("./routes/HR");
@@ -18,6 +19,7 @@ const approutes =  require("./routes/home");
 routes.use("/mobile", mobileroutes);
 routes.use("/HR", HRroutes);
 routes.use("/home", approutes);
+routes.use("/", approutes);
 routes.use("/user", userroutes);
 
 
@@ -61,7 +63,7 @@ routes.get("/HR", (req, res) => {
  * 템플릿 렌더링
  */
 function renderTemplate(pagePath) {
-    const templatePath = path.join(TEMPLATE_DIR, "index.html");
+    const templatePath = path.join(TEMPLATE_DIR);
 
     try {
         let template = fs.readFileSync(templatePath, "utf-8");

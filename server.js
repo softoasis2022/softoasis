@@ -68,12 +68,12 @@ app.use((req, res, next) => {
 
   if (host.startsWith("neo.")) {
     return require("./neo/app")(req, res, next);
-  }
+  } 
   else if (host.startsWith("admin.")) {
     return require("./admin/app")(req, res, next);
   }
 
-  next();
+  next(); // 🔥 이거 필수
 });
 
 // ======================
