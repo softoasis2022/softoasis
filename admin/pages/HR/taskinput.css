@@ -1,27 +1,36 @@
-/* 그대로 유지 (CSS 생략 안함) */
-* {
+/* =========================
+   기본 초기화 (main 내부만)
+========================= */
+main * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Noto Sans KR", sans-serif;
 }
 
-body {
-    background: #0a1a2f;
-    color: #e0e6ed;
+/* =========================
+   배경 (main 안에서만)
+========================= */
+main {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100%;
 }
 
-.task_container {
+/* =========================
+   컨테이너
+========================= */
+main .task_container {
     width: 100%;
     max-width: 500px;
     padding: 20px;
 }
 
-.task_form_wrap {
+/* =========================
+   카드 UI
+========================= */
+main .task_form_wrap {
     background: rgba(255, 255, 255, 0.03);
     border-radius: 16px;
     padding: 30px 25px;
@@ -29,7 +38,10 @@ body {
     box-shadow: 0 0 20px rgba(91, 192, 255, 0.15);
 }
 
-.title {
+/* =========================
+   제목
+========================= */
+main .title {
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 25px;
@@ -37,47 +49,64 @@ body {
     color: #5bc0ff;
 }
 
-form label {
+/* =========================
+   라벨 구조
+========================= */
+main form label {
     display: flex;
     flex-direction: column;
     margin-bottom: 18px;
     font-size: 14px;
 }
 
-form label span {
+/* 라벨 텍스트 */
+main form label span {
     margin-bottom: 6px;
     color: #9fb3c8;
 }
 
-form input,
-form textarea {
+/* =========================
+   input + textarea 공통
+========================= */
+main form input,
+main form textarea {
     padding: 10px 12px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
     color: #fff;
     outline: none;
     transition: 0.2s;
 }
 
-form textarea {
+/* textarea */
+main form textarea {
     resize: vertical;
     min-height: 100px;
     line-height: 1.5;
 }
 
-form input:focus,
-form textarea:focus {
+/* =========================
+   포커스 효과
+========================= */
+main form input:focus,
+main form textarea:focus {
     border: 1px solid #5bc0ff;
     box-shadow: 0 0 8px rgba(91, 192, 255, 0.4);
 }
 
-form input::placeholder,
-form textarea::placeholder {
-    color: rgba(255, 255, 255, 0.3);
+/* =========================
+   placeholder
+========================= */
+main form input::placeholder,
+main form textarea::placeholder {
+    color: rgba(255,255,255,0.3);
 }
 
-button {
+/* =========================
+   버튼
+========================= */
+main button {
     width: 100%;
     padding: 12px;
     border-radius: 10px;
@@ -89,11 +118,24 @@ button {
     transition: 0.2s;
 }
 
-button:hover {
+main button:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(91, 192, 255, 0.4);
 }
 
-button:active {
+main button:active {
     transform: scale(0.98);
+}
+
+/* =========================
+   반응형
+========================= */
+@media (max-width: 480px) {
+    main .task_form_wrap {
+        padding: 20px 15px;
+    }
+
+    main .title {
+        font-size: 18px;
+    }
 }
