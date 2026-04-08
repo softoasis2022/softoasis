@@ -2,7 +2,7 @@
    Layout (Sidebar + Main)
 ========================================= */
 header{
-  width: fit-content;
+  width: max-content;
   border-right: 1px solid black;
 }
 a{

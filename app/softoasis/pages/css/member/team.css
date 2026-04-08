@@ -1,0 +1,18 @@
+.team {
+    
+}
+
+.teamlist{
+    padding-inline-start: 0px;
+}
+.teamlist li{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    
+}
+.wrap_info{
+    display: flex;
+    flex-direction: row;
+    
+}
