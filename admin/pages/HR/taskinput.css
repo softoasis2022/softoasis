@@ -1,0 +1,99 @@
+/* 그대로 유지 (CSS 생략 안함) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+body {
+    background: #0a1a2f;
+    color: #e0e6ed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.task_container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.task_form_wrap {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 30px 25px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(91, 192, 255, 0.15);
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #5bc0ff;
+}
+
+form label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+form label span {
+    margin-bottom: 6px;
+    color: #9fb3c8;
+}
+
+form input,
+form textarea {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    outline: none;
+    transition: 0.2s;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
+}
+
+form input:focus,
+form textarea:focus {
+    border: 1px solid #5bc0ff;
+    box-shadow: 0 0 8px rgba(91, 192, 255, 0.4);
+}
+
+form input::placeholder,
+form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #5bc0ff, #3a8dff);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(91, 192, 255, 0.4);
+}
+
+button:active {
+    transform: scale(0.98);
+}

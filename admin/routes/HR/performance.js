@@ -10,6 +10,8 @@ const TEMPLATE_DIR = path.join(__dirname, "../../pages", "tamplate", "tamplate.h
 routes.use("/css", express.static(path.join(PAGES_DIR)));
 routes.use("/js", express.static(path.join(PAGES_DIR)));
 
+
+
 function renderTemplate(pagePath) {
     const templatePath = path.join(TEMPLATE_DIR);
 

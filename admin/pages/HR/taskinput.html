@@ -1,0 +1,37 @@
+<main>
+    <link rel="stylesheet" href="/HR/css/taskinput.css">
+
+    <div class="task_container">
+        <div class="task_form_wrap">
+
+            <p class="title">업무 입력</p>
+
+            <form action="/task/create" method="post">
+
+                <label for="taskName">
+                    <span>업무 이름</span>
+                    <input type="text" id="taskName" name="taskName" required>
+                </label>
+
+                <label for="department">
+                    <span>담당 부서</span>
+                    <input type="text" id="department" name="department" required>
+                </label>
+
+                <label for="assignee">
+                    <span>담당자</span>
+                    <input type="text" id="assignee" name="assignee">
+                </label>
+
+                <!-- ✅ 수정 완료 -->
+                <label for="description">
+                    <span>업무 설명</span>
+                    <textarea id="description" name="description" placeholder="업무 내용을 입력하세요"></textarea>
+                </label>
+
+                <button type="submit">업무 등록</button>
+
+            </form>
+        </div>
+    </div>
+</main>

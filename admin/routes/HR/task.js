@@ -10,6 +10,23 @@ const TEMPLATE_DIR = path.join(__dirname, "../../pages", "tamplate", "tamplate.h
 routes.use("/css", express.static(path.join(PAGES_DIR)));
 routes.use("/js", express.static(path.join(PAGES_DIR)));
 
+routes.get("/", (req, res) => {
+    const pagePath = path.join(PAGES_DIR, "HR", "task.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+routes.get("/input", (req, res) => {
+    const pagePath = path.join(PAGES_DIR, "HR", "taskinput.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+
 function renderTemplate(pagePath) {
     const templatePath = path.join(TEMPLATE_DIR);
 

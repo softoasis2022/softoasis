@@ -55,7 +55,7 @@ async function fetchMemberData() {
     }
 }
 function layoutcomplate(data) {
-    const container = document.querySelector(".team");
+    const container = document.querySelector(".teamlist");
 
     if (!data || !data.teams) return;
 
@@ -102,8 +102,8 @@ function layoutcomplate(data) {
                     </li>
 
                     <li class="wrap_info">
-                        <p>나이</p>
-                        <p>${member.old}세</p>
+                        <p>경력</p>
+                        <p>${member.old}년</p>
                     </li>
 
                     <li class="wrap_info">

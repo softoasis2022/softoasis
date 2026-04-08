@@ -10,6 +10,39 @@ const TEMPLATE_DIR = path.join(__dirname, "../../pages", "tamplate", "tamplate.h
 routes.use("/css", express.static(path.join(PAGES_DIR)));
 routes.use("/js", express.static(path.join(PAGES_DIR)));
 
+routes.get("/", (req, res) => {
+    const pagePath = path.join(PAGES_DIR, "HR", "member.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+
+routes.get("/info", (req, res) => {
+    const pagePath = path.join(PAGES_DIR, "HR", "memberinfo.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+routes.post("/", (req, res) => {
+
+    try {
+        const filePath = path.join(database, "HR", "member.json");
+        const fileData = fs.readFileSync(filePath, "utf-8");
+        const raw = JSON.parse(fileData);
+        res.json(raw);
+    }
+    catch {
+
+    }
+    finally {
+
+    }
+});
+
 function renderTemplate(pagePath) {
     const templatePath = path.join(TEMPLATE_DIR);
 

@@ -64,7 +64,7 @@ routes.post("/team", (req, res) => {
                         id: member.id,
                         name: member.name,
                         nickname: member.nickname || "",
-                        old: calculateAge(member.joinDate), // 필요 없으면 제거 가능
+                        old: calculateAge(member.joinDate), //나이
                         profileimg: "",
 
                         // 🔥 skills → skill 변환

@@ -1,28 +1,26 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const { route } = require("./mobile");
 const routes = express.Router();
 
 // 페이지 폴더
-const PAGES_DIR = path.join(__dirname, "../pages");
-const TEMPLATE_DIR = path.join(__dirname, "../pages","tamplate", "tamplate.html");
+const database = path.join("C:", "database");
+const PAGES_DIR = path.join(__dirname, "../pages/HR");
+const TEMPLATE_DIR = path.join(__dirname, "../pages", "tamplate", "tamplate.html");
 routes.use("/css", express.static(path.join(PAGES_DIR)));
 routes.use("/js", express.static(path.join(PAGES_DIR)));
 
-const memberinfo = require("./HR/memberinfo");
+const member = require("./HR/member");
+const task = require("./HR/task");
+const ats = require("./HR/ats");
 
-routes.get("/memberinfo",(req, res)=>{
-    const pagePath = path.join(PAGES_DIR,"HR","memberinfo.html");
 
-    const result = renderTemplate(pagePath);
-    if (!result) return res.status(500).send("템플릿 구성 중 오류");
-
-    res.send(result);
-})
+routes.use("/member",member);
+routes.use("/task",task);
+routes.use("/ats",ats);
 
 routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR,"HR","index.html");
+    const pagePath = path.join(PAGES_DIR, "index.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");
@@ -42,6 +40,7 @@ function renderTemplate(pagePath) {
         return null;
     }
 }
+
 
 
 module.exports = routes;
