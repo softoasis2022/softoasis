@@ -3,11 +3,10 @@ const path = require("path");
 const fs = require("fs");
 const routes = express.Router();
 
-const database = path.join("D:", "database");
+const database = path.join("C:", "database");
 const ROOT = __dirname; // mobile 폴더
 // 네 환경 그대로
 const PAGES_DIR = path.join(ROOT, "pages");
-const imgDB = path.join(database, "image");
 const TEMPLATE_PATH = path.join(PAGES_DIR,"html", "tamplate.html");
 
 routes.use("/css", express.static(path.join(__dirname, "pages","css")));
@@ -37,6 +36,64 @@ routes.get("/team", (req, res) => {
 
     res.send(result);
 });
+routes.post("/team", (req, res) => {
+    try {
+        const filePath = path.join(database, "HR", "member.json");
+
+        const fileData = fs.readFileSync(filePath, "utf-8");
+        const raw = JSON.parse(fileData);
+
+        const teams = [];
+
+        // 🔥 부서 반복
+        for (const deptKey in raw) {
+            const dept = raw[deptKey];
+
+            const team = {
+                teamKey: deptKey.toLowerCase(),
+                teamName: dept.name,
+                members: []
+            };
+
+            // 🔥 그룹 반복
+            for (const groupKey in dept.groups) {
+                const group = dept.groups[groupKey];
+
+                group.members.forEach(member => {
+                    team.members.push({
+                        id: member.id,
+                        name: member.name,
+                        nickname: member.nickname || "",
+                        old: calculateAge(member.joinDate), // 필요 없으면 제거 가능
+                        profileimg: "",
+
+                        // 🔥 skills → skill 변환
+                        skill: member.skills?.map(s => ({
+                            skillname: s.name,
+                            skilllogoimgurl: `/image/UI/${s.name.toLowerCase()}.png`
+                        })) || []
+                    });
+                });
+            }
+
+            teams.push(team);
+        }
+
+        res.json({ teams });
+
+    } catch (err) {
+        console.error("팀 데이터 변환 실패:", err);
+        res.status(500).json({ error: "서버 오류" });
+    }
+});
+// routes.post("/memberinfo", (req, res) => {
+//     const pagePath = path.join(database,"HR", "member.json");
+
+//     const result = JSON.parse(pagePath);
+//     if (!result) return res.status(500).send("올바르지 않은 데이터 입니다.");
+
+//     res.send("요청 성공");
+// });
 
 
 /**
@@ -54,5 +111,13 @@ function renderTemplate(pagePath) {
         console.error("템플릿 렌더링 실패:", err);
         return null;
     }
+}
+function calculateAge(dateString) {
+    if (!dateString) return "";
+
+    const birthYear = new Date(dateString).getFullYear();
+    const currentYear = new Date().getFullYear();
+
+    return currentYear - birthYear;
 }
 module.exports = routes;

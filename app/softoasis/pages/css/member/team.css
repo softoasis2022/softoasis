@@ -1,18 +1,82 @@
 .team {
-    
+    border: 1px solid black;
+    gap: 5px;
+    padding: 5px;
 }
 
-.teamlist{
-    padding-inline-start: 0px;
+.teamname{
+    background-color: lightgray;
+    padding-inline-start: 10px;
+    padding: 10px;
 }
-.teamlist li{
+
+.teamname > p{
+    margin: 0px;
+}
+.teammemberlist{
+    padding-inline-start: 0px;
+    padding: 10px;
+}
+.teammemberlist > li{
     list-style: none;
     display: flex;
     flex-direction: row;
-    
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px gray;
 }
+
+
+
+.profileimg{
+    width: fit-content;
+    max-width: 150px;
+    min-width: 150px;
+    min-height: 200px;
+    scale: 3/4;
+    border: 1px solid black;
+}
+
+.info{
+    padding-inline-start: 10px;
+}
+
 .wrap_info{
     display: flex;
     flex-direction: row;
+    gap: 5px;
+}
+.wrap_info > p{
+    margin: 0px;
     
+}
+
+.skilllist{
+    padding-inline-start: 0px;
+    gap: 10px;
+}
+.skilllist > li{
+    list-style: none;
+    padding: 5px;
+    background-color: lightgray;
+    margin: 3px;
+    border-radius: 10px;
+}
+.skilllist li a{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+}
+.skilllist li img{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+}
+.skilllist li p{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
 }

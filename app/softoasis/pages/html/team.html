@@ -1,35 +1,55 @@
 <main>
-    
+
     <div class="team">
-        <div>
+        <div class="teamname">
             <p>개발팀 1팀</p>
         </div>
-        <ul class="teamlist">
-            <li>
+        <ul class="teammemberlist">
+            <li onclick="location.href = '/softoasis/team/info?id=00001'">
                 <div>
-                    <img src="" alt="프로필 사진">
+                    <img class="profileimg" src="" alt="프로필 사진">
                 </div>
-                <div>
-                    <div class="wrap_info">
+                <ul class="info">
+                    <li class="wrap_info">
                         <p>이름</p>
                         <p>한민섭</p>
-                    </div>
-                    <div class="wrap_info">
+                    </li>
+                    <li class="wrap_info">
                         <p>닉네임</p>
                         <p>이루미</p>
-                    </div>
-                    <div class="wrap_info">
+                    </li>
+                    <li class="wrap_info">
                         <p>나이</p>
                         <p>29세</p>
-                    </div>
-                    <div class="wrap_info">
+                    </li>
+                    <li class="wrap_info ">
                         <p>주요 스킬</p>
-                        <p>안드로이드,자바,자바스크립트</p>
-                    </div>
-                </div>
+                        <ul class="skilllist">
+                            <li>
+                                <a href="/softoasis/team/info?id=00001">
+                                    <img src="https://developer.android.com/images/brand/android-head_3D.svg" alt="">
+                                    <p>안드로이드</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/softoasis/team/info?id=00001">
+                                    <img src="/image/UI/java.png" alt="">
+                                    <p>자바</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/softoasis/team/info?id=00001">
+                                    <img src="/image/UI/javascript.svg" alt="">
+                                    <p>자바스크립트</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
 </main>
 <link rel="stylesheet" href="/softoasis/css/member/team.css">
 <link rel="stylesheet" href="/softoasis/css/member/main.css">
+<script src="/softoasis/js/API_memberlist.js"></script>
