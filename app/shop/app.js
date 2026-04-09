@@ -15,7 +15,11 @@ routes.use("/coin",coinroutes);
 routes.use("/css", express.static(path.join(__dirname, "css")));
 routes.use("/js", express.static(path.join(__dirname, "js")));
 
+//결제창
+//
+
 routes.get("/",(req,res)=>{
+    //볼 구매 페이지
     
 });
 
