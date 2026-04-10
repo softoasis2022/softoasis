@@ -5,6 +5,7 @@ const routes = express.Router();
 
 // 🔹 이미지 저장 경로 설정 (예: D드라이브 또는 현재 폴더 내)
 const USER_IMAGE_ROOT = path.join(__dirname, "upload");  // 저장폴더 upload/
+const databasepath = path.join("C:","database","image");
 
 // -----------------------------
 // 🔥 multer 저장 설정
@@ -53,6 +54,7 @@ routes.post("/upload", upload.single("img"), (req, res) => {
 routes.use(express.static(USER_IMAGE_ROOT));
 routes.use("/UI", express.static(path.join(__dirname, "UI")));
 routes.use("/view", express.static(path.join(__dirname, "view")));
+routes.use("/content", express.static(path.join(databasepath, "content")));
 routes.use("/profile", express.static(USER_IMAGE_ROOT)); // 업로드된 이미지 제공
 
 module.exports = routes;

@@ -72,6 +72,9 @@ app.use((req, res, next) => {
   else if (host.startsWith("admin.")) {
     return require("./admin/app")(req, res, next);
   }
+  else if (host.startsWith("seller.")) {
+    return require("./seller/app")(req, res, next);
+  }
 
   next(); // 🔥 이거 필수
 });
@@ -87,9 +90,6 @@ app.use("/mobile", require("./app/mobile/app"));
 app.use("/recipe", require("./app/recipe/app"));
 
 app.use("/contant", require("./neo/app"));
-
-//셀러 판매자센터 seller.softoasis.org , 제공 제한 : 없음 (로그인이 필요한 것들은 제한, 개별 로그인 사용)
-app.use("/seller", require("./seller/app"));
 
 //neo에서 사용하는 메인 컨텐츠 neo.softoasis.org, 제공 제한 : 없음 (로그인이 필요한 것들은 제한, 개별 로그인 사용)
 app.use("/world", require("./app/world/app"));

@@ -1,0 +1,123 @@
+{
+    "name": "가오리네 상점",
+    "coment": "마을에 유일한 상점, 어떤 물건들이 있는지 들어가 보자",
+    "item": [
+        {
+            "id": "0000000002",
+            "price": 1000
+        }
+    ],
+    "tool": [],
+    "skill": [
+        {
+            "info": {
+                "skillId": "SK001",
+                "name": "파워 스트라이크",
+                "type": "active",
+                "effect": {
+                    "damageMultiplier": 1.5
+                }
+            },
+            "price": 1000
+        },
+        {
+            "info": {
+                "skillId": "SK002",
+                "name": "더블 슬래시",
+                "type": "active",
+                "effect": {
+                    "damageMultiplier": 2.0
+                }
+            },
+            "price": 2000
+        },
+        {
+            "info": {
+                "skillId": "SK003",
+                "name": "크리티컬 버스트",
+                "type": "active",
+                "effect": {
+                    "damageMultiplier": 2.5
+                }
+            },
+            "price": 3500
+        },
+        {
+            "info": {
+                "skillId": "SK004",
+                "name": "섀도우 어택",
+                "type": "active",
+                "effect": {
+                    "damageMultiplier": 1.8
+                }
+            },
+            "price": 2800
+        },
+        {
+            "info": {
+                "skillId": "SK005",
+                "name": "피어싱 블로우",
+                "type": "active",
+                "effect": {
+                    "damageMultiplier": 2.2
+                }
+            },
+            "price": 4000
+        },
+        {
+            "info": {
+                "skillId": "SK006",
+                "name": "버서커 레이지",
+                "type": "active",
+                "effect": {
+                    "damageMultiplier": 3.0
+                }
+            },
+            "price": 6000
+        },
+        {
+            "info": {
+                "skillId": "SK007",
+                "name": "라이트닝 스트라이크",
+                "type": "active",
+                "effect": {
+                    "damageMultiplier": 2.7
+                }
+            },
+            "price": 7500
+        },
+        {
+            "info": {
+                "skillId": "SK008",
+                "name": "블레이드 스톰",
+                "type": "active",
+                "effect": {
+                    "damageMultiplier": 3.5
+                }
+            },
+            "price": 10000
+        },
+        {
+            "info": {
+                "skillId": "SK009",
+                "name": "데스 임팩트",
+                "type": "active",
+                "effect": {
+                    "damageMultiplier": 4.0
+                }
+            },
+            "price": 15000
+        },
+        {
+            "info": {
+                "skillId": "SK010",
+                "name": "인피니티 슬래시",
+                "type": "active",
+                "effect": {
+                    "damageMultiplier": 5.0
+                }
+            },
+            "price": 25000
+        }
+    ]
+}

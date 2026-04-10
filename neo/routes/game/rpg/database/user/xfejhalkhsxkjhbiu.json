@@ -1,0 +1,30 @@
+{
+    "name": "레벨업은 잊은지 오래",
+    "nickname": "",
+    "usernumber" : "",
+    "exp" : 0,
+    "level" : 1,
+    "sex" : "woman",
+    "hp" : 100,
+    "maxhp" : 100,
+    "mp" : 100,
+    "maxmp" : 100,
+    "item": [
+        {
+            "id": "0000000002",
+            "name": "hp물약",
+            "coment": "사용시 채력10을 회복 합니다,"
+        }
+    ],
+    "tool" : [
+        {
+            "id" : "0000000001",
+            "name": "부러진 검",
+            "coment": "기본 검입니다,",
+            "imgurl" : "www.softoasis.org/image/content/"
+        }
+    ],
+    "skill" : [
+        
+    ]
+}

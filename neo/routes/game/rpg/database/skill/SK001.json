@@ -1,0 +1,82 @@
+[
+  {
+    "skillId": "SK001",
+    "name": "파워 스트라이크",
+    "type": "active",
+    "effect": {
+      "damageMultiplier": 1.5
+    }
+  },
+  {
+    "skillId": "SK002",
+    "name": "더블 슬래시",
+    "type": "active",
+    "effect": {
+      "damageMultiplier": 2.0
+    }
+  },
+  {
+    "skillId": "SK003",
+    "name": "크리티컬 버스트",
+    "type": "active",
+    "effect": {
+      "damageMultiplier": 2.5
+    }
+  },
+  {
+    "skillId": "SK004",
+    "name": "섀도우 어택",
+    "type": "active",
+    "effect": {
+      "damageMultiplier": 1.8
+    }
+  },
+  {
+    "skillId": "SK005",
+    "name": "피어싱 블로우",
+    "type": "active",
+    "effect": {
+      "damageMultiplier": 2.2
+    }
+  },
+  {
+    "skillId": "SK006",
+    "name": "버서커 레이지",
+    "type": "active",
+    "effect": {
+      "damageMultiplier": 3.0
+    }
+  },
+  {
+    "skillId": "SK007",
+    "name": "라이트닝 스트라이크",
+    "type": "active",
+    "effect": {
+      "damageMultiplier": 2.7
+    }
+  },
+  {
+    "skillId": "SK008",
+    "name": "블레이드 스톰",
+    "type": "active",
+    "effect": {
+      "damageMultiplier": 3.5
+    }
+  },
+  {
+    "skillId": "SK009",
+    "name": "데스 임팩트",
+    "type": "active",
+    "effect": {
+      "damageMultiplier": 4.0
+    }
+  },
+  {
+    "skillId": "SK010",
+    "name": "인피니티 슬래시",
+    "type": "active",
+    "effect": {
+      "damageMultiplier": 5.0
+    }
+  }
+]
