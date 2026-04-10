@@ -10,6 +10,7 @@ const HRroutes = require("./routes/HR");
 const userroutes = require("./routes/user");
 const approutes =  require("./routes/home");
 const acountroutes =  require("./routes/acount");
+const Noticeroutes =  require("./routes/Notice");
 
 routes.use("/acount", acountroutes);
 
@@ -59,6 +60,7 @@ routes.use("/HR", HRroutes);
 routes.use("/home", approutes);
 routes.use("/", approutes);
 routes.use("/user", userroutes);
+routes.use("/Notice", Noticeroutes);
 
 
 module.exports = routes;

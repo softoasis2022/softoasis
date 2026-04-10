@@ -15,6 +15,10 @@ routes.use("/coin",coinroutes);
 routes.use("/css", express.static(path.join(__dirname, "css")));
 routes.use("/js", express.static(path.join(__dirname, "js")));
 
+
+
+// routes.use()
+
 //결제창
 //
 
