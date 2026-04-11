@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 // ======================
 // 로그 시스템
 // ======================
-const database = path.join(__dirname, "database");
+const database = path.join("C:", "database");
 const logdatabase = path.join(database, "log", "requestpageurl");
 
 app.use((req, res, next) => {
