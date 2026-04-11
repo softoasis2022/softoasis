@@ -1,7 +1,6 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-
 const routes = express.Router();
 
 const chatDB = path.join("C:", "database", "chat");
@@ -9,6 +8,8 @@ const chatDB = path.join("C:", "database", "chat");
 // 🔥 전역 상태
 const users = {};
 const rooms = {};
+
+routes.use("/room",require("./routes/room"));
 
 // ======================
 // ✅ 채팅방 리스트
