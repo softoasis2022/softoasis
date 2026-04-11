@@ -1,0 +1,25 @@
+{
+    "content" : [
+
+    ],
+    "partners" : [
+        {
+            "name" : ""
+            
+        }
+    ],
+    "node" : [
+        {
+            "maintitle" : "인테리어(사용자지정)",
+            "logoimg":"only 사용자 지정 or 없으면 기본이미지",
+            "list" : [
+                {
+                    "title" : "(사용자 지정 or 자동입력 : 브랜드-플렛폼-이름)",
+                    "Url" : "https://brand.naver.com/mooas/products/4140815409?n_keyword=&n_rank=1&n_query=%EC%A0%84%EC%9E%90%EB%B2%BD%EC%8B%9C%EA%B3%84&n_campaign_type=2&n_media=684927&n_campaign=cmp-a001-02-000000005129581&n_ad_group=grp-a001-02-000000025963122&n_ad=nad-a001-02-000000172440889&n_match=3&n_network=search&n_mall_id=mooas09&n_mall_pid=4140815409&n_ad_group_type=2&n_keyword_id=&n_ad_extension=&NaPm=ct%3Dmnu4zi66%7Cci%3DER64ab5e23-3589-11f1-b9b2-92ff01e80235%7Ctr%3Dplan%7Chk%3De84903d109c96d93612515b1b2f33d245c65ee92%7Cnacn%3D7nt2BwAuNfshA",
+                    "titleimg" : ""
+                }
+            ]
+            
+        }
+    ]
+}
