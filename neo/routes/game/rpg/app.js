@@ -11,23 +11,4 @@ const databasepath = path.join("d")
 
 
 
-
-
-//인벤토리
-routes.get("/register",(req,res)=>{
-    const {usernumber,nickname} = req.body;
-
-    
-
-    try{
-        fs.readFileSync()
-    }
-    catch{
-        
-    }
-    finally{
-        
-    }
-});
-
 module.exports = routes;

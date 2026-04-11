@@ -1,2 +1,9 @@
 {"time":"2026-04-10T10:30:18.939Z","method":"GET","url":"/"}
 {"time":"2026-04-10T10:50:18.192Z","method":"GET","url":"/mobile/deviceprofile"}
+{"time":"2026-04-10T14:01:37.826Z","method":"GET","url":"/HR"}
+{"time":"2026-04-10T14:01:39.163Z","method":"GET","url":"/HR/member"}
+{"time":"2026-04-10T14:01:40.719Z","method":"GET","url":"/HR/ats"}
+{"time":"2026-04-10T14:01:44.745Z","method":"GET","url":"/HR/ats"}
+{"time":"2026-04-10T14:01:54.358Z","method":"GET","url":"/HR/member"}
+{"time":"2026-04-10T14:01:56.968Z","method":"GET","url":"/HR/member"}
+{"time":"2026-04-10T14:02:45.989Z","method":"GET","url":"/HR/member"}

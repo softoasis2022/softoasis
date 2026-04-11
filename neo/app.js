@@ -11,11 +11,13 @@ const mainpageroute = require("./routes/main/app");
 routes.use(express.json());
 
 routes.use("/social",social);
-
-
 routes.use("/",mainpageroute);
 routes.use("/intro",intropageroute);
-
 routes.use("/contant",contant);
+routes.post("/join",(req,res)=>{
+    const {roomnumber} = req.body;
+
+    
+})
 
 module.exports = routes;
