@@ -115,7 +115,7 @@ app.use("/chat", chat.routes);
 // ======================
 // HTTPS 서버 생성
 // ======================
-const certDir = path.join(__dirname, "certs");
+const certDir = path.join("C:", "certs");
 
 const httpsServer = https.createServer(
   {

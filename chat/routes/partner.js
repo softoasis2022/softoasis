@@ -10,7 +10,6 @@ routes.use("/css",express.static(path.join(__dirname,"../pages/room")));
 
 //경로 /room 라우팅 예정
 
-routes.use("/partnerinput",require("./partner"));
 
 routes.use((req,res,next)=>{
     //
@@ -21,22 +20,6 @@ routes.use((req,res,next)=>{
 routes.get("/", (req, res) => {
     const {roomnumber, usernumber} = req.query;
     //채팅 내용
-});
-routes.get("/partners", (req, res) => {
-    const {roomnumber, usernumber} = req.query;
-    //JSON.parse(fs.readFileSync(path.join(databasepath,"room",`${roomnumber}.json`),"utf-8"));
-    try{
-        res.json(JSON.parse(fs.readFileSync(path.join(databasepath,"room",`${roomnumber}.json`),"utf-8")));
-    }
-    catch{
-        res.status();
-    }
-});
-routes.get("/node", (req, res) => {
-    const {roomnumber, usernumber} = req.query;
-});
-routes.get("/content", (req, res) => {
-    const {roomnumber, usernumber} = req.query;
 });
 
 module.exports =routes;
