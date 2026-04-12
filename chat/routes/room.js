@@ -10,7 +10,19 @@ routes.use("/css", express.static(path.join(__dirname, "../pages/room")));
 
 //경로 /room 라우팅 완료
 
-routes.use("/partnerinput",require("./partner"));
+const user = {
+    "chat": {
+        "room": [
+            {
+                "name": "방이름",
+                "roomid": "rooom1",
+                "roomprofileimgUrl": "https://www.softoasis.org/image/UI/ably.jpg"
+            }
+        ]
+    }
+}
+
+routes.use("/partnerinput", require("./partner"));
 
 routes.use((req, res, next) => {
     //
