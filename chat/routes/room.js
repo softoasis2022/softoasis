@@ -1,33 +1,21 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+const { json } = require("stream/consumers");
 const routes = express.Router();
 
-const databasepath = path.join("C:", "database", "chat")
+const databasepath = path.join("C:", "database")
 
 routes.use("/js", express.static(path.join(__dirname, "../pages/room")));
 routes.use("/css", express.static(path.join(__dirname, "../pages/room")));
 
 //경로 /room 라우팅 완료
 
-const user = {
-    "chat": {
-        "room": [
-            {
-                "name": "방이름",
-                "roomid": "rooom1",
-                "roomprofileimgUrl": "https://www.softoasis.org/image/UI/ably.jpg"
-            }
-        ]
-    }
-}
+
+
 
 routes.use("/partnerinput", require("./partner"));
 
-routes.use((req, res, next) => {
-    //
-    next();
-});
 routes.get("/node", (req, res) => {
     const { roomnumber, usernumber } = req.query;
 });
@@ -40,16 +28,8 @@ routes.post("/list", (req, res) => {
     if (!usernumber) {
         return res.json({ success: false, message: "usernumber 필요" });
     }
-    const result = [];
 
-    for (let roomId in rooms) {
-        if (rooms[roomId].includes(userId)) {
-            result.push({
-                roomId,
-                users: rooms[roomId]
-            });
-        }
-    }
+    const result = json.parse(fs.readFileSync(path.join(databasepath,"user", `${usernumber}.json`),"utf-8")).
 
     res.json({
         success: true,
