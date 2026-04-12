@@ -4,9 +4,9 @@
 //업로드 git push -u origin main --force
 //다운로드 git clone https://github.com/softoasis2022/softoasis.git
 
-//git add .
-//git commit -m "add missed files"
-//git push origin main
+// git add .
+// git commit -m "add missed files"
+// git push origin main
 
 
 const fs = require("fs");

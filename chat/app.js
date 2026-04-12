@@ -20,11 +20,9 @@ routes.use("/room", require("./routes/room"));
 // ======================
 // ✅ 채팅방 리스트
 // ======================
-routes.get("/rooms", (req, res) => {
-  const { userId } = req.query;
 
-  const result = [];
 
+<<<<<<< HEAD
   for (let roomId in rooms) {
     if (rooms[roomId].users.includes(userId)) {
       result.push({
@@ -69,6 +67,9 @@ routes.get("/messages", (req, res) => {
     messages
   });
 });
+=======
+
+>>>>>>> b43330d68af4bb348ee283a42364f76a0e353a7a
 
 // ======================
 // 🔥 채팅 초기화
