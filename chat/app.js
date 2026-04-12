@@ -22,54 +22,7 @@ routes.use("/room", require("./routes/room"));
 // ======================
 
 
-<<<<<<< HEAD
-  for (let roomId in rooms) {
-    if (rooms[roomId].users.includes(userId)) {
-      result.push({
-        roomId,
-        roomName: rooms[roomId].roomName,
-        roomImage: rooms[roomId].roomImage,
-        lastMessage: rooms[roomId].lastMessage,
-        lastTime: rooms[roomId].lastTime
-      });
-    }
-  }
 
-  // 👉 최신 메시지 순 정렬
-  result.sort((a, b) => new Date(b.lastTime) - new Date(a.lastTime));
-
-  res.json({
-    success: true,
-    rooms: result
-  });
-});
-
-// ======================
-// ✅ 메시지 조회
-// ======================
-routes.get("/messages", (req, res) => {
-  const { roomId } = req.query;
-
-  if (!roomId) {
-    return res.json({ success: false, message: "roomId 필요" });
-  }
-
-  const filePath = path.join(chatDB, `${roomId}.json`);
-
-  if (!fs.existsSync(filePath)) {
-    return res.json({ success: true, messages: [] });
-  }
-
-  const messages = JSON.parse(fs.readFileSync(filePath, "utf8"));
-
-  res.json({
-    success: true,
-    messages
-  });
-});
-=======
-
->>>>>>> b43330d68af4bb348ee283a42364f76a0e353a7a
 
 // ======================
 // 🔥 채팅 초기화

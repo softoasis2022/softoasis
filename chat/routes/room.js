@@ -16,31 +16,6 @@ routes.use((req, res, next) => {
     //
     next();
 });
-
-// 파트너스,노드,컨텐트 
-routes.get("/", (req, res) => {
-<<<<<<< HEAD
-    const {roomnumber, usernumber} = req.query;
-    //채팅 내용
-});
-routes.get("/partners", (req, res) => {
-    const {roomnumber, usernumber} = req.query;
-    //JSON.parse(fs.readFileSync(path.join(databasepath,"room",`${roomnumber}.json`),"utf-8"));
-    try{
-        res.json(JSON.parse(fs.readFileSync(path.join(databasepath,"room",`${roomnumber}.json`),"utf-8")));
-    }
-    catch{
-        res.status();
-    }
-=======
-    const { roomnumber, usernumber } = req.query;
-});
-routes.get("/partners", (req, res) => {
-
-    const { roomnumber, usernumber } = req.query;
-
->>>>>>> b43330d68af4bb348ee283a42364f76a0e353a7a
-});
 routes.get("/node", (req, res) => {
     const { roomnumber, usernumber } = req.query;
 });
