@@ -14,49 +14,9 @@ routes.use("/room",require("./routes/room"));
 // ======================
 // ✅ 채팅방 리스트
 // ======================
-routes.get("/rooms", (req, res) => {
-  const { userId } = req.query;
 
-  const result = [];
 
-  for (let roomId in rooms) {
-    if (rooms[roomId].includes(userId)) {
-      result.push({
-        roomId,
-        users: rooms[roomId]
-      });
-    }
-  }
 
-  res.json({
-    success: true,
-    rooms: result
-  });
-});
-
-// ======================
-// ✅ 메시지 조회 API (추가)
-// ======================
-routes.get("/messages", (req, res) => {
-  const { roomId } = req.query;
-
-  if (!roomId) {
-    return res.json({ success: false, message: "roomId 필요" });
-  }
-
-  const filePath = path.join(chatDB, `${roomId}.json`);
-
-  if (!fs.existsSync(filePath)) {
-    return res.json({ success: true, messages: [] });
-  }
-
-  const messages = JSON.parse(fs.readFileSync(filePath, "utf8"));
-
-  res.json({
-    success: true,
-    messages
-  });
-});
 
 // ======================
 // 🔥 채팅 초기화
