@@ -45,9 +45,9 @@ function initChat(io) {
     // ======================
     socket.on("room:create", ({ user1, user2 }) => {
 
-      const roomId = [user1, user2].sort().join("_");
+      const roomnumber = [user1, user2].sort().join("_");
 
-      const roomExists = !!rooms[roomId];
+      const roomExists = !!rooms[roomnumber];
 
       // ✅ 방 없으면 생성
       if (!roomExists) {
@@ -61,16 +61,16 @@ function initChat(io) {
       }
 
       // ✅ 방 참가 (항상 실행)
-      rooms[roomId].users.forEach(userId => {
+      rooms[roomnumber].users.forEach(userId => {
         const socketId = users[userId];
         if (socketId) {
-          io.sockets.sockets.get(socketId)?.join(roomId);
+          io.sockets.sockets.get(socketId)?.join(roomnumber);
         }
       });
 
       // ✅ 클라이언트 응답
       socket.emit("room:created", {
-        roomId,
+        roomnumber,
         isNew: !roomExists
       });
     });
@@ -78,7 +78,7 @@ function initChat(io) {
     // ======================
     // 🔥 메시지 전송
     // ======================
-    socket.on("chat:send", ({ roomId, message, from }) => {
+    socket.on("chat:send", ({ roomnumber, message, from }) => {
 
       // ✅ 메시지 객체 먼저 생성 (🔥 중요 순서)
       const msg = {
@@ -87,18 +87,18 @@ function initChat(io) {
         time: new Date().toISOString()
       };
 
-      console.log("📩 room 메시지:", roomId, message);
+      console.log("📩 room 메시지:", roomnumber, message);
 
       // 🔥 rooms 상태 업데이트
-      if (rooms[roomId]) {
-        rooms[roomId].lastMessage = message;
-        rooms[roomId].lastTime = msg.time;
+      if (rooms[roomnumber]) {
+        rooms[roomnumber].lastMessage = message;
+        rooms[roomnumber].lastTime = msg.time;
       }
 
       // 🔥 폴더 생성
       fs.mkdirSync(chatDB, { recursive: true });
 
-      const filePath = path.join(chatDB, `${roomId}.json`);
+      const filePath = path.join(chatDB, `${roomnumber}.json`);
 
       let messages = [];
 
@@ -117,7 +117,7 @@ function initChat(io) {
       fs.writeFileSync(filePath, JSON.stringify(messages, null, 2));
 
       // 🔥 실시간 전송
-      io.to(roomId).emit("chat:receive", msg);
+      io.to(roomnumber).emit("chat:receive", msg);
     });
 
     // ======================

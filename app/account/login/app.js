@@ -59,9 +59,10 @@ routes.post("/", (req, res) => {
       fs.writeFileSync(
         path.join(database, "session", `${sessionId}.json`),
         JSON.stringify({
-          userid: userinfo.usernumber
+          userid : userinfo.usernumber
         })
       );
+      let usernumber = userinfo.usernumber;
 
       res.cookie("sessionid", sessionId, {
         httpOnly: true,
@@ -71,7 +72,8 @@ routes.post("/", (req, res) => {
       // ✅ 반드시 필요
       return res.status(200).json({
         success: true,
-        message: "로그인 성공"
+        message: "로그인 성공",
+        usernumber: userinfo.usernumber
       });
     }
     else {

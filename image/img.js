@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 10 * 1024 * 1024 } // 용량 제한 10MB
+    limits: { fileSize: 100 * 3840 * 2160 } // 용량 제한 10MB
 });
 
 // -----------------------------
@@ -54,6 +54,7 @@ routes.post("/upload", upload.single("img"), (req, res) => {
 routes.use(express.static(USER_IMAGE_ROOT));
 routes.use("/UI", express.static(path.join(__dirname, "UI")));
 routes.use("/view", express.static(path.join(__dirname, "view")));
+routes.use("/shop", express.static(path.join(__dirname, "shop")));
 routes.use("/content", express.static(path.join(databasepath, "content")));
 routes.use("/profile", express.static(USER_IMAGE_ROOT)); // 업로드된 이미지 제공
 

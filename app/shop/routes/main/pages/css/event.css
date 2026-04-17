@@ -1,0 +1,43 @@
+/* ✅ 제일 위 */
+@import url('https://fonts.googleapis.com/css2?family=Sekuya&display=swap');
+
+.event {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.event_list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-inline-start: 0px;
+
+}
+
+.event_list>li {
+    width: fit-content;
+    min-width: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.sec_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sec_title>p {
+    font-family: 'Sekuya', sans-serif;
+    font-size: 50px;
+    margin: 0px;
+    
+}

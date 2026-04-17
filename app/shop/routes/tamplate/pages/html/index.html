@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소프트오아시스 샵</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sekuya&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 600px) {
+            header {
+                width: 100%;
+                min-width: unset;
+                /* 중요 */
+            }
+
+            main {
+                width: 100%;
+                min-width: unset;
+                /* 중요 */
+            }
+        }
+
+        header>.setup {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn_category {
+            width: 100px;
+            height: 100px;
+            background-color: #58FFEB;
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            font-family: "Sekuya", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+    <style>
+        footer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <section class="setup">
+            <div class="category">
+                <div class="btn_category">
+                    <img src="/image/UI/menu.svg" alt=""
+                        style="width: fit-content; height: fit-content; min-width: 50px; min-height: 50px;">
+                </div>
+
+                <div class="categorylist">
+                    <ul>
+                        <li><a href="/shop">홈</a></li>
+                        <li><a href="/shop/">인기상품</a></li>
+                        <li><a href="#">신상품</a></li>
+                        <li><a href="#">이벤트</a></li>
+                    </ul>
+                    <ul>
+                        <li>출산용품</li>
+                    </ul>
+                    <ul>
+                        <p>브랜드</p>
+                        <li>
+                            브랜드 샵
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <p class="logo">softoasis shop</p>
+            </div>
+            <div class="wrap_search"
+                style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px; padding: 10px;">
+                <input name="query" class="query" id="query" type="text" style="padding: 5px; font-size: 30px;">
+                <button class="btn_search"
+                    style="width: 60px; height: 40px; background-color: #58FFEB; box-shadow: 2px 2px 2px 2px gray; border-radius: 20px;">
+                    <img src="/image/UI/search.svg" alt="검색버튼">
+                </button>
+            </div>
+        </section>
+        <section class="menu">
+            <style>
+                .menu{
+                    width: 100%;
+                    justify-content: center;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+                .menu ul {
+                    padding-inline-start: 0px;
+                    overflow-x: scroll;
+                    -ms-overflow-style: none;  /* IE, Edge */
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 5px;
+                }
+
+                .menu ul::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .menu li {
+                    list-style: none;
+                    border-radius: 30px;
+                    background-color:lightslategrey;
+                    width: fit-content;
+                    padding: 10px;
+                }
+
+                .menu a {
+                    color: black;
+                    text-decoration: none;
+                }
+            </style>
+            <ul>
+                <li><a href="/shop/category">카테고리별</a></li>
+                <li><a href="/shop/brend">브랜드관</a></li>
+                <li><a href="#">카테고리별</a></li>
+                <li><a href="#">카테고리별</a></li>
+            </ul>
+        </section>
+        <style>
+            .category {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* 버튼 */
+            .btn_category {
+                cursor: pointer;
+            }
+
+            /* 숨김 */
+            .categorylist {
+                position: absolute;
+                top: 100%;
+                left: 0;
+
+                background: white;
+                border: 1px solid #ddd;
+                padding: 10px;
+
+                display: none;
+            }
+
+            .categorylist>ul {
+                padding-inline-start: 0px;
+                margin: 0px;
+                border: 1px solid black;
+            }
+
+            .categorylist>ul>li {
+                list-style: none;
+                margin: 5px;
+            }
+
+            .categorylist>ul>li>a {
+                text-decoration: none;
+                color: black;
+            }
+
+            /* 🔥 핵심 */
+            .category:hover .categorylist {
+                display: block;
+            }
+
+            .categorylist.active .categorylist {
+                display: block;
+            }
+        </style>
+    </header>
+    <!-- MAIN_CONTENT -->
+    <footer>
+        <a href="/acount/login">
+            로그인
+        </a>
+        <a href="/acount/signup">
+            회원가입
+        </a>
+    </footer>
+    <style>
+        footer a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            footerdata();
+        });
+        function footerdata() {
+            console.log("footer 스크립트");
+        }
+    </script>
+</body>
+
+</html>
