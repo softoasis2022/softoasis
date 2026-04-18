@@ -13,6 +13,9 @@ header>.logo {
     align-items: center;
     gap: 10px;
 }
+.logo > p{
+    font-size: 20px;
+}
 header>.menu {
     display: flex;
     flex-direction: row;

@@ -13,6 +13,7 @@
     min-width: 250px;
     font-size: 30px;
     padding-inline-start: 10px;
+    color: blue;
 }
 .search_box > button{
     border: none;
