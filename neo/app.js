@@ -3,13 +3,17 @@ const path = require('path');
 const fs = require("fs");
 const routes = express.Router();
 
+//neo.softoasis.org 라우팅 완료
+
 const social = require("./routes/social/social");
 const contant = require("./routes/contant/app");
 const intropageroute = require("./routes/intro/app");
 const mainpageroute = require("./routes/main/app");
+const tamplatepageroute = require("./routes/tamplate/app");
 
 routes.use(express.json());
 
+routes.use("/tamplate",tamplatepageroute);
 routes.use("/social",social);
 routes.use("/",mainpageroute);
 routes.use("/intro",intropageroute);
