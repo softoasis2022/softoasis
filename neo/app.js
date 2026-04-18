@@ -16,6 +16,7 @@ routes.use(express.json());
 routes.use("/tamplate",tamplatepageroute);
 routes.use("/social",social);
 routes.use("/",mainpageroute);
+routes.use("/main",mainpageroute);
 routes.use("/intro",intropageroute);
 routes.use("/contant",contant);
 routes.post("/join",(req,res)=>{

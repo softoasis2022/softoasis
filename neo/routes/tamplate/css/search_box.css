@@ -1,0 +1,27 @@
+.search_box{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border-radius: 30px;
+    border: 1px solid black;
+    padding: 10px;
+}
+.search_box > input{
+    border: none;
+    min-width: 250px;
+    font-size: 30px;
+    padding-inline-start: 10px;
+}
+.search_box > button{
+    border: none;
+    background-color: #ffffff00;
+    border-radius: 30px;
+}
+.search_box > button:hover{
+    border: 1px solid black;
+}
+.search_box > button > image{
+    color: black;
+}

@@ -1,10 +1,11 @@
 const express = require("express");
 const routes = express.Router();
 const path = require("path");
+const fs = require("fs");
 
 // 폴더 기준
 const ROOT =path.join(__dirname); // mobile 폴더
-const TEMPLATE_PATH = path.join(ROOT,"../");
+const TEMPLATE_PATH = path.join(ROOT, "../tamplate","html","index.html");
 // 네 환경 그대로
 
 const PAGES_DIR = path.join(ROOT, "pages");
