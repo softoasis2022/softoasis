@@ -5,9 +5,12 @@ const routes = express.Router();
 
 const deviceroute = require("./mobile/device");
 const developercenter = require("./routes/developercenter");
+const smsroute = require("./routes/sms/sms");
 
-routes.use("/device",deviceroute);
 routes.use("/",developercenter);
+routes.use("/sms",smsroute);
+routes.use("/device",deviceroute);
+
 
 
 module.exports = routes;

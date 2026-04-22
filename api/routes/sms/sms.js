@@ -3,19 +3,19 @@ const routes = express.Router();
 const { SolapiMessageService } = require('solapi');
 const messageService = new SolapiMessageService("NCS2LDAKE53KL5PR", "L5PTRYV4A0KSSMYVFVOC3VFUYRHQFWZG");
 
-async function sms() {
+async function sms(phonenumber,message) {
     return await messageService.send({
         to: "01045171684",
-        from: "01045171684",
-        text: "[소프트오아시스] 테스트민섭"
+        from: phonenumber,
+        text: message
     });
 }
 
 routes.post("/", async (req, res) => {
-    const {phonenumber} = req.body;
+    const {phonenumber,message} = req.body;
 
     try {
-        const result = await sms();
+        const result = await sms(phonenumber,message);
 
         console.log("문자 성공:", result);
 
