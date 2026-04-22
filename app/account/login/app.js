@@ -3,6 +3,7 @@ const path = require("path");
 const fs = require("fs");
 const routes = express.Router();
 const cookieParser = require("cookie-parser");
+const bcrypt = require("bcryptjs");
 
 const crypto = require("crypto");
 
@@ -33,60 +34,68 @@ routes.get("/", (req, res) => {
 });
 
 
-routes.post("/", (req, res) => {
+
+
+routes.post("/", async (req, res) => {
   const { userId, password } = req.body;
-  console.log(userId, password);
-  console.log("req.body:", req.body);
 
   if (!userId || !password) {
     return res.status(400).json({ message: "아이디 또는 비밀번호 누락" });
   }
-  
 
   try {
     const userPath = path.join(database, "app", "user", `${userId}.json`);
-    const userinfo = JSON.parse(fs.readFileSync(userPath, "utf8"));
-    console.log(typeof (password), typeof (userinfo.password));
-    if (password === userinfo.password) {
-      const sessionId = generateRandomString(32);
 
-      const sessionDir = path.join(database, "app", "user", "session");
-
-      if (!fs.existsSync(sessionDir)) {
-        fs.mkdirSync(sessionDir, { recursive: true });
-      }
-
-      fs.writeFileSync(
-        path.join(database, "session", `${sessionId}.json`),
-        JSON.stringify({
-          userid : userinfo.usernumber
-        })
-      );
-      let usernumber = userinfo.usernumber;
-
-      res.cookie("sessionid", sessionId, {
-        httpOnly: true,
-        path: "/"
-      });
-
-      // ✅ 반드시 필요
-      return res.status(200).json({
-        success: true,
-        message: "로그인 성공",
-        usernumber: userinfo.usernumber
+    if (!fs.existsSync(userPath)) {
+      return res.status(404).json({
+        success: false,
+        message: "존재하지 않는 사용자"
       });
     }
-    else {
+
+    const userinfo = JSON.parse(fs.readFileSync(userPath, "utf8"));
+
+    // 🔥 핵심: bcrypt 비교
+    const isMatch = await bcrypt.compare(password, userinfo.passwordHash);
+
+    if (!isMatch) {
       return res.status(401).json({
         success: false,
         message: "비밀번호가 일치하지 않습니다"
       });
     }
+
+    // 🔥 로그인 성공
+    const sessionId = generateRandomString(32);
+
+    const sessionDir = path.join(database, "session");
+
+    if (!fs.existsSync(sessionDir)) {
+      fs.mkdirSync(sessionDir, { recursive: true });
+    }
+
+    fs.writeFileSync(
+      path.join(sessionDir, `${sessionId}.json`),
+      JSON.stringify({
+        userId: userinfo.userId
+      })
+    );
+
+    res.cookie("sessionid", sessionId, {
+      httpOnly: true,
+      path: "/"
+    });
+
+    return res.json({
+      success: true,
+      message: "로그인 성공"
+    });
+
   } catch (err) {
     console.log(err);
-    return res.status(404).json({
+    return res.status(500).json({
       success: false,
-      message: "존재하지 않는 사용자"
+      message: "서버 오류"
     });
   }
 });

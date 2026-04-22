@@ -2,13 +2,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("login");
 
   form.addEventListener("submit", async (e) => {
-    e.preventDefault(); // ❗ 기본 form submit 막기
+    e.preventDefault();
 
     const formData = new FormData(form);
+
+    // 🔥 trim 처리
     const payload = {
-      userId: formData.get("userId"),
-      password: formData.get("password"),
+      userId: String(formData.get("userId")).trim(),
+      password: String(formData.get("password")).trim(),
     };
+
+    // 🔥 기본값 체크
+    if (!payload.userId || !payload.password) {
+      alert("아이디 / 비밀번호 입력하세요");
+      return;
+    }
 
     try {
       const res = await fetch("/acount/login", {
@@ -22,24 +30,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await res.json();
 
-      // ✅ 여기서 응답 콘솔 로그
-      //console.log("로그인 응답:", data);
-      //console.log("HTTP 상태코드:", res.status);
+      console.log("응답:", data);
 
-      if (res.ok) {
-        console.log("로그인 성공");
-        // 예: location.href = "/main";
-        console.log(data);
-        if (data.success === true) {
-          // ✅ 홈으로 이동
-          window.location.href = "/";
-        }
-      } else {
-        console.warn("로그인 실패");
+      // 🔥 성공 처리
+      if (res.ok && data.success) {
+        alert("로그인 성공");
+
+        // 👉 홈 이동 (너 구조)
+        window.location.href = "/";
+        return;
       }
+
+      // 🔥 실패 처리 (401 포함)
+      alert(data.message || "로그인 실패");
 
     } catch (err) {
       console.error("로그인 요청 에러:", err);
+      alert("서버 연결 실패");
     }
   });
 });
