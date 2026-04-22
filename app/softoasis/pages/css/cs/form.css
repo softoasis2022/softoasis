@@ -1,0 +1,82 @@
+/* form */
+#csForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 각 영역 */
+#csForm>div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* 라벨 */
+#csForm label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* input 공통 */
+#csForm input,
+#csForm select,
+#csForm textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+/* 포커스 */
+#csForm input:focus,
+#csForm select:focus,
+#csForm textarea:focus {
+    border-color: #6c5ce7;
+    box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.1);
+}
+
+/* textarea */
+#csForm textarea {
+    line-height: 1.5;
+}
+
+/* 파일 */
+#csForm input[type="file"] {
+    padding: 5px;
+}
+
+/* 체크박스 */
+#csForm input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+/* 개인정보 버튼 */
+#csForm label div {
+    font-size: 12px;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #6c5ce7;
+}
+
+/* 제출 버튼 */
+#csForm button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #6c5ce7;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#csForm button:hover {
+    background: #5a4bdc;
+}

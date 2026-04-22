@@ -34,7 +34,6 @@ app.use(express.urlencoded({ extended: true }));
 // ======================
 const database = path.join("C:", "database");
 const logdatabase = path.join(database, "log", "requestpageurl");
-const cert = path.join(__dirname);
 
 app.use((req, res, next) => {
   const cookies = req.headers.cookie || "";
@@ -117,7 +116,7 @@ app.use("/chat", chat.routes);
 // ======================
 // HTTPS 서버 생성
 // ======================
-const certDir = path.join(cert, "certs");
+const certDir = path.join("C:", "certs");
 
 const httpsServer = https.createServer(
   {

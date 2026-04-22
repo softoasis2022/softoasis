@@ -1,6 +1,6 @@
 <main>
     <section id="cs">
-        <form id="csForm" action="post" href="/softoasis/cs" style="width: fit-content; min-width: 600px; display: flex; flex-direction: column;">
+        <form id="csForm" action="/softoasis/cs" method="post">
 
             <!-- 문의 유형 -->
             <div>
@@ -25,7 +25,8 @@
             <!-- 내용 -->
             <div>
                 <label>문의 내용</label>
-                <textarea name="content" rows="6" placeholder="내용을 입력하세요" style="height: fit-content; min-height: 300px; resize: none;"></textarea>
+                <textarea name="content" rows="6" placeholder="내용을 입력하세요"
+                    style="height: fit-content; min-height: 300px; resize: none;"></textarea>
             </div>
 
             <!-- 사용자 정보 -->
@@ -45,11 +46,12 @@
             </div>
 
             <!-- 개인정보 동의 -->
-            <div style="">
-                <label>
-                    <input  type="checkbox" name="agree">
-                    개인정보 수집 및 이용에 동의합니다
-                    <div onclick="info()" style="width: fit-content; border: 1px solid black;" >
+            <div>
+                <label style="display: flex; flex-direction: row; gap: 10px;">
+                    <input type="checkbox" name="agree">
+                    <p style="margin: 0px;">개인정보 수집 및 이용에 동의합니다</p>
+                    <div onclick="info()"
+                        style="width: fit-content; height: fit-content; border: 1px solid black; background-color: blueviolet;">
                         개인 정보 수집 내용 보기
                     </div>
                 </label>
@@ -62,43 +64,47 @@
 
         </form>
         <div class="wrap1" id="wrap1" style="display: none;">
-            <ul>
-                <li>
-                    <p>개인 정보 수집 내용</p>
-                    <p></p>
-                </li>
-            </ul>
+            <div class="popup">
+
+                <h3>개인정보 수집 및 이용 안내</h3>
+
+                <div class="content">
+
+                    <p><strong>1. 수집 목적</strong></p>
+                    <p>
+                        문의 접수 및 답변 제공, 서비스 개선을 위한 자료로 활용됩니다.
+                    </p>
+
+                    <p><strong>2. 수집 항목</strong></p>
+                    <p>
+                        이메일, 전화번호, 문의 내용, 첨부파일
+                    </p>
+
+                    <p><strong>3. 보유 기간</strong></p>
+                    <p>
+                        문의 처리 완료 후 최대 1년간 보관 후 파기합니다.
+                    </p>
+
+                    <p><strong>4. 동의 거부 권리</strong></p>
+                    <p>
+                        개인정보 제공에 동의하지 않을 수 있으나, 이 경우 문의 접수가 제한될 수 있습니다.
+                    </p>
+
+                    <p><strong>5. 제3자 제공</strong></p>
+                    <p>
+                        원칙적으로 외부에 제공되지 않으며, 법령에 의한 경우에만 예외적으로 제공될 수 있습니다.
+                    </p>
+
+                </div>
+
+                <button class="closeBtn" onclick="info()">닫기</button>
+
+            </div>
         </div>
     </section>
 
 </main>
-<style>
-    section{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    form>div {
-        display: flex;
-        flex-direction: column;
-        max-width: 800px;
-    }
-    .sellect_cs{
-        gap: 10px;
-    }
-    .wrap1 > ul{
-        
-    }
-</style>
-<script>
-    function info(){
-        if(document.getElementById("wrap1").style.display === "block"){
-            document.getElementById("wrap1").style.display = "none";
-        }
-        else{
-            document.getElementById("wrap1").style.display = "block";
-        }
-        
-    }
-</script>
+<link rel="stylesheet" href="/softoasis/css/cs/form.css">
+<link rel="stylesheet" href="/softoasis/css/cs/main.css">
+<link rel="stylesheet" href="/softoasis/css/cs/popup.css">
+<script src="/softoasis/js/cs.js"></script>

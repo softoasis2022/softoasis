@@ -12,6 +12,8 @@ const TEMPLATE_PATH = path.join(PAGES_DIR,"html", "tamplate.html");
 routes.use("/css", express.static(path.join(__dirname, "pages","css")));
 routes.use("/js", express.static(path.join(__dirname, "pages","js")));
 
+
+
 routes.get("/", (req, res) => {
     const pagePath = path.join(PAGES_DIR,"html", "main.html");
 
@@ -60,6 +62,7 @@ routes.get("/notice", (req, res) => {
 
     res.send(result);
 });
+
 routes.post("/team", (req, res) => {
     try {
         const filePath = path.join(database, "HR", "member.json");
@@ -118,7 +121,7 @@ routes.post("/team", (req, res) => {
 
 //     res.send("요청 성공");
 // });
-
+routes.post("/cs",require("./routes/cs/app"));
 
 /**
  * 템플릿 렌더링
