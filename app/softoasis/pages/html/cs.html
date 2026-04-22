@@ -1,19 +1,61 @@
 <main>
 
-    <section id="">
-        <form action="">
+    <section id="cs">
+        <form id="csForm">
+
+            <!-- 문의 유형 -->
             <div>
-                <select name="" id="">
-                    <option value="">네오앱 테스터 진행하기</option>
-                    <option value=""></option>
-                    <option value=""></option>
+                <label>문의 유형</label>
+                <select name="type">
+                    <option value="tester">네오앱 테스터 신청</option>
+                    <option value="bug">버그 제보</option>
+                    <option value="account">계정 문의</option>
+                    <option value="payment">결제 문의</option>
+                    <option value="etc">기타</option>
                 </select>
             </div>
+
+            <!-- 제목 -->
             <div>
-                <textarea name="" id="">
-                    
-                </textarea>
+                <label>제목</label>
+                <input type="text" name="title" placeholder="제목을 입력하세요">
             </div>
+
+            <!-- 내용 -->
+            <div>
+                <label>문의 내용</label>
+                <textarea name="content" rows="6" placeholder="내용을 입력하세요"></textarea>
+            </div>
+
+            <!-- 사용자 정보 -->
+            <div>
+                <label>이메일</label>
+                <input type="email" name="email" placeholder="답변 받을 이메일">
+            </div>
+            <div>
+                <label>이메일</label>
+                <input type="phonenumber" name="phonenumber" placeholder="답변 받을 전화번호">
+            </div>
+
+            <!-- 첨부 파일 -->
+            <div>
+                <label>첨부 파일</label>
+                <input type="file" name="file">
+            </div>
+
+            <!-- 개인정보 동의 -->
+            <div>
+                <label>
+                    <input type="checkbox" name="agree">
+                    개인정보 수집 및 이용에 동의합니다
+                </label>
+            </div>
+
+            <!-- 제출 -->
+            <div>
+                <button type="submit">문의 보내기</button>
+            </div>
+
         </form>
     </section>
 

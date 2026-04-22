@@ -12,7 +12,7 @@ routes.use("/css", express.static(path.join(__dirname, "css")));
 routes.use("/js", express.static(path.join(__dirname, "js")));
 
 const mainroutes = require("./routes/main/app");
-const brendroutes = require("./routes/brend");
+const brendroutes = require("./routes/brend/brend");
 routes.use("/main",mainroutes);
 
 
