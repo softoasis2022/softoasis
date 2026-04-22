@@ -18,9 +18,9 @@ routes.get("/", (req, res) => {
 // ✅ 2) 그 다음에 정적 파일 (style.css 등)
 routes.use("/", express.static(PAGES_DIR));
 
-// routes.post((req,res)=>{
-//     const {userid , phonenumber} = req.body;
+routes.post("/",(req,res)=>{
+    const {userid , phonenumber} = req.body;
     
-// });
+});
 
 module.exports = routes;
