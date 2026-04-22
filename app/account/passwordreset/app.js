@@ -14,5 +14,31 @@ routes.get("/", (req, res) => {
   //console.log("files:", fs.readdirSync(PAGES_DIR));
   return res.sendFile("passwordreset.html", { root: PAGES_DIR });
 });
+routes.post("/", (req, res) => {
+  const { userid, password } = req.body;
+  if (userid) {
+    res.status(400);
+  }
+  else {
+    try {
+      const userinfo = JSON.parse(fs.readFileSync(path.join("C:", "database", "app", "user", `${userid}.json`), "utf-8"));
+      if (!userinfo) {
+        console.log("부정접근");
+      }
+      else {
+        res.status(200).json({
+          message: "succese",
+
+        })
+      }
+    }
+    catch {
+      const logpath = path.join("C:", "database", "log");
+      console.log("에러", req.baseUrl);
+      
+    }
+  }
+});
+
 
 module.exports = routes;
