@@ -1,11 +1,6 @@
-.company-intro {
+section {
   text-align: center;
-  margin-top: 50px;
-}
-
-.company-service {
-  text-align: center;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 .company-service>ul>li {
@@ -18,10 +13,7 @@
   padding: 10px 20px;
 }
 
-.company-app {
-  text-align: center;
-  margin-top: 50px;
-}
+
 
 .company-apps {
   display: grid;
@@ -95,10 +87,7 @@
   margin: 0;
 }
 
-.company-solution {
-  text-align: center;
-  margin-top: 10px;
-}
+
 
 .company-solutions {
   display: grid;
