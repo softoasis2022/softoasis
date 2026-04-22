@@ -46,6 +46,7 @@ routes.post("/", async (req, res) => {
   try {
     const userPath = path.join(database, "app", "user", `${userId}.json`);
 
+
     if (!fs.existsSync(userPath)) {
       return res.status(404).json({
         success: false,
@@ -57,7 +58,6 @@ routes.post("/", async (req, res) => {
 
     // 🔥 핵심: bcrypt 비교
     const isMatch = await bcrypt.compare(password, userinfo.passwordHash);
-
     if (!isMatch) {
       return res.status(401).json({
         success: false,
