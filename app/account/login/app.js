@@ -40,12 +40,14 @@ routes.post("/", async (req, res) => {
   const { userId, password } = req.body;
 
   if (!userId || !password) {
-    return res.status(400).json({ message: "아이디 또는 비밀번호 누락" });
+    return res.status(400).json({
+      success: false,
+      message: "아이디 또는 비밀번호 누락"
+    });
   }
 
   try {
     const userPath = path.join(database, "app", "user", `${userId}.json`);
-
 
     if (!fs.existsSync(userPath)) {
       return res.status(404).json({
@@ -56,8 +58,9 @@ routes.post("/", async (req, res) => {
 
     const userinfo = JSON.parse(fs.readFileSync(userPath, "utf8"));
 
-    // 🔥 핵심: bcrypt 비교
+    // 🔥 bcrypt 비교
     const isMatch = await bcrypt.compare(password, userinfo.passwordHash);
+
     if (!isMatch) {
       return res.status(401).json({
         success: false,
@@ -65,27 +68,42 @@ routes.post("/", async (req, res) => {
       });
     }
 
-    // 🔥 로그인 성공
+    // ======================
+    // 🔥 세션 생성
+    // ======================
     const sessionId = generateRandomString(32);
-
     const sessionDir = path.join(database, "session");
 
     if (!fs.existsSync(sessionDir)) {
       fs.mkdirSync(sessionDir, { recursive: true });
     }
 
+    // 🔥 세션 데이터 (만료 포함)
+    const sessionData = {
+      userId: userinfo.userId,
+      createdAt: new Date().toISOString(),
+      expiresAt: Date.now() + (1000 * 60 * 60 * 24) // 24시간
+    };
+
     fs.writeFileSync(
       path.join(sessionDir, `${sessionId}.json`),
-      JSON.stringify({
-        userId: userinfo.userId
-      })
+      JSON.stringify(sessionData, null, 2)
     );
 
+    // ======================
+    // 🔥 쿠키 설정 (중요)
+    // ======================
     res.cookie("sessionid", sessionId, {
       httpOnly: true,
+      secure: true,          // HTTPS 필수
+      sameSite: "strict",    // CSRF 방지
+      maxAge: 1000 * 60 * 60 * 24, // 24시간
       path: "/"
     });
 
+    // ======================
+    // 🔥 응답
+    // ======================
     return res.json({
       success: true,
       message: "로그인 성공"

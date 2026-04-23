@@ -10,6 +10,7 @@ const contant = require("./routes/contant/app");
 const intropageroute = require("./routes/intro/app");
 const mainpageroute = require("./routes/main/app");
 const tamplatepageroute = require("./routes/tamplate/app");
+const chat = require("./routes/chat/app");
 
 routes.use(express.json());
 
@@ -19,6 +20,7 @@ routes.use("/",mainpageroute);
 routes.use("/main",mainpageroute);
 routes.use("/intro",intropageroute);
 routes.use("/contant",contant);
+routes.use("/chat", chat.routes);
 routes.post("/join",(req,res)=>{
     const {roomnumber} = req.body;
 

@@ -107,11 +107,7 @@ app.use("/api", require("./api/api"));
 app.use("/acount", require("./app/account/app"));
 app.use("/image", require("./image/img"));
 
-// ======================
-// 🔥 채팅 라우터
-// ======================
-const chat = require("./chat/app");
-app.use("/chat", chat.routes);
+
 
 // ======================
 // HTTPS 서버 생성
