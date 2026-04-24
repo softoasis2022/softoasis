@@ -16,7 +16,7 @@ routes.use("/passwordreset",passwordresetroute);
 routes.use("/signup",signuproute);
 routes.get("/check", (req, res) => {
   const sessionid = req.cookies?.sessionid;
-  console.log(sessionid);
+  //console.log(sessionid);
 
   if (!sessionid) {
     return res.json({ login: false });

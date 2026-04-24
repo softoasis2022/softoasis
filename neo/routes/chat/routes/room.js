@@ -1,35 +1,75 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-const { json } = require("stream/consumers");
+const cookieParser = require("cookie-parser");
+
 const routes = express.Router();
+routes.use(cookieParser());
+routes.use(express.json());
 
-const databasepath = path.join("C:", "database")
+const databasepath = path.join("C:", "database");
 
+// 정적 파일
 routes.use("/js", express.static(path.join(__dirname, "../pages/room")));
 routes.use("/css", express.static(path.join(__dirname, "../pages/room")));
 
-//경로 /room 라우팅 완료
+// ======================
+// 🔥 세션 기반 유저 찾기
+// ======================
+routes.use((req, res, next) => {
+    const sessionpath = path.join(databasepath, "session");
+    const sessionid = req.cookies?.sessionid;
+    //console.log(sessionid);
 
-
-
-
-routes.use("/partnerinput", require("./partner"));
-
-routes.get("/node", (req, res) => {
-    const { roomnumber, usernumber } = req.query;
-});
-routes.get("/content", (req, res) => {
-    const { roomnumber, usernumber } = req.query;
-});
-routes.post("/list", (req, res) => {
-    const { usernumber } = req.headers;
-
-    if (!usernumber) {
-        return res.json({ success: false, message: "usernumber 필요" });
+    if (!sessionid) {
+        req.userid = null;
+        return next();
     }
 
-    const filePath = path.join(databasepath,"app", "user", "info", `${usernumber}.json`);
+    try {
+        const filePath = path.join(sessionpath, `${sessionid}.json`);
+
+        if (!fs.existsSync(filePath)) {
+            req.userid = null;
+            return next();
+        }
+
+        const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+        req.userid = data.userid;
+
+    } catch (err) {
+        console.log("세션 오류:", err);
+        req.userid = null;
+    }
+
+    next();
+});
+
+// ======================
+// 🔥 로그인 체크 미들웨어 (추가)
+// ======================
+function requireLogin(req, res, next) {
+    if (!req.userid) {
+        return res.status(401).json({
+            success: false,
+            message: "로그인 필요"
+        });
+    }
+    next();
+}
+
+// ======================
+// 🔥 채팅방 리스트
+// ======================
+routes.post("/list", requireLogin, (req, res) => {
+
+    const filePath = path.join(
+        databasepath,
+        "app",
+        "user",
+        "info",
+        `${req.userid}.json`
+    );
 
     if (!fs.existsSync(filePath)) {
         return res.json({
@@ -39,13 +79,8 @@ routes.post("/list", (req, res) => {
     }
 
     try {
-        const data = JSON.parse(
-            fs.readFileSync(filePath, "utf-8")
-        );
-
+        const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
         const rooms = data.chat?.room || [];
-
-        console.log("rooms:", rooms);
 
         res.json({
             success: true,
@@ -59,22 +94,24 @@ routes.post("/list", (req, res) => {
         });
     }
 });
-routes.post("/info", (req, res) => {
 
-    const { roomnumber, usernumber } = req.body;
+// ======================
+// 🔥 방 정보
+// ======================
+routes.post("/info", requireLogin, (req, res) => {
 
-    // 🔥 1. 필수값 체크
-    if (!roomnumber || !usernumber) {
+    const { roomnumber } = req.body;
+
+    if (!roomnumber) {
         return res.json({
             success: false,
-            message: "roomnumber / usernumber 필요"
+            message: "roomnumber 필요"
         });
     }
-    console.log(roomnumber);
+
     try {
         const filePath = path.join(databasepath, "chat", "room", `${roomnumber}.json`);
 
-        // 🔥 2. 방 존재 확인
         if (!fs.existsSync(filePath)) {
             return res.json({
                 success: false,
@@ -82,19 +119,14 @@ routes.post("/info", (req, res) => {
             });
         }
 
-        // 🔥 3. 파일 읽기
-        const data = JSON.parse(
-            fs.readFileSync(filePath, "utf-8")
-        );
-        console.log(data);
-        // 🔥 5. 정상 응답
+        const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
         res.json({
             success: true,
             room: data
         });
 
     } catch (err) {
-        console.log(err);
         res.json({
             success: false,
             message: "파싱 오류"
@@ -102,48 +134,49 @@ routes.post("/info", (req, res) => {
     }
 });
 
-
 // ======================
 // 🔥 메시지 조회
 // ======================
-routes.post("/messages", (req, res) => {
+routes.post("/messages", requireLogin, (req, res) => {
 
-    const { usernumber, roomnumber } = req.body;
-    console.log(roomnumber);
-    // 🔥 1. 필수값 체크
-    if (!usernumber || !roomnumber) {
+    const { roomnumber } = req.body;
+
+    if (!roomnumber) {
         return res.json({
             success: false,
-            message: "usernumber / roomnunber 필요"
+            message: "roomnumber 필요"
         });
     }
+
     try {
         const filePath = path.join(databasepath, "chat", "room", `${roomnumber}.json`);
 
-        // 🔥 2. 메시지 파일 없으면 빈 배열
         if (!fs.existsSync(filePath)) {
-            console.log(fs.existsSync(filePath));
-            return 
-        }
-
-        // 🔥 3. 메시지 읽기
-        const chatlist = JSON.parse(
-            fs.readFileSync(filePath, "utf8")
-        ).chatlist;
-
-        const chatfilePath = path.join(databasepath, "chat", "speaklist", `${chatlist}.json`);
-        
-        // 🔥 2. 메시지 파일 없으면 빈 배열
-        if (!fs.existsSync(chatfilePath)) {
-            console.log(fs.existsSync(chatfilePath));
             return res.json({
                 success: true,
                 messages: []
             });
         }
-        const messages = JSON.parse(fs.readFileSync(chatfilePath,"utf-8"));
-        console.log(messages);
-        // 🔥 4. 응답
+
+        const roomData = JSON.parse(fs.readFileSync(filePath, "utf8"));
+        const chatlist = roomData.chatlist;
+
+        const chatfilePath = path.join(
+            databasepath,
+            "chat",
+            "speaklist",
+            `${chatlist}.json`
+        );
+
+        if (!fs.existsSync(chatfilePath)) {
+            return res.json({
+                success: true,
+                messages: []
+            });
+        }
+
+        const messages = JSON.parse(fs.readFileSync(chatfilePath, "utf-8"));
+
         res.json({
             success: true,
             messages
@@ -157,6 +190,5 @@ routes.post("/messages", (req, res) => {
         });
     }
 });
-
 
 module.exports = routes;

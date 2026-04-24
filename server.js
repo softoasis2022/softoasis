@@ -94,6 +94,7 @@ app.use("/softoasis", require("./app/softoasis/app"));
 app.use("/mobile", require("./app/mobile/app"));
 app.use("/recipe", require("./app/recipe/app"));
 app.use("/shop", require("./app/shop/app"));
+app.use("/event", require("./app/event/app"));
 
 app.use("/contant", require("./neo/app"));
 
@@ -107,7 +108,8 @@ app.use("/api", require("./api/api"));
 app.use("/acount", require("./app/account/app"));
 app.use("/image", require("./image/img"));
 
-
+const chat = require("./neo/routes/chat/app");
+app.use("/chat", chat.routes);
 
 // ======================
 // HTTPS 서버 생성
