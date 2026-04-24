@@ -23,15 +23,22 @@ routes.get("/", (req, res) => {
     res.send(result);
 });
 routes.post("/", (req, res) => {
-    const {name,email,phoneunmber,privercy,marketting} = req.body;
-    const databaseroot = path.join(database,"event");
+    const pagePath = path.join(PAGES_DIR,"html", "main.html");
 
-    //파일명 (요청 날짜)
-    //년-월-일
-    //저장 데이터
-    //시간,이름,이메일,전화번호,개인정보활용 동의,마케팅 동의 : 동의는 boolean
-    
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
 });
+routes.post("/", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"html", "main.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+
 
 
 
