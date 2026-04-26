@@ -3,7 +3,8 @@ const path = require("path");
 const fs = require("fs");
 const routes = express.Router();
 
-const PAGES_DIR = path.join(__dirname,"./routes","world","psges");
+const PAGES_DIR = path.join(__dirname,"./routes","world","pages");
+const TEMPLATE_PATH = path.join(__dirname,"./routes","world","pages","html","tamplate.html");
 
 const station = require("./routes/station/app");
 const pass = require("./routes/pass/app");
@@ -13,7 +14,16 @@ routes.use("/pass", pass);
 
 
 routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR,"html", "main.html");
+    const pagePath = path.join(PAGES_DIR,"html", "world.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+
+routes.get("/create", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"html", "world.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");
