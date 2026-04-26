@@ -92,14 +92,12 @@ app.use((req, res, next) => {
 app.use("/", require("./app/softoasis/app"));
 app.use("/softoasis", require("./app/softoasis/app"));
 app.use("/mobile", require("./app/mobile/app"));
-app.use("/recipe", require("./app/recipe/app"));
 app.use("/shop", require("./app/shop/app"));
 app.use("/event", require("./app/event/app"));
 
 app.use("/contant", require("./neo/app"));
 
-//neo에서 사용하는 메인 컨텐츠 neo.softoasis.org, 제공 제한 : 없음 (로그인이 필요한 것들은 제한, 개별 로그인 사용)
-app.use("/world", require("./app/world/app"));
+
 
 //api 파트너스가 요청하는 데이터 공유 api.softoasis.org , 제공제한 : 등록된 파트너사 및 
 app.use("/api", require("./api/api"));

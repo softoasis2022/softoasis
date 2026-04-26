@@ -1,0 +1,74 @@
+body {
+    background: #0f172a;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #e2e8f0;
+    margin: 0;
+}
+
+/* 전체 */
+.partners {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* 타이틀 */
+.title {
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* 섹션 */
+.partner-section {
+    margin-bottom: 40px;
+}
+
+.partner-section h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #38bdf8;
+}
+
+/* 그리드 */
+.partner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+/* 카드 */
+.partner-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+/* 호버 */
+.partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* 로고 */
+.partner-card img {
+    max-width: 120px;
+    max-height: 60px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+/* 이름 */
+.partner-card p {
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+}

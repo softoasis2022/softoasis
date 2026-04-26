@@ -113,7 +113,7 @@ routes.post("/team", (req, res) => {
                         // 🔥 skills → skill 변환
                         skill: member.skills?.map(s => ({
                             skillname: s.name,
-                            skilllogoimgurl: `/image/UI/${s.name.toLowerCase()}.png`
+                            skilllogoimgurl: `/image/logo/${s.name.toLowerCase()}.png`
                         })) || []
                     });
                 });

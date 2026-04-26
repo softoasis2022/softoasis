@@ -14,7 +14,7 @@ routes.use("/css", express.static(path.join(__dirname, "pages","css")));
 routes.use("/js", express.static(path.join(__dirname, "pages","js")));
 
 routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR,"html", "main.html");
+    const pagePath = path.join(PAGES_DIR,"html", "index.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");
@@ -30,7 +30,7 @@ routes.get("/info", (req, res) => {
     res.send(result);
 });
 routes.get("/list", (req, res) => {
-    const pagePath = path.join(PAGES_DIR,"html", "main.html");
+    const pagePath = path.join(PAGES_DIR,"html", "list.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");

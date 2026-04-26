@@ -1,53 +1,63 @@
 <main>
-
     <div class="teamlist">
+
         <div class="teamname">
-            <p>개발팀 1팀</p>
+            <p>🚀 개발팀 1팀</p>
         </div>
+
         <ul class="teammemberlist">
             <li onclick="location.href = '/softoasis/team/info?id=00001'">
-                <div>
-                    <img class="profileimg" src="" alt="프로필 사진">
-                </div>
+
+                <!-- 프로필 -->
+                <img class="profileimg" src="/image/UI/profile.png" alt="프로필">
+
+                <!-- 정보 -->
                 <ul class="info">
+
                     <li class="wrap_info">
-                        <p>이름</p>
-                        <p>한민섭</p>
+                        <span class="label">이름</span>
+                        <span class="value">한민섭</span>
                     </li>
+
                     <li class="wrap_info">
-                        <p>닉네임</p>
-                        <p>이루미</p>
+                        <span class="label">닉네임</span>
+                        <span class="value">이루미</span>
                     </li>
+
                     <li class="wrap_info">
-                        <p>나이</p>
-                        <p>29세</p>
+                        <span class="label">나이</span>
+                        <span class="value">29세</span>
                     </li>
-                    <li class="wrap_info ">
-                        <p>주요 스킬</p>
+
+                    <!-- 🔥 스킬 -->
+                    <li class="wrap_info skill_wrap">
+                        <span class="label">스킬</span>
+
                         <ul class="skilllist">
-                            <li>
-                                <a href="/softoasis/team/info?id=00001">
-                                    <img src="https://developer.android.com/images/brand/android-head_3D.svg" alt="">
-                                    <p>안드로이드</p>
-                                </a>
+
+                            <li class="skill">
+                                <img src="https://developer.android.com/images/brand/android-head_3D.svg">
+                                <span>Android</span>
                             </li>
-                            <li>
-                                <a href="/softoasis/team/info?id=00001">
-                                    <img src="/image/UI/java.png" alt="">
-                                    <p>자바</p>
-                                </a>
+
+                            <li class="skill">
+                                <img src="/image/logo/java.png">
+                                <span>Java</span>
                             </li>
-                            <li>
-                                <a href="/softoasis/team/info?id=00001">
-                                    <img src="/image/UI/javascript.svg" alt="">
-                                    <p>자바스크립트</p>
-                                </a>
+
+                            <li class="skill">
+                                <img src="/image/logo/javascript.svg">
+                                <span>JavaScript</span>
                             </li>
+
                         </ul>
                     </li>
+
                 </ul>
+
             </li>
         </ul>
+
     </div>
 </main>
 <link rel="stylesheet" href="/softoasis/css/member/team.css">

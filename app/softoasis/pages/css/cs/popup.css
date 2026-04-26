@@ -1,4 +1,4 @@
-/* 팝업 전체 */
+/* 배경 */
 .wrap1 {
     position: fixed;
     top: 0;
@@ -6,45 +6,62 @@
     width: 100%;
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0,0.7);
 
     display: flex;
     justify-content: center;
     align-items: center;
+
     z-index: 999;
 }
 
-/* 팝업 박스 */
+/* 팝업 */
 .wrap1 .popup {
     width: 90%;
-    max-width: 400px;
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
+    max-width: 450px;
+
+    background: #0f172a;
+    color: #e2e8f0;
+
+    border-radius: 20px;
+    padding: 25px;
+
     display: flex;
     flex-direction: column;
     gap: 15px;
-}
 
-/* 내용 스크롤 */
-.wrap1 .content {
-    max-height: 300px;
-    overflow-y: auto;
-    font-size: 13px;
-    line-height: 1.5;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
 
 /* 제목 */
 .wrap1 h3 {
     margin: 0;
+    font-size: 18px;
+}
+
+/* 내용 */
+.wrap1 .content {
+    max-height: 300px;
+    overflow-y: auto;
+
+    font-size: 13px;
+    line-height: 1.6;
+    color: #cbd5f5;
 }
 
 /* 닫기 버튼 */
 .wrap1 .closeBtn {
-    padding: 10px;
+    padding: 12px;
+    border-radius: 10px;
     border: none;
-    border-radius: 6px;
-    background: #6c5ce7;
-    color: #fff;
+
+    background: #3b82f6;
+    color: white;
+
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.wrap1 .closeBtn:hover {
+    background: #2563eb;
 }

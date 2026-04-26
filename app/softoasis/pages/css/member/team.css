@@ -1,89 +1,124 @@
-.teamlist{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0px;
+body {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
-.team {
-    gap: 5px;
-    padding: 5px;
+/* 전체 리스트 */
+.teamlist {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.teamname{
-    background-color: lightgray;
-    padding-inline-start: 10px;
-    padding: 10px;
+/* 팀 이름 */
+.teamname {
+    background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+    padding: 15px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 
-.teamname > p{
-    margin: 0px;
-}
-.teammemberlist{
-    padding-inline-start: 0px;
-    padding: 10px;
-}
-.teammemberlist > li{
+/* 멤버 리스트 */
+.teammemberlist {
     list-style: none;
+    padding: 0;
+}
+
+/* 멤버 카드 */
+.teammemberlist > li {
     display: flex;
-    flex-direction: row;
-    padding: 10px;
-    box-shadow: 5px 5px 5px 5px gray;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+
+    border-radius: 20px;
+    cursor: pointer;
+
+    transition: 0.3s;
 }
 
-
-
-.profileimg{
-    width: fit-content;
-    max-width: 150px;
-    min-width: 150px;
-    min-height: 200px;
-    scale: 3/4;
-    border: 1px solid black;
+.teammemberlist > li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
-.info{
-    padding-inline-start: 10px;
+/* 프로필 */
+.profileimg {
+    width: 120px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 2px solid #38bdf8;
 }
 
-.wrap_info{
+/* 정보 */
+.info {
+    list-style: none;
+    padding: 0;
+    flex: 1;
+}
+
+/* 한 줄 정보 */
+.wrap_info {
     display: flex;
-    flex-direction: row;
-    gap: 5px;
-}
-.wrap_info > p{
-    margin: 0px;
-    
-}
-
-.skilllist{
-    padding-inline-start: 0px;
     gap: 10px;
+    margin-bottom: 8px;
 }
-.skilllist > li{
+
+.wrap_info p:first-child {
+    width: 80px;
+    color: #94a3b8;
+}
+
+.wrap_info p:last-child {
+    font-weight: bold;
+}
+
+/* 스킬 리스트 */
+.skilllist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin-top: 5px;
+}
+
+.skilllist li {
     list-style: none;
-    padding: 5px;
-    background-color: lightgray;
-    margin: 3px;
-    border-radius: 10px;
+    background: rgba(59,130,246,0.2);
+    border: 1px solid #3b82f6;
+    border-radius: 999px;
+    padding: 5px 10px;
+
+    transition: 0.2s;
 }
-.skilllist li a{
+
+.skilllist li:hover {
+    background: #3b82f6;
+}
+
+/* 스킬 내부 */
+.skilllist li a {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 5px;
     align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: white;
 }
-.skilllist li img{
-    width: 30px;
-    height: 30px;
-    display: flex;
-    flex-direction: row;
-    border: 1px solid black;
+
+.skilllist img {
+    width: 20px;
+    height: 20px;
 }
-.skilllist li p{
-    margin: 0px;
-    padding: 0px;
-    text-align: center;
+
+.skilllist p {
+    margin: 0;
+    font-size: 12px;
 }
