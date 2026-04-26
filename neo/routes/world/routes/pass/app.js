@@ -3,14 +3,7 @@ const path = require("path");
 const fs = require("fs");
 const routes = express.Router();
 
-const PAGES_DIR = path.join(__dirname,"./routes","world","psges");
-
-const station = require("./routes/station/app");
-const pass = require("./routes/pass/app");
-
-routes.use("/station", station);
-routes.use("/pass", pass);
-
+const PAGES_DIR = path.join(__dirname,"./pages");
 
 routes.get("/", (req, res) => {
     const pagePath = path.join(PAGES_DIR,"html", "main.html");

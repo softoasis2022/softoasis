@@ -42,8 +42,7 @@ routes.post("/read", (req, res) => {
 
     return res.json({
         success: true,
-        exists: exists,
-        domain: parsedData.domain
+        message : "페이지 등록 성공"
     });
 });
 
