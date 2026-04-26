@@ -11,6 +11,9 @@ const imgDB = path.join(database, "image");
 
 routes.use("/pages", express.static(path.join(__dirname, "pages")));
 
+routes.use("/css", express.static(path.join(__dirname, "pages","css")));
+routes.use("/js", express.static(path.join(__dirname, "pages","js")));
+
 routes.get("/", (req, res) => {
     const pagesRoot = path.join(__dirname, "pages");
 

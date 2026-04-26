@@ -6,6 +6,9 @@ const routes = express.Router();
 const PAGES_DIR = path.join(__dirname,"./pages");
 const TEMPLATE_PATH = path.join(PAGES_DIR,"html","tamplate.html");
 
+routes.use("/css", express.static(path.join(__dirname, "pages","css")));
+routes.use("/js", express.static(path.join(__dirname, "pages","js")));
+
 routes.get("/", (req, res) => {
     const pagePath = path.join(PAGES_DIR,"html", "main.html");
 
