@@ -1,0 +1,7 @@
+.listview>ul {
+    padding-inline-start: 0px;
+}
+
+.listview>ul>li {
+    list-style: none;
+}

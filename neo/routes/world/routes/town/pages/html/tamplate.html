@@ -1,14 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>네오 월드</title>
-    
+    <title>월드</title>
+    <link rel="icon" href="/image/logo/neologo.png">
+    <link rel="stylesheet" href="/world/css/header.css">
+    <link rel="stylesheet" href="/world/css/footer.css">
+    <link rel="stylesheet" href="/world/css/body.css">
 </head>
+
 <body>
-    <header></header>
+
+    <!-- 🔥 HEADER -->
+    <header>
+
+        <!-- 로고 + 홈 -->
+        <section>
+            <a class="sc_neologo" href="/" style="text-decoration:none;">
+                <img src="/image/logo/neologo.png" alt="neo" width="40">
+                <span>NEO</span>
+            </a>
+        </section>
+
+        <!-- 메인 네비 -->
+        <nav>
+            <ul>
+                <li><a href="/world">월드</a></li>
+                <li><a href="/chat">채팅</a></li>
+                <li><a href="/content">컨텐츠</a></li>
+                <li><a href="/seller">스토어</a></li>
+            </ul>
+        </nav>
+
+        <!-- 유저 영역 -->
+        <section class="acount">
+            <button class="login" onclick="location.href='/acount/login'">로그인</button>
+            <button class="signup" onclick="location.href='/acount/signup'">회원가입</button>
+        </section>
+
+    </header>
+
+
+    <!-- 🔥 MAIN -->
     <!-- MAIN_CONTENT -->
-    <footer></footer>
+
+
+    <!-- 🔥 FOOTER -->
+    <footer>
+
+        <!-- 서비스 -->
+        <section>
+            <h4>서비스</h4>
+            <div><a href="/world">월드</a></div>
+            <div><a href="/chat">채팅</a></div>
+            <div><a href="/content">컨텐츠</a></div>
+            <div><a href="/seller">스토어</a></div>
+        </section>
+
+        <!-- 플랫폼 -->
+        <section>
+            <h4>플랫폼</h4>
+            <div><a href="https://www.softoasis.org">SoftOasis</a></div>
+            <div><a href="https://neo.softoasis.org">Neo</a></div>
+            <div><a href="https://seller.softoasis.org">Seller Center</a></div>
+            <div><a href="https://admin.softoasis.org">Admin</a></div>
+        </section>
+
+        <!-- 고객 지원 -->
+        <section>
+            <h4>고객 지원</h4>
+            <div><a href="/softoasis/cs">문의하기</a></div>
+            <div><a href="/softoasis/cs?type=bug">버그 제보</a></div>
+            <div><a href="/softoasis/cs?type=account">계정 문의</a></div>
+            <div><a href="/softoasis/cs?type=buisness">비즈니스 문의</a></div>
+        </section>
+
+        <!-- 회사 -->
+        <section>
+            <h4>회사</h4>
+            <div><span>SoftOasis</span></div>
+            <div><span>대표: SoftOasis Team</span></div>
+            <div><span>© 2026 SoftOasis</span></div>
+        </section>
+
+    </footer>
+
 </body>
+
 </html>
