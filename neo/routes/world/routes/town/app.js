@@ -5,9 +5,8 @@ const path = require("path");
 const fs = require("fs");
 const routes = express.Router();
 
-const database = path.join("D:", "database");
+const database = path.join("C:", "database");
 // 네 환경 그대로
-const imgDB = path.join(database, "image");
 const PAGES_DIR = path.join(__dirname,"pages");
 const TEMPLATE_PATH = path.join(__dirname,"pages","html","tamplate.html");
 
@@ -23,6 +22,16 @@ routes.get("/", (req, res) => {
     if (!result) return res.status(500).send("템플릿 구성 중 오류");
 
     res.send(result);
+});
+routes.post("/:townnumber", (req, res) => {
+    
+
+    
+    const {townnumber} = req.params;
+
+    const townpath = path.join(database,"world","town",`${townnumber}.json`);
+
+    res.status(200).json(JSON.parse(fs.readFileSync(townpath,"utf-8")));
 });
 
 /**

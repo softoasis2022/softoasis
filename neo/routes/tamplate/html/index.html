@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,36 @@
     <link rel="stylesheet" href="/tamplate/css/body.css">
     <link rel="stylesheet" href="/tamplate/css/search_box.css">
     <link rel="icon" href="/image/logo/neologo.png">
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const loginLink = document.querySelector('a[href="/acount/login"]');
+            const signup = document.querySelector(".signup");
+
+            if (!loginLink) return;
+
+            try {
+                const res = await fetch("/acount/check", {
+                    credentials: "include"
+                });
+
+                const data = await res.json();
+
+                if (!data.login) return;
+
+                // 🔥 로그인 상태 UI 변경
+                loginLink.textContent = "로그아웃";
+                loginLink.href = "#"; // 이동 막기
+
+                // 회원가입 제거
+                if (signup) signup.remove();
+
+            } catch (err) {
+                console.error("로그인 상태 확인 실패", err);
+            }
+        });
+    </script>
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -28,12 +58,13 @@
         <div class="user">
             <img src="" alt="프로필 사진">
         </div>
-        <div class="account" >
+        <div class="account">
             <div><a href="/acount/login">로그인</a></div>
-            <div><a href="/acount/signup">회원가입</a></div>
+            <div class="signup"><a href="/acount/signup">회원가입</a></div>
         </div>
     </header>
     <!-- MAIN_CONTENT -->
     <footer></footer>
 </body>
+
 </html>

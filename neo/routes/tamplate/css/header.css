@@ -10,8 +10,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding: 0 20px;
 }
 
 
@@ -23,6 +21,7 @@ header {
     flex-direction: column;
     justify-content: center;
     line-height: 1;
+    padding-inline-start: 10px;
 }
 
 .logo p:first-child {
@@ -62,49 +61,6 @@ header {
 
 
 /* =========================
-   검색 박스
-========================= */
-.search_box {
-    display: flex;
-    align-items: center;
-
-    background: #111;
-    border: 1px solid #222;
-    border-radius: 20px;
-
-    padding: 4px 10px;
-}
-
-/* 입력 */
-.search_box input {
-    background: transparent;
-    border: none;
-    outline: none;
-
-    color: #fff;
-    font-size: 13px;
-
-    width: 120px;
-}
-
-/* 버튼 */
-.search_box button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.search_box img {
-    width: 16px;
-    opacity: 0.6;
-}
-
-.search_box button:hover img {
-    opacity: 1;
-}
-
-
-/* =========================
    유저 영역
 ========================= */
 .user {
@@ -127,6 +83,7 @@ header {
     align-items: center;
     gap: 10px;
     margin-left: 15px;
+    padding-inline-end: 10px;
 }
 
 /* 버튼 느낌 */
