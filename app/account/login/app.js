@@ -95,9 +95,10 @@ routes.post("/", async (req, res) => {
     // ======================
     res.cookie("sessionid", sessionId, {
       httpOnly: true,
-      secure: true,          // HTTPS 필수
-      sameSite: "strict",    // CSRF 방지
-      maxAge: 1000 * 60 * 60 * 24, // 24시간
+      secure: true,              // HTTPS
+      sameSite: "none",          // 🔥 변경 (strict → none)
+      domain: ".softoasis.org",  // 🔥 추가 (핵심)
+      maxAge: 1000 * 60 * 60 * 24,
       path: "/"
     });
 
