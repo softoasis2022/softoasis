@@ -1,28 +1,41 @@
-.search_box{
-    width: fit-content;
-    height: fit-content;
+/* =========================
+   검색 박스
+========================= */
+.search_box {
     display: flex;
-    flex-direction: row;
-    gap: 10px;
-    border-radius: 30px;
-    border: 1px solid black;
-    padding: 10px;
+    align-items: center;
+
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 20px;
+
+    padding: 4px 10px;
 }
-.search_box > input{
+
+/* 입력 */
+.search_box input {
+    background: transparent;
     border: none;
-    min-width: 250px;
-    font-size: 30px;
-    padding-inline-start: 10px;
-    color: blue;
+    outline: none;
+
+    color: #fff;
+    font-size: 13px;
+
+    width: 120px;
 }
-.search_box > button{
+
+/* 버튼 */
+.search_box button {
+    background: none;
     border: none;
-    background-color: #ffffff00;
-    border-radius: 30px;
+    cursor: pointer;
 }
-.search_box > button:hover{
-    border: 1px solid black;
+
+.search_box img {
+    width: 16px;
+    opacity: 0.6;
 }
-.search_box > button > image{
-    color: black;
+
+.search_box button:hover img {
+    opacity: 1;
 }

@@ -72,5 +72,94 @@
 
 
 </main>
+<style>
+    /* =========================
+   MAIN
+========================= */
+    main {
+        width: 100%;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+
+    /* =========================
+   카드 (section 공통)
+========================= */
+    main section {
+        background: #0f0f0f;
+        border: 1px solid #222;
+        border-radius: 16px;
+        padding: 20px;
+
+        transition: 0.3s;
+    }
+
+    /* hover 네온 효과 */
+    main section:hover {
+        border-color: #00eaff;
+        box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
+    }
+
+
+    /* =========================
+   제목
+========================= */
+    main h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    main h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+
+    /* =========================
+   텍스트
+========================= */
+    main p {
+        color: #aaa;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+
+    /* =========================
+   버튼
+========================= */
+    main button {
+        margin-top: 12px;
+        padding: 10px 14px;
+
+        background: transparent;
+        border: 1px solid #333;
+        border-radius: 8px;
+
+        color: #ccc;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    /* hover */
+    main button:hover {
+        border-color: #00eaff;
+        color: #00eaff;
+    }
+
+
+    /* =========================
+   친구 버튼 2개 정렬
+========================= */
+    #friends button {
+        margin-right: 10px;
+    }
+</style>
 
 <script src="/js/acount.js"></script>

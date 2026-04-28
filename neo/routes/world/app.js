@@ -18,6 +18,15 @@ routes.use("/station", station);
 routes.use("/pass", pass);
 
 
+routes.use((req)=>{
+    //로그인이 되서 쿠키에 sessionid가 있거나
+    //로그인이 안되서 쿠키에 sessionid가 없거나
+    //없다면 로그인 으로
+    //있다면 해당 쿠키로 아이디 조회해서 요청 쿠키에 neoid값 넣어 주기
+    //neoid값은 디비에 저장
+    
+})
+
 routes.get("/", (req, res) => {
     const pagePath = path.join(PAGES_DIR,"html", "world.html");
 
