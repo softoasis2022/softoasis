@@ -6,9 +6,12 @@ const routes = express.Router();
 const PAGES_DIR = path.join(__dirname,"./routes","world","pages");
 const TEMPLATE_PATH = path.join(__dirname,"./routes","world","pages","html","tamplate.html");
 
+
+const town = require("./routes/town/app");
 const station = require("./routes/station/app");
 const pass = require("./routes/pass/app");
 
+routes.use("/town", town);
 routes.use("/station", station);
 routes.use("/pass", pass);
 

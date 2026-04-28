@@ -1,7 +1,6 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const { route } = require("../account/app");
 const routes = express.Router();
 
 const database = path.join("C:", "database");

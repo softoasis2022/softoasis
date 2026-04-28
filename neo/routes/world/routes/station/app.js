@@ -10,20 +10,19 @@ const database = path.join("D:", "database");
 const imgDB = path.join(database, "image");
 
 routes.use("/pages", express.static(path.join(__dirname, "pages")));
+const PAGES_DIR = path.join(__dirname,"pages");
+const TEMPLATE_PATH = path.join(__dirname,"pages","html","tamplate.html");
 
 routes.use("/css", express.static(path.join(__dirname, "pages","css")));
 routes.use("/js", express.static(path.join(__dirname, "pages","js")));
 
 routes.get("/", (req, res) => {
-    const pagesRoot = path.join(__dirname, "pages");
+    const pagePath = path.join(PAGES_DIR,"html", "loby.html");
 
-    //기본 로직
-    //1. 현재역의 고유 넘버, 2. 현재역에서 갈 수 있는 역들의 고유 넘버, 3. 각 역의 이름과 이미지 주소를 DB에서 가져오기
-    //4. DB에서 가져온 정보로 페이지 렌더링하기
-    //5. 페이지에서 역을 선택하면 해당 역의 고유 넘버를 서버로 보내기
-    //6. 서버에서는 받은 고유 넘버로 다음 역의 정보들을 DB에서 가져와서 페이지 렌더링하기
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
 
-    return res.sendFile("ticketsellect/html/index.html", { root: pagesRoot });
+    res.send(result);
 });
 
 
@@ -104,6 +103,22 @@ routes.post("/orders", (req, res) => {
         totalPrice: 30000
     });
 });
+/**
+ * 템플릿 렌더링
+ */
+function renderTemplate(pagePath) {
+    const templatePath = path.join(TEMPLATE_PATH);
+
+    try {
+        let template = fs.readFileSync(templatePath, "utf-8");
+        const pageContent = fs.readFileSync(pagePath, "utf-8");
+
+        return template.replace("<!-- MAIN_CONTENT -->", pageContent);
+    } catch (err) {
+        console.error("템플릿 렌더링 실패:", err);
+        return null;
+    }
+}
 
 
 module.exports = routes;
