@@ -7,6 +7,7 @@
             <span class="townname">
 
             </span>
+            <span> : </span>
             <span class="townSubject" style="margin-left: 10px;">
 
             </span>
@@ -15,34 +16,35 @@
             </p>
         </div>
     </section>
+    <section class="besto">
+        <div class="keyword">
+            <p>키워드</p>
+            <ul>
+                <li>
+                    <a href="https://search.naver.com/search.naver?query=대구">대구</a>
+                </li>
+                <li>
+                    <a href="https://search.naver.com/search.naver?query=광역시">광역시</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="besto_list">
+
+        </ul>
+    </section>
     <section class="viewport">
         <!--보기 방식 변경, 슬라이즈 스위치에 보기방식 노출-->
-        <span>보기</span>
         <label class="neo-toggle">
             <input type="checkbox" id="toggleSwitch">
             <span class="slider"></span>
         </label>
+        <span class="view">보기</span>
     </section>
     <section class="tileview"><!--바둑판 타일로 보기, grid 사용-->
-        <div>
-            <a href=""
-                style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 200px; height: 200px;">
-                <img src="" alt="" style="width: 100px; height: 100px;">
-                <p>시청</p>
-                <p>해당건물간단 설명</p>
-            </a>
-        </div>
+
     </section>
     <section class="listview"><!--새로 정렬 리스트 타일로 보기, ul사용-->
         <ul>
-            <li>
-                <a href=""
-                    style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 200px; height: 200px;">
-                    <img src="" alt="" style="width: 100px; height: 100px;">
-                    <p>시청</p>
-                    <p>해당건물간단 설명</p>
-                </a>
-            </li>
         </ul>
     </section>
 </main>
@@ -51,4 +53,5 @@
 <link rel="stylesheet" href="/world/town/css/tileview.css">
 <link rel="stylesheet" href="/world/town/css/section.css">
 <link rel="stylesheet" href="/world/town/css/towninfo.css">
+<link rel="stylesheet" href="/world/town/css/besto.css">
 <script src="/world/town/js/api.js"></script>

@@ -46,6 +46,7 @@ function renderListView(container, tiles) {
         const a = document.createElement("a");
         a.href = item.href || "#";
 
+
         a.style.display = "flex";
         a.style.flexDirection = "column";
         a.style.justifyContent = "center";
@@ -92,7 +93,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const toggle = document.getElementById("toggleSwitch");
     const tileView = document.querySelector(".tileview");
     const listView = document.querySelector(".listview");
-    const viewLabel = document.querySelector(".viewport span");
+    const viewLabel = document.querySelector(".viewport .view");
     const townNameEl = document.querySelector(".townname");
     const townSubject = document.querySelector(".townSubject");
     const towntype = document.querySelector(".towntype");
@@ -113,8 +114,17 @@ document.addEventListener("DOMContentLoaded", async () => {
             townSubject.textContent = data.subject;
             townlogo.src = data.townlogoimgurl;
         }
-        if (data.type === "real_city"){
+        if (data.type === "real_city") {
             towntype.textContent = "실제 지역 이름입니다.";
+        }
+        else if (data.type === "virtual_city") {
+            towntype.textContent = "3D 가상 도시입니다.";
+        }
+        else if (data.type === "user_world") {
+            towntype.textContent = "";
+        }
+        else if(data.type === "official_world"){
+            towntype.textContent = "공식 도시 입니다.";
         }
 
         const tiles = data.tile || [];

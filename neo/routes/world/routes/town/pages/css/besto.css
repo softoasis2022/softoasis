@@ -1,0 +1,29 @@
+.keyword{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.keyword > ul {
+    padding-inline-start: 0px;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    gap: 5px;
+    
+
+    /* 🔥 스크롤바 숨기기 */
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE, Edge */
+}
+
+.keyword > ul::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+.keyword > ul > li{
+    list-style: none;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    
+}
