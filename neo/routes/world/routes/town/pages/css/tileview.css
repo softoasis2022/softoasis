@@ -1,23 +1,66 @@
-.worldtile {
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    height: fit-content;
+/* =========================
+   TILE VIEW (GRID)
+========================= */
+
+.tileview {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+
+    padding: 20px;
 }
 
-.worldtile>div {
+/* 타일 카드 */
+.tileview > div {
     display: flex;
-    flex-direction: row;
-    width: fit-content;
-    height: fit-content;
+    justify-content: center;
 }
 
-.tile {
-    width: 200px;
-    height: 200px;
-    border: 1px solid black;
+.tileview a {
+    width: 100%;
+    max-width: 160px;
+    height: 180px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    background: #0f0f0f;
+    border: 1px solid #222;
+    border-radius: 16px;
+
+    text-decoration: none;
+    color: #ccc;
+
+    transition: 0.2s;
+}
+
+/* hover */
+.tileview a:hover {
+    transform: translateY(-5px);
+    border-color: #00eaff;
+    box-shadow: 0 0 10px rgba(0,234,255,0.2);
+}
+
+/* 아이콘 */
+.tileview img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+/* 이름 */
+.tileview p:nth-child(2) {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* 설명 */
+.tileview p:nth-child(3) {
+    font-size: 12px;
+    color: #888;
+    text-align: center;
 }

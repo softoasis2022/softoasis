@@ -1,7 +1,66 @@
-.listview>ul {
-    padding-inline-start: 0px;
+/* =========================
+   LIST VIEW
+========================= */
+
+.listview {
+    width: 100%;
+    padding: 10px 20px;
 }
 
-.listview>ul>li {
+.listview ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 리스트 카드 */
+.listview li a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 14px;
+
+    background: #0f0f0f;
+    border: 1px solid #222;
+    border-radius: 12px;
+
+    text-decoration: none;
+    color: #ccc;
+
+    transition: 0.2s;
+}
+
+/* hover */
+.listview li a:hover {
+    border-color: #00eaff;
+    box-shadow: 0 0 8px rgba(0,234,255,0.2);
+}
+
+/* 아이콘 */
+.listview img {
+    width: 50px;
+    height: 50px;
+}
+
+/* 텍스트 영역 */
+.listview a p {
+    margin: 0;
+}
+
+/* 이름 */
+.listview a p:nth-child(2) {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* 설명 */
+.listview a p:nth-child(3) {
+    font-size: 12px;
+    color: #888;
 }

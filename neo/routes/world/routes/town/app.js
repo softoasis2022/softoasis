@@ -15,23 +15,29 @@ routes.use("/pages", express.static(path.join(__dirname, "pages")));
 routes.use("/css", express.static(path.join(__dirname, "pages","css")));
 routes.use("/js", express.static(path.join(__dirname, "pages","js")));
 
-routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR,"html", "index.html");
+// 페이지
+routes.get("/:townnumber", (req, res) => {
+    const pagePath = path.join(PAGES_DIR, "html", "index.html");
 
     const result = renderTemplate(pagePath);
-    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+    if (!result) return res.status(500).send("템플릿 오류");
 
     res.send(result);
 });
-routes.post("/:townnumber", (req, res) => {
-    
 
-    
-    const {townnumber} = req.params;
+// 데이터
+routes.get("/:townnumber/data", (req, res) => {
+    const { townnumber } = req.params;
 
-    const townpath = path.join(database,"world","town",`${townnumber}.json`);
+    const townpath = path.join(database, "world", "town", `${townnumber}.json`);
 
-    res.status(200).json(JSON.parse(fs.readFileSync(townpath,"utf-8")));
+    if (!fs.existsSync(townpath)) {
+        return res.status(404).json({ error: "데이터 없음" });
+    }
+
+    res.status(200).json(
+        JSON.parse(fs.readFileSync(townpath, "utf-8"))
+    );
 });
 
 /**
