@@ -1,30 +1,74 @@
 <main>
+
+    <!-- =========================
+        🌍 월드 생성
+    ========================== -->
     <section class="worldsetup">
-        <div></div>
-        <form action="">
-            <p>월드이름</p>
-            <p>월드 규모 : 선택값은 기본 9부타,선택(기본 최소 9 X 9), 중앙 타일이 기본 역 자리, 기본은 최대 80명까지 가능함</p>
-            <p>최대 시민수 </p>
-            <p>역 적용 여부</p>
-            <button>
-                월드 만들기
-            </button>
+
+        <h2>🌍 월드 생성</h2>
+
+        <form id="worldForm">
+
+            <!-- 월드 이름 -->
+            <label>월드 이름</label>
+            <input type="text" name="worldName" placeholder="월드 이름 입력" required>
+
+            <!-- 월드 크기 -->
+            <label>월드 규모</label>
+            <select name="size">
+                <option value="9">9 x 9 (기본)</option>
+                <option value="11">11 x 11</option>
+                <option value="15">15 x 15</option>
+            </select>
+            <small>중앙 타일 = 기본 역 자리</small>
+
+            <!-- 최대 인원 -->
+            <label>최대 시민 수</label>
+            <input type="number" name="maxUsers" value="80" min="10" max="1000">
+
+            <!-- 역 여부 -->
+            <label>역 적용 여부</label>
+            <select name="station">
+                <option value="true">있음</option>
+                <option value="false">없음</option>
+            </select>
+
+            <!-- 타입 -->
+            <label>월드 타입</label>
+            <select name="type" id="typeSelect">
+                <option value="">타입 선택</option>
+                <option value="real_city">🏙 실제 도시</option>
+                <option value="virtual_city">🧩 가상 도시</option>
+                <option value="user_world">👤 유저 월드</option>
+                <option value="official_world">🏢 공식 월드</option>
+            </select>
+
+            <button type="submit">월드 만들기</button>
+
         </form>
     </section>
+
+
+    <!-- =========================
+        💳 결제
+    ========================== -->
     <section class="worldpayment">
-        <div>
-            <p>결제 하기</p>
-        </div>
-        <form action="">
-            <p>상품명</p>
-            <p>금액</p>
-            
-            <button>
-                결제 하기
-            </button>
+
+        <h2>💳 결제</h2>
+
+        <form id="paymentForm">
+
+            <label>상품명</label>
+            <input type="text" name="product" value="월드 생성 이용권" readonly>
+
+            <label>금액</label>
+            <input type="number" name="price" value="5000" readonly>
+
+            <button type="submit">결제 하기</button>
+
         </form>
+
     </section>
-    <section>
-        
-    </section>
+
 </main>
+<script src="/world/js/worldcreate.js"></script>

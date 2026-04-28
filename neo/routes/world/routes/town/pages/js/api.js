@@ -92,8 +92,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const toggle = document.getElementById("toggleSwitch");
     const tileView = document.querySelector(".tileview");
     const listView = document.querySelector(".listview");
-    const viewLabel = document.querySelector("section span");
+    const viewLabel = document.querySelector(".viewport span");
     const townNameEl = document.querySelector(".townname");
+    const townSubject = document.querySelector(".townSubject");
+    const towntype = document.querySelector(".towntype");
+    const townlogo = document.querySelector(".townlogo");
 
     try {
         // 🔥 데이터 요청
@@ -105,8 +108,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         const data = await res.json();
 
         // 타운 이름
-        if (data.name) {
+        if (data) {
             townNameEl.textContent = data.name;
+            townSubject.textContent = data.subject;
+            townlogo.src = data.townlogoimgurl;
+        }
+        if (data.type === "real_city"){
+            towntype.textContent = "실제 지역 이름입니다.";
         }
 
         const tiles = data.tile || [];
