@@ -1,5 +1,5 @@
 /* =========================
-   HEADER (최종 완성)
+   HEADER (네 구조 맞춤)
 ========================= */
 header {
     width: 100%;
@@ -10,33 +10,32 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: nowrap;
 
     padding: 0 20px;
 }
 
-/* 🔥 모든 section 공통 (중요) */
-header section {
-    display: flex;
-    align-items: center;
-}
 
 /* =========================
-   로고
+   좌측 로고
 ========================= */
-header section:first-child a {
+.sc_neologo {
     display: flex;
     align-items: center;
     gap: 8px;
 
     color: #fff;
-    font-weight: bold;
     font-size: 18px;
+    font-weight: bold;
     text-decoration: none;
 }
 
+.sc_neologo img {
+    display: block;
+}
+
+
 /* =========================
-   네비 (중앙 정렬 핵심)
+   중앙 네비
 ========================= */
 header nav {
     flex: 1;
@@ -46,9 +45,9 @@ header nav {
 
 header nav ul {
     display: flex;
-    list-style: none;
     gap: 20px;
 
+    list-style: none;
     margin: 0;
     padding: 0;
 }
@@ -64,24 +63,32 @@ header nav a:hover {
     color: #00eaff;
 }
 
+
 /* =========================
-   버튼 (우측)
+   우측 계정 영역
 ========================= */
-header section:last-child {
+.acount {
+    display: flex;
+    align-items: center;
     gap: 10px;
 }
 
-header button {
+
+/* 로그인 버튼 */
+.login,
+.signup {
     padding: 6px 12px;
     background: transparent;
     border: 1px solid #333;
-    color: #ccc;
     border-radius: 6px;
+
+    color: #ccc;
     cursor: pointer;
     transition: 0.2s;
 }
 
-header button:hover {
+.login:hover,
+.signup:hover {
     border-color: #00eaff;
     color: #00eaff;
 }

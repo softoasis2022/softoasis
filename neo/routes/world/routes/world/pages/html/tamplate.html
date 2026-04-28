@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>월드</title>
     <link rel="icon" href="/image/logo/neologo.png">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/footer.css">
-    <link rel="stylesheet" href="./css/body.css">
+    <link rel="stylesheet" href="/world/css/header.css">
+    <link rel="stylesheet" href="/world/css/footer.css">
+    <link rel="stylesheet" href="/world/css/body.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
 
         <!-- 로고 + 홈 -->
         <section>
-            <a href="/" style="text-decoration:none;">
+            <a class="sc_neologo" href="/" style="text-decoration:none;">
                 <img src="/image/logo/neologo.png" alt="neo" width="40">
                 <span>NEO</span>
             </a>
@@ -35,9 +35,9 @@
         </nav>
 
         <!-- 유저 영역 -->
-        <section>
-            <button onclick="location.href='/acount/login'">로그인</button>
-            <button onclick="location.href='/acount/signup'">회원가입</button>
+        <section class="acount">
+            <button class="login" onclick="location.href='/acount/login'">로그인</button>
+            <button class="signup" onclick="location.href='/acount/signup'">회원가입</button>
         </section>
 
     </header>
