@@ -1,0 +1,46 @@
+        /* =========================
+   FOOTER
+========================= */
+        footer {
+            width: 100%;
+            background: #0a0a0a;
+            border-top: 1px solid #222;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+
+            padding: 30px 20px;
+        }
+
+        /* 섹션 */
+        footer>section {
+            min-width: 160px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* 제목 */
+        footer h4 {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* 항목 */
+        footer div {
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        /* 링크 */
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        footer a:hover {
+            color: #00eaff;
+        }

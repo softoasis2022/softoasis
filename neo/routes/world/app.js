@@ -6,6 +6,8 @@ const routes = express.Router();
 const PAGES_DIR = path.join(__dirname,"./routes","world","pages");
 const TEMPLATE_PATH = path.join(__dirname,"./routes","world","pages","html","tamplate.html");
 
+routes.use("/css", express.static(path.join(PAGES_DIR,"css")));
+routes.use("/js", express.static(path.join(PAGES_DIR,"js")));
 
 const town = require("./routes/town/app");
 const station = require("./routes/station/app");
