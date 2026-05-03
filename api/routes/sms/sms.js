@@ -1,40 +1,23 @@
-const express = require("express");
-const routes = express.Router();
-const { SolapiMessageService } = require('solapi');
-const messageService = new SolapiMessageService("NCS2LDAKE53KL5PR", "L5PTRYV4A0KSSMYVFVOC3VFUYRHQFWZG");
+const { SolapiMessageService } = require("solapi");
 
-async function sms(phonenumber,message) {
-    return await messageService.send({
-        to: "01045171684",
-        from: phonenumber,
-        text: message
-    });
-}
+const messageService = new SolapiMessageService(
+    "NCS2LDAKE53KL5PR",
+    "L5PTRYV4A0KSSMYVFVOC3VFUYRHQFWZG"
+);
 
-routes.post("/", async (req, res) => {
-    const {phonenumber,message} = req.body;
-
+async function sendSMS(to, message) {
     try {
-        const result = await sms(phonenumber,message);
-
-        console.log("문자 성공:", result);
-
-        res.json({
-            success: true,
-            message: "문자 전송 완료"
+        const result = await messageService.send({
+            to,
+            from: "01045171684",
+            text: message
         });
+
+        return { success: true, result };
 
     } catch (e) {
-        console.error("문자 실패:", e);
-
-        res.status(500).json({
-            success: false,
-            message: "문자 전송 실패"
-        });
+        return { success: false, error: e.message };
     }
-});
+}
 
-module.exports = routes;
-
-
-
+module.exports = { sendSMS };
