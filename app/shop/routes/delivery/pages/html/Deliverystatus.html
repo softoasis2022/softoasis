@@ -1,0 +1,56 @@
+<main>
+
+    <!-- 🔥 조회 카드 -->
+    <section class="card">
+        <form action="/Deliverystatus" method="POST">
+            <h2>📦 배송 정보</h2>
+
+            <div class="form-group">
+                <span>전화번호</span>
+                <input type="tel" name="phone" placeholder="01012345678" required>
+            </div>
+
+            <button type="submit">조회하기</button>
+        </form>
+    </section>
+
+    <!-- 🔥 결과 리스트 -->
+    <section class="Deliverylist">
+
+        <!-- 배송 카드 -->
+        <div class="delivery-card">
+            <div class="top">
+                <span class="status delivering">배송중</span>
+                <span class="date">2026-05-04</span>
+            </div>
+
+            <div class="top">
+                <span class="status done">배송중</span>
+                <span class="date">2026-05-04</span>
+            </div>
+            <div class="top">
+                <span class="status complate">배송중</span>
+                <span class="date">2026-05-04</span>
+            </div>
+
+            <div class="top">
+                <span class="status done">배송중</span>
+                <span class="date">2026-05-04</span>
+            </div>
+
+            <div class="body">
+                <p>홈마트 시지점</p>
+                <p>고객님 주문 상품</p>
+            </div>
+
+            <div class="bottom">
+                <span>출발</span>
+                <span>→</span>
+                <span>도착 예정</span>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+<link rel="stylesheet" href="/shop/delivery/css/Deliverystatus.css">

@@ -18,7 +18,7 @@ routes.use((req, res, next) => {
         next();
     } else {
         // 쿠키가 없으면 접근 차단
-        res.status(401).send("Unauthorized: sellerid cookie missing");
+        res.status(401).redirect("/account/login");
     }
 });
 

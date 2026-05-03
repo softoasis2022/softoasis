@@ -1,0 +1,108 @@
+/* =========================
+   전체 배경
+========================= */
+body {
+    background: #0a0a0a;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* =========================
+   MAIN
+========================= */
+main {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* =========================
+   카드
+========================= */
+.cs-card {
+    background: #0f0f0f;
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 25px;
+
+    box-shadow: 0 0 10px rgba(0, 234, 255, 0.1);
+}
+
+/* 제목 */
+.cs-card h2 {
+    text-align: center;
+    color: #00eaff;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   FORM
+========================= */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 라벨 */
+form span {
+    font-size: 13px;
+    color: #aaa;
+}
+
+/* 입력 */
+form input,
+form select,
+form textarea {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    background: #111;
+    color: #fff;
+
+    transition: 0.2s;
+}
+
+/* textarea */
+form textarea {
+    min-height: 120px;
+    resize: none;
+}
+
+/* 포커스 */
+form input:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #00eaff;
+    box-shadow: 0 0 8px rgba(0, 234, 255, 0.4);
+}
+
+/* =========================
+   버튼
+========================= */
+form button {
+    margin-top: 10px;
+    padding: 14px;
+
+    border-radius: 12px;
+    border: none;
+
+    background: linear-gradient(45deg, #00eaff, #0077ff);
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+form button:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+form button:active {
+    transform: scale(0.97);
+}

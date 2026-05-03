@@ -95,6 +95,7 @@ app.use("/mobile", require("./app/mobile/app"));
 app.use("/shop", require("./app/shop/app"));
 app.use("/event", require("./app/event/app"));
 app.use("/tc", require("./app/TC/app"));
+app.use("/delivery", require("./app/shop/routes/delivery/app"));
 
 app.use("/contant", require("./neo/app"));
 

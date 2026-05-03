@@ -1,0 +1,32 @@
+<!-- 배송 문의 하기 -->
+<main>
+    <section class="cs-card">
+
+        <h2>💬 배송 문의</h2>
+
+        <form action="/delivery/cs" method="post">
+
+            <span>이름</span>
+            <input type="text" placeholder="이름 입력">
+
+            <span>전화번호</span>
+            <input type="tel" placeholder="01012345678">
+
+            <span>문의 유형</span>
+            <select>
+                <option>배송 지연</option>
+                <option>상품 문의</option>
+                <option>주소 변경</option>
+                <option>기타</option>
+            </select>
+
+            <span>문의 내용</span>
+            <textarea placeholder="문의 내용을 입력해주세요"></textarea>
+
+            <button type="submit">문의 보내기</button>
+
+        </form>
+
+    </section>
+</main>
+<link rel="stylesheet" href="/shop/delivery/css/cs.css">

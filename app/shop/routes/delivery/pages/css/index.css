@@ -1,0 +1,90 @@
+/* =========================
+   전체 배경
+========================= */
+body {
+    background: #0a0a0a;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* =========================
+   MAIN
+========================= */
+main {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* =========================
+   DELIVERY SECTION
+========================= */
+.delivery {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+/* =========================
+   버튼 스타일
+========================= */
+.delivery > button {
+    width: 100%;
+    max-width: 400px;
+    height: 100px;
+
+    border-radius: 20px;
+    border: 1px solid #222;
+
+    background: #111;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 10px rgba(0, 234, 255, 0.05);
+    transition: all 0.25s ease;
+}
+
+/* hover */
+.delivery > button:hover {
+    border-color: #00eaff;
+    color: #00eaff;
+
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.4);
+    transform: translateY(-3px);
+}
+
+/* 클릭 */
+.delivery > button:active {
+    transform: scale(0.97);
+}
+
+/* =========================
+   버튼별 강조
+========================= */
+
+/* 배송 신청 */
+.delivery > button:nth-child(1) {
+    background: linear-gradient(45deg, #00eaff, #0077ff);
+    color: #000;
+    border: none;
+}
+
+/* 배송 현황 */
+.delivery > button:nth-child(2):hover {
+    color: #00ff96;
+    border-color: #00ff96;
+    box-shadow: 0 0 15px rgba(0, 255, 150, 0.4);
+}
+
+/* 배송 문의 */
+.delivery > button:nth-child(3):hover {
+    color: #ffaa00;
+    border-color: #ffaa00;
+    box-shadow: 0 0 15px rgba(255, 170, 0, 0.4);
+}

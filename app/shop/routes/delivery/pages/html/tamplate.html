@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소프트오아시스 홈</title>
+    <link rel="stylesheet" href="/softoasis/css/footer.css">
+    <link rel="stylesheet" href="/softoasis/css/header.css">
+    <link rel="stylesheet" href="/softoasis/css/body.css">
+    <script src="/softoasis/js/user.js"></script>
+    <script src="/softoasis/js/tamplate.js"></script>
+    <link rel="icon" type="image/png" href="/image/logo/softoasislogo.png">
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="/"
+                style=" display: flex;flex-direction: row; align-items: center; justify-content: center; gap: 10px;">
+                <img src="/image/logo/softoasislogo.png" alt="" style="width: 50px; scale: 1/1;">
+                <h1>softoasis</h1>
+            </a>
+            <!-- header 안에 추가 -->
+
+            <nav>
+                <ul>
+                    <li><a href="/">홈</a></li>
+                    <li><a href="/company">회사 소개</a></li>
+                    <li><a href="/softoasis/team">팀 소개</a></li>
+                    <li><a href="/softoasis/notice">공지사항</a></li>
+                    <li><a href="/service">서비스</a></li>
+                    <li><a href="/partners">파트너스</a></li>
+                    <li><a href="/cs">문의하기</a></li>
+                    <li><a id="user" href="/acount/login">로그인</a></li>
+                </ul>
+            </nav>
+            <div class="menu-btn" onclick="toggleMenu()">
+                ☰
+            </div>
+        </div>
+    </header>
+    <!-- MAIN_CONTENT -->
+    <footer>
+
+        <!-- 회사 정보 -->
+        <section>
+            <div>
+                <span>상호명</span>
+                <span>(주)소프트오아시스</span>
+            </div>
+            <div>
+                <span>대표</span>
+                <span>한민섭</span>
+            </div>
+            <div>
+                <span>사업자등록번호</span>
+                <span>238-27-01654</span>
+            </div>
+            <div>
+                <span>통신판매업신고</span>
+                <span>제 2026-대구중구-0001호</span>
+            </div>
+            <div>
+                <span>이용약관</span>
+                <span><a href="/policy/terms">바로가기</a></span>
+            </div>
+            <div>
+                <span>개인정보처리방침</span>
+                <span><a href="/policy/privacy">바로가기</a></span>
+            </div>
+            <div>
+                <span>청소년보호정책</span>
+                <span><a href="/policy/youth">바로가기</a></span>
+            </div>
+        </section>
+
+        <!-- 연락처 -->
+        <section>
+            <div>
+                <span>주소</span>
+                <span>대구광역시 중구 공평로4길 23-14</span>
+            </div>
+            <div>
+                <span>전화번호</span>
+                <span>0507-1485-1734</span>
+            </div>
+            <div>
+                <span>이메일</span>
+                <span>hang05312@softoasis.org</span>
+            </div>
+            <div>
+                <span>고객센터</span>
+                <span>평일 09:00 ~ 18:00</span>
+            </div>
+            <div>
+                <span>서비스명</span>
+                <span>SoftOasis / Neo Platform</span>
+            </div>
+            <div>
+                <span>© 2026 SoftOasis</span>
+                <span>All rights reserved.</span>
+            </div>
+        </section>
+
+    </footer>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector("nav");
+            nav.classList.toggle("active");
+        }
+    </script>
+</body>
+
+
+</html>

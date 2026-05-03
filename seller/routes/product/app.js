@@ -22,118 +22,30 @@ routes.use(express.static(imgDB));
 routes.use(express.json());
 routes.use(express.urlencoded({ extended: true }));
 
-function extractMainInner(html) {
-  const m = html.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
-  return m ? m[0] : html;
-}
+routes.get("/", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"html", "main.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+
 /**
- * pageCssHrefs: ["/mobile/pages/main/main.css", ...]
- * pageJsSrcs:   ["/mobile/pages/main/main.js", ...]  // 필요하면 사용
+ * 템플릿 렌더링
  */
-function renderWithTemplate(res, pageFileAbsPath, pageCssHrefs = [], pageJsSrcs = []) {
-  const template = fs.readFileSync(TEMPLATE_PATH, "utf8");
+function renderTemplate(pagePath) {
+    const templatePath = path.join(TEMPLATE_PATH);
 
-  let pageHtml = fs.readFileSync(pageFileAbsPath, "utf8");
-  pageHtml = extractMainInner(pageHtml); // ✅ main 전체 유지
+    try {
+        let template = fs.readFileSync(templatePath, "utf-8");
+        const pageContent = fs.readFileSync(pagePath, "utf-8");
 
-  const cssTags = (pageCssHrefs || [])
-    .filter(Boolean)
-    .map((href) => `<link rel="stylesheet" href="${href}">`)
-    .join("\n");
-
-  const jsTags = (pageJsSrcs || [])
-    .filter(Boolean)
-    .map((src) => `<script src="${src}" defer></script>`)
-    .join("\n");
-
-  // 템플릿에 자리 없으면(까먹었을 때) 최소한 main은 주입되게 안전 처리
-  let out = template.replace("<!-- MAIN_CONTENT -->", pageHtml);
-
-  // head에 페이지별 CSS 주입
-  if (out.includes("<!-- PAGE_STYLE -->")) {
-    out = out.replace("<!-- PAGE_STYLE -->", cssTags);
-  } else {
-    // fallback: </head> 바로 앞에 삽입
-    out = out.replace("</head>", `${cssTags}\n</head>`);
-  }
-
-  // body 끝에 페이지별 JS 주입 (필요할 때만)
-  if (jsTags) {
-    out = out.replace("</body>", `${jsTags}\n</body>`);
-  }
-
-
-  if (jsTags) {
-    out = out.replace("</body>", `${jsTags}\n</body>`);
-  }
-
-  res.set("Content-Type", "text/html; charset=utf-8");
-  res.send(out);
-}
-// ✅ 페이지별 “HTML + CSS + JS” 매핑
-const PAGE_MAP = {
-  "/": {
-    html: path.join(PAGES_DIR, "main", "index.html"),
-    css: [
-      "./mobile/pages/main/style/main.css"
-    ],
-    js: [],
-    img: [
-    ]
-  },
-  "/republish/register": {
-    html: path.join(PAGES_DIR, "republish_register", "index.html"),
-    css: ["/seller/mobile/pages/republish_register/style/ddd.css"],
-    js: ["/seller/mobile/pages/republish_register/script/ssss.js"]
-  }
-
-};
-
-Object.keys(PAGE_MAP).forEach((routePath) => {
-  routes.get(routePath, (req, res) => {
-    const conf = PAGE_MAP[routePath];
-    console.log(ROOT);
-    if (!fs.existsSync(conf.html)) {
-      return res.status(404).send("페이지 파일을 찾을 수 없습니다: " + conf.html);
+        return template.replace("<!-- MAIN_CONTENT -->", pageContent);
+    } catch (err) {
+        console.error("템플릿 렌더링 실패:", err);
+        return null;
     }
-
-    renderWithTemplate(res, conf.html, conf.css, conf.js);
-  });
-});
-//
-
-
-
-routes.post("/republish/register/:sellernumber",(req,res)=>{
-  const data  = req.body;
-
-  //쿠키에 sellerid 확인하고 확인된 
-
-  // {
-  //   items: [
-  //     {
-  //       manufacturer: 'btrsb',
-  //       series: 'bhsrb',
-  //       model_code: 'bhstb',
-  //       model_name: 'bsthb',
-  //       price: 130000,
-  //       grades: [Array]
-  //     }
-  //   ]
-  // }
-  console.log(data);
-  //데이터 베이스에 저장 투트는 
-  res.json({
-    message : "완료"
-  });
-});
-
-
-
-
-
-
-
-
+}
 
 module.exports = routes;

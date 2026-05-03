@@ -8,7 +8,6 @@ const developercenter = require("./routes/developercenter");
 const smsroute = require("./routes/sms/sms");
 
 routes.use("/",developercenter);
-routes.use("/sms",smsroute);
 routes.use("/device",deviceroute);
 
 

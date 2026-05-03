@@ -8,8 +8,8 @@ const developerdatabase = path.join(__dirname,"database");
 const PAGES_DIR = path.join(__dirname,"./routes","main","pages");
 const TEMPLATE_PATH =path.join(__dirname,"./routes","tamplate", "pages", "html", "index.html");
 
-routes.use("/css", express.static(path.join(__dirname, "css")));
-routes.use("/js", express.static(path.join(__dirname, "js")));
+routes.use("/css", express.static(path.join(PAGES_DIR, "css")));
+routes.use("/js", express.static(path.join(PAGES_DIR, "js")));
 
 const mainroutes = require("./routes/main/app");
 const brendroutes = require("./routes/brend/brend");
@@ -56,6 +56,7 @@ routes.post("/bill",(req,res)=>{
     res.json(coinrowdata);
 });
 routes.use("/brend",brendroutes);
+routes.use("/delivery", require("./routes/delivery/app"));
 
 function renderTemplate(pagePath) {
     const templatePath = path.join(TEMPLATE_PATH);

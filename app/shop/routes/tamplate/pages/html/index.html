@@ -103,20 +103,71 @@
                     <img src="/image/UI/search.svg" alt="검색버튼">
                 </button>
             </div>
+            <style>
+                .category {
+                    position: relative;
+                    display: inline-block;
+                }
+
+                /* 버튼 */
+                .btn_category {
+                    cursor: pointer;
+                }
+
+                /* 숨김 */
+                .categorylist {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+
+                    background: white;
+                    border: 1px solid #ddd;
+                    padding: 10px;
+
+                    display: none;
+                }
+
+                .categorylist>ul {
+                    padding-inline-start: 0px;
+                    margin: 0px;
+                    border: 1px solid black;
+                }
+
+                .categorylist>ul>li {
+                    list-style: none;
+                    margin: 5px;
+                }
+
+                .categorylist>ul>li>a {
+                    text-decoration: none;
+                    color: black;
+                }
+
+                /* 🔥 핵심 */
+                .category:hover .categorylist {
+                    display: block;
+                }
+
+                .categorylist.active .categorylist {
+                    display: block;
+                }
+            </style>
         </section>
         <section class="menu">
             <style>
-                .menu{
+                .menu {
                     width: 100%;
                     justify-content: center;
                     display: flex;
                     flex-direction: row;
                     align-items: center;
                 }
+
                 .menu ul {
                     padding-inline-start: 0px;
                     overflow-x: scroll;
-                    -ms-overflow-style: none;  /* IE, Edge */
+                    -ms-overflow-style: none;
+                    /* IE, Edge */
                     display: flex;
                     flex-direction: row;
                     align-items: center;
@@ -131,7 +182,7 @@
                 .menu li {
                     list-style: none;
                     border-radius: 30px;
-                    background-color:lightslategrey;
+                    background-color: lightslategrey;
                     width: fit-content;
                     padding: 10px;
                 }
@@ -148,55 +199,7 @@
                 <li><a href="#">카테고리별</a></li>
             </ul>
         </section>
-        <style>
-            .category {
-                position: relative;
-                display: inline-block;
-            }
 
-            /* 버튼 */
-            .btn_category {
-                cursor: pointer;
-            }
-
-            /* 숨김 */
-            .categorylist {
-                position: absolute;
-                top: 100%;
-                left: 0;
-
-                background: white;
-                border: 1px solid #ddd;
-                padding: 10px;
-
-                display: none;
-            }
-
-            .categorylist>ul {
-                padding-inline-start: 0px;
-                margin: 0px;
-                border: 1px solid black;
-            }
-
-            .categorylist>ul>li {
-                list-style: none;
-                margin: 5px;
-            }
-
-            .categorylist>ul>li>a {
-                text-decoration: none;
-                color: black;
-            }
-
-            /* 🔥 핵심 */
-            .category:hover .categorylist {
-                display: block;
-            }
-
-            .categorylist.active .categorylist {
-                display: block;
-            }
-        </style>
     </header>
     <!-- MAIN_CONTENT -->
     <footer>

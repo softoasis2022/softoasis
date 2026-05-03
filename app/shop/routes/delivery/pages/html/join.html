@@ -1,0 +1,58 @@
+<main>
+    <section class="join-card">
+
+        <form id="deliveryForm">
+
+            <span>이름</span>
+            <input type="text" name="name" placeholder="이름 입력" required>
+
+            <span>전화번호</span>
+            <input type="tel" name="phone" placeholder="01012345678" required>
+
+            <span>주소</span>
+            <input type="text" name="address" placeholder="주소 입력" required>
+
+            <!-- 주소 찾기 버튼 -->
+            <button type="button" class="find-btn">주소 찾기</button>
+
+            <!-- 신청 버튼 -->
+            <button type="submit" class="submit-btn">신청하기</button>
+
+        </form>
+
+    </section>
+</main>
+<link rel="stylesheet" href="/shop/delivery/css/join.css">
+<script>
+document.getElementById("deliveryForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = {
+        name: document.querySelector("input[name=name]").value,
+        phone: document.querySelector("input[name=phone]").value,
+        address: document.querySelector("input[name=address]").value
+    };
+
+    try {
+        const res = await fetch("/delivery/join", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+            alert("배송 신청 완료!\n출발 예정 시간: " + result.deliveryTime);
+        } else {
+            alert("신청 실패");
+        }
+
+    } catch (err) {
+        console.error(err);
+        alert("서버 오류");
+    }
+});
+</script>
