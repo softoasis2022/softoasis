@@ -87,7 +87,7 @@ header {
 }
 
 /* 버튼 느낌 */
-.account div a {
+.account a {
     padding: 6px 12px;
     border: 1px solid #333;
     border-radius: 6px;
@@ -102,4 +102,46 @@ header {
 .account div a:hover {
     border-color: #00eaff;
     color: #00eaff;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    header>section {
+        width: 100%;
+    }
+
+    header section div {
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 1px solid #222;
+        padding: 8px 0;
+    }
+
+    header section div span:first-child {
+        color: #666;
+    }
+
+    .menu>a {
+        display: none;
+    }
+
+    .account a {
+        padding: 6px 12px;
+        border: 1px solid #333;
+        border-radius: 6px;
+
+        color: #ccc;
+        text-decoration: none;
+        font-size: 13px;
+
+        transition: 0.2s;
+    }
 }

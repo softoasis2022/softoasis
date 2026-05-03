@@ -1,5 +1,7 @@
 body{
     margin: 0px;
+    background-color: #0a0a0a;
+    align-items: center;
 }
 a{
     text-decoration: none;

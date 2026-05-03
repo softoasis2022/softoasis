@@ -1,165 +1,74 @@
 <main>
-
-    <!-- 🔥 인트로 -->
-    <section id="intro">
-        <h2>🌐 네오 월드</h2>
-        <p>네오 월드에 오신 것을 환영합니다.</p>
-        <p>타운에 있는 사람들과 어울려 정보를 공유하고, 당신의 삶에 새로운 액티비티를 추가해보세요.</p>
-    </section>
-
-
-    <!-- 🔥 타운 생성 -->
-    <section id="create-town">
-        <h3>🏙️ 타운 만들기</h3>
-        <div>
-            <p>내 타운을 만들고 여러 친구와 함께 작은 시티를 만들어 보세요.</p>
+    <section>
+        <!-- 🔥 인트로 -->
+        <div id="intro">
+            <h3>🌐 네오 월드</h3>
+            <p>네오 월드에 오신 것을 환영합니다.</p>
+            <p>타운에 있는 사람들과 어울려 정보를 공유하고, 당신의 삶에 새로운 액티비티를 추가해보세요.</p>
         </div>
-        <button onclick="location.href='https://neo.softoasis.org/world/worldcreate'">
-            내 타운 만들러 가기
-        </button>
-    </section>
-
-
-    <!-- 🔥 초대장 -->
-    <section id="invite">
-        <h3>📩 초대장</h3>
-        <div>
-            <p>친구가 보낸 초대장을 확인하고 새로운 시티에 참여해보세요.</p>
+        <!-- 🔥 타운 생성 -->
+        <div id="create-town">
+            <h3>🏙️ 타운 만들기</h3>
+            <div>
+                <p>내 타운을 만들고 여러 친구와 함께 작은 시티를 만들어 보세요.</p>
+            </div>
+            <button onclick="location.href='https://neo.softoasis.org/world/worldcreate'">
+                내 타운 만들러 가기
+            </button>
         </div>
-        <button onclick="location.href='/world/invite'">
-            초대장 확인하기
-        </button>
-    </section>
 
 
-    <!-- 🔥 내 빌딩 -->
-    <section id="my-building">
-        <h3>🏢 내 빌딩</h3>
-        <div>
-            <p>내 공간을 꾸미고 다양한 기능을 추가해보세요.</p>
+        <!-- 🔥 초대장 -->
+        <div id="invite">
+            <h3>📩 초대장</h3>
+            <div>
+                <p>친구가 보낸 초대장을 확인하고 새로운 시티에 참여해보세요.</p>
+            </div>
+            <button onclick="location.href='/world/invite'">
+                초대장 확인하기
+            </button>
         </div>
-        <button onclick="location.href='/world/building'">
-            빌딩 관리하기
-        </button>
-    </section>
 
 
-    <!-- 🔥 커뮤니티 -->
-    <section id="community">
-        <h3>💬 커뮤니티</h3>
-        <div>
-            <p>시티 내 다양한 커뮤니티를 탐색하고 참여해보세요.</p>
+        <!-- 🔥 내 빌딩 -->
+        <div id="my-building">
+            <h3>🏢 내 빌딩</h3>
+            <div>
+                <p>내 공간을 꾸미고 다양한 기능을 추가해보세요.</p>
+            </div>
+            <button onclick="location.href='/world/building'">
+                빌딩 관리하기
+            </button>
         </div>
-        <button onclick="location.href='/world/community'">
-            커뮤니티 보기
-        </button>
-    </section>
 
 
-    <!-- 🔥 친구 -->
-    <section id="friends">
-        <h3>👥 친구</h3>
-        <div>
-            <p>시티에 있는 친구들을 둘러보고 새로운 인연을 만들어보세요.</p>
+        <!-- 🔥 커뮤니티 -->
+        <div id="community">
+            <h3>💬 커뮤니티</h3>
+            <div>
+                <p>시티 내 다양한 커뮤니티를 탐색하고 참여해보세요.</p>
+            </div>
+            <button onclick="location.href='/world/community'">
+                커뮤니티 보기
+            </button>
         </div>
-        <button onclick="location.href='/world/friends'">
-            친구 구경하기
-        </button>
-        <button onclick="location.href='/world/friends'">
-            친구 초대하기
-        </button>
+
+
+        <!-- 🔥 친구 -->
+        <div id="friends">
+            <h3>👥 친구</h3>
+            <div>
+                <p>시티에 있는 친구들을 둘러보고 새로운 인연을 만들어보세요.</p>
+            </div>
+            <button onclick="location.href='/world/friends'">
+                친구 구경하기
+            </button>
+            <button onclick="location.href='/world/friends'">
+                친구 초대하기
+            </button>
+        </div>
     </section>
-
-
 </main>
-<style>
-    /* =========================
-   MAIN
-========================= */
-    main {
-        width: 100%;
-        max-width: 900px;
-        margin: 40px auto;
-        padding: 20px;
-
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-
-    /* =========================
-   카드 (section 공통)
-========================= */
-    main section {
-        background: #0f0f0f;
-        border: 1px solid #222;
-        border-radius: 16px;
-        padding: 20px;
-
-        transition: 0.3s;
-    }
-
-    /* hover 네온 효과 */
-    main section:hover {
-        border-color: #00eaff;
-        box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
-    }
-
-
-    /* =========================
-   제목
-========================= */
-    main h2 {
-        font-size: 20px;
-        margin-bottom: 10px;
-    }
-
-    main h3 {
-        font-size: 16px;
-        margin-bottom: 8px;
-    }
-
-
-    /* =========================
-   텍스트
-========================= */
-    main p {
-        color: #aaa;
-        font-size: 14px;
-        line-height: 1.5;
-    }
-
-
-    /* =========================
-   버튼
-========================= */
-    main button {
-        margin-top: 12px;
-        padding: 10px 14px;
-
-        background: transparent;
-        border: 1px solid #333;
-        border-radius: 8px;
-
-        color: #ccc;
-        cursor: pointer;
-        transition: 0.2s;
-    }
-
-    /* hover */
-    main button:hover {
-        border-color: #00eaff;
-        color: #00eaff;
-    }
-
-
-    /* =========================
-   친구 버튼 2개 정렬
-========================= */
-    #friends button {
-        margin-right: 10px;
-    }
-</style>
+<link rel="stylesheet" href="/main/css/index.css">
 
 <script src="/js/acount.js"></script>
