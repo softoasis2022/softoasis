@@ -1,0 +1,23 @@
+.contentrerative {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 0;
+    list-style: none;
+}
+
+.contentrerative li {
+    background: #111;
+    border: 1px solid #222;
+    padding: 8px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.contentrerative li:hover {
+    border-color: #00eaff;
+    color: #00eaff;
+}

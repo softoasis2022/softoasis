@@ -1,30 +1,33 @@
-.wrap_CScontent{
-    border-top: 1px solid black;
+.wrap_CScontent {
+    margin-top: 30px;
+    padding: 20px;
+    background: #0f0f0f;
+    border: 1px solid #222;
+    border-radius: 16px;
 }
-.wrap_CScontent ul{
-    padding-inline-start: 0px;
-}
-.wrap_CScontent li{
+
+.wrap_CScontent ul {
     list-style: none;
+    padding: 0;
+}
+
+.wrap_CScontent li {
     display: flex;
     flex-direction: column;
-    
+    gap: 5px;
+    margin-bottom: 15px;
 }
-.wrap_CScontent .title{
-    height: fit-content;
-    border-radius: 20px;
-    border: none;
-    background-color: rgb(220, 220, 220);
-    padding: 15px;
-    resize: none; /* 🔥 이거 추가 */
-    color: black;
+
+.wrap_CScontent textarea {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 10px;
+    color: #fff;
+    resize: none;
 }
-.wrap_CScontent .coment{
-    border-radius: 20px;
-    border: none;
-    background-color: rgb(220, 220, 220);
-    min-height: 300px;
-    padding: 15px;
-    resize: none; /* 🔥 이거 추가 */
-    color: black;
+
+.wrap_CScontent textarea:focus {
+    outline: none;
+    border-color: #00eaff;
 }

@@ -1,7 +1,26 @@
-main{
-    padding-left: 1.125%;
-    padding-right: 1.125%;
+body {
+    background: #0a0a0a;
+    color: #fff;
+    margin: 0;
+    font-family: "Pretendard Variable", sans-serif;
 }
-main > section{
-    width: 100%;
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section > p {
+    margin-top: 30px;
+    font-weight: bold;
+    color: #ccc;
+}
+
+input {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 10px;
+    color: #fff;
 }

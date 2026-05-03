@@ -5,11 +5,10 @@ const fs = require("fs");
 
 // 폴더 기준
 const ROOT =path.join(__dirname); // mobile 폴더
-const TEMPLATE_PATH = path.join(ROOT, "../tamplate","html","index.html");
+const TEMPLATE_PATH = path.join(__dirname, "../tamplate","html","index.html");
 // 네 환경 그대로
 
 const PAGES_DIR = path.join(ROOT, "pages");
-routes.use(express.static(ROOT));
 
 routes.get("/", (req, res) => {
     const pagePath = path.join(PAGES_DIR,"html", "index.html");
@@ -17,7 +16,7 @@ routes.get("/", (req, res) => {
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");
 
-    res.send(pagePath);
+    res.send(result);
 });
 
 
