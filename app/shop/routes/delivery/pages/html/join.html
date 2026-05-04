@@ -10,49 +10,69 @@
             <input type="tel" name="phone" placeholder="01012345678" required>
 
             <span>주소</span>
-            <input type="text" name="address" placeholder="주소 입력" required>
+            <input type="text" name="address" id="addressInput" placeholder="주소 입력" required>
 
-            <!-- 주소 찾기 버튼 -->
             <button type="button" class="find-btn">주소 찾기</button>
 
-            <!-- 신청 버튼 -->
             <button type="submit" class="submit-btn">신청하기</button>
 
         </form>
-
     </section>
+
+    <!-- 🔥 팝업 -->
+    <div class="popup" id="addressPopup">
+        <div class="popup-box">
+
+            <div class="popup-header">
+                <input type="text" id="searchInput" placeholder="장소 검색">
+                <button id="searchBtn">검색</button>
+                <button id="closeBtn">X</button>
+            </div>
+
+            <div class="popup-body" id="resultList">
+                <!-- 검색 결과 들어감 -->
+            </div>
+            <div class="popup-body">
+                <ul id="resultList">
+                    <!-- li로 결과 들어감 -->
+                </ul>
+            </div>
+        </div>
+    </div>
 </main>
+<link rel="stylesheet" href="/shop/delivery/css/address.css">
+<script src="/shop/delivery/js/address.js"></script>
 <link rel="stylesheet" href="/shop/delivery/css/join.css">
 <script>
-document.getElementById("deliveryForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
+    document.getElementById("deliveryForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    const data = {
-        name: document.querySelector("input[name=name]").value,
-        phone: document.querySelector("input[name=phone]").value,
-        address: document.querySelector("input[name=address]").value
-    };
+        const data = {
+            name: document.querySelector("input[name=name]").value,
+            phone: document.querySelector("input[name=phone]").value,
+            address: document.querySelector("input[name=address]").value
+        };
 
-    try {
-        const res = await fetch("/delivery/join", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
+        try {
+            const res = await fetch("/delivery/join", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
 
-        const result = await res.json();
+            const result = await res.json();
 
-        if (result.success) {
-            alert("배송 신청 완료!\n출발 예정 시간: " + result.deliveryTime);
-        } else {
-            alert("신청 실패");
+            if (result.success) {
+                alert("배송 신청 완료!\n출발 예정 시간: " + result.deliveryTime);
+            } else {
+                alert("신청 실패");
+            }
+
+        } catch (err) {
+            console.error(err);
+            alert("서버 오류");
         }
-
-    } catch (err) {
-        console.error(err);
-        alert("서버 오류");
-    }
-});
+    });
 </script>
