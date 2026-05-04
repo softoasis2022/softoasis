@@ -11,6 +11,13 @@ main {
     padding: 20px;
 }
 
+ul{
+    padding-inline-start: 0px;
+}
+li{
+    list-style: none;
+}
+
 section > p {
     margin-top: 30px;
     font-weight: bold;
