@@ -6,6 +6,7 @@ const routes = express.Router();
 const deviceroute = require("./mobile/device");
 const developercenter = require("./routes/developercenter");
 const smsroute = require("./routes/sms/sms");
+const searchroute = require("./routes/search/app");
 
 const database = path.join("C:", "database");
 const ROOT = __dirname; // mobile 폴더
@@ -18,6 +19,7 @@ routes.use("/js", express.static(path.join(__dirname, "pages","js")));
 
 
 routes.use("/device",deviceroute);
+routes.use("/search",searchroute);
 
 routes.get("/", (req, res) => {
     const pagePath = path.join(PAGES_DIR,"html", "main.html");
