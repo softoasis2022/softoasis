@@ -16,6 +16,7 @@ const http = require("http");
 const express = require("express");
 const { Server } = require("socket.io");
 const { v4: uuidv4 } = require("uuid");
+require("dotenv").config(); 
 
 const app = express();
 
@@ -95,7 +96,7 @@ app.use("/mobile", require("./app/mobile/app"));
 app.use("/shop", require("./app/shop/app"));
 app.use("/event", require("./app/event/app"));
 app.use("/tc", require("./app/TC/app"));
-app.use("/delivery", require("./app/shop/routes/delivery/app"));
+
 
 app.use("/contant", require("./neo/app"));
 

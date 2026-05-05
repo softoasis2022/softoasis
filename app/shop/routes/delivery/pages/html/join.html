@@ -1,26 +1,31 @@
 <main>
     <section class="join-card">
 
-        <form id="deliveryForm">
+        <form id="deliveryForm" method="post">
 
             <span>이름</span>
-            <input type="text" name="name" placeholder="이름 입력" required>
+            <input type="text" name="name" id="nameInput" placeholder="이름 입력" required>
 
             <span>전화번호</span>
-            <input type="tel" name="phone" placeholder="01012345678" required>
+            <input type="tel" name="phone" id="phoneInput" placeholder="01012345678" required>
 
             <span>주소</span>
-            <input type="text" name="address" id="addressInput" placeholder="주소 입력" required>
+            <input type="text" name="address" id="addressInput" placeholder="주소 입력" required readonly>
+            <button type="button" class="find-btn" id="openPopupBtn">주소 찾기</button>
 
-            <button type="button" class="find-btn">주소 찾기</button>
+            <span>상세주소</span>
+            <input type="text" name="subaddress" id="detailAddressInput" placeholder="상세 주소 입력" required>
+
+            <span>요청사항</span>
+            <input type="text" name="request" id="requestInput" placeholder="요청사항 입력">
 
             <button type="submit" class="submit-btn">신청하기</button>
 
         </form>
     </section>
 
-    <!-- 🔥 팝업 -->
-    <div class="popup" id="addressPopup">
+    <!-- 🔥 주소 검색 팝업 -->
+    <div class="popup" id="addressPopup" style="display:none;">
         <div class="popup-box">
 
             <div class="popup-header">
@@ -29,50 +34,30 @@
                 <button id="closeBtn">X</button>
             </div>
 
-            <div class="popup-body" id="resultList">
-                <!-- 검색 결과 들어감 -->
+            <div style="display:flex; gap:10px;">
+
+                <!-- 🔥 검색 결과 -->
+                <div class="result-wrap">
+                    <ul id="resultList">
+
+                        <!-- 🔥 템플릿 (JS로 생성될 구조) -->
+                        <!-- <li class="result-item">
+                            <div class="result-info">
+                                <p class="result-name">웰리치시지아파트 후문</p>
+                                <p class="result-address">대구 수성구 욱수동</p>
+                            </div>
+                            <button class="select-btn">선택</button>
+                        </li> -->
+
+                    </ul>
+                </div>
+
             </div>
-            <div class="popup-body">
-                <ul id="resultList">
-                    <!-- li로 결과 들어감 -->
-                </ul>
-            </div>
+
         </div>
     </div>
 </main>
+
 <link rel="stylesheet" href="/shop/delivery/css/address.css">
-<script src="/shop/delivery/js/address.js"></script>
 <link rel="stylesheet" href="/shop/delivery/css/join.css">
-<script>
-    document.getElementById("deliveryForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const data = {
-            name: document.querySelector("input[name=name]").value,
-            phone: document.querySelector("input[name=phone]").value,
-            address: document.querySelector("input[name=address]").value
-        };
-
-        try {
-            const res = await fetch("/delivery/join", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            });
-
-            const result = await res.json();
-
-            if (result.success) {
-                alert("배송 신청 완료!\n출발 예정 시간: " + result.deliveryTime);
-            } else {
-                alert("신청 실패");
-            }
-
-        } catch (err) {
-            console.error(err);
-            alert("서버 오류");
-        }
-    });
-</script>
+<script src="/shop/delivery/js/address.js"></script>

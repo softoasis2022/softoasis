@@ -1,12 +1,10 @@
 // 🔥 배송기사용 메시지
-function getStaffMessage({ storename, name, phone, address, deliveryTime }) {
+function getStaffMessage({ storename, name, phone, address,subaddress, deliveryTime }) {
     return `[배송신청 알림]
 
 ${phone} 번호로 등록된
 ${name}님이
-
-${address}
-
+${address}${address}
 로 배송 요청 하였습니다.
 
 배송 시작 예정 시간: ${deliveryTime}`;

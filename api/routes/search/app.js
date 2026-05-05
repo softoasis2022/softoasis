@@ -1,53 +1,93 @@
 const express = require("express");
 const routes = express.Router();
 
-// Node 18 미만이면 필요
-// const fetch = require("node-fetch");
+// 🔥 이거 반드시 필요 (app.js에서 해도 됨)
+routes.use(express.json());
 
-routes.get("/address", async (req, res) => {
 
-    const keyword = req.query.keyword;
 
-    // 🔥 1. 입력값 체크
+//appKey=wRJtWmPr2515C5kSSJPeH5F5AiMhyAxU2UKPNcJp
+// Node 18 이상이면 fetch 기본 지원
+// 아니면 node-fetch 설치 필요
+
+routes.post("/address", async (req, res) => {
+
+    const keyword = req.body.keyword;
+    const page = req.body.page || 1;
+    const count = req.body.count || 20;
+    const searchType = req.body.searchType || "all";
+
+    const lat = req.body.lat;
+    const lon = req.body.lon;
+
+    console.log("🔥 검색어:", keyword);
+    console.log("📍 위치:", lat, lon);
+
     if (!keyword || keyword.trim() === "") {
         return res.status(400).json({ error: "keyword 필요" });
     }
 
     try {
 
-        // 🔥 2. Tmap 요청
-        const response = await fetch(
-            `https://apis.openapi.sk.com/tmap/pois?version=1&searchKeyword=${encodeURIComponent(keyword)}&count=20`,
-            {
-                headers: {
-                    appKey: process.env.TMAP_KEY // 🔥 환경변수 사용
-                }
+        const url =
+            `https://apis.openapi.sk.com/tmap/pois`
+            + `?version=1`
+            + `&page=${page}`
+            + `&count=${count}`
+            + `&searchKeyword=${encodeURIComponent(keyword)}`
+            + `&searchType=${searchType}`
+            + `&searchtypCd=R`
+            + `&radius=20`
+            + `&centerLat=${lat}`
+            + `&centerLon=${lon}`
+            + `&resCoordType=WGS84GEO`
+            + `&reqCoordType=WGS84GEO`;
+
+        console.log("🌐 요청 URL:", url);
+
+        const response = await fetch(url, {
+            headers: {
+                appKey: "wRJtWmPr2515C5kSSJPeH5F5AiMhyAxU2UKPNcJp"
             }
-        );
+        });
+
+        if (!response.ok) {
+            const text = await response.text();
+            console.error("❌ Tmap 오류:", text);
+            return res.status(500).json({ error: "Tmap API 실패" });
+        }
 
         const data = await response.json();
 
         const pois = data?.searchPoiInfo?.pois?.poi;
-        console.log(data);
 
-        // 🔥 3. 데이터 가공 (핵심)
-        const result = (pois || []).map(p => ({
-            name: p.name,
-            address: `${p.upperAddrName || ""} ${p.middleAddrName || ""} ${p.lowerAddrName || ""} ${p.detailAddrName || ""}`.trim(),
-            lat: p.noorLat,
-            lon: p.noorLon
-        }));
+        console.log("🔎 결과 개수:", pois?.length);
+        console.log(pois);
 
-        // 🔥 4. 응답
+        let resdata = [];
+
+        if (pois && Array.isArray(pois)) {
+            for (let i = 0; i < pois.length; i++) {
+
+                const p = pois[i];
+
+                resdata.push({
+                    name: p.name,
+                    address: `${p.upperAddrName || ""} ${p.middleAddrName || ""} ${p.lowerAddrName || ""} ${p.roadName || ""} ${p.firstBuildNo || ""} (${p.name || ""})`.trim()
+                });
+            }
+        }
+        console.log(resdata);
+
+        // 🔥 최종 응답
         res.json({
             success: true,
-            count: result.length,
-            list: result
+            resdata
         });
 
     } catch (e) {
-        console.error(e);
-        res.status(500).json({ error: "API 실패" });
+        console.error("❌ 서버 에러:", e);
+        res.status(500).json({ error: "서버 오류" });
     }
 });
 

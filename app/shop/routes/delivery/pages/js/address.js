@@ -1,100 +1,168 @@
-// ==========================
-// 🔥 주소 검색 팝업 모듈
-// ==========================
+/* =========================
+   🔥 DOM
+========================= */
+const openPopupBtn = document.getElementById("openPopupBtn");
+const popup = document.getElementById("addressPopup");
+const closeBtn = document.getElementById("closeBtn");
 
-document.addEventListener("DOMContentLoaded", () => {
+const searchBtn = document.getElementById("searchBtn");
+const searchInput = document.getElementById("searchInput");
 
-    const popup = document.getElementById("addressPopup");
-    const findBtn = document.querySelector(".find-btn");
-    const closeBtn = document.getElementById("closeBtn");
-    const searchBtn = document.getElementById("searchBtn");
-    const resultList = document.getElementById("resultList");
-    const addressInput = document.getElementById("addressInput");
-    const searchInput = document.getElementById("searchInput");
+/* =========================
+   🔥 팝업 열기
+========================= */
+openPopupBtn.onclick = () => {
+    popup.style.display = "flex";
+};
 
-    // ==========================
-    // 🔥 팝업 열기
-    // ==========================
-    findBtn.onclick = () => {
-        popup.style.display = "flex";
-        searchInput.focus();
-    };
+/* =========================
+   🔥 팝업 닫기
+========================= */
+closeBtn.onclick = () => {
+    popup.style.display = "none";
+};
 
-    // ==========================
-    // 🔥 팝업 닫기
-    // ==========================
-    closeBtn.onclick = () => {
-        popup.style.display = "none";
-    };
+/* =========================
+   🔥 검색 요청 (위치 포함)
+========================= */
+searchBtn.onclick = () => {
 
-    // ==========================
-    // 🔥 Enter 검색
-    // ==========================
-    searchInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            searchBtn.click();
-        }
-    });
+    const keyword = searchInput.value.trim();
 
-    // ==========================
-    // 🔥 검색 함수
-    // ==========================
-    searchBtn.onclick = async () => {
+    if (!keyword) {
+        alert("검색어 입력");
+        return;
+    }
 
-        const keyword = searchInput.value.trim();
+    // 🔥 현재 위치 가져오기
+    navigator.geolocation.getCurrentPosition(
 
-        if (!keyword) {
-            alert("검색어 입력");
-            return;
-        }
+        async (pos) => {
 
-        try {
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
 
-            // 🔥 (추천) 서버 프록시 사용
-            const res = await fetch(`/api/search?keyword=${encodeURIComponent(keyword)}`);
+            console.log("📍 현재 위치:", lat, lon);
 
-            const data = await res.json();
+            try {
 
-            let pois = data.searchPoiInfo?.pois?.poi;
+                const res = await fetch("/api/search/address", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        keyword: keyword,
+                        lat: lat,
+                        lon: lon
+                    })
+                });
 
-            resultList.innerHTML = "";
+                const data = await res.json();
+                layout_address_complate(data.resdata);
 
-            // 🔥 결과 없음
-            if (!pois || pois.length === 0) {
-                resultList.innerHTML = `<li class="empty">검색 결과 없음</li>`;
-                return;
+                console.log("🔥 서버 응답:", data);
+
+            } catch (err) {
+                console.error(err);
+                alert("요청 실패");
             }
+        },
 
-            // 🔥 결과 출력
-            pois.forEach(poi => {
+        // 🔥 위치 실패 시 처리
+        (err) => {
+            console.error("위치 실패:", err);
 
-                const fullAddress =
-                    (poi.upperAddrName || "") + " " +
-                    (poi.middleAddrName || "") + " " +
-                    (poi.lowerAddrName || "") + " " +
-                    (poi.detailAddrName || "");
+            alert("위치 권한을 허용해주세요");
 
-                const li = document.createElement("li");
+            // 👉 fallback (위치 없이 검색)
+            fetchWithoutLocation(keyword);
+        },
 
-                li.innerHTML = `
-                    <strong>${poi.name}</strong><br>
-                    <span>${fullAddress}</span>
-                `;
-
-                // 🔥 클릭 시 주소 입력
-                li.onclick = () => {
-                    addressInput.value = fullAddress.trim();
-                    popup.style.display = "none";
-                };
-
-                resultList.appendChild(li);
-            });
-
-        } catch (err) {
-            console.error(err);
-            alert("검색 실패");
+        {
+            enableHighAccuracy: true
         }
-    };
+    );
+};
 
-});
+/* =========================
+   🔥 위치 없이 검색 (fallback)
+========================= */
+async function fetchWithoutLocation(keyword) {
+
+    try {
+
+        const res = await fetch("/api/search/address", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ keyword })
+        });
+
+        const data = await res.json();
+
+        console.log("🔥 위치 없이 응답:", data);
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+function layout_address_complate(data) {
+
+    const resultList = document.getElementById("resultList");
+
+    // 🔥 초기화
+    resultList.innerHTML = "";
+
+    // 🔥 data가 배열인지 확인
+    if (!data || data.length === 0) {
+        resultList.innerHTML = "<li>검색 결과 없음</li>";
+        return;
+    }
+
+    // 🔥 반복
+    data.forEach(item => {
+
+        const li = document.createElement("li");
+
+        li.style.display = "flex";
+        li.style.flexDirection = "row";
+        li.style.justifyContent = "space-between";
+        li.style.alignItems = "center";
+
+        // 🔥 왼쪽 (이름 + 주소)
+        const infoDiv = document.createElement("div");
+
+        const name = document.createElement("p");
+        name.textContent = item.name;
+
+        const address = document.createElement("p");
+        address.textContent = item.address;
+        address.style.fontSize = "12px";
+        address.style.color = "#aaa";
+
+        infoDiv.appendChild(name);
+        infoDiv.appendChild(address);
+
+        // 🔥 버튼
+        const btn = document.createElement("button");
+        btn.textContent = "선택";
+
+        btn.onclick = () => {
+            console.log("선택:", item);
+
+            // 👉 주소 input에 넣기
+            document.getElementById("addressInput").value = item.address;
+
+            // 👉 팝업 닫기
+            popup.style.display = "none";
+        };
+
+        // 🔥 조립
+        li.appendChild(infoDiv);
+        li.appendChild(btn);
+
+        resultList.appendChild(li);
+    });
+}

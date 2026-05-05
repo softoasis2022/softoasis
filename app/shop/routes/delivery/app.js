@@ -72,7 +72,7 @@ routes.get("/postinfo", (req, res) => {
 
 // 🔥 배송 신청 처리
 routes.post("/join", async (req, res) => {
-    const { storename = "홈마트 시지점", name, phone, address,status = "ready" } = req.body;
+    const { storename = "홈마트 시지점", name, phone, address,subaddress,request,status = "ready" } = req.body;
 
     const postnumber = generateRandomString();
     const deliveryTime = getNextDeliveryTime();
@@ -94,6 +94,7 @@ routes.post("/join", async (req, res) => {
         name,
         phone,
         address,
+        subaddress,
         deliveryTime
     });
 
@@ -112,14 +113,16 @@ routes.post("/join", async (req, res) => {
         name,
         phone,
         address,
+        subaddress,
         deliveryTime,
         status,
+        request,
         joinTime
     }, null, 2), "utf-8");
 
     //문자 보내기 핵심 코드
-    // await sendSMS("01045171684", staffMessage);
-    // await sendSMS(phone, customerMessage);
+    await sendSMS("01045171684", staffMessage);
+    await sendSMS(phone, customerMessage);
 
     res.json({
         success: true,
@@ -128,7 +131,7 @@ routes.post("/join", async (req, res) => {
 });
 // 🔥 배송 신청 처리
 routes.post("/staffjoin", async (req, res) => {
-    const { storename = "홈마트 시지점", name, phone, address,status = "ready" } = req.body;
+    const { storename = "홈마트 시지점", name, phone, address,subaddress,request,status = "ready" } = req.body;
 
     const postnumber = generateRandomString();
     const deliveryTime = getNextDeliveryTime();
@@ -140,6 +143,7 @@ routes.post("/staffjoin", async (req, res) => {
         name,
         phone,
         address,
+        subaddress,
         deliveryTime
     });
 
@@ -158,14 +162,16 @@ routes.post("/staffjoin", async (req, res) => {
         name,
         phone,
         address,
+        subaddress,
         deliveryTime,
         status,
+        request,
         joinTime
     }, null, 2), "utf-8");
 
     //문자 보내기 핵심 코드
-    // await sendSMS("01045171684", staffMessage);
-    // await sendSMS(phone, customerMessage);
+    await sendSMS("01045171684", staffMessage);
+    await sendSMS(phone, customerMessage);
 
     res.json({
         success: true,
