@@ -18,6 +18,7 @@ const TEMPLATE_PATH = path.join(PAGES_DIR, "html", "tamplate.html");
 
 routes.use("/css", express.static(path.join(__dirname, "pages", "css")));
 routes.use("/js", express.static(path.join(__dirname, "pages", "js")));
+routes.use("/driver",require("./driver/app"));
 
 
 routes.get("/", (req, res) => {

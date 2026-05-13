@@ -1,30 +1,19 @@
 const express = require("express");
+const routes = express.Router();
 const path = require("path");
 const fs = require("fs");
-const routes = express.Router();
 
-const deviceroute = require("./mobile/device");
-const developercenter = require("./routes/developercenter");
-const smsroute = require("./routes/sms/sms");
-const searchroute = require("./routes/search/app");
-const developerroute = require("./developer/center");
-
-const database = path.join("C:", "database");
+const database = path.join("C:", "database", "delivery");
 const ROOT = __dirname; // mobile 폴더
 // 네 환경 그대로
 const PAGES_DIR = path.join(ROOT, "pages");
-const TEMPLATE_PATH = path.join(PAGES_DIR,"html", "tamplate.html");
+const TEMPLATE_PATH = path.join(PAGES_DIR, "html", "tamplate.html");
 
-routes.use("/css", express.static(path.join(__dirname, "pages","css")));
-routes.use("/js", express.static(path.join(__dirname, "pages","js")));
-
-
-routes.use("/device",deviceroute);
-routes.use("/search",searchroute);
-routes.use("/developer",developerroute);
+routes.use("/css", express.static(path.join(__dirname, "pages", "css")));
+routes.use("/js", express.static(path.join(__dirname, "pages", "js")));
 
 routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR,"html", "main.html");
+    const pagePath = path.join(PAGES_DIR, "html", "index.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");
@@ -48,6 +37,5 @@ function renderTemplate(pagePath) {
         return null;
     }
 }
-
 
 module.exports = routes;
