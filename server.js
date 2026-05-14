@@ -81,6 +81,9 @@ app.use((req, res, next) => {
   else if (host.startsWith("seller.")) {
     return require("./seller/app")(req, res, next);
   }
+  else if (host.startsWith("contentflow.")) {
+    return require("./seller/app")(req, res, next);
+  }
 
   next(); // 🔥 이거 필수
 });
