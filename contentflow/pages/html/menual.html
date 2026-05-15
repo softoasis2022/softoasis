@@ -1,0 +1,184 @@
+<main>
+
+    <!-- 왼쪽 메뉴 -->
+    <div class="apply-menu">
+        <div>
+            <p>적용방법</p>
+            <ul>
+                <li>
+                    <a href="#neo">
+                        네오
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#kakaotalk">
+                        카카오톡
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#line">
+                        라인
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 가운데 설명 -->
+    <div class="apply-content">
+
+        <!-- 네오 -->
+        <section id="neo">
+
+            <h2>
+                <img src="" alt="">
+                네오 적용 방법
+            </h2>
+
+            <h3>
+                네오 앱에서 적용하는 방법
+            </h3>
+
+            <p>
+                네오 플랫폼 내부에서 간편하게 적용 가능합니다.
+            </p>
+
+        </section>
+
+        <!-- 카카오 -->
+        <section id="kakaotalk">
+
+            <h2>
+                카카오톡 적용 방법
+            </h2>
+
+            <span>
+                카카오톡에서 제공하는 기능이 아닙니다.
+                신청 승인된 사용자만 사용 가능합니다.
+            </span>
+
+            <h3 id="kakaotalkmobile">
+                카카오톡 모바일에서 적용하는 방법
+            </h3>
+
+            <p>
+                카카오톡 PC버전에서는 신청이 불가능합니다.
+                카카오톡 모바일에서 신청 가능합니다.
+            </p>
+
+        </section>
+
+        <!-- 라인 -->
+        <section id="line">
+
+            <h2>
+                라인 적용 방법
+            </h2>
+
+            <p>
+                라인 플랫폼 연동 신청 후 사용 가능합니다.
+            </p>
+
+        </section>
+
+    </div>
+
+    <!-- 오른쪽 문의 -->
+    <div class="contact-wrap">
+        <form action="/contact/send" method="post" class="contact-form">
+
+            <!-- 제목 -->
+            <div class="form-group">
+
+                <label for="title">
+                    문의사항 제목
+                </label>
+
+                <input type="text" id="title" name="title" placeholder="문의 제목을 입력해주세요." required>
+
+            </div>
+
+            <!-- 응답 방식 -->
+            <div class="form-group">
+
+                <label for="replyType">
+                    응답 받을 방법
+                </label>
+
+                <select name="replyType" id="replyType">
+
+                    <option value="email" selected>
+                        이메일
+                    </option>
+
+                    <option value="sms">
+                        문자
+                    </option>
+
+                    <option value="kakaotalk">
+                        카카오톡
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- 이메일 -->
+            <div class="form-group reply-input" id="emailGroup">
+
+                <label for="email">
+                    이메일
+                </label>
+
+                <input type="email" id="email" name="email" placeholder="example@email.com" required>
+
+            </div>
+
+            <!-- 문자 -->
+            <div class="form-group reply-input hidden" id="smsGroup">
+
+                <label for="phone">
+                    전화번호
+                </label>
+
+                <input type="tel" id="phone" name="phone" placeholder="01012345678">
+
+            </div>
+
+            <!-- 카카오 -->
+            <div class="form-group reply-input hidden" id="kakaoGroup">
+
+                <label for="kakaoId">
+                    카카오톡 아이디
+                </label>
+
+                <input type="text" id="kakaoId" name="kakaoId" placeholder="카카오톡 아이디 입력">
+
+            </div>
+
+            <!-- 문의 내용 -->
+            <div class="form-group">
+
+                <label for="content">
+                    문의 내용
+                </label>
+
+                <textarea id="content" name="content" placeholder="문의 내용을 입력해주세요." rows="8" required></textarea>
+
+            </div>
+
+            <button type="submit">
+                문의 전송하기
+            </button>
+
+        </form>
+
+    </div>
+
+</main>
+
+<link rel="stylesheet" href="/contentflow/css/menual.css">
+<script src="/contentflow/js/menual.js"></script>

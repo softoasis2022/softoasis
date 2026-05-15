@@ -1,0 +1,270 @@
+/* =========================
+   MAIN LAYOUT
+========================= */
+main {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    gap: 30px;
+
+    padding: 30px;
+
+    background: #f5f7fb;
+
+    box-sizing: border-box;
+}
+
+/* =========================
+   LEFT MENU
+========================= */
+.apply-menu {
+    width: 220px;
+    min-width: 220px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.05);
+
+    height: fit-content;
+
+    position: sticky;
+    top: 20px;
+}
+
+.apply-menu > p {
+    margin: 0 0 20px 0;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    color: #111827;
+}
+
+.apply-menu ul {
+    padding-inline-start: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.apply-menu li {
+    list-style: none;
+}
+
+.apply-menu a {
+    display: flex;
+    align-items: center;
+
+    padding: 14px 16px;
+
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    color: #555;
+
+    background: #f9fafb;
+
+    border: 1px solid transparent;
+
+    transition: 0.2s;
+}
+
+.apply-menu a:hover {
+    background: #ffffff;
+
+    color: #2563eb;
+
+    border-color: #bfdbfe;
+
+    transform: translateX(4px);
+
+    box-shadow:
+        0 4px 10px rgba(37, 99, 235, 0.08);
+}
+
+/* =========================
+   CENTER CONTENT
+========================= */
+.apply-content {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* 카드 */
+.apply-content > section {
+    background: white;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 24px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.05);
+
+    transition: 0.2s;
+}
+
+.apply-content > section:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.08);
+}
+
+.apply-content h2 {
+    margin-top: 0;
+
+    font-size: 34px;
+    color: #111827;
+}
+
+.apply-content h3 {
+    margin-top: 30px;
+
+    color: #2563eb;
+}
+
+.apply-content p {
+    color: #4b5563;
+
+    line-height: 1.8;
+}
+
+/* =========================
+   CONTACT FORM
+========================= */
+.contact-form {
+    width: 320px;
+    min-width: 320px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 24px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.05);
+
+    position: sticky;
+    top: 20px;
+
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 그룹 */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 라벨 */
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #374151;
+}
+
+/* 입력 */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+
+    padding: 14px;
+
+    background: #f9fafb;
+
+    border: 1px solid #d1d5db;
+    border-radius: 14px;
+
+    color: #111827;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition: 0.2s;
+}
+
+/* 포커스 */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #60a5fa;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 4px rgba(96, 165, 250, 0.15);
+}
+
+/* textarea */
+.contact-form textarea {
+    resize: vertical;
+    min-height: 180px;
+}
+
+/* 버튼 */
+.contact-form button {
+    height: 52px;
+
+    border: none;
+    border-radius: 14px;
+
+    background:
+        linear-gradient(135deg, #3b82f6, #2563eb);
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.contact-form button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.2);
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 1024px) {
+
+    main {
+        flex-direction: column;
+    }
+
+    .apply-menu,
+    .contact-form {
+        width: 100%;
+        min-width: auto;
+
+        position: static;
+    }
+}

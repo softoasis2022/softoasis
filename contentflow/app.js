@@ -12,7 +12,7 @@ const TEMPLATE_PATH = path.join(PAGES_DIR,"html", "tamplate.html");
 routes.use("/css", express.static(path.join(__dirname, "pages","css")));
 routes.use("/js", express.static(path.join(__dirname, "pages","js")));
 
-
+routes.use("/login",require("./routes/account/login"));
 
 routes.get("/", (req, res) => {
     const pagePath = path.join(PAGES_DIR,"html", "index.html");
@@ -22,6 +22,40 @@ routes.get("/", (req, res) => {
 
     res.send(result);
 });
+routes.get("/menual", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"html", "menual.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+routes.get("/content", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"html", "content.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+routes.get("/payment", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"html", "payment.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+
+routes.post("/content", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"html", "index.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+
 
 /**
  * 템플릿 렌더링
