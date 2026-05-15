@@ -1,0 +1,7 @@
+@import url("/contentflow/css/account.css");
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

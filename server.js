@@ -101,7 +101,7 @@ app.use("/event", require("./app/event/app"));
 app.use("/tc", require("./app/TC/app"));
 
 
-app.use("/contant", require("./neo/app"));
+app.use("/contentflow", require("./contentflow/app"));
 
 
 
