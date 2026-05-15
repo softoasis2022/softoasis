@@ -1,3 +1,44 @@
 .categorycontent{
+    width: 100%;
+    
+}
+
+.categorycontent > ul{
+    padding-inline-start: 0;
+    overflow-x: auto;
+
+    display: flex;
+    gap: 10px;
+
+    scroll-behavior: smooth;
+}
+.categorycontent > ul > li{
+    min-width: 150px;
+    min-height: 250px;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 3px 3px 3px 3px gray;
+    margin: 10px;
+}
+
+.categorycontent > ul > li > img{
+    width: 100px;
+}
+.content_infolist{
+    display: flex;
+    flex-direction: row;    
+    padding-inline-start: 0px;
+    gap: 5px;
+}
+.content_infolist > li {
+    list-style: none;
+    
+}
+.content_infolist > li > a > img{
+    width: 50px;
+    border-radius: 10px;
     
 }
