@@ -1,0 +1,16 @@
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* =========================
+   모바일
+========================= */
+@media (max-width: 600px) {
+
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+}

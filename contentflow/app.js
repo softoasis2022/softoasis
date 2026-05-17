@@ -46,6 +46,14 @@ routes.get("/contentinfo", (req, res) => {
 
     res.send(result);
 });
+routes.get("/search", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"html", "search.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
 routes.get("/payment", (req, res) => {
     const pagePath = path.join(PAGES_DIR,"html", "payment.html");
 
