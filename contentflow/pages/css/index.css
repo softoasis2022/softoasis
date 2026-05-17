@@ -1,2 +1,26 @@
-@import url("/contentflow/css/categorycontent.css");
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
 
+main > section {
+    width: fit-content;
+    min-width: 600px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px 3px gray;
+    padding: 20px;
+}
+section ul{
+    display: flex;
+    flex-direction: row;
+    padding-inline-start: 0px;
+    overflow-x: scroll;
+}
+section li {
+    padding: 10px;
+    list-style: none;
+    border: 1px solid black;
+}
