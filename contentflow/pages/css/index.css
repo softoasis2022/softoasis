@@ -7,14 +7,7 @@ main {
     padding: 10px;
 }
 
-.category {
-    gap: 5px;
-}
-.category > a{
-    border-radius: 10px;
-    box-shadow: 3px 3px 3px 3px gray;
-    padding: 10px;
-}
+
 
 .wrap_list{
     display: flex;
