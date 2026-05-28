@@ -1,0 +1,46 @@
+{
+    "name": "",
+    "profileimgurl": "",
+    "building": [
+        {
+            "buildingnumber": "",
+            "name": "시청",
+            "logoimgurl": "",
+            "url": "/world/townhall",
+            "type": "nomalurl",
+            "view": 1,
+            "sub": "시장님 할일을 주세요 일을 저희가 하겠습니다.",
+            "platformsub": "작성하신 업무는 저희 네오가 해결해 드리겠습니다."
+        },
+        {
+            "buildingnumber": "",
+            "name": "은행",
+            "logoimgurl": "",
+            "url": "/world/bank",
+            "type": "nomalurl",
+            "view": 1,
+            "sub": "자산을 안전하게 보관하고 더 큰 가치를 만들어 보세요.",
+            "platformsub": "송금, 결제, 정산까지 네오가 빠르고 안전하게 지원합니다."
+        },
+        {
+            "buildingnumber": 3,
+            "name": "단골가게",
+            "logoimgurl": "",
+            "url": "/world/store",
+            "type": "nomalurl",
+            "view": 1,
+            "sub": "단골가게 이루미점입니다. 당신을 위해 열어 두었습니다.",
+            "platformsub": "네오앱에서 필요한 물품을 구입할 수 있습니다."
+        },
+        {
+            "buildingnumber": "",
+            "name": "역",
+            "logoimgurl": "",
+            "url": "/world/station",
+            "type": "nomalurl",
+            "view": 1,
+            "sub": "월드를 가지고 있는 다른친구의 동내를 두럴 보기 위해 기차를 타고 방문해요",
+            "platformsub": "다른 월드를 방문하여 상대의 관심사를 둘러보아요"
+        }
+    ]
+}

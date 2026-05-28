@@ -1,0 +1,28 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    overflow-y: scroll;
+}
+
+section {
+    
+    
+}
+.wrap_content{
+    width: 100%;
+    height: fit-content;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 40px;
+}
+.wrap_content > a{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
