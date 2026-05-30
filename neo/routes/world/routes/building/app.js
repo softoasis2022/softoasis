@@ -1,3 +1,17 @@
 const express = require("express");
+const path = require("path");
+const fs = require("fs");
 const routes = express.Router();
 
+const database = path.join("C:", "database");
+const ROOT = __dirname; // mobile 폴더
+// 네 환경 그대로
+const PAGES_DIR = path.join(ROOT, "pages");
+const TEMPLATE_PATH = path.join(PAGES_DIR,"html", "tamplate.html");
+
+routes.use("/css", express.static(path.join(__dirname, "pages","css")));
+routes.use("/js", express.static(path.join(__dirname, "pages","js")));
+
+
+
+module.exports = routes;
