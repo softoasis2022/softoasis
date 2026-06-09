@@ -14,4 +14,29 @@ routes.use("/js", express.static(path.join(__dirname, "pages","js")));
 
 
 
+//쿼리 빌딩 번호
+
+routes.get("/lobby",(req,res)=>{
+    //로비
+    const {worldnumber,buidingnumber} = req.query;
+
+    //빌딩 벙보 가지고 오기
+    fs.readFileSync(path.join(database,"world","building",`${buidingnumber}.json`))
+
+    
+});
+routes.get("/Construction",(req,res)=>{
+    //월드 번호
+    const {worldnumber,buidingnumber} = req.query;
+
+
+    //월드의 타일정보르 가지고 오는 디비 루트
+    const worldinfo = JSON.parse(fs.readFileSync(path.join(database,"world",worldnumber,"info.json"),"utf-8"));
+
+    console.log(worldinfo.building.length);
+
+    res.status(200).send("응답 완료");
+    
+});
+
 module.exports = routes;

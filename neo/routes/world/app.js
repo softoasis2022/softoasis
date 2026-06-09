@@ -34,11 +34,9 @@ const town = require("./routes/town/app");
 const station = require("./routes/station/app");
 const pass = require("./routes/pass/app");
 const mobile = require("./routes/world/app");
+const building = require("./routes/building/app");
 
-routes.use("/pass", pass);
-routes.use("/town", town);
-routes.use("/station", station);
-routes.use("/m", mobile);
+
 
 //미완성
 //  https://neo.softoasis.org라우팅 완료이니
@@ -105,6 +103,11 @@ routes.use((req, res, next) => {
     next();
 });
 
+routes.use("/pass", pass);
+routes.use("/town", town);
+routes.use("/station", station);
+routes.use("/m", mobile);
+routes.use("/building", building);
 
 // ==============================
 // 🔥 페이지 라우트
