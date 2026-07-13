@@ -5,6 +5,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            background: #f5f5f5;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        main>div:first-child {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        main>div:first-child p {
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        main>div:first-child button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        section {
+            display: none;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        input,
+        select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+
+        button[type="submit"] {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .preview {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f0f0f0;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,11 +102,11 @@
             <p>
                 빌딩 유형은 어떤 건가요?
             </p>
-            <button>앱입니다</button>
-            <button>사이트 입니다</button>
-            <button>빌딩을 짓고 싶어요</button>
+            <button class="type-btn" data-target="app">앱입니다</button>
+            <button class="type-btn" data-target="site">사이트 입니다</button>
+            <button class="type-btn" data-target="building">빌딩을 짓고 싶어요</button>
         </div>
-        <section>
+        <section id="app">
             <p>등록하기</p>
             <span>앱</span>
             <form action="">
@@ -39,7 +128,7 @@
                 <button>등록하기</button>
             </form>
         </section>
-        <section>
+        <section id="site">
             <p>등록하기</p>
             <span>사이트</span>
             <form action="">
@@ -61,17 +150,182 @@
                 <button>등록하기</button>
             </form>
         </section>
-        <section>
-            <form action="">
-                <label for="">
-                    <p>건물이름은 무엇인가요?</p>
-                    <input type="text" value="">
+        <section id="building">
+            <form id="constructionForm" method="post" action="">
+                <input type="hidden" name="buildingtype" value="building">
+                <label>
+                    <p>건물 이름을 정해 주세요.</p>
+                    <input type="text" name="name" placeholder="소프트오아시스 본사" required>
                 </label>
-                <label for=""></label>
-                <label for=""></label>
+
+                <label>
+                    <p>건물 위치(타일)를 입력해 주세요.</p>
+                    <input type="text" name="tile" placeholder="5,5" required>
+                </label>
+
+                <label>
+                    <p>건물 크기를 선택해 주세요.</p>
+                    <select name="tilesize">
+                        <option value="1">1 타일</option>
+                    </select>
+                </label>
+
+                <label>
+                    <p>건물 층수를 선택해 주세요.</p>
+                    <select name="rayer">
+                        <option value="1">1층</option>
+                        <option value="2">2층</option>
+                        <option value="3">3층</option>
+                        <option value="4">4층</option>
+                        <option value="5">5층</option>
+                        <option value="6">6층</option>
+                        <option value="7">7층</option>
+                        <option value="8">8층</option>
+                        <option value="9">9층</option>
+                        <option value="10">10층</option>
+                        <option value="11">11층</option>
+                        <option value="12">12층</option>
+                        <option value="13">13층</option>
+                        <option value="14">14층</option>
+                        <option value="15">15층</option>
+                    </select>
+                </label>
+
+                <label>
+                    <p>층당 오브젝트 수를 입력해 주세요.</p>
+                    <input type="number" name="object" min="1" max="10" value="1" required>
+                </label>
+
+                <button type="submit">
+                    건설 시작
+                </button>
+
             </form>
         </section>
     </main>
+    <script>
+        const buttons = document.querySelectorAll(".type-btn");
+        const sections = document.querySelectorAll("section");
+
+        buttons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const target = button.dataset.target;
+
+                sections.forEach(section => {
+                    section.classList.remove("active");
+                });
+
+                document
+                    .getElementById(target)
+                    .classList.add("active");
+
+            });
+
+        });
+
+        // 건물 폼 미리보기
+        const constructionForm = document.getElementById("constructionForm");
+
+        if (constructionForm) {
+
+            const floorInput =
+                constructionForm.querySelector("[name='rayer']");
+
+            const objectInput =
+                constructionForm.querySelector("[name='object']");
+
+            const preview = document.createElement("div");
+            preview.className = "preview";
+
+            constructionForm.appendChild(preview);
+
+            function updatePreview() {
+
+                const floor = Number(floorInput.value);
+                const objectCount = Number(objectInput.value);
+
+                preview.innerHTML = `
+            <p>건물 층수 : ${floor}층</p>
+            <p>전체 오브젝트 : ${floor * objectCount}개</p>
+        `;
+            }
+
+            floorInput.addEventListener("change", updatePreview);
+            objectInput.addEventListener("input", updatePreview);
+
+            updatePreview();
+
+            constructionForm.addEventListener("submit", async (e) => {
+
+                e.preventDefault();
+
+                const body = {
+                    buildingtype:
+                        constructionForm.querySelector("[name='buildingtype']").value,
+
+                    name:
+                        constructionForm.querySelector("[name='name']").value,
+
+                    tile:
+                        constructionForm.querySelector("[name='tile']").value,
+
+                    tilesize:
+                        Number(constructionForm.querySelector("[name='tilesize']").value),
+
+                    rayer:
+                        Number(constructionForm.querySelector("[name='rayer']").value),
+
+                    object:
+                        Number(constructionForm.querySelector("[name='object']").value)
+                };
+
+                try {
+
+                    const response = await fetch(
+                        window.location.pathname + window.location.search,
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(body)
+                        }
+                    );
+
+                    const result = await response.json();
+
+                    console.log(result);
+
+                    if (result.success) {
+
+                        alert("건물 생성 완료");
+
+                        const params = new URLSearchParams(window.location.search);
+                        const worldnumber = params.get("worldnumber");
+
+                        location.href =
+                            `https://neo.softoasis.org/world/world?worldnumber=${worldnumber}`;
+
+                    }
+                    else {
+                        alert(result.message);
+                    }
+
+                }
+                catch (error) {
+
+                    console.error(error);
+
+                    alert("서버 통신 실패");
+
+                }
+
+            });
+
+        }
+    </script>
 </body>
 
 </html>

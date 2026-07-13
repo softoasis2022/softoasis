@@ -15,6 +15,6 @@ function worldinfo(userId){
 routes.post("/",(req,res)=>{
     const worlddata = worldinfo(req.userId);
     console.log(worlddata);
-})
+});
 
 module.exports = routes
