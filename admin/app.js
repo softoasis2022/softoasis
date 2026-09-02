@@ -11,8 +11,10 @@ const userroutes = require("./routes/user");
 const approutes =  require("./routes/home");
 const acountroutes =  require("./routes/acount");
 const Noticeroutes =  require("./routes/Notice");
+const UAMSroutes =  require("./routes/UAMSroutes");
 
 routes.use("/acount", acountroutes);
+routes.use("/UAMS", UAMSroutes);
 
 //쿠키에 adminid 가 없으면 로그인 페이지(경로 /acount로 리디렉션 : 클라이언트는 admim.softoasis.org/acount/login 으로 리디렉션됨)
 //

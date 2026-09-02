@@ -1,45 +1,38 @@
 const { MongoClient } = require("mongodb");
 
-// MongoDB 연결 문자열
-const uri = "mongodb://user:pass@host:27017/?w=majority";
-
-// MongoClient 생성
+const uri = "mongodb://127.0.0.1:27017";
 const client = new MongoClient(uri);
 
-async function run() {
-    try {
+let database = null;
 
-        // MongoDB 연결
-        await client.connect();
-
-        // DB 선택
-        const database = client.db("production");
-
-        // 컬렉션 선택
-        const movies = database.collection("movies");
-
-        // 검색 쿼리
-        const query = {
-            title: "200 meters"
-        };
-
-        // 데이터 조회
-        const movie = await movies.findOne(query);
-
-        // 출력
-        console.log(movie);
-
-    } catch (err) {
-
-        console.error("에러 발생:", err);
-
-    } finally {
-
-        // 연결 종료
-        await client.close();
-
+async function connectMongoDB() {
+    // 이미 연결되어 있으면 기존 연결 재사용
+    if (database) {
+        return database;
     }
+
+    await client.connect();
+
+    await client.db("admin").command({
+        ping: 1
+    });
+
+    // 사용할 데이터베이스 선택
+    database = client.db("production");
+
+    console.log("MongoDB 연결 성공");
+
+    return database;
 }
 
-// 실행
-run().catch(console.dir);
+async function closeMongoDB() {
+    await client.close();
+    database = null;
+
+    console.log("MongoDB 연결 종료");
+}
+
+module.exports = {
+    connectMongoDB,
+    closeMongoDB
+};

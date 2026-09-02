@@ -13,7 +13,7 @@ const ROOT = __dirname; // mobile 폴더
 // 네 환경 그대로
 const PAGES_DIR = path.join(ROOT, "pages");
 const imgDB = path.join(database, "image");
-const TEMPLATE_PATH = path.join(PAGES_DIR, "tamplate", "index.html");
+const TEMPLATE_PATH = path.join(PAGES_DIR,"tamplate" ,"tamplate.html");
 
 // 정적 파일
 routes.use(express.static(ROOT));
@@ -22,8 +22,9 @@ routes.use(express.static(imgDB));
 routes.use(express.json());
 routes.use(express.urlencoded({ extended: true }));
 
+
 routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR,"html", "main.html");
+    const pagePath = path.join(PAGES_DIR,"main", "index.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");

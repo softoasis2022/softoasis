@@ -122,9 +122,9 @@ const certDir = path.join("C:", "certs");
 
 const httpsServer = https.createServer(
   {
-    key: fs.readFileSync(path.join(certDir, "www.softoasis.org-key.pem")),
-    cert: fs.readFileSync(path.join(certDir, "www.softoasis.org-crt.pem")),
-    ca: fs.readFileSync(path.join(certDir, "www.softoasis.org-chain.pem")),
+    key: fs.readFileSync(path.join("./certs", "www.softoasis.org-key.pem")),
+    cert: fs.readFileSync(path.join("./certs", "www.softoasis.org-crt.pem")),
+    ca: fs.readFileSync(path.join("./certs", "www.softoasis.org-chain.pem")),
   },
   app
 );

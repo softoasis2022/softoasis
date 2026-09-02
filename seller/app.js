@@ -11,6 +11,7 @@ const product = require("./routes/product/app");
 routes.use("/mobile",mobile);
 routes.use("/account",account);
 routes.use("/product",product);
+routes.use("/food",food);
 
 // 폴더 기준
 const ROOT = __dirname; // mobile 폴더
