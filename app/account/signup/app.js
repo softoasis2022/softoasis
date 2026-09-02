@@ -1,151 +1,207 @@
 const express = require("express");
 const path = require("path");
-const fs = require("fs");
 const bcrypt = require("bcryptjs");
+
+// 현재 회원가입 라우터 파일의 위치에 맞게 경로 조정
+const {
+  connectMongoDB
+} = require("../../../database/mongodb");
 
 const routes = express.Router();
 const ROOT = __dirname;
 
 routes.use(express.json());
 routes.use(express.urlencoded({ extended: true }));
-
 routes.use(express.static(ROOT));
 
 const PAGES_DIR = path.join(ROOT, "pages");
-const userDir = path.join("C:", "database", "app", "user");
 
 const ID_REGEX = /^[a-zA-Z0-9._@-]{6,20}$/;
 const NICK_REGEX = /^[a-zA-Z0-9가-힣]{2,20}$/;
 const PHONE_REGEX = /^[0-9]{10,11}$/;
 
-if (!fs.existsSync(userDir)) {
-  fs.mkdirSync(userDir, { recursive: true });
-}
-
 routes.use("/", express.static(PAGES_DIR));
 
 routes.get("/", (req, res) => {
-  return res.sendFile("register.html", { root: PAGES_DIR });
-});
-
-
-// ======================
-// 🔥 아이디 중복 체크
-// ======================
-routes.post("/check-id", (req, res) => {
-  const { userId } = req.body;
-
-  if (!userId) {
-    return res.json({
-      success: false,
-      message: "아이디 없음"
-    });
-  }
-
-  if (!ID_REGEX.test(userId)) {
-    return res.json({
-      success: false,
-      message: "아이디는 영문/숫자/. _ - @ 조합의 6~20자"
-    });
-  }
-
-  const userPath = path.join(userDir, `${userId}.json`);
-
-  if (fs.existsSync(userPath)) {
-    return res.json({
-      success: false,
-      message: "이미 존재하는 아이디"
-    });
-  }
-
-  return res.json({
-    success: true,
-    message: "사용 가능한 아이디 입니다"
+  return res.sendFile("register.html", {
+    root: PAGES_DIR
   });
 });
 
+// ======================
+// 아이디 중복 체크
+// ======================
+routes.post("/check-id", async (req, res) => {
+  try {
+    const userId = String(req.body.userId || "").trim();
+
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: "아이디 없음"
+      });
+    }
+
+    if (!ID_REGEX.test(userId)) {
+      return res.status(400).json({
+        success: false,
+        message: "아이디는 영문/숫자/. _ - @ 조합의 6~20자"
+      });
+    }
+
+    const database = await connectMongoDB();
+    const users = database.collection("users");
+
+    // 아이디 검색
+    const existingUser = await users.findOne(
+      { userId },
+      {
+        projection: {
+          _id: 1
+        }
+      }
+    );
+
+    if (existingUser) {
+      return res.status(409).json({
+        success: false,
+        message: "이미 존재하는 아이디"
+      });
+    }
+
+    return res.json({
+      success: true,
+      message: "사용 가능한 아이디입니다"
+    });
+
+  } catch (error) {
+    console.error("아이디 확인 오류:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "서버 오류"
+    });
+  }
+});
 
 // ======================
-// 🔥 회원가입 (암호화 제거)
+// 회원가입
 // ======================
 routes.post("/create", async (req, res) => {
   try {
-    const { userId, password, nickname, phone } = req.body;
+    const userId = String(req.body.userId || "").trim();
+    const password = String(req.body.password || "");
+    const nickname = String(req.body.nickname || "").trim();
+
+    // 하이픈과 공백 제거
+    const phone = String(req.body.phone || "")
+      .replace(/\D/g, "");
 
     if (!userId || !password || !nickname || !phone) {
-      return res.json({
+      return res.status(400).json({
         success: false,
         message: "필수값 누락"
       });
     }
 
     if (!ID_REGEX.test(userId)) {
-      return res.json({
+      return res.status(400).json({
         success: false,
         message: "아이디 형식 오류"
       });
     }
 
     if (password.length < 4) {
-      return res.json({
+      return res.status(400).json({
         success: false,
-        message: "비밀번호 4자 이상"
+        message: "비밀번호는 4자 이상이어야 합니다"
       });
     }
 
     if (!NICK_REGEX.test(nickname)) {
-      return res.json({
+      return res.status(400).json({
         success: false,
         message: "닉네임 형식 오류"
       });
     }
 
     if (!PHONE_REGEX.test(phone)) {
-      return res.json({
+      return res.status(400).json({
         success: false,
-        message: "폰번호 형식 오류"
+        message: "전화번호 형식 오류"
       });
     }
 
-    const userPath = path.join(userDir, `${userId}.json`);
+    const database = await connectMongoDB();
+    const users = database.collection("users");
 
-    if (fs.existsSync(userPath)) {
-      return res.json({
-        success: false,
-        message: "이미 존재하는 아이디"
-      });
-    }
+    // 아이디와 전화번호 중복 방지
+    await users.createIndex(
+      { userId: 1 },
+      { unique: true }
+    );
 
-    const passId = "PASS-" + Date.now().toString(36).toUpperCase();
+    await users.createIndex(
+      { phone: 1 },
+      { unique: true }
+    );
 
-
-    //passwordHash는 bcrypt를 사용해서 저장
+    // 비밀번호 해시 생성
     const passwordHash = await bcrypt.hash(password, 10);
+
+    const passId =
+      "PASS-" + Date.now().toString(36).toUpperCase();
+
     const userData = {
       userId,
       passwordHash,
-      password, // 🔥 평문 저장 (암호화 제거)
+
+      // password 평문은 저장하지 않음
       nickname,
       phone,
       passId,
-      createdAt: new Date().toISOString(),
-      status: "active"
+
+      phoneVerified: false,
+      status: "active",
+
+      createdAt: new Date(),
+      updatedAt: new Date()
     };
 
-    await fs.promises.writeFile(
-      userPath,
-      JSON.stringify(userData, null, 2),
-      "utf8"
-    );
+    const result = await users.insertOne(userData);
 
-    return res.json({
+    return res.status(201).json({
       success: true,
-      message: "회원가입 성공"
+      message: "회원가입 성공",
+      userId: result.insertedId
     });
 
-  } catch (err) {
-    console.error(err);
-    return res.json({
+  } catch (error) {
+    // 아이디 또는 전화번호 중복
+    if (error.code === 11000) {
+      if (error.keyPattern?.userId) {
+        return res.status(409).json({
+          success: false,
+          message: "이미 존재하는 아이디"
+        });
+      }
+
+      if (error.keyPattern?.phone) {
+        return res.status(409).json({
+          success: false,
+          message: "이미 등록된 전화번호"
+        });
+      }
+
+      return res.status(409).json({
+        success: false,
+        message: "이미 등록된 회원정보"
+      });
+    }
+
+    console.error("회원가입 오류:", error);
+
+    return res.status(500).json({
       success: false,
       message: "서버 오류"
     });

@@ -1,43 +1,47 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const routes = express.Router();
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
-
 const crypto = require("crypto");
 
-// 폴더 기준
-const ROOT = __dirname; // mobile 폴더
-// 네 환경 그대로
-const database = path.join("C:", "database");
+// 로그인 라우터 파일 위치에 맞게 경로 조정
+const {
+  connectMongoDB
+} = require("../../../database/mongodb");
+
+const routes = express.Router();
+
+const ROOT = __dirname;
+const DATABASE_ROOT = path.join("C:", "database");
 const PAGES_DIR = path.join(ROOT, "pages");
 
 routes.use(express.json());
 routes.use(express.urlencoded({ extended: true }));
 routes.use(cookieParser());
 
-// ✅ 2) 그 다음에 정적 파일 (style.css 등)
 routes.use("/css", express.static(PAGES_DIR));
 routes.use("/js", express.static(PAGES_DIR));
 
-
-function generateRandomString(length = 32) {
-  return crypto.randomBytes(length).toString("hex");
+function generateSessionId() {
+  return crypto.randomBytes(32).toString("hex");
 }
 
-// ✅ 1) "/"는 라우트가 먼저 처리 (login.html을 직접 내려줌)
+// ======================
+// 로그인 페이지
+// ======================
 routes.get("/", (req, res) => {
-  //console.log("PAGES_DIR:", PAGES_DIR);
-  //console.log("files:", fs.readdirSync(PAGES_DIR));
-  return res.sendFile("login.html", { root: PAGES_DIR });
+  return res.sendFile("login.html", {
+    root: PAGES_DIR
+  });
 });
 
-
-
-
+// ======================
+// 로그인 요청
+// ======================
 routes.post("/", async (req, res) => {
-  const { userId, password } = req.body;
+  const userId = String(req.body.userId || "").trim();
+  const password = String(req.body.password || "");
 
   if (!userId || !password) {
     return res.status(400).json({
@@ -47,80 +51,107 @@ routes.post("/", async (req, res) => {
   }
 
   try {
-    const userPath = path.join(database, "app", "user", `${userId}.json`);
+    // ======================
+    // MongoDB에서 유저 검색
+    // ======================
+    const mongoDatabase = await connectMongoDB();
+    const users = mongoDatabase.collection("users");
 
-    if (!fs.existsSync(userPath)) {
-      return res.status(404).json({
+    const userinfo = await users.findOne({
+      userId: userId
+    });
+
+    // 보안을 위해 아이디가 없는 경우와
+    // 비밀번호가 틀린 경우에 같은 메시지 사용
+    if (!userinfo || !userinfo.passwordHash) {
+      return res.status(401).json({
         success: false,
-        message: "존재하지 않는 사용자"
+        message: "아이디 또는 비밀번호가 일치하지 않습니다"
       });
     }
 
-    const userinfo = JSON.parse(fs.readFileSync(userPath, "utf8"));
-
-    // 🔥 bcrypt 비교
-    const isMatch = await bcrypt.compare(password, userinfo.passwordHash);
+    // ======================
+    // 비밀번호 비교
+    // ======================
+    const isMatch = await bcrypt.compare(
+      password,
+      userinfo.passwordHash
+    );
 
     if (!isMatch) {
       return res.status(401).json({
         success: false,
-        message: "비밀번호가 일치하지 않습니다"
+        message: "아이디 또는 비밀번호가 일치하지 않습니다"
+      });
+    }
+
+    // 정지되거나 제한된 계정 확인
+    if (userinfo.status !== "active") {
+      return res.status(403).json({
+        success: false,
+        message: "현재 사용할 수 없는 계정입니다"
       });
     }
 
     // ======================
-    // 🔥 세션 생성
+    // 세션 생성
     // ======================
-    const sessionId = generateRandomString(32);
-    const sessionDir = path.join(database, "session");
+    const sessionId = generateSessionId();
+    const sessionDir = path.join(
+      DATABASE_ROOT,
+      "session"
+    );
 
-    if (!fs.existsSync(sessionDir)) {
-      fs.mkdirSync(sessionDir, { recursive: true });
-    }
+    await fs.promises.mkdir(sessionDir, {
+      recursive: true
+    });
 
-    // 🔥 세션 데이터 (만료 포함)
     const sessionData = {
       userId: userinfo.userId,
+      mongoUserId: userinfo._id.toString(),
+      nickname: userinfo.nickname,
+
       createdAt: new Date().toISOString(),
-      expiresAt: Date.now() + (1000 * 60 * 60 * 24) // 24시간
+
+      // 24시간 후 만료
+      expiresAt: Date.now() + (1000 * 60 * 60 * 24)
     };
 
-    fs.writeFileSync(
+    await fs.promises.writeFile(
       path.join(sessionDir, `${sessionId}.json`),
-      JSON.stringify(sessionData, null, 2)
+      JSON.stringify(sessionData, null, 2),
+      "utf8"
     );
 
     // ======================
-    // 🔥 쿠키 설정 (중요)
+    // 세션 쿠키 설정
     // ======================
     res.cookie("sessionid", sessionId, {
       httpOnly: true,
-      secure: true,              // HTTPS
-      sameSite: "none",          // 🔥 변경 (strict → none)
-      domain: ".softoasis.org",  // 🔥 추가 (핵심)
+      secure: true,
+      sameSite: "none",
+      domain: ".softoasis.org",
       maxAge: 1000 * 60 * 60 * 24,
       path: "/"
     });
 
-    // ======================
-    // 🔥 응답
-    // ======================
     return res.json({
       success: true,
-      message: "로그인 성공"
+      message: "로그인 성공",
+      user: {
+        userId: userinfo.userId,
+        nickname: userinfo.nickname
+      }
     });
 
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.error("로그인 오류:", error);
+
     return res.status(500).json({
       success: false,
       message: "서버 오류"
     });
   }
 });
-
-
-
-
 
 module.exports = routes;

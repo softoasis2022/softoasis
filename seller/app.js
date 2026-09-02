@@ -7,6 +7,7 @@ const fs = require("fs");
 const account = require("./routes/account/account");
 const mobile = require("./routes/mobile/mobile");
 const product = require("./routes/product/app");
+const food = require("./routes/food/app");
 
 routes.use("/mobile",mobile);
 routes.use("/account",account);
