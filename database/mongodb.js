@@ -5,20 +5,20 @@ const client = new MongoClient(uri);
 
 let database = null;
 
-async function connectMongoDB() {
+async function connectMongoDB(dbname) {
     // 이미 연결되어 있으면 기존 연결 재사용
-    if (database) {
-        return database;
-    }
+    // if (database) {
+    //     return database;
+    // }
 
-    await client.connect();
+    await client.connect(uri);
 
     await client.db("admin").command({
         ping: 1
     });
 
     // 사용할 데이터베이스 선택
-    database = client.db("production");
+    database = client.db(dbname);
 
     console.log("MongoDB 연결 성공");
 

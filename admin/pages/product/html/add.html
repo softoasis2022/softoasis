@@ -1,0 +1,231 @@
+<link rel="stylesheet" href="/product/css/add.css">
+
+<main class="product-admin">
+    <section class="product-section">
+        <header class="product-header">
+            <h1 id="pageTitle">상품 한 개 등록</h1>
+            <p id="pageDescription">
+                새로운 상품의 기본 정보와 판매 정보를 입력합니다.
+            </p>
+        </header>
+
+        <nav class="register-mode">
+            <button
+                type="button"
+                id="singleModeButton"
+                class="mode-button active"
+            >
+                한 개 등록
+            </button>
+
+            <button
+                type="button"
+                id="bulkModeButton"
+                class="mode-button"
+            >
+                여러 개 등록
+            </button>
+        </nav>
+
+        <form
+            id="productForm"
+            class="product-form"
+            action="/product/add"
+            method="POST"
+        >
+            <div id="productList"></div>
+
+            <div id="bulkToolbar" class="bulk-toolbar hidden">
+                <button
+                    type="button"
+                    id="addProductButton"
+                    class="add-product-button"
+                >
+                    + 상품 입력칸 추가
+                </button>
+            </div>
+
+            <div class="form-actions">
+                <button class="reset-button" type="reset">
+                    초기화
+                </button>
+
+                <button
+                    class="submit-button"
+                    type="submit"
+                    id="submitButton"
+                >
+                    상품 등록
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <template id="productTemplate">
+        <article class="product-item">
+            <header class="product-item-header">
+                <h2 class="product-number">상품 1</h2>
+
+                <button
+                    type="button"
+                    class="remove-product-button"
+                >
+                    삭제
+                </button>
+            </header>
+
+            <div class="product-fields">
+                <label class="form-field">
+                    <span>
+                        상품명 <b class="required">*</b>
+                    </span>
+
+                    <input
+                        type="text"
+                        data-field="productName"
+                        placeholder="상품명을 입력하세요"
+                        required
+                    >
+                </label>
+
+                <label class="form-field">
+                    <span>
+                        카테고리 <b class="required">*</b>
+                    </span>
+
+                    <select data-field="category" required>
+                        <option value="">카테고리 선택</option>
+                        <option value="smartphone">스마트폰</option>
+                        <option value="smartphone-accessories">
+                            스마트폰 액세서리
+                        </option>
+                        <option value="computer">컴퓨터</option>
+                        <option value="electronics">전자제품</option>
+                        <option value="fashion">패션</option>
+                        <option value="food">식품</option>
+                        <option value="etc">기타</option>
+                    </select>
+                </label>
+
+                <label class="form-field">
+                    <span>
+                        브랜드 <b class="required">*</b>
+                    </span>
+
+                    <input
+                        type="text"
+                        data-field="brand"
+                        placeholder="브랜드를 입력하세요"
+                        required
+                    >
+                </label>
+
+                <label class="form-field">
+                    <span>
+                        매입 가격 <b class="required">*</b>
+                    </span>
+
+                    <input
+                        type="number"
+                        data-field="purchasePrice"
+                        placeholder="매입 가격을 입력하세요"
+                        min="0"
+                        required
+                    >
+                </label>
+
+                <label class="form-field">
+                    <span>
+                        판매 가격 <b class="required">*</b>
+                    </span>
+
+                    <input
+                        type="number"
+                        data-field="price"
+                        placeholder="판매 가격을 입력하세요"
+                        min="0"
+                        required
+                    >
+                </label>
+
+                <label class="form-field">
+                    <span>정상 가격</span>
+
+                    <input
+                        type="number"
+                        data-field="originalPrice"
+                        placeholder="정상 가격을 입력하세요"
+                        min="0"
+                    >
+                </label>
+
+                <label class="form-field">
+                    <span>
+                        재고 수량 <b class="required">*</b>
+                    </span>
+
+                    <input
+                        type="number"
+                        data-field="stock"
+                        value="0"
+                        min="0"
+                        required
+                    >
+                </label>
+
+                <label class="form-field">
+                    <span>
+                        상품 발주 주소 <b class="required">*</b>
+                    </span>
+
+                    <input
+                        type="url"
+                        data-field="productUrl"
+                        placeholder="https://example.com/product/1001"
+                        required
+                    >
+                </label>
+
+                <label class="form-field full-width">
+                    <span>상품 이미지 주소</span>
+
+                    <input
+                        type="url"
+                        data-field="imageUrl"
+                        placeholder="https://example.com/image.jpg"
+                    >
+                </label>
+
+                <label class="form-field full-width">
+                    <span>특장점</span>
+
+                    <textarea
+                        data-field="features"
+                        placeholder="특장점을 쉼표로 구분해서 입력하세요"
+                    ></textarea>
+                </label>
+
+                <label class="form-field full-width">
+                    <span>상품 설명</span>
+
+                    <textarea
+                        data-field="description"
+                        placeholder="상품에 대한 설명을 입력하세요"
+                    ></textarea>
+                </label>
+
+                <label class="checkbox-field full-width">
+                    <input
+                        type="checkbox"
+                        data-field="isActive"
+                        value="true"
+                        checked
+                    >
+                    상품을 공개 상태로 등록
+                </label>
+            </div>
+        </article>
+    </template>
+</main>
+
+<script src="/product/js/add.js"></script>

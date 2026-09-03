@@ -1,17 +1,12 @@
-//컨텐츠 가입 하는 코드
-
-// 1. 컨텐츠용 고유 번호로 유저 정보 조회
-// 2. 컨텐츠의 제공 나이 확인후 비교 후 제한 사항이 있는지 확인
-// 3. 확인이됬다면 바로 가입 후 번호 등록
 const {
     connectMongoDB,
     closeMongoDB
 } = require("../mongodb");
 
-async function add(price) {
+async function addUser(postnumber,address) {
     try {
-        const database = await connectMongoDB("contant");
-        const users = database.collection("content_user_ids");
+        const database = await connectMongoDB();
+        const users = database.collection("post");
 
         await users.createIndex(
             { userId: 1 },
@@ -45,8 +40,10 @@ async function add(price) {
 
         const newUser = {
             userId: normalizedUserId,
-            price : price,
+            phone: normalizedPhone,
             nickname: "테스트유저",
+            postnumber : postnumber,
+            address : address,
             phoneVerified: false,
             accountStatus: "active",
             createdAt: new Date(),

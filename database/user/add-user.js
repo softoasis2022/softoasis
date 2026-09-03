@@ -5,7 +5,7 @@ const {
 
 async function addUser(userId, phone) {
     try {
-        const database = await connectMongoDB();
+        const database = await connectMongoDB("production");
         const users = database.collection("users");
 
         await users.createIndex(
