@@ -1,0 +1,175 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f5f6f8;
+    color: #191919;
+    font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+main {
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 60px 0;
+}
+
+/* 브랜드별 영역 */
+.device_section {
+    margin-bottom: 70px;
+}
+
+.device_section_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #191919;
+}
+
+.device_section_header h2 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* 제품 목록 */
+.device_list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* 제품 카드 */
+.wrap_device {
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 20px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.wrap_device:hover {
+    transform: translateY(-7px);
+    border-color: #d2d2d2;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.11);
+}
+
+.wrap_device a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* 제품 이미지 */
+.wrap_device img {
+    display: block;
+    width: 100%;
+    height: 280px;
+    padding: 30px;
+    background-color: #f9fafb;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.wrap_device:hover img {
+    transform: scale(1.05);
+}
+
+/* 제품 정보 */
+.device_info {
+    padding: 22px;
+}
+
+.device_brand {
+    margin-bottom: 8px;
+    color: #777777;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.device_name {
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 750;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+}
+
+.device_storage {
+    display: inline-block;
+    margin-bottom: 22px;
+    padding: 6px 11px;
+    background-color: #f1f3f5;
+    border-radius: 7px;
+    color: #555555;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.device_price {
+    color: #0066ff;
+    font-size: 18px;
+    font-weight: 800;
+    text-align: right;
+}
+
+/* 태블릿 */
+@media (max-width: 900px) {
+    main {
+        width: min(100% - 32px, 760px);
+        padding: 40px 0;
+    }
+
+    .device_list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* 모바일 */
+@media (max-width: 600px) {
+    main {
+        width: calc(100% - 28px);
+        padding: 30px 0;
+    }
+
+    .device_section {
+        margin-bottom: 50px;
+    }
+
+    .device_section_header {
+        margin-bottom: 16px;
+    }
+
+    .device_section_header h2 {
+        font-size: 23px;
+    }
+
+    .device_list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .wrap_device img {
+        height: 240px;
+    }
+
+    .device_info {
+        padding: 19px;
+    }
+
+    .device_name {
+        font-size: 18px;
+    }
+
+    .device_price {
+        font-size: 17px;
+    }
+}

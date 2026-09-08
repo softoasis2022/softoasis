@@ -57,6 +57,7 @@ routes.use("/view", express.static(path.join(__dirname, "view")));
 routes.use("/shop", express.static(path.join(__dirname, "shop")));
 routes.use("/logo", express.static(path.join(__dirname, "logo")));
 routes.use("/icon", express.static(path.join(__dirname, "icon")));
+routes.use("/asset", express.static(path.join(__dirname, "asset")));
 routes.use("/content", express.static(path.join(databasepath, "content")));
 routes.use("/profile", express.static(USER_IMAGE_ROOT)); // 업로드된 이미지 제공
 

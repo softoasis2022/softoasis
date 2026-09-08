@@ -12,8 +12,12 @@ const database = path.join("D:", "database");
 const PAGES_DIR = path.join(ROOT, "pages");
 const imgDB= path.join(database, "image");
 const TEMPLATE_PATH = path.join(PAGES_DIR, "tamplate", "index.html");
-
 const postnews = require("./routes/news");
+const handphoneroutes =  require("./routes/handphone/app");
+
+routes.use("/css", express.static(path.join(PAGES_DIR)));
+routes.use("/js", express.static(path.join(PAGES_DIR)));
+routes.use("/handphone", handphoneroutes);
 
 // 정적 파일
 routes.use(express.static(ROOT));
@@ -25,121 +29,28 @@ routes.use(express.urlencoded({ extended: true }));
 // 검색 POST
 routes.use("/news",postnews); 
 
-function extractMainInner(html) {
-  const m = html.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
-  return m ? m[1] : html;
-}
 
-/**
- * pageCssHrefs: ["/mobile/pages/main/main.css", ...]
- * pageJsSrcs:   ["/mobile/pages/main/main.js", ...]  // 필요하면 사용
- */
-function renderWithTemplate(res, pageFileAbsPath, pageCssHrefs = [], pageJsSrcs = []) {
-  const template = fs.readFileSync(TEMPLATE_PATH, "utf8");
+routes.get("/", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"html","handphone.html");
 
-  let pageHtml = fs.readFileSync(pageFileAbsPath, "utf8");
-  pageHtml = extractMainInner(pageHtml);
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
 
-  const cssTags = (pageCssHrefs || [])
-    .filter(Boolean)
-    .map((href) => `<link rel="stylesheet" href="${href}">`)
-    .join("\n");
-
-  const jsTags = (pageJsSrcs || [])
-    .filter(Boolean)
-    .map((src) => `<script src="${src}" defer></script>`)
-    .join("\n");
-
-  // 템플릿에 자리 없으면(까먹었을 때) 최소한 main은 주입되게 안전 처리
-  let out = template.replace("<!-- MAIN_CONTENT -->", pageHtml);
-
-  // head에 페이지별 CSS 주입
-  if (out.includes("<!-- PAGE_STYLE -->")) {
-    out = out.replace("<!-- PAGE_STYLE -->", cssTags);
-  } else {
-    // fallback: </head> 바로 앞에 삽입
-    out = out.replace("</head>", `${cssTags}\n</head>`);
-  }
-
-  // body 끝에 페이지별 JS 주입 (필요할 때만)
-  if (jsTags) {
-    out = out.replace("</body>", `${jsTags}\n</body>`);
-  }
-
-  res.set("Content-Type", "text/html; charset=utf-8");
-  res.send(out);
-}
-
-// ✅ 페이지별 “HTML + CSS + JS” 매핑
-const PAGE_MAP = {
-  "/": {
-    html: path.join(PAGES_DIR, "main", "main.html"),
-    css: [
-      "/mobile/pages/main/style/main.css",
-      "/mobile/pages/main/style/news.css",
-      "/mobile/pages/main/style/introdevice.css",
-      "/mobile/pages/main/style/telecomlist.css"
-    ],
-    js: ["/mobile/pages/main/script/news.js"],
-    img : [
-    ]
-  },
-
-  "/handphone": {
-    html: path.join(PAGES_DIR, "handphone", "handphone.html"),
-    css: ["/mobile/pages/handphone/style/handphone.css"],
-    js: ["/mobile/pages/handphone/script/dataapi.js"]
-  },
-
-  "/tablet": {
-    html: path.join(PAGES_DIR, "handphone", "handphone.html"),
-    css: ["/mobile/pages/handphone/style/handphone.css"],
-    js: ["/mobile/pages/handphone/script/dataapi.js"]
-  },
-
-  "/notebook": {
-    html: path.join(PAGES_DIR, "handphone", "handphone.html"),
-    css: ["/mobile/pages/handphone/style/handphone.css"],
-    js: ["/mobile/pages/handphone/script/dataapi.js"]
-  },
-
-  "/peripheral": {
-    html: path.join(PAGES_DIR, "handphone", "handphone.html"),
-    css: ["/mobile/pages/handphone/style/handphone.css"],
-    js: ["/mobile/pages/handphone/script/dataapi.js"]
-  },
-
-  "/accessory": {
-    html: path.join(PAGES_DIR, "handphone", "handphone.html"),
-    css: ["/mobile/pages/handphone/style/handphone.css"],
-    js: ["/mobile/pages/handphone/script/dataapi.js"]
-  },
-
-  "/case": {
-    html: path.join(PAGES_DIR, "handphone", "handphone.html"),
-    css: ["/mobile/pages/handphone/style/handphone.css"],
-    js: ["/mobile/pages/handphone/script/dataapi.js"]
-  },
-
-  "/kart": {
-    html: path.join(PAGES_DIR, "kart", "index.html"),
-    css: ["/mobile/pages/handphone/style/handphone.css"],
-    js: ["/mobile/pages/handphone/script/handphone.css"]
-  }
-};
-
-Object.keys(PAGE_MAP).forEach((routePath) => {
-  routes.get(routePath, (req, res) => {
-    const conf = PAGE_MAP[routePath];
-
-    if (!fs.existsSync(conf.html)) {
-      return res.status(404).send("페이지 파일을 찾을 수 없습니다: " + conf.html);
-    }
-
-    renderWithTemplate(res, conf.html, conf.css, conf.js);
-  });
+    res.send(result);
 });
 
+function renderTemplate(pagePath) {
+    const templatePath = path.join(TEMPLATE_DIR);
 
+    try {
+        let template = fs.readFileSync(templatePath, "utf-8");
+        const pageContent = fs.readFileSync(pagePath, "utf-8");
+
+        return template.replace("<!-- MAIN_CONTENT -->", pageContent);
+    } catch (err) {
+        console.error("템플릿 렌더링 실패:", err);
+        return null;
+    }
+}
 
 module.exports = routes;

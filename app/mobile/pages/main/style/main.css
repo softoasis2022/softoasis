@@ -4,3 +4,19 @@ main>div {
     justify-content: center;
     width: 100%;
 }
+.devicelist img{
+    max-width: 150px;
+    max-height: 150px;
+}
+.devicelist > li{
+    border: 1px solid black;
+    min-width: 200px;
+    min-height: 200px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.devicelist > li p{
+    text-align: center;
+}
