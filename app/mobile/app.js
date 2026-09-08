@@ -13,11 +13,11 @@ const PAGES_DIR = path.join(ROOT, "pages");
 const imgDB= path.join(database, "image");
 const TEMPLATE_PATH = path.join(PAGES_DIR, "tamplate", "index.html");
 const postnews = require("./routes/news");
-const handphoneroutes =  require("./routes/handphone/app");
 
-routes.use("/css", express.static(path.join(PAGES_DIR)));
-routes.use("/js", express.static(path.join(PAGES_DIR)));
-routes.use("/handphone", handphoneroutes);
+routes.use("/css/tamplate", express.static(path.join(PAGES_DIR,"tamplate","style")));
+
+routes.use("/css/main", express.static(path.join(PAGES_DIR,"main","style")));
+routes.use("/js/main", express.static(path.join(PAGES_DIR,"main","script")));
 
 // 정적 파일
 routes.use(express.static(ROOT));
@@ -31,7 +31,7 @@ routes.use("/news",postnews);
 
 
 routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR,"html","handphone.html");
+    const pagePath = path.join(PAGES_DIR,"main","html","main.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");
@@ -40,7 +40,7 @@ routes.get("/", (req, res) => {
 });
 
 function renderTemplate(pagePath) {
-    const templatePath = path.join(TEMPLATE_DIR);
+    const templatePath = path.join(TEMPLATE_PATH);
 
     try {
         let template = fs.readFileSync(templatePath, "utf-8");

@@ -1,0 +1,12 @@
+.section{
+    min-width: 300px;
+    min-height: 250px;
+    box-shadow: 3px 3px 3px 3px gray;
+    padding: 10px;
+}
+.section ul{
+    padding-inline-start: 0px;
+}
+.section li{
+    list-style: none;
+}

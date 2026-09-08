@@ -1,3 +1,7 @@
+body{
+  margin: 0px;
+}
+
 .mainplatform {
   background: linear-gradient(135deg, #e0f7fa, #80deea); /* 투명도 제거 */
   padding: 20px 40px;
