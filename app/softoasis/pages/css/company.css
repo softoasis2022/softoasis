@@ -1,0 +1,519 @@
+/* ================================
+   기본 설정
+================================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #163a5f;
+    --secondary-color: #1e6fa8;
+    --accent-color: #00b6d6;
+    --accent-light: #e8f8fb;
+
+    --text-color: #172033;
+    --text-sub-color: #667085;
+    --border-color: #e4e9f0;
+
+    --background-color: #f5f7fa;
+    --card-color: #ffffff;
+
+    --section-width: 1200px;
+    --border-radius: 20px;
+}
+
+body {
+    min-width: 320px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family:
+        Pretendard,
+        "Noto Sans KR",
+        Arial,
+        sans-serif;
+    line-height: 1.7;
+    word-break: keep-all;
+}
+
+/* ================================
+   회사소개 전체 영역
+================================ */
+.about_main {
+    width: 100%;
+    overflow: hidden;
+}
+
+.about_main>section {
+    width: calc(100% - 40px);
+    max-width: var(--section-width);
+    margin: 30px auto;
+}
+
+/* ================================
+   상단 소개 영역
+================================ */
+.about_hero {
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+    overflow: hidden;
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 85% 20%,
+            rgba(0, 182, 214, 0.28),
+            transparent 30%),
+        linear-gradient(135deg,
+            #102c49 0%,
+            #164d76 55%,
+            #087d9c 100%);
+    color: #ffffff;
+}
+
+.about_hero::before {
+    content: "";
+    position: absolute;
+    top: -130px;
+    right: -80px;
+    width: 380px;
+    height: 380px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+}
+
+.about_hero::after {
+    content: "";
+    position: absolute;
+    right: 100px;
+    bottom: -200px;
+    width: 450px;
+    height: 450px;
+    border: 80px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+}
+
+.about_hero>* {
+    position: relative;
+    z-index: 1;
+}
+
+.about_label {
+    margin-bottom: 18px;
+    color: #5de0f3;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.about_hero h1 {
+    max-width: 900px;
+    margin-bottom: 28px;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.25;
+    letter-spacing: -2.5px;
+}
+
+.about_summary {
+    max-width: 720px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 19px;
+    line-height: 1.9;
+}
+
+/* ================================
+   공통 콘텐츠 섹션
+================================ */
+.about_section {
+    padding: 64px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--card-color);
+    box-shadow: 0 12px 35px rgba(22, 58, 95, 0.06);
+}
+
+.section_title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 36px;
+}
+
+.section_title>span {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--accent-light);
+    color: var(--secondary-color);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.section_title h2 {
+    color: var(--primary-color);
+    font-size: 30px;
+    line-height: 1.35;
+    letter-spacing: -1px;
+}
+
+.section_content {
+    padding-left: 60px;
+}
+
+.section_content>p {
+    max-width: 900px;
+    margin-bottom: 18px;
+    color: var(--text-sub-color);
+    font-size: 17px;
+}
+
+.section_content>p:last-child {
+    margin-bottom: 0;
+}
+
+/* 운영 모티브 인용문 */
+.section_content blockquote {
+    position: relative;
+    margin-top: 34px;
+    padding: 30px 34px 30px 38px;
+    border-left: 5px solid var(--accent-color);
+    border-radius: 0 14px 14px 0;
+    background-color: var(--accent-light);
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.8;
+}
+
+/* ================================
+   참여자 카드
+================================ */
+.participant_grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.participant_card {
+    position: relative;
+    min-height: 230px;
+    padding: 34px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background-color: #ffffff;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.participant_card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 182, 214, 0.5);
+    box-shadow: 0 16px 30px rgba(22, 58, 95, 0.1);
+}
+
+.participant_number {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: var(--accent-color);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.participant_card h3 {
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    font-size: 23px;
+}
+
+.participant_card p {
+    color: var(--text-sub-color);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* ================================
+   핵심 가치
+================================ */
+.value_section {
+    background:
+        linear-gradient(135deg,
+            rgba(232, 248, 251, 0.75),
+            #ffffff 60%);
+}
+
+.value_list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.value_list>div {
+    min-height: 160px;
+    padding: 25px;
+    border: 1px solid rgba(0, 182, 214, 0.2);
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.value_list strong {
+    display: block;
+    margin-bottom: 14px;
+    color: var(--secondary-color);
+    font-size: 21px;
+}
+
+.value_list span {
+    color: var(--text-sub-color);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* ================================
+   서비스 카드
+================================ */
+.service_grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.service_card {
+    min-height: 290px;
+    padding: 34px;
+    border-radius: 17px;
+    background-color: #f7f9fc;
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.service_card:hover {
+    transform: translateY(-5px);
+    background-color: #ffffff;
+    box-shadow: 0 16px 35px rgba(22, 58, 95, 0.1);
+}
+
+.service_name {
+    display: inline-block;
+    margin-bottom: 40px;
+    padding: 7px 13px;
+    border-radius: 20px;
+    background-color: var(--accent-light);
+    color: var(--secondary-color);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.service_card h3 {
+    margin-bottom: 16px;
+    color: var(--primary-color);
+    font-size: 21px;
+    line-height: 1.5;
+}
+
+.service_card>p:last-child {
+    color: var(--text-sub-color);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* ================================
+   비전 영역
+================================ */
+.about_vision {
+    position: relative;
+    margin-bottom: 60px !important;
+    padding: 90px 70px;
+    overflow: hidden;
+    border-radius: 24px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+}
+
+.about_vision::before,
+.about_vision::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.about_vision::before {
+    top: -170px;
+    left: -100px;
+    width: 350px;
+    height: 350px;
+    background-color: rgba(0, 182, 214, 0.12);
+}
+
+.about_vision::after {
+    right: -120px;
+    bottom: -190px;
+    width: 400px;
+    height: 400px;
+    border: 70px solid rgba(255, 255, 255, 0.04);
+}
+
+.about_vision>* {
+    position: relative;
+    z-index: 1;
+}
+
+.about_vision .about_label {
+    color: #5de0f3;
+}
+
+.about_vision h2 {
+    margin-bottom: 25px;
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1.45;
+    letter-spacing: -1.5px;
+}
+
+.about_vision>p:last-child {
+    max-width: 750px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+/* ================================
+   태블릿
+================================ */
+@media (max-width: 900px) {
+    .about_hero {
+        min-height: 450px;
+        padding: 60px 45px;
+    }
+
+    .about_section {
+        padding: 50px 40px;
+    }
+
+    .section_content {
+        padding-left: 0;
+    }
+
+    .value_list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .service_grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service_card {
+        min-height: auto;
+    }
+
+    .service_name {
+        margin-bottom: 25px;
+    }
+}
+
+/* ================================
+   모바일
+================================ */
+@media (max-width: 600px) {
+    .about_main>section {
+        width: calc(100% - 24px);
+        margin: 18px auto;
+    }
+
+    .about_hero {
+        min-height: 430px;
+        padding: 45px 25px;
+        border-radius: 20px;
+    }
+
+    .about_hero h1 {
+        margin-bottom: 22px;
+        font-size: 34px;
+        line-height: 1.35;
+        letter-spacing: -1.5px;
+    }
+
+    .about_summary {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .about_section {
+        padding: 38px 22px;
+        border-radius: 16px;
+    }
+
+    .section_title {
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+
+    .section_title>span {
+        width: 38px;
+        height: 38px;
+        font-size: 11px;
+    }
+
+    .section_title h2 {
+        padding-top: 3px;
+        font-size: 24px;
+    }
+
+    .section_content>p {
+        font-size: 15px;
+    }
+
+    .section_content blockquote {
+        padding: 24px;
+        font-size: 17px;
+    }
+
+    .participant_grid {
+        grid-template-columns: 1fr;
+    }
+
+    .participant_card {
+        min-height: auto;
+        padding: 27px;
+    }
+
+    .value_list {
+        grid-template-columns: 1fr;
+    }
+
+    .value_list>div {
+        min-height: auto;
+    }
+
+    .service_card {
+        padding: 27px;
+    }
+
+    .about_vision {
+        padding: 65px 24px;
+    }
+
+    .about_vision h2 {
+        font-size: 29px;
+    }
+
+    .about_vision>p:last-child {
+        font-size: 15px;
+    }
+}
