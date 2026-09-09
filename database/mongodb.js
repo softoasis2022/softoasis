@@ -1,36 +1,50 @@
 const { MongoClient } = require("mongodb");
 
-const uri = "mongodb://127.0.0.1:27017";
-const client = new MongoClient(uri);
+const mongoUrl =
+    process.env.MONGODB_URI ||
+    "mongodb://127.0.0.1:27017";
 
-let database = null;
+const client = new MongoClient(mongoUrl);
 
-async function connectMongoDB(dbname) {
-    // 이미 연결되어 있으면 기존 연결 재사용
-    // if (database) {
-    //     return database;
-    // }
+let connectionPromise = null;
 
-    await client.connect(uri);
 
-    await client.db("admin").command({
-        ping: 1
-    });
+// 데이터베이스 연결
+async function connectMongoDB(databaseName) {
+    if (!databaseName) {
+        throw new Error("데이터베이스 이름이 필요합니다.");
+    }
 
-    // 사용할 데이터베이스 선택
-    database = client.db(dbname);
+    if (!connectionPromise) {
+        connectionPromise = client.connect()
+            .then(() => {
+                console.log("MongoDB 연결 성공");
+                return client;
+            })
+            .catch(error => {
+                connectionPromise = null;
+                throw error;
+            });
+    }
 
-    console.log("MongoDB 연결 성공");
+    const connectedClient = await connectionPromise;
 
-    return database;
+    return connectedClient.db(databaseName);
 }
 
+
+// 서버 종료 시 연결 종료
 async function closeMongoDB() {
+    if (!connectionPromise) {
+        return;
+    }
+
     await client.close();
-    database = null;
+    connectionPromise = null;
 
     console.log("MongoDB 연결 종료");
 }
+
 
 module.exports = {
     connectMongoDB,

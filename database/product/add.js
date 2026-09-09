@@ -148,6 +148,218 @@ async function addProduct(productData) {
         await closeMongoDB();
     }
 }
+// 상품 한 개 조회
+async function getProduct(productId) {
+    const database = await connectMongoDB("product");
+    const products = database.collection("products");
+
+    const _id = convertObjectId(productId);
+
+    const product = await products.findOne({ _id });
+
+    if (!product) {
+        throw new Error("상품을 찾을 수 없습니다.");
+    }
+
+    return product;
+}
+
+
+// 상품 전체 조회
+async function getProducts(filter = {}) {
+    const database = await connectMongoDB("product");
+    const products = database.collection("products");
+
+    const query = {};
+
+    if (filter.category) {
+        query.category = String(filter.category).trim();
+    }
+
+    if (filter.brand) {
+        query.brand = String(filter.brand).trim();
+    }
+
+    if (filter.isActive !== undefined) {
+        query.isActive =
+            filter.isActive === true ||
+            filter.isActive === "true";
+    }
+
+    return await products
+        .find(query)
+        .sort({ createdAt: -1 })
+        .toArray();
+}
+
+
+// 상품 수정
+async function updateProduct(productId, productData) {
+    try {
+        const database = await connectMongoDB("product");
+        const products = database.collection("products");
+
+        const _id = convertObjectId(productId);
+        const updateData = {};
+
+        if (productData.name !== undefined) {
+            const name = String(productData.name).trim();
+
+            if (!name) {
+                throw new Error("상품 이름을 입력해주세요.");
+            }
+
+            updateData.name = name;
+        }
+
+        if (productData.purchasePrice !== undefined) {
+            updateData.purchasePrice = parseNumber(
+                productData.purchasePrice,
+                "매입 가격"
+            );
+        }
+
+        if (productData.price !== undefined) {
+            updateData.price = parseNumber(
+                productData.price,
+                "판매 가격"
+            );
+        }
+
+        if (productData.originalPrice !== undefined) {
+            updateData.originalPrice = parseOptionalNumber(
+                productData.originalPrice,
+                "정상 가격"
+            );
+        }
+
+        if (productData.category !== undefined) {
+            const category = String(productData.category).trim();
+
+            if (!category) {
+                throw new Error("카테고리를 선택해주세요.");
+            }
+
+            updateData.category = category;
+        }
+
+        if (productData.brand !== undefined) {
+            const brand = String(productData.brand).trim();
+
+            if (!brand) {
+                throw new Error("브랜드를 입력해주세요.");
+            }
+
+            updateData.brand = brand;
+        }
+
+        if (productData.stock !== undefined) {
+            const stock = parseNumber(
+                productData.stock,
+                "재고 수량"
+            );
+
+            if (!Number.isInteger(stock)) {
+                throw new Error("재고 수량은 정수로 입력해주세요.");
+            }
+
+            updateData.stock = stock;
+        }
+
+        if (productData.url !== undefined) {
+            const url = String(productData.url).trim();
+
+            validateUrl(url, "상품 URL", true);
+            updateData.url = url;
+        }
+
+        if (productData.imageUrl !== undefined) {
+            const imageUrl = String(productData.imageUrl).trim();
+
+            validateUrl(imageUrl, "이미지 URL", false);
+            updateData.imageUrl = imageUrl;
+        }
+
+        if (productData.description !== undefined) {
+            updateData.description =
+                String(productData.description).trim();
+        }
+
+        if (productData.features !== undefined) {
+            updateData.features =
+                normalizeFeatures(productData.features);
+        }
+
+        if (productData.isActive !== undefined) {
+            updateData.isActive =
+                productData.isActive === true ||
+                productData.isActive === "true" ||
+                productData.isActive === "on";
+        }
+
+        if (Object.keys(updateData).length === 0) {
+            throw new Error("수정할 정보가 없습니다.");
+        }
+
+        updateData.updatedAt = new Date();
+
+        const result = await products.updateOne(
+            { _id },
+            {
+                $set: updateData
+            }
+        );
+
+        if (result.matchedCount === 0) {
+            throw new Error("상품을 찾을 수 없습니다.");
+        }
+
+        return {
+            success: true,
+            matchedCount: result.matchedCount,
+            modifiedCount: result.modifiedCount
+        };
+
+    } catch (error) {
+        if (error.code === 11000) {
+            throw new Error("이미 등록된 상품 URL입니다.");
+        }
+
+        throw error;
+    }
+}
+
+
+// 상품 삭제
+async function deleteProduct(productId) {
+    const database = await connectMongoDB("product");
+    const products = database.collection("products");
+
+    const _id = convertObjectId(productId);
+
+    const result = await products.deleteOne({ _id });
+
+    if (result.deletedCount === 0) {
+        throw new Error("상품을 찾을 수 없습니다.");
+    }
+
+    return {
+        success: true,
+        deletedCount: result.deletedCount
+    };
+}
+
+
+// 문자열 ID를 MongoDB ObjectId로 변환
+function convertObjectId(productId) {
+    const id = String(productId || "").trim();
+
+    if (!/^[a-fA-F0-9]{24}$/.test(id)) {
+        throw new Error("올바른 상품 번호가 아닙니다.");
+    }
+
+    return new ObjectId(id);
+}
 
 
 // 필수 숫자 변환

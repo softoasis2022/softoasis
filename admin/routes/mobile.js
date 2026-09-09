@@ -40,8 +40,18 @@ routes.get("/deviceprofileregister", (req, res) => {
 
     res.send(result);
 });
-routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR,"intro.html");
+routes.get("/mobileseller", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"mobileseller.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+const mobilesellerroutes = require("./mobile/mobileseller");
+routes.use("/mobileseller",mobilesellerroutes);
+routes.get("/offlinestore", (req, res) => {
+    const pagePath = path.join(PAGES_DIR,"offlinestore.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");

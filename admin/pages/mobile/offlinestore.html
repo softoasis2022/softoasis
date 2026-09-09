@@ -1,121 +1,490 @@
 <main>
-    <!-- 매장 대표 정보 -->
-    <section class="store_hero">
-        <div class="store_title">
-            <p class="store_category">LG유플러스 공식 매장</p>
-            <h1>LG유플러스 연수동 구연수점</h1>
+    <link rel="stylesheet" href="./css/offlinestore.css">
+    <!-- 상단 소개 영역 -->
+    <section class="page_header">
+        <div>
+            <h1>오프라인 스토어 관리</h1>
+
+            <p>
+                등록된 오프라인 매장의 정보와 운영 상태를 관리합니다.
+            </p>
         </div>
 
-        <div class="store_image">
-            <img
-                src="/images/store/yeonsu-store.jpg"
-                alt="LG유플러스 연수동 구연수점 매장 전경"
-            >
-        </div>
-    </section>
-
-    <!-- 매장 기본 정보 -->
-    <section class="store_information">
-        <div class="section_title">
-            <h2>매장 정보</h2>
-        </div>
-
-        <dl class="information_list">
-            <div class="information_item">
-                <dt>주소</dt>
-                <dd>인천광역시 연수구 연수동</dd>
-            </div>
-
-            <div class="information_item">
-                <dt>전화번호</dt>
-                <dd>
-                    <a href="tel:0320000000">032-000-0000</a>
-                </dd>
-            </div>
-
-            <div class="information_item">
-                <dt>영업시간</dt>
-                <dd>
-                    <p>평일 10:00 ~ 20:00</p>
-                    <p>토요일 10:00 ~ 18:00</p>
-                    <p>일요일 및 공휴일 휴무</p>
-                </dd>
-            </div>
-
-            <div class="information_item">
-                <dt>주차</dt>
-                <dd>매장 방문 고객 주차 가능</dd>
-            </div>
-        </dl>
-    </section>
-
-    <!-- 매장 위치 -->
-    <section class="store_location">
-        <div class="section_title">
-            <h2>위치</h2>
-        </div>
-
-        <div class="map">
-            <iframe
-                src=""
-                title="LG유플러스 연수동 구연수점 지도"
-                loading="lazy"
-            ></iframe>
-        </div>
-
-        <div class="address">
-            <p>인천광역시 연수구 연수동</p>
-
-            <div class="address_buttons">
-                <button type="button">주소 복사</button>
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                    길찾기
-                </a>
-            </div>
+        <div class="header_action">
+            <a href="#storeAddSection">
+                오프라인 스토어 등록
+            </a>
         </div>
     </section>
+    <!-- 오프라인 스토어 목록 -->
+    <section class="store_list_section">
+        <div class="section_header">
+            <div>
+                <h2>오프라인 스토어 리스트</h2>
 
-    <!-- 제공 서비스 -->
-    <section class="store_services">
-        <div class="section_title">
-            <h2>제공 서비스</h2>
+                <p>
+                    등록된 매장을 검색하고 운영 상태를 관리합니다.
+                </p>
+            </div>
         </div>
 
-        <ul class="service_list">
-            <li>휴대폰 신규 가입</li>
-            <li>휴대폰 기기 변경</li>
-            <li>번호 이동</li>
-            <li>요금제 상담</li>
-            <li>인터넷 및 IPTV 가입</li>
-            <li>휴대폰 데이터 이전</li>
-        </ul>
-    </section>
+        <!-- 검색 영역 -->
+        <form class="store_search_form" action="/offline/store" method="get">
+            <select name="searchType">
+                <option value="storeName">
+                    매장명
+                </option>
 
-    <!-- 방문 안내 -->
-    <section class="store_notice">
-        <div class="section_title">
-            <h2>방문 안내</h2>
+                <option value="storeId">
+                    매장 번호
+                </option>
+
+                <option value="sellerId">
+                    판매자 번호
+                </option>
+
+                <option value="phone">
+                    전화번호
+                </option>
+            </select>
+
+            <input type="search" name="keyword" placeholder="검색어를 입력하세요">
+
+            <select name="region">
+                <option value="">전체 지역</option>
+                <option value="서울">서울</option>
+                <option value="부산">부산</option>
+                <option value="대구">대구</option>
+                <option value="인천">인천</option>
+                <option value="광주">광주</option>
+                <option value="대전">대전</option>
+                <option value="울산">울산</option>
+                <option value="세종">세종</option>
+                <option value="경기">경기</option>
+                <option value="강원">강원</option>
+                <option value="충북">충북</option>
+                <option value="충남">충남</option>
+                <option value="전북">전북</option>
+                <option value="전남">전남</option>
+                <option value="경북">경북</option>
+                <option value="경남">경남</option>
+                <option value="제주">제주</option>
+            </select>
+
+            <select name="status">
+                <option value="">전체 상태</option>
+
+                <option value="active">
+                    정상 운영
+                </option>
+
+                <option value="pending">
+                    승인 대기
+                </option>
+
+                <option value="temporary_closed">
+                    임시 휴업
+                </option>
+
+                <option value="closed">
+                    폐점
+                </option>
+            </select>
+
+            <button type="submit">
+                검색
+            </button>
+
+            <a href="/offline/store">
+                초기화
+            </a>
+        </form>
+
+        <!-- 매장 데이터 테이블 -->
+        <div class="table_wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">매장 번호</th>
+                        <th scope="col">매장명</th>
+                        <th scope="col">브랜드</th>
+                        <th scope="col">매장 유형</th>
+                        <th scope="col">전화번호</th>
+                        <th scope="col">지역</th>
+                        <th scope="col">담당 판매자</th>
+                        <th scope="col">운영 상태</th>
+                        <th scope="col">등록일</th>
+                        <th scope="col">관리</th>
+                    </tr>
+                </thead>
+
+                <!-- 데이터베이스 조회 결과 출력 영역 -->
+                <tbody id="storeTableBody">
+                    <tr>
+                        <td>STORE-0001</td>
+
+                        <td>
+                            LG유플러스 연수동 구연수점
+                        </td>
+
+                        <td>LG유플러스</td>
+                        <td>공식 매장</td>
+                        <td>032-000-0000</td>
+                        <td>인천 연수구</td>
+                        <td>MS-0001</td>
+
+                        <td>
+                            <span class="store_status active">
+                                정상 운영
+                            </span>
+                        </td>
+
+                        <td>
+                            <time datetime="2026-09-08">
+                                2026-09-08
+                            </time>
+                        </td>
+
+                        <td>
+                            <div class="management_buttons">
+                                <a href="/offline/store/STORE-0001">
+                                    상세보기
+                                </a>
+
+                                <a href="/offline/store/STORE-0001/edit">
+                                    수정
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- 데이터가 없을 때
+                        <tr>
+                            <td
+                                colspan="10"
+                                class="empty_data"
+                            >
+                                등록된 오프라인 스토어가 없습니다.
+                            </td>
+                        </tr>
+                        -->
+                </tbody>
+            </table>
         </div>
 
-        <ul class="notice_list">
-            <li>업무에 따라 신분증이 필요할 수 있습니다.</li>
-            <li>매장 상황에 따라 대기 시간이 발생할 수 있습니다.</li>
-            <li>방문 전에 전화로 상담 가능 여부를 확인해 주세요.</li>
-        </ul>
+        <!-- 페이지 이동 -->
+        <nav aria-label="오프라인 스토어 목록 페이지">
+            <button type="button" disabled>
+                이전
+            </button>
+
+            <a href="?page=1" aria-current="page">
+                1
+            </a>
+
+            <a href="?page=2">2</a>
+            <a href="?page=3">3</a>
+
+            <button type="button">
+                다음
+            </button>
+        </nav>
+    </section>
+    <!-- 오프라인 스토어 등록 영역 -->
+    <section id="storeAddSection" class="store_add_section">
+        <div class="section_header">
+            <div>
+                <h2>오프라인 스토어 등록</h2>
+
+                <p>
+                    새로운 매장의 기본 정보와 운영 정보를 입력합니다.
+                </p>
+            </div>
+        </div>
+
+        <form class="store_add_form" action="/offline/store/add" method="post">
+            <!-- 매장 번호 -->
+            <div class="form_group">
+                <label for="storeId">
+                    매장 번호
+                    <span class="required">*</span>
+                </label>
+
+                <input type="text" id="storeId" name="storeId" placeholder="예: STORE-0001" required>
+            </div>
+
+            <!-- 매장명 -->
+            <div class="form_group">
+                <label for="storeName">
+                    매장명
+                    <span class="required">*</span>
+                </label>
+
+                <input type="text" id="storeName" name="storeName" placeholder="예: LG유플러스 연수동 구연수점" required>
+            </div>
+
+            <!-- 매장 유형 -->
+            <div class="form_group">
+                <label for="storeType">
+                    매장 유형
+                    <span class="required">*</span>
+                </label>
+
+                <select id="storeType" name="storeType" required>
+                    <option value="">
+                        매장 유형을 선택하세요
+                    </option>
+
+                    <option value="official">
+                        공식 매장
+                    </option>
+
+                    <option value="agency">
+                        대리점
+                    </option>
+
+                    <option value="retailer">
+                        일반 판매점
+                    </option>
+
+                    <option value="popup">
+                        팝업 스토어
+                    </option>
+                </select>
+            </div>
+
+            <!-- 브랜드 -->
+            <div class="form_group">
+                <label for="brand">
+                    브랜드
+                    <span class="required">*</span>
+                </label>
+
+                <select id="brand" name="brand" required>
+                    <option value="">
+                        브랜드를 선택하세요
+                    </option>
+
+                    <option value="LG U+">
+                        LG유플러스
+                    </option>
+
+                    <option value="SKT">
+                        SK텔레콤
+                    </option>
+
+                    <option value="KT">
+                        KT
+                    </option>
+
+                    <option value="SOFTOASIS">
+                        SoftOasis
+                    </option>
+
+                    <option value="OTHER">
+                        기타
+                    </option>
+                </select>
+            </div>
+
+            <!-- 연결된 판매자 -->
+            <div class="form_group">
+                <label for="sellerId">
+                    담당 판매자 번호
+                </label>
+
+                <input type="text" id="sellerId" name="sellerId" placeholder="예: MS-0001">
+            </div>
+
+            <!-- 대표자 -->
+            <div class="form_group">
+                <label for="representative">
+                    대표자명
+                </label>
+
+                <input type="text" id="representative" name="representative" placeholder="대표자 이름">
+            </div>
+
+            <!-- 전화번호 -->
+            <div class="form_group">
+                <label for="phone">
+                    매장 전화번호
+                    <span class="required">*</span>
+                </label>
+
+                <input type="tel" id="phone" name="phone" placeholder="예: 032-000-0000" required>
+            </div>
+
+            <!-- 사업자등록번호 -->
+            <div class="form_group">
+                <label for="businessNumber">
+                    사업자등록번호
+                </label>
+
+                <input type="text" id="businessNumber" name="businessNumber" placeholder="예: 000-00-00000">
+            </div>
+
+            <!-- 지역 -->
+            <div class="form_group">
+                <label for="region">
+                    지역
+                    <span class="required">*</span>
+                </label>
+
+                <select id="region" name="region" required>
+                    <option value="">
+                        지역을 선택하세요
+                    </option>
+
+                    <option value="서울">서울특별시</option>
+                    <option value="부산">부산광역시</option>
+                    <option value="대구">대구광역시</option>
+                    <option value="인천">인천광역시</option>
+                    <option value="광주">광주광역시</option>
+                    <option value="대전">대전광역시</option>
+                    <option value="울산">울산광역시</option>
+                    <option value="세종">세종특별자치시</option>
+                    <option value="경기">경기도</option>
+                    <option value="강원">강원특별자치도</option>
+                    <option value="충북">충청북도</option>
+                    <option value="충남">충청남도</option>
+                    <option value="전북">전북특별자치도</option>
+                    <option value="전남">전라남도</option>
+                    <option value="경북">경상북도</option>
+                    <option value="경남">경상남도</option>
+                    <option value="제주">제주특별자치도</option>
+                </select>
+            </div>
+
+            <!-- 운영 상태 -->
+            <div class="form_group">
+                <label for="status">
+                    운영 상태
+                    <span class="required">*</span>
+                </label>
+
+                <select id="status" name="status" required>
+                    <option value="pending">
+                        승인 대기
+                    </option>
+
+                    <option value="active">
+                        정상 운영
+                    </option>
+
+                    <option value="temporary_closed">
+                        임시 휴업
+                    </option>
+
+                    <option value="closed">
+                        폐점
+                    </option>
+                </select>
+            </div>
+
+            <!-- 매장 주소 -->
+            <div class="form_group form_group_full">
+                <label for="address">
+                    매장 주소
+                    <span class="required">*</span>
+                </label>
+
+                <input type="text" id="address" name="address" placeholder="매장의 전체 주소를 입력하세요" required>
+            </div>
+
+            <!-- 평일 영업시간 -->
+            <div class="form_group">
+                <label for="weekdayHours">
+                    평일 영업시간
+                </label>
+
+                <input type="text" id="weekdayHours" name="weekdayHours" placeholder="예: 10:00 ~ 20:00">
+            </div>
+
+            <!-- 주말 영업시간 -->
+            <div class="form_group">
+                <label for="weekendHours">
+                    주말 영업시간
+                </label>
+
+                <input type="text" id="weekendHours" name="weekendHours" placeholder="예: 10:00 ~ 18:00">
+            </div>
+
+            <!-- 위도 -->
+            <div class="form_group">
+                <label for="latitude">
+                    위도
+                </label>
+
+                <input type="number" id="latitude" name="latitude" step="any" placeholder="예: 37.4095">
+            </div>
+
+            <!-- 경도 -->
+            <div class="form_group">
+                <label for="longitude">
+                    경도
+                </label>
+
+                <input type="number" id="longitude" name="longitude" step="any" placeholder="예: 126.6780">
+            </div>
+
+            <!-- 매장 이미지 -->
+            <div class="form_group form_group_full">
+                <label for="imageUrl">
+                    매장 대표 이미지 URL
+                </label>
+
+                <input type="url" id="imageUrl" name="imageUrl" placeholder="https://example.com/store-image.jpg">
+            </div>
+
+            <!-- 편의시설 -->
+            <fieldset class="form_group form_group_full">
+                <legend>매장 편의시설</legend>
+
+                <div class="checkbox_group">
+                    <label class="checkbox_item">
+                        <input type="checkbox" name="facilities" value="parking">
+                        <span>주차 가능</span>
+                    </label>
+
+                    <label class="checkbox_item">
+                        <input type="checkbox" name="facilities" value="wifi">
+                        <span>무료 Wi-Fi</span>
+                    </label>
+
+                    <label class="checkbox_item">
+                        <input type="checkbox" name="facilities" value="wheelchair">
+                        <span>휠체어 출입</span>
+                    </label>
+
+                    <label class="checkbox_item">
+                        <input type="checkbox" name="facilities" value="reservation">
+                        <span>방문 예약</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <!-- 관리자 메모 -->
+            <div class="form_group form_group_full">
+                <label for="memo">
+                    관리자 메모
+                </label>
+
+                <textarea id="memo" name="memo" rows="4" placeholder="매장에 관한 관리자 메모를 입력하세요."></textarea>
+            </div>
+
+            <!-- 등록 버튼 -->
+            <div class="form_actions form_group_full">
+                <button type="reset" class="reset_button">
+                    초기화
+                </button>
+
+                <button type="submit" class="submit_button">
+                    오프라인 스토어 등록
+                </button>
+            </div>
+        </form>
     </section>
 
-    <!-- 하단 행동 버튼 -->
-    <div class="store_actions">
-        <a href="tel:0320000000" class="call_button">
-            전화 상담
-        </a>
 
-        <a href="#" class="directions_button">
-            길찾기
-        </a>
-
-        <a href="/reservation" class="reservation_button">
-            방문 예약
-        </a>
-    </div>
 </main>

@@ -1,11 +1,285 @@
 <main>
-    <section>
-        <div></div>
-        <div style="display: flex; flex-direction: column; justify-content: center;">
-            
+    <script src="/mobile/js/mobileseller.js" defer></script>
+    <link rel="stylesheet" href="./css/mobileseller.css">
+
+    <!-- 상단 소개 및 기능 영역 -->
+    <section class="page_header">
+        <div>
+            <h1>모바일셀러 관리</h1>
+            <p>등록된 모바일셀러의 정보와 운영 상태를 관리합니다.</p>
+        </div>
+
+        <div class="header_action">
+            <a href="#sellerAddSection">모바일셀러 등록</a>
         </div>
     </section>
-    <section>
-        
+
+    <!-- 선택한 모바일셀러 상세정보 -->
+    <section id="sellerInfoSection" class="seller_info_section" aria-labelledby="sellerInfoTitle" tabindex="-1" hidden>
+    </section>
+
+    <!-- 모바일셀러 목록 영역 -->
+    <section class="seller_list_section">
+        <div class="section_header">
+            <div>
+                <h2>모바일셀러 리스트</h2>
+
+                <p>
+                    전체 모바일셀러를 조회하거나 원하는 조건으로 검색할 수 있습니다.
+                </p>
+            </div>
+
+            <p id="sellerResultCount" class="seller_result_count" aria-live="polite">
+                전체 0명
+            </p>
+        </div>
+
+        <!-- 검색 영역 -->
+        <form id="sellerSearchForm" class="seller_search_form" action="/mobile/mobileseller/read" method="post">
+            <div class="search_field">
+                <label for="sellerSearchType">
+                    검색 조건
+                </label>
+
+                <select id="sellerSearchType" name="searchType">
+                    <option value="sellerName">
+                        판매자명
+                    </option>
+
+                    <option value="storeName">
+                        매장명
+                    </option>
+
+                    <option value="phone">
+                        전화번호
+                    </option>
+
+                    <option value="sellerId">
+                        판매자 번호
+                    </option>
+                </select>
+            </div>
+
+            <div class="search_field search_keyword_field">
+                <label for="sellerKeyword">
+                    검색어
+                </label>
+
+                <input type="search" id="sellerKeyword" name="keyword" placeholder="검색어를 입력하세요" autocomplete="off">
+            </div>
+
+            <div class="search_field">
+                <label for="sellerStatus">
+                    운영 상태
+                </label>
+
+                <select id="sellerStatus" name="status">
+                    <option value="">
+                        전체 상태
+                    </option>
+
+                    <option value="active">
+                        정상 운영
+                    </option>
+
+                    <option value="pending">
+                        승인 대기
+                    </option>
+
+                    <option value="suspended">
+                        이용 정지
+                    </option>
+
+                    <option value="withdrawn">
+                        탈퇴
+                    </option>
+                </select>
+            </div>
+
+            <div class="search_buttons">
+                <button type="submit" class="search_button">
+                    검색
+                </button>
+
+                <button type="reset" id="sellerSearchReset" class="reset_button">
+                    초기화
+                </button>
+            </div>
+        </form>
+
+        <!-- 조회 상태 안내 -->
+        <div id="sellerListMessage" class="seller_list_message" role="status" aria-live="polite" hidden></div>
+
+        <!-- 판매자 목록 -->
+        <div class="table_wrap">
+            <table>
+                <caption class="screen_reader_only">
+                    모바일셀러 조회 결과
+                </caption>
+
+                <thead>
+                    <tr>
+                        <th scope="col">번호</th>
+                        <th scope="col">판매자명</th>
+                        <th scope="col">매장명</th>
+                        <th scope="col">전화번호</th>
+                        <th scope="col">지역</th>
+                        <th scope="col">등록 상품</th>
+                        <th scope="col">상태</th>
+                        <th scope="col">가입일</th>
+                        <th scope="col">관리</th>
+                    </tr>
+                </thead>
+
+                <tbody id="sellerTableBody">
+                    <!-- JavaScript가 조회 결과를 여기에 추가합니다. -->
+                    <tr class="loading_row">
+                        <td colspan="9" class="empty_data">
+                            모바일셀러 정보를 불러오는 중입니다.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 페이지 이동 -->
+        <nav id="sellerPagination" class="seller_pagination" aria-label="모바일셀러 목록 페이지">
+            <button type="button" id="sellerPreviousPage" class="pagination_button" disabled>
+                이전
+            </button>
+
+            <div id="sellerPageNumbers" class="pagination_numbers">
+                <!-- JavaScript가 페이지 번호를 추가합니다. -->
+            </div>
+
+            <button type="button" id="sellerNextPage" class="pagination_button" disabled>
+                다음
+            </button>
+        </nav>
+    </section>
+    <!-- 모바일셀러 등록 영역 -->
+    <section id="sellerAddSection" class="seller_add_section">
+        <div class="section_header">
+            <div>
+                <h2>모바일셀러 등록</h2>
+                <p>새로운 모바일셀러와 매장 정보를 입력합니다.</p>
+            </div>
+        </div>
+
+        <form class="seller_add_form" action="mobileseller/create" method="post">
+            <div class="form_group">
+                <label for="sellerId">
+                    판매자 번호
+                    <span class="required">*</span>
+                </label>
+
+                <input type="text" id="sellerId" name="sellerId" placeholder="예: MS-0002" required>
+            </div>
+
+            <div class="form_group">
+                <label for="sellerName">
+                    판매자명
+                    <span class="required">*</span>
+                </label>
+
+                <input type="text" id="sellerName" name="sellerName" placeholder="판매자 이름" required>
+            </div>
+
+            <div class="form_group">
+                <label for="storeName">
+                    매장명
+                    <span class="required">*</span>
+                </label>
+
+                <input type="text" id="storeName" name="storeName" placeholder="예: LG유플러스 연수동 구연수점" required>
+            </div>
+
+            <div class="form_group">
+                <label for="phone">
+                    전화번호
+                    <span class="required">*</span>
+                </label>
+
+                <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" required>
+            </div>
+
+            <div class="form_group">
+                <label for="businessNumber">사업자등록번호</label>
+
+                <input type="text" id="businessNumber" name="businessNumber" placeholder="000-00-00000">
+            </div>
+
+            <div class="form_group">
+                <label for="region">
+                    지역
+                    <span class="required">*</span>
+                </label>
+
+                <select id="region" name="region" required>
+                    <option value="">지역을 선택하세요</option>
+                    <option value="서울">서울특별시</option>
+                    <option value="부산">부산광역시</option>
+                    <option value="대구">대구광역시</option>
+                    <option value="인천">인천광역시</option>
+                    <option value="광주">광주광역시</option>
+                    <option value="대전">대전광역시</option>
+                    <option value="울산">울산광역시</option>
+                    <option value="세종">세종특별자치시</option>
+                    <option value="경기">경기도</option>
+                    <option value="강원">강원특별자치도</option>
+                    <option value="충북">충청북도</option>
+                    <option value="충남">충청남도</option>
+                    <option value="전북">전북특별자치도</option>
+                    <option value="전남">전라남도</option>
+                    <option value="경북">경상북도</option>
+                    <option value="경남">경상남도</option>
+                    <option value="제주">제주특별자치도</option>
+                </select>
+            </div>
+
+            <div class="form_group form_group_full">
+                <label for="address">
+                    매장 주소
+                    <span class="required">*</span>
+                </label>
+
+                <input type="text" id="address" name="address" placeholder="상세 주소를 입력하세요" required>
+            </div>
+
+            <div class="form_group">
+                <label for="status">
+                    운영 상태
+                    <span class="required">*</span>
+                </label>
+
+                <select id="status" name="status" required>
+                    <option value="pending">승인 대기</option>
+                    <option value="active">정상 운영</option>
+                    <option value="suspended">이용 정지</option>
+                </select>
+            </div>
+
+            <div class="form_group">
+                <label for="productCount">등록 상품 수</label>
+
+                <input type="number" id="productCount" name="productCount" value="0" min="0">
+            </div>
+
+            <div class="form_group form_group_full">
+                <label for="memo">관리자 메모</label>
+
+                <textarea id="memo" name="memo" rows="4" placeholder="판매자와 관련된 관리자 메모를 입력하세요."></textarea>
+            </div>
+
+            <div class="form_actions form_group_full">
+                <button type="reset" class="reset_button">
+                    초기화
+                </button>
+
+                <button type="submit" class="submit_button">
+                    모바일셀러 등록
+                </button>
+            </div>
+        </form>
     </section>
 </main>
