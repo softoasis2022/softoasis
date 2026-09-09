@@ -99,7 +99,7 @@ app.use("/mobile", require("./app/mobile/app"));
 app.use("/shop", require("./app/shop/app"));
 app.use("/event", require("./app/event/app"));
 app.use("/tc", require("./app/TC/app"));
-
+app.use("/teamSYNERGY", require("./app/teamSYNERGY/app"));
 
 app.use("/contentflow", require("./contentflow/app"));
 

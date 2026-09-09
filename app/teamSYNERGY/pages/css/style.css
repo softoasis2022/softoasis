@@ -131,7 +131,7 @@ section {
   width: 24px;
   height: 24px;
   /* background-color: aqua; */
-  background-image: url("../assets/icons/main_black_ico.png");
+  background-image: url("https://www.softoasis.org/image/icons/main_black_ico.png");
   /* background-repeat: repeat-y; */
   background-repeat: no-repeat;
   background-position: center;
@@ -164,7 +164,7 @@ section {
   /* background-repeat: no-repeat; */
   /* background-position: center; */
   /* background-size: contain; */
-  background: url("../assets/icons/search_btn_bk.png") no-repeat center;
+  background: url("https://www.softoasis.org/image/icons/search_btn_bk.png") no-repeat center;
   background-size: contain;
 }
 
@@ -217,7 +217,7 @@ section {
   position: relative;
   width: 100%;
   height: 100%;
-  background: url("../assets/images/slide_1.png") no-repeat center;
+  background: url("https://www.softoasis.org/image/assets/slide_1.png") no-repeat center;
   background-size: cover;
   /* Figma: Effect -> Layer blur */
   filter: blur(3px);
@@ -428,7 +428,7 @@ section {
   position: relative;
   width: 30px;
   height: 30px;
-  background: rgba(0, 0, 0, 0.5) url("../assets/icons/slide_stop.png") no-repeat
+  background: rgba(0, 0, 0, 0.5) url("https://www.softoasis.org/image/icons/slide_stop.png") no-repeat
     center;
   background-size: 8px 10px;
   text-indent: -9999px;
