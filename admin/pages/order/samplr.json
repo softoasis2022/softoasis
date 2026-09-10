@@ -1,0 +1,47 @@
+{
+    "order": {
+        "name": "한민섭",
+        "platformid": "hang05312",
+        "배송 정보": {
+            "name": "한유진",
+            "address": "",
+            "cs" : "문 앞에 놔 주세요."
+        }
+    },
+    "package": [
+        {
+            "_id": "6a98e7698fa99b24adb65b38",
+            "name": "서브 퓨어 클리어 젤리 케이스 갤럭시S26 울트라-S948",
+            "purchasePrice": 700,
+            "price": 1500,
+            "originalPrice": 2000,
+            "category": "smartphone-accessories",
+            "brand": "서브",
+            "stock": 200,
+            "url": "https://www.samchonart.co.kr/item/itemView.do?currentPageNo=1&headerSearchCateList=&kw=&itemId=22900003366404&cateId=22900003237599&cate01=&rowLevel=3&recordCountPerPage=40&listSortNo=3&listSize=40&listType=list&subSearchFilter=&soldOutChk=&subSearchWord=&alarm_tel_hp1=010&alarm_tel_hp2=&alarm_tel_hp3=",
+            "imageUrl": "https://fs.arumnet.com/image/N2290LPITE//item/22900003759232/4.jpg",
+            "description": "",
+            "features": [],
+            "isActive": true,
+            "createdAt": "2026-09-03T03:20:09.878Z",
+            "updatedAt": "2026-09-03T03:20:09.878Z"
+        },
+        {
+            "_id": "6a98e7698fa99b24adb65b38",
+            "name": "서브 퓨어 클리어 젤리 케이스 갤럭시S26 울트라-S948",
+            "purchasePrice": 700,
+            "price": 1500,
+            "originalPrice": 2000,
+            "category": "smartphone-accessories",
+            "brand": "서브",
+            "stock": 200,
+            "url": "https://www.samchonart.co.kr/item/itemView.do?currentPageNo=1&headerSearchCateList=&kw=&itemId=22900003366404&cateId=22900003237599&cate01=&rowLevel=3&recordCountPerPage=40&listSortNo=3&listSize=40&listType=list&subSearchFilter=&soldOutChk=&subSearchWord=&alarm_tel_hp1=010&alarm_tel_hp2=&alarm_tel_hp3=",
+            "imageUrl": "https://fs.arumnet.com/image/N2290LPITE//item/22900003759232/4.jpg",
+            "description": "",
+            "features": [],
+            "isActive": true,
+            "createdAt": "2026-09-03T03:20:09.878Z",
+            "updatedAt": "2026-09-03T03:20:09.878Z"
+        }
+    ]
+}
