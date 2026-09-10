@@ -1,0 +1,18 @@
+body {
+    margin: 0px;
+}
+
+/* 모바일 대응 */
+@media (max-width: 600px) {
+    header {
+        width: 100%;
+        min-width: unset;
+        /* 중요 */
+    }
+
+    main {
+        width: 100%;
+        min-width: unset;
+        /* 중요 */
+    }
+}

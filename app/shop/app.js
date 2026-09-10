@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const database = path.join("Z:", "HDD1", "database");
 const developerdatabase = path.join(__dirname,"database");
-const PAGES_DIR = path.join(__dirname,"./routes","main","pages");
+const PAGES_DIR = path.join(__dirname,"./routes","tamplate","pages");
 const TEMPLATE_PATH =path.join(__dirname,"./routes","tamplate", "pages", "html", "index.html");
 
 routes.use("/css", express.static(path.join(PAGES_DIR, "css")));

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="in">
 
 <head>
     <meta charset="UTF-8">
@@ -8,60 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sekuya&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0px;
-        }
-
-        /* 모바일 대응 */
-        @media (max-width: 600px) {
-            header {
-                width: 100%;
-                min-width: unset;
-                /* 중요 */
-            }
-
-            main {
-                width: 100%;
-                min-width: unset;
-                /* 중요 */
-            }
-        }
-
-        header>.setup {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn_category {
-            width: 100px;
-            height: 100px;
-            background-color: #58FFEB;
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo {
-            font-family: "Sekuya", system-ui;
-            font-weight: 400;
-            font-style: normal;
-        }
-    </style>
-    <style>
-        footer {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-        }
-    </style>
+    <link rel="stylesheet" href="/shop/css/header.css">
+    <link rel="stylesheet" href="/shop/css/body.css">
+    <link rel="stylesheet" href="/shop/css/footer.css">
 </head>
 
 <body>
@@ -103,95 +52,8 @@
                     <img src="/image/UI/search.svg" alt="검색버튼">
                 </button>
             </div>
-            <style>
-                .category {
-                    position: relative;
-                    display: inline-block;
-                }
-
-                /* 버튼 */
-                .btn_category {
-                    cursor: pointer;
-                }
-
-                /* 숨김 */
-                .categorylist {
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-
-                    background: white;
-                    border: 1px solid #ddd;
-                    padding: 10px;
-
-                    display: none;
-                }
-
-                .categorylist>ul {
-                    padding-inline-start: 0px;
-                    margin: 0px;
-                    border: 1px solid black;
-                }
-
-                .categorylist>ul>li {
-                    list-style: none;
-                    margin: 5px;
-                }
-
-                .categorylist>ul>li>a {
-                    text-decoration: none;
-                    color: black;
-                }
-
-                /* 🔥 핵심 */
-                .category:hover .categorylist {
-                    display: block;
-                }
-
-                .categorylist.active .categorylist {
-                    display: block;
-                }
-            </style>
         </section>
         <section class="menu">
-            <style>
-                .menu {
-                    width: 100%;
-                    justify-content: center;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                }
-
-                .menu ul {
-                    padding-inline-start: 0px;
-                    overflow-x: scroll;
-                    -ms-overflow-style: none;
-                    /* IE, Edge */
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 5px;
-                }
-
-                .menu ul::-webkit-scrollbar {
-                    display: none;
-                }
-
-                .menu li {
-                    list-style: none;
-                    border-radius: 30px;
-                    background-color: lightslategrey;
-                    width: fit-content;
-                    padding: 10px;
-                }
-
-                .menu a {
-                    color: black;
-                    text-decoration: none;
-                }
-            </style>
             <ul>
                 <li><a href="/shop/category">카테고리별</a></li>
                 <li><a href="/shop/brend">브랜드관</a></li>
@@ -210,20 +72,8 @@
             회원가입
         </a>
     </footer>
-    <style>
-        footer a {
-            text-decoration: none;
-            color: black;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            footerdata();
-        });
-        function footerdata() {
-            console.log("footer 스크립트");
-        }
-    </script>
+    
+    <script src="/shop/js/footer.js"></script>
 </body>
 
 </html>
