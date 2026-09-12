@@ -1,0 +1,211 @@
+<main>
+    <link rel="stylesheet" href="/calender/css/main.css">
+    <script src="/calender/js/main.js"></script>
+    <section class="calendar_section">
+        <!-- 캘린더 상단 -->
+        <header class="calendar_header">
+            <!-- 월간 캘린더 -->
+            <div class="calendar_table_wrap">
+                <table class="calendar_table">
+                    <caption>2026년 9월 일정 캘린더</caption>
+
+                    <thead>
+                        <tr>
+                            <th scope="col" class="sunday">일</th>
+                            <th scope="col">월</th>
+                            <th scope="col">화</th>
+                            <th scope="col">수</th>
+                            <th scope="col">목</th>
+                            <th scope="col">금</th>
+                            <th scope="col" class="saturday">토</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="calendar_dates">
+                        <tr>
+                            <td class="calendar_day other_month" data-date="2026-08-30">
+                                <button type="button" class="calendar_date_button">
+                                    <time datetime="2026-08-30">30</time>
+                                </button>
+
+                                <div class="calendar_event_list"></div>
+                            </td>
+
+                            <td class="calendar_day other_month" data-date="2026-08-31">
+                                <button type="button" class="calendar_date_button">
+                                    <time datetime="2026-08-31">31</time>
+                                </button>
+
+                                <div class="calendar_event_list"></div>
+                            </td>
+
+                            <td class="calendar_day" data-date="2026-09-01">
+                                <button type="button" class="calendar_date_button">
+                                    <time datetime="2026-09-01">1</time>
+                                </button>
+
+                                <div class="calendar_event_list"></div>
+                            </td>
+
+                            <td class="calendar_day" data-date="2026-09-02">
+                                <button type="button" class="calendar_date_button">
+                                    <time datetime="2026-09-02">2</time>
+                                </button>
+
+                                <div class="calendar_event_list"></div>
+                            </td>
+
+                            <td class="calendar_day" data-date="2026-09-03">
+                                <button type="button" class="calendar_date_button">
+                                    <time datetime="2026-09-03">3</time>
+                                </button>
+
+                                <div class="calendar_event_list"></div>
+                            </td>
+
+                            <td class="calendar_day" data-date="2026-09-04">
+                                <button type="button" class="calendar_date_button">
+                                    <time datetime="2026-09-04">4</time>
+                                </button>
+
+                                <div class="calendar_event_list"></div>
+                            </td>
+
+                            <td class="calendar_day" data-date="2026-09-05">
+                                <button type="button" class="calendar_date_button">
+                                    <time datetime="2026-09-05">5</time>
+                                </button>
+
+                                <div class="calendar_event_list"></div>
+                            </td>
+                        </tr>
+
+                        <!-- 나머지 날짜 행은 JavaScript로 생성 -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="calendar_actions">
+                <button type="button" class="calendar_today">
+                    오늘
+                </button>
+
+                <button type="button" class="calendar_add_event">
+                    일정 등록
+                </button>
+            </div>
+        </header>
+
+        <!-- 날짜가 JavaScript로 들어갈 영역 -->
+        <div class="calendar_dates">
+            <!-- 날짜 셀 예시 -->
+            <article class="calendar_day" data-date="">
+                <button type="button" class="calendar_date_button">
+                    <time datetime=""></time>
+                </button>
+
+                <div class="calendar_event_list">
+                    <!-- 일정이 들어갈 영역 -->
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- 선택한 날짜의 일정 -->
+    <section class="schedule_section">
+        <header class="schedule_header">
+            <div>
+                <h2>선택한 날짜의 일정</h2>
+                <p class="selected_date">날짜를 선택해 주세요.</p>
+            </div>
+
+            <button type="button" class="schedule_add_button">
+                일정 추가
+            </button>
+        </header>
+
+        <div class="schedule_list">
+            <p class="schedule_empty">
+                등록된 일정이 없습니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- 일정 등록 창 -->
+    <dialog class="schedule_dialog">
+        <form class="schedule_form" method="dialog">
+            <header>
+                <h2>일정 등록</h2>
+
+                <button type="button" class="schedule_close_button">
+                    닫기
+                </button>
+            </header>
+
+            <div>
+                <label for="schedule-title">일정 제목</label>
+                <input type="text" id="schedule-title" name="title" required>
+            </div>
+
+            <div>
+                <label for="schedule-type">일정 유형</label>
+                <select id="schedule-type" name="type">
+                    <option value="personal">개인 일정</option>
+                    <option value="seller">셀러 행사</option>
+                    <option value="streamer">스트리머 일정</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="schedule-start-date">시작 날짜</label>
+                <input type="date" id="schedule-start-date" name="startDate" required>
+            </div>
+
+            <div>
+                <label for="schedule-start-time">시작 시간</label>
+                <input type="time" id="schedule-start-time" name="startTime">
+            </div>
+
+            <div>
+                <label for="schedule-end-date">종료 날짜</label>
+                <input type="date" id="schedule-end-date" name="endDate">
+            </div>
+
+            <div>
+                <label for="schedule-end-time">종료 시간</label>
+                <input type="time" id="schedule-end-time" name="endTime">
+            </div>
+
+            <div>
+                <label>
+                    <input type="checkbox" name="allDay">
+                    하루 종일
+                </label>
+            </div>
+
+            <div>
+                <label for="schedule-description">일정 설명</label>
+                <textarea id="schedule-description" name="description" rows="5"></textarea>
+            </div>
+
+            <div>
+                <label for="schedule-visibility">공개 범위</label>
+                <select id="schedule-visibility" name="visibility">
+                    <option value="private">나만 보기</option>
+                    <option value="shared">공유 사용자</option>
+                    <option value="public">전체 공개</option>
+                </select>
+            </div>
+
+            <footer>
+                <button type="button" class="schedule_cancel_button">
+                    취소
+                </button>
+
+                <button type="submit" class="schedule_submit_button">
+                    저장
+                </button>
+            </footer>
+        </form>
+    </dialog>
+</main>
