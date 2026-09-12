@@ -1,0 +1,78 @@
+const express = require("express")
+const routes = express.Router();
+const path = require("path");
+const fs = require("fs");
+
+const cookieParser = require("cookie-parser");
+
+routes.use(cookieParser());
+
+const ROOT = __dirname; // mobile 폴더
+// 네 환경 그대로
+const PAGES_DIR = path.join(ROOT, "../pages");
+const TEMPLATE_PATH = path.join(PAGES_DIR, "html", "tamplate.html");
+
+routes.use("/css", express.static(path.join(__dirname, "pages", "css")));
+routes.use("/js", express.static(path.join(__dirname, "pages", "js")));
+
+routes.get("/", (req, res) => {
+    const pagePath = path.join(PAGES_DIR, "html", "active.html");
+
+    const result = renderTemplate(pagePath);
+    if (!result) return res.status(500).send("템플릿 구성 중 오류");
+
+    res.send(result);
+});
+
+routes.post("/",(req,res)=>{
+    
+
+    //없으면 로그인 해야함
+    const { constantid } = req.cookies;
+
+    //바디값읽기
+    const {gachanumber} = req.body;
+});
+
+function gachainfoAPI(gachanumber){
+    //데이터베이스에서 데이터를 가져옴
+    const gachainfo = JSON.parse(
+        fs.readFileSync(
+            path.join(__dirname, `./${gachanumber}.json`),
+            "utf8"
+        )
+    );
+    return gachainfo;
+}
+function random(gachainfo){
+    const randomIndex = Math.floor(Math.random() * gachainfo.item.length);
+
+    const randomItem = gachainfo.item[randomIndex];
+
+    return randomItem
+}
+
+function active(user,gachanumber) {
+    const gachainfo = gachainfoAPI(gachanumber);
+    const sellectitem = random(gachainfo);
+
+
+    console.log(sellectitem);
+}
+
+function renderTemplate(pagePath) {
+    const templatePath = path.join(TEMPLATE_PATH);
+
+    try {
+        let template = fs.readFileSync(templatePath, "utf-8");
+        const pageContent = fs.readFileSync(pagePath, "utf-8");
+
+        return template.replace("<!-- MAIN_CONTENT -->", pageContent);
+    } catch (err) {
+        console.error("템플릿 렌더링 실패:", err);
+        return null;
+    }
+}
+active("user0000004","sample");
+
+module.exports = routes;

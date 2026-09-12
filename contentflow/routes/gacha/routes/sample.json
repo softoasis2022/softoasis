@@ -1,0 +1,27 @@
+{
+    "name": "인형뽑기",
+    "subtitle": "산리오인형이 가득한 인형 뽑기",
+    "type" : "",
+    "item": [
+        {
+            "itemname": "헬로키티",
+            "quantity": 30
+        },
+        {
+            "itemname": "쿠로미",
+            "quantity": 30
+        },
+        {
+            "itemname": "시나모롤",
+            "quantity": 30
+        },
+        {
+            "itemname": "마이멜로디",
+            "quantity": 30
+        }
+    ],
+    "price": 0,
+    "user" : [
+        
+    ]
+}

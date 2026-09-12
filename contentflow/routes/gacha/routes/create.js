@@ -12,6 +12,9 @@ const TEMPLATE_PATH = path.join(PAGES_DIR,"html", "tamplate.html");
 routes.use("/css", express.static(path.join(__dirname, "pages","css")));
 routes.use("/js", express.static(path.join(__dirname, "pages","js")));
 
+
+//생성은 셀러만 가능함
+//셀러의 쿠키가 있어야함
 routes.get("/", (req, res) => {
     const pagePath = path.join(PAGES_DIR,"html", "index.html");
 

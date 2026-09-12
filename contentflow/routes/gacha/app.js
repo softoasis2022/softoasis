@@ -16,6 +16,7 @@ routes.use("/css", express.static(path.join(__dirname, "pages","css")));
 routes.use("/js", express.static(path.join(__dirname, "pages","js")));
 
 routes.use("/create", require("./routes/create"));
+routes.use("/active", require("./routes/active"));
 
 routes.get("/", (req, res) => {
     const pagePath = path.join(PAGES_DIR,"html", "active.html");
