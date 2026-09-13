@@ -1,3 +1,239 @@
 <main>
-    
+    <link
+        rel="stylesheet"
+        href="/calender/css/schedule.css"
+    >
+
+    <script
+        src="/calender/js/schedule.js"
+        defer
+    ></script>
+
+    <section class="schedule_section">
+        <!-- 페이지 상단 -->
+        <header class="schedule_header">
+            <div class="schedule_title_area">
+                <p class="schedule_label">Schedule</p>
+
+                <h1>날짜별 일정</h1>
+
+                <p class="schedule_description">
+                    선택한 날짜에 진행되는 일정을 확인할 수 있습니다.
+                </p>
+            </div>
+
+            <a
+                href="/calender/schedule/create"
+                id="scheduleCreateLink"
+                class="schedule_create_button"
+            >
+                일정 등록
+            </a>
+        </header>
+
+        <!-- 날짜 이동 -->
+        <div class="date_navigation">
+            <button
+                type="button"
+                class="date-last"
+                id="dateLastButton"
+                aria-label="이전 날짜"
+            >
+                &lt;
+            </button>
+
+            <div class="selected_date_area">
+                <span class="selected_date_label">
+                    선택 날짜
+                </span>
+
+                <h2 class="date-now">
+                    날짜를 불러오는 중입니다.
+                </h2>
+
+                <time
+                    id="selectedDate"
+                    class="selected_date_value"
+                    datetime=""
+                ></time>
+            </div>
+
+            <button
+                type="button"
+                class="date-next"
+                id="dateNextButton"
+                aria-label="다음 날짜"
+            >
+                &gt;
+            </button>
+        </div>
+
+        <!-- 일정 요약 -->
+        <div class="schedule_summary">
+            <div>
+                <h2>일정 목록</h2>
+
+                <p>
+                    해당 날짜에 포함되는 모든 일정입니다.
+                </p>
+            </div>
+
+            <p class="schedule_count">
+                총
+                <strong id="scheduleCount">0</strong>
+                개
+            </p>
+        </div>
+
+        <!-- 로딩 표시 -->
+        <div
+            id="scheduleLoading"
+            class="schedule_loading"
+        >
+            일정을 불러오는 중입니다.
+        </div>
+
+        <!-- 일정 조회 오류 -->
+        <div
+            id="scheduleError"
+            class="schedule_error"
+            role="alert"
+            hidden
+        >
+            일정을 불러오지 못했습니다.
+        </div>
+
+        <!-- 일정 테이블 -->
+        <div
+            id="scheduleTableWrap"
+            class="schedule_table_wrap"
+            hidden
+        >
+            <table class="schedule_table">
+                <caption>
+                    선택한 날짜의 일정 목록
+                </caption>
+
+                <colgroup>
+                    <col class="created_date_column">
+                    <col class="start_date_column">
+                    <col class="end_date_column">
+                    <col class="title_column">
+                    <col class="image_column">
+                    <col class="url_column">
+                    <col class="management_column">
+                </colgroup>
+
+                <thead>
+                    <tr>
+                        <th scope="col">등록 날짜</th>
+                        <th scope="col">시작 날짜</th>
+                        <th scope="col">종료 날짜</th>
+                        <th scope="col">일정 이름</th>
+                        <th scope="col">사진</th>
+                        <th scope="col">URL</th>
+                        <th scope="col">관리</th>
+                    </tr>
+                </thead>
+
+                <!-- JavaScript에서 일정이 추가되는 영역 -->
+                <tbody id="scheduleTableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- 등록된 일정이 없을 때 -->
+        <div
+            id="scheduleEmpty"
+            class="schedule_empty"
+            hidden
+        >
+            <div
+                class="empty_icon"
+                aria-hidden="true"
+            >
+                📅
+            </div>
+
+            <h2>등록된 일정이 없습니다.</h2>
+
+            <p>
+                선택한 날짜에 진행되는 일정이 없습니다.
+            </p>
+
+            <a
+                href="/calender/schedule/create"
+                id="emptyCreateLink"
+                class="empty_create_button"
+            >
+                새로운 일정 등록
+            </a>
+        </div>
+    </section>
+
+    <!-- JavaScript로 생성할 일정 행 예시 -->
+    <template id="scheduleRowTemplate">
+        <tr class="schedule_row">
+            <td>
+                <time class="schedule_created_date"></time>
+            </td>
+
+            <td>
+                <time class="schedule_start_date"></time>
+            </td>
+
+            <td>
+                <time class="schedule_end_date"></time>
+            </td>
+
+            <td>
+                <div class="schedule_title_cell">
+                    <strong class="schedule_title"></strong>
+                    <p class="schedule_description_text"></p>
+                </div>
+            </td>
+
+            <td>
+                <div class="schedule_image_area">
+                    <img
+                        class="schedule_image"
+                        src=""
+                        alt=""
+                    >
+
+                    <span class="no_image">
+                        이미지 없음
+                    </span>
+                </div>
+            </td>
+
+            <td>
+                <a
+                    class="schedule_url"
+                    href=""
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    링크 열기
+                </a>
+            </td>
+
+            <td>
+                <div class="schedule_actions">
+                    <a
+                        class="detail_button"
+                        href=""
+                    >
+                        상세
+                    </a>
+
+                    <a
+                        class="edit_button"
+                        href=""
+                    >
+                        수정
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </template>
 </main>

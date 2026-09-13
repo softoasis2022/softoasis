@@ -1,0 +1,186 @@
+<main>
+    <link rel="stylesheet" href="/calender/css/schedule_create.css">
+    <script src="/calender/js/schedule_create.js" defer></script>
+    <section class="schedule_create_section">
+        <header class="section_header">
+            <div>
+                <p class="section_label">Calendar</p>
+                <h1>일정 등록</h1>
+                <p class="section_description">
+                    새로운 일정과 행사 정보를 등록할 수 있습니다.
+                </p>
+            </div>
+        </header>
+
+        <form
+            class="schedule_create_form"
+            id="scheduleCreateForm"
+            action="/calender/create"
+            method="post"
+        >
+            <!-- 생성자 정보 -->
+            <fieldset class="form_group">
+                <legend>생성자 정보</legend>
+
+                <div class="form_row">
+                    <div class="input_group">
+                        <label for="creator">
+                            생성자 아이디
+                            <span aria-hidden="true">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="creator"
+                            name="creator"
+                            placeholder="생성자 아이디"
+                            required
+                        >
+                    </div>
+
+                    <div class="input_group">
+                        <label for="creatorType">
+                            생성자 유형
+                            <span aria-hidden="true">*</span>
+                        </label>
+
+                        <select
+                            id="creatorType"
+                            name="creatorType"
+                            required
+                        >
+                            <option value="">
+                                유형 선택
+                            </option>
+
+                            <option value="personal">
+                                개인
+                            </option>
+
+                            <option value="seller">
+                                셀러
+                            </option>
+
+                            <option value="streamer">
+                                스트리머
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- 일정 기본 정보 -->
+            <fieldset class="form_group">
+                <legend>일정 정보</legend>
+
+                <div class="input_group">
+                    <label for="title">
+                        일정 제목
+                        <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="일정 제목을 입력해주세요."
+                        maxlength="100"
+                        required
+                    >
+                </div>
+
+                <div class="input_group">
+                    <label for="description">
+                        일정 설명
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="6"
+                        maxlength="1000"
+                        placeholder="일정에 대한 설명을 입력해주세요."
+                    ></textarea>
+                </div>
+
+                <div class="input_group">
+                    <label for="categoryKeywords">
+                        카테고리 키워드
+                    </label>
+
+                    <input
+                        type="text"
+                        id="categoryKeywords"
+                        name="categoryKeywords"
+                        placeholder="예: 쇼핑, 할인, 온라인 행사"
+                    >
+
+                    <p class="input_help">
+                        여러 키워드는 쉼표(,)로 구분해주세요.
+                    </p>
+                </div>
+            </fieldset>
+
+            <!-- 일정 기간 -->
+            <fieldset class="form_group">
+                <legend>일정 기간</legend>
+
+                <div class="form_row">
+                    <div class="input_group">
+                        <label for="startDate">
+                            시작일
+                            <span aria-hidden="true">*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="startDate"
+                            name="startDate"
+                            required
+                        >
+                    </div>
+
+                    <div class="input_group">
+                        <label for="endDate">
+                            종료일
+                            <span aria-hidden="true">*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="endDate"
+                            name="endDate"
+                            required
+                        >
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- 처리 결과 -->
+            <p
+                class="form_message"
+                id="formMessage"
+                role="alert"
+                aria-live="polite"
+            ></p>
+
+            <!-- 버튼 -->
+            <div class="form_actions">
+                <button
+                    type="button"
+                    class="cancel_button"
+                    onclick="history.back()"
+                >
+                    취소
+                </button>
+
+                <button
+                    type="submit"
+                    class="submit_button"
+                >
+                    일정 등록
+                </button>
+            </div>
+        </form>
+    </section>
+</main>

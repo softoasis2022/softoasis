@@ -4,8 +4,12 @@ const bcrypt = require("bcryptjs");
 
 // 현재 회원가입 라우터 파일의 위치에 맞게 경로 조정
 const {
-  connectMongoDB
-} = require("../../../database/mongodb");
+    connectMongoDB
+} = require(path.join(
+    process.cwd(),
+    "database",
+    "mongodb"
+));
 
 const routes = express.Router();
 const ROOT = __dirname;
@@ -49,7 +53,7 @@ routes.post("/check-id", async (req, res) => {
       });
     }
 
-    const database = await connectMongoDB();
+    const database = await connectMongoDB("users");
     const users = database.collection("users");
 
     // 아이디 검색
@@ -132,7 +136,7 @@ routes.post("/create", async (req, res) => {
       });
     }
 
-    const database = await connectMongoDB();
+    const database = await connectMongoDB("user");
     const users = database.collection("users");
 
     // 아이디와 전화번호 중복 방지

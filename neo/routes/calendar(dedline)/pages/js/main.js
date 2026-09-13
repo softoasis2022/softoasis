@@ -1,36 +1,77 @@
-//로드가 되면 현재 month읽어 옴
-function localdate() {
-    const today = new Date();
+let date = new Date() //인스턴스 선언
+const data = [
+    { date: '2023-10-15', content: '테스트1' },
+    { date: '2023-10-03', content: '테스트2' },
+    { date: '2023-9-15', content: '테스트3' },
+    { date: '2023-11-26', content: '테스트4' },
+    { date: '2023-12-21', content: '테스트5' },
+];
 
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0");
+//데이터 가공
+const calendarList = data.reduce(
+    (acc, v) =>
+        ({ ...acc, [v.date]: [...(acc[v.date] || []), v.content] })
+    , {}
+);
 
-    return `${year}-${month}`;
+//pad method
+Number.prototype.pad = function () {
+    return this > 9 ? this : '0' + this;
+}
+
+const renderCal = (date) => {
+    const viewYear = date.getFullYear()
+    const viewMonth = date.getMonth() //월은 0부터 시작하므로 +1해야됨.
+    const viewDay = date.getDay() //요일은 일요일~토요일까지 0~6까지 표현된다.
+
+    document.querySelector('.date-now').textContent = `${viewYear}년 ${viewMonth + 1}월`
+
+    const firstDay = new Date(date.setDate(1)).getDay();
+    const lastDay = new Date(date.getFullYear(), date.getDay(), 0).getDate();
+
+    const limitDay = firstDay + lastDay;
+    const nextDay = Math.ceil(limitDay / 7) * 7;
+
+    let htmlDummy = '';
+
+    //날짜 아이템 생성
+    for (let i = 0; i < firstDay; i++) {
+        htmlDummy += `<div class="noColor"></div>`;
+    }
+
+    for (let i = 1; i <= lastDay; i++) {
+        let date = `${viewYear}-${viewMonth.pad()}-${i.pad()}`
+        htmlDummy += `
+    <div class="wrap_date" onclick="location.href='/calender/schedule'">${i}
+      <p>${calendarList[date]?.join('</p><p>') || ''}
+      </p>
+    </div>`
+    }
+
+    for (let i = limitDay; i < nextDay; i++) {
+        htmlDummy += `<div class="noColor"></div>`;
+    }
+
+    //HTML에 날짜 아이템 넣기
+    document.querySelector(`.date-board`).innerHTML = htmlDummy;
+
 }
 
 
 
-function datelayoutcomplate() {
-    //테이블 테그에 레이아웃 재구성
-    //초기레이아웃 구성에도 사용
+//저번달 달력 생성
+document.querySelector(`.date-last`).onclick = () => {
+    renderCal(new Date(date.setMonth(date.getMonth() - 1)))
 }
-function dateAPI() {
-    //플렛폼에 등록한 일정을 가져옴
-    //캘린더의 번호로 조회 받아오기
-    
-    
+
+//다음달 달력 생성
+document.querySelector(`.date-next`).onclick = () => {
+    renderCal(new Date(date.setMonth(date.getMonth() + 1)))
 }
-function layoutcomplate(){
-    //타이틀바꾸기
-    document.title = "캘린더"
-    
-}
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
-    dateAPI
-    layoutcomplate();//레이아웃 재구성
-    const date = localdate();
-
-    console.log(date); // 2026-09
+    //이번달 달력 생성
+    renderCal(date)
 });
-

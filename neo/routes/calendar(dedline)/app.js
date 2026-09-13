@@ -13,8 +13,8 @@ routes.use("/js", express.static(path.join(PAGES_DIR, "js")));
 routes.use("/schedule",require("./routes/schedule"));
 
 routes.get("/", (req, res) => {
-    const { calendernumber } = req.body;
-    console.log(calendernumber);
+    // const { calendernumber } = req.body;
+    // console.log(calendernumber);
 
     //session
 

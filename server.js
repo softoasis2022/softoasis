@@ -81,9 +81,6 @@ app.use((req, res, next) => {
   else if (host.startsWith("seller.")) {
     return require("./seller/app")(req, res, next);
   }
-  else if (host.startsWith("contentflow.")) {
-    return require("./seller/app")(req, res, next);
-  }
 
   next(); // 🔥 이거 필수
 });
@@ -98,6 +95,7 @@ app.use("/softoasis", require("./app/softoasis/app"));
 app.use("/mobile", require("./app/mobile/app"));
 app.use("/shop", require("./app/shop/app"));
 app.use("/event", require("./app/event/app"));
+app.use("/contantflow", require("./contentflow/app"));
 app.use("/tc", require("./app/TC/app"));
 app.use("/teamSYNERGY", require("./app/teamSYNERGY/app"));
 

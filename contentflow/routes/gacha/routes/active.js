@@ -73,6 +73,6 @@ function renderTemplate(pagePath) {
         return null;
     }
 }
-active("user0000004","sample");
+//active("user0000004","sample");
 
 module.exports = routes;

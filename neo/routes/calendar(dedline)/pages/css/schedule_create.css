@@ -1,0 +1,355 @@
+/* main 영역 */
+main {
+    width: calc(100% - 40px);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 0;
+
+    color: #1f2937;
+
+    font-family:
+        Pretendard,
+        "Noto Sans KR",
+        Arial,
+        sans-serif;
+}
+
+main,
+main * {
+    box-sizing: border-box;
+}
+
+main button,
+main input,
+main select,
+main textarea {
+    font: inherit;
+}
+
+/* 일정 등록 카드 */
+main .schedule_create_section {
+    overflow: hidden;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+
+    background-color: #ffffff;
+
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, 0.07);
+}
+
+/* 섹션 상단 */
+main .section_header {
+    padding: 32px 36px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fdff 0%,
+            #f8fafc 100%
+        );
+}
+
+main .section_label {
+    margin: 0 0 7px;
+
+    color: #00a8c7;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+main .section_header h1 {
+    margin: 0 0 9px;
+
+    color: #111827;
+    font-size: 28px;
+    line-height: 1.3;
+}
+
+main .section_description {
+    margin: 0;
+
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* 일정 등록 폼 */
+main .schedule_create_form {
+    padding: 34px 36px 38px;
+}
+
+/* 입력 그룹 */
+main .form_group {
+    min-width: 0;
+    margin: 0 0 30px;
+    padding: 0;
+
+    border: 0;
+}
+
+main .form_group:not(:last-of-type) {
+    padding-bottom: 30px;
+    border-bottom: 1px solid #edf0f3;
+}
+
+main .form_group legend {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0;
+
+    color: #1e293b;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+/* 두 칸 배치 */
+main .form_row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* 개별 입력 영역 */
+main .input_group {
+    margin-bottom: 20px;
+}
+
+main .input_group:last-child {
+    margin-bottom: 0;
+}
+
+main .input_group label {
+    display: block;
+    margin-bottom: 9px;
+
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+main .input_group label span {
+    margin-left: 2px;
+    color: #ef4444;
+}
+
+/* 입력 요소 */
+main .input_group input,
+main .input_group select,
+main .input_group textarea {
+    width: 100%;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    outline: none;
+
+    background-color: #ffffff;
+    color: #111827;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background-color 0.2s;
+}
+
+main .input_group input,
+main .input_group select {
+    height: 48px;
+    padding: 0 14px;
+}
+
+main .input_group textarea {
+    min-height: 140px;
+    padding: 14px;
+
+    line-height: 1.6;
+    resize: vertical;
+}
+
+main .input_group input::placeholder,
+main .input_group textarea::placeholder {
+    color: #94a3b8;
+}
+
+main .input_group input:hover,
+main .input_group select:hover,
+main .input_group textarea:hover {
+    border-color: #94a3b8;
+}
+
+main .input_group input:focus,
+main .input_group select:focus,
+main .input_group textarea:focus {
+    border-color: #00a8c7;
+
+    box-shadow:
+        0 0 0 4px rgba(0, 182, 214, 0.12);
+}
+
+main .input_group input[type="date"] {
+    color: #334155;
+    cursor: pointer;
+}
+
+/* 도움말 */
+main .input_help {
+    margin: 8px 0 0;
+
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* 결과 메시지 */
+main .form_message {
+    display: none;
+
+    margin: 0 0 20px;
+    padding: 13px 15px;
+
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+
+    background-color: #fef2f2;
+    color: #dc2626;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+main .form_message.show {
+    display: block;
+}
+
+main .form_message.success {
+    display: block;
+
+    border-color: #bbf7d0;
+    background-color: #f0fdf4;
+    color: #15803d;
+}
+
+/* 하단 버튼 */
+main .form_actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    padding-top: 6px;
+}
+
+main .form_actions button {
+    min-width: 110px;
+    height: 48px;
+    padding: 0 20px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        background-color 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+main .cancel_button {
+    border: 1px solid #cbd5e1;
+
+    background-color: #ffffff;
+    color: #475569;
+}
+
+main .cancel_button:hover {
+    border-color: #94a3b8;
+    background-color: #f8fafc;
+}
+
+main .submit_button {
+    border: 1px solid #00a8c7;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00b6d6,
+            #1689c7
+        );
+
+    color: #ffffff;
+}
+
+main .submit_button:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 9px 22px rgba(0, 150, 190, 0.22);
+}
+
+main .submit_button:disabled {
+    transform: none;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* 태블릿과 모바일 */
+@media screen and (max-width: 768px) {
+    main {
+        width: calc(100% - 28px);
+        padding: 24px 0;
+    }
+
+    main .section_header {
+        padding: 26px 22px;
+    }
+
+    main .section_header h1 {
+        font-size: 24px;
+    }
+
+    main .schedule_create_form {
+        padding: 28px 22px;
+    }
+
+    main .form_row {
+        grid-template-columns: 1fr;
+    }
+
+    main .form_row .input_group {
+        margin-bottom: 0;
+    }
+}
+
+/* 작은 모바일 */
+@media screen and (max-width: 480px) {
+    main {
+        width: calc(100% - 20px);
+        padding: 15px 0;
+    }
+
+    main .schedule_create_section {
+        border-radius: 13px;
+    }
+
+    main .section_header {
+        padding: 23px 18px;
+    }
+
+    main .schedule_create_form {
+        padding: 24px 18px;
+    }
+
+    main .form_actions {
+        flex-direction: column-reverse;
+    }
+
+    main .form_actions button {
+        width: 100%;
+    }
+}

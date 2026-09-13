@@ -7,8 +7,12 @@ const crypto = require("crypto");
 
 // 로그인 라우터 파일 위치에 맞게 경로 조정
 const {
-  connectMongoDB
-} = require("../../../database/mongodb");
+    connectMongoDB
+} = require(path.join(
+    process.cwd(),
+    "database",
+    "mongodb"
+));
 
 const routes = express.Router();
 
@@ -54,7 +58,7 @@ routes.post("/", async (req, res) => {
     // ======================
     // MongoDB에서 유저 검색
     // ======================
-    const mongoDatabase = await connectMongoDB();
+    const mongoDatabase = await connectMongoDB("user");
     const users = mongoDatabase.collection("users");
 
     const userinfo = await users.findOne({

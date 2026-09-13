@@ -1,19 +1,28 @@
-/* ==============================
-   캘린더 전체 영역
-============================== */
-
-main,
-main * {
-    box-sizing: border-box;
-}
+/* ==================================================
+   캘린더 페이지
+   main 태그 내부에만 적용
+================================================== */
 
 main {
+    --calendar-primary: #00a8c7;
+    --calendar-primary-dark: #087f9a;
+    --calendar-border: #e2e8f0;
+    --calendar-background: #f8fafc;
+    --calendar-text: #1f2937;
+    --calendar-subtext: #64748b;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(330px, 0.6fr);
+    align-items: start;
+    gap: 24px;
+
     width: calc(100% - 40px);
-    max-width: 1400px;
-    min-height: 100vh;
+    max-width: 1450px;
     margin: 0 auto;
-    padding: 40px 0;
-    color: #1f2937;
+    padding: 32px 0;
+
+    color: var(--calendar-text);
+
     font-family:
         Pretendard,
         "Noto Sans KR",
@@ -21,638 +30,664 @@ main {
         sans-serif;
 }
 
-/* ==============================
-   공통 버튼
-============================== */
+main,
+main * {
+    box-sizing: border-box;
+}
 
-main button {
-    min-height: 42px;
-    padding: 0 16px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    background-color: #ffffff;
-    color: #374151;
+main button,
+main input,
+main select,
+main textarea {
     font: inherit;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-        border-color 0.2s ease,
-        background-color 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
 }
 
-main button:hover {
-    border-color: #2563eb;
-    background-color: #eff6ff;
-    color: #2563eb;
-}
-
-main button:active {
-    transform: scale(0.97);
-}
-
-main button:focus-visible {
-    outline: 3px solid rgba(37, 99, 235, 0.25);
-    outline-offset: 2px;
-}
-
-/* ==============================
-   캘린더 카드
-============================== */
-
-main .calendar_section {
+/* 공통 섹션 */
+main .calendar_section,
+main .schedule_list {
     overflow: hidden;
-    border: 1px solid #e5e7eb;
-    border-radius: 20px;
+
+    border: 1px solid var(--calendar-border);
+    border-radius: 16px;
+
     background-color: #ffffff;
-    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.06);
 }
 
-/* ==============================
-   캘린더 상단
-============================== */
+/* ==================================================
+   캘린더 영역
+================================================== */
 
-main .calendar_header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 26px 30px;
-    border-bottom: 1px solid #e5e7eb;
+main .calendar_section .container {
+    width: 100%;
 }
 
-main .calendar_navigation {
-    display: flex;
+/* 캘린더 상단 */
+main .calendar_section .header {
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
     align-items: center;
     gap: 16px;
+
+    min-height: 82px;
+    padding: 18px 24px;
+
+    border-bottom: 1px solid var(--calendar-border);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7fdff 0%,
+            #f8fafc 100%
+        );
 }
 
-main .calendar_title {
+main .calendar_section .date-now {
+    margin: 0;
+
+    color: #111827;
+    font-size: 24px;
+    font-weight: 750;
+    text-align: center;
+}
+
+/* 이전·다음 달 버튼 */
+main .calendar_section .date-last,
+main .calendar_section .date-next {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
-    min-width: 160px;
-    margin: 0;
-    color: #111827;
-    font-size: 25px;
-    font-weight: 700;
-    line-height: 1.3;
-}
 
-main .calendar_prev,
-main .calendar_next {
-    min-width: 82px;
-}
-
-main .calendar_actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-main .calendar_add_event,
-main .schedule_add_button,
-main .schedule_submit_button {
-    border-color: #2563eb;
-    background-color: #2563eb;
-    color: #ffffff;
-}
-
-main .calendar_add_event:hover,
-main .schedule_add_button:hover,
-main .schedule_submit_button:hover {
-    border-color: #1d4ed8;
-    background-color: #1d4ed8;
-    color: #ffffff;
-}
-
-/* ==============================
-   월·주·일 보기 메뉴
-============================== */
-
-main .calendar_view_menu {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 13px 30px;
-    border-bottom: 1px solid #e5e7eb;
-    background-color: #f8fafc;
-}
-
-main .calendar_view_menu button {
-    min-height: 36px;
-    padding: 0 17px;
-    border-color: transparent;
-    background-color: transparent;
-}
-
-main .calendar_view_menu button:hover {
-    background-color: #eaf2ff;
-}
-
-main .calendar_view_menu button:first-child,
-main .calendar_view_menu button.active {
-    border-color: #2563eb;
-    background-color: #2563eb;
-    color: #ffffff;
-}
-
-/* ==============================
-   캘린더 테이블
-============================== */
-
-main .calendar_table_wrap {
-    width: 100%;
-    overflow-x: auto;
-}
-
-main .calendar_table {
-    width: 100%;
-    min-width: 770px;
-    table-layout: fixed;
-    border-spacing: 0;
-    border-collapse: collapse;
-    background-color: #ffffff;
-}
-
-/* 화면에서는 숨기고 접근성 정보로 사용 */
-main .calendar_table caption {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
+    width: 44px;
+    height: 44px;
     padding: 0;
-    margin: -1px;
-    border: 0;
-    white-space: nowrap;
-    clip: rect(0, 0, 0, 0);
+
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+    color: #475569;
+
+    font-size: 21px;
+    font-weight: 700;
+    cursor: pointer;
+
+    transition:
+        color 0.2s,
+        border-color 0.2s,
+        background-color 0.2s,
+        transform 0.2s;
+}
+
+main .calendar_section .date-last:hover,
+main .calendar_section .date-next:hover {
+    transform: translateY(-1px);
+
+    border-color: var(--calendar-primary);
+    background-color: #ecfeff;
+    color: var(--calendar-primary-dark);
+}
+
+/* 캘린더 본문 */
+main .calendar_section .main {
+    padding: 20px;
+}
+
+main .calendar_section .calendar {
+    overflow: hidden;
+
+    border: 1px solid var(--calendar-border);
+    border-radius: 12px;
+}
+
+/* 7일 그리드 */
+main .calendar_section .grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
 /* 요일 */
-main .calendar_table thead th {
-    height: 52px;
-    padding: 12px 8px;
-    border-right: 1px solid #e5e7eb;
-    border-bottom: 1px solid #e5e7eb;
-    background-color: #f8fafc;
-    color: #4b5563;
-    font-size: 14px;
-    font-weight: 700;
-    text-align: center;
+main .calendar_section .date-title {
+    border-bottom: 1px solid var(--calendar-border);
+    background-color: var(--calendar-background);
 }
 
-main .calendar_table thead th:last-child {
-    border-right: 0;
-}
-
-main .calendar_table thead th.sunday {
-    color: #ef4444;
-}
-
-main .calendar_table thead th.saturday {
-    color: #2563eb;
-}
-
-/* 날짜 칸 */
-main .calendar_table tbody td {
-    height: 135px;
-    padding: 10px;
-    border-right: 1px solid #e5e7eb;
-    border-bottom: 1px solid #e5e7eb;
-    background-color: #ffffff;
-    text-align: left;
-    vertical-align: top;
-    transition: background-color 0.2s ease;
-}
-
-main .calendar_table tbody td:last-child {
-    border-right: 0;
-}
-
-main .calendar_table tbody tr:last-child td {
-    border-bottom: 0;
-}
-
-main .calendar_table tbody td:hover {
-    background-color: #f8fbff;
-}
-
-/* 이전 달 또는 다음 달 날짜 */
-main .calendar_table .other_month {
-    background-color: #f8fafc;
-}
-
-main .calendar_table .other_month:hover {
-    background-color: #f3f4f6;
-}
-
-main .calendar_table .other_month .calendar_date_button {
-    color: #9ca3af;
-}
-
-/* 일요일 */
-main .calendar_table tbody td:first-child .calendar_date_button {
-    color: #ef4444;
-}
-
-/* 토요일 */
-main .calendar_table tbody td:last-child .calendar_date_button {
-    color: #2563eb;
-}
-
-/* 날짜 버튼 */
-main .calendar_date_button {
+main .calendar_section .date-title > div {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    min-width: 34px;
-    min-height: 34px;
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
-    background-color: transparent;
-    color: #374151;
-    font-size: 14px;
+
+    min-height: 44px;
+
+    border-right: 1px solid var(--calendar-border);
+
+    color: #475569;
+    font-size: 13px;
     font-weight: 700;
 }
 
-main .calendar_date_button:hover {
-    border: 0;
-    background-color: #dbeafe;
-    color: #1d4ed8;
+main .calendar_section .date-title > div:last-child {
+    border-right: 0;
 }
 
-/* 오늘 날짜 */
-main .calendar_table .today {
-    background-color: #f8fbff;
+main .calendar_section .date-title .sunday {
+    color: #ef4444;
 }
 
-main .calendar_table .today .calendar_date_button {
-    background-color: #2563eb;
-    color: #ffffff;
+main .calendar_section .date-title .saturday {
+    color: #2563eb;
 }
 
-main .calendar_table .today .calendar_date_button:hover {
-    background-color: #1d4ed8;
-    color: #ffffff;
+/* JavaScript로 만들어지는 날짜 칸 */
+main .calendar_section .date-board {
+    background-color: var(--calendar-border);
+    gap: 1px;
 }
 
-/* 선택한 날짜 */
-main .calendar_table .selected_day {
-    background-color: #eff6ff;
-    box-shadow: inset 0 0 0 2px #2563eb;
-}
+main .calendar_section .wrap_date {
+    position: relative;
 
-/* ==============================
-   날짜 안의 일정
-============================== */
+    min-width: 0;
+    min-height: 105px;
+    padding: 11px;
 
-main .calendar_event_list {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 8px;
-}
+    background-color: #ffffff;
+    color: #334155;
 
-main .calendar_event {
-    overflow: hidden;
-    padding: 6px 8px;
-    border-left: 3px solid #2563eb;
-    border-radius: 5px;
-    background-color: #eff6ff;
-    color: #1e40af;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
-    line-height: 1.3;
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s,
+        box-shadow 0.2s;
+}
+
+main .calendar_section .wrap_date:hover {
+    z-index: 1;
+
+    background-color: #f0fbfd;
+
+    box-shadow:
+        inset 0 0 0 2px var(--calendar-primary);
+}
+
+/* 날짜 안의 일정 */
+main .calendar_section .wrap_date p {
+    overflow: hidden;
+
+    margin: 7px 0 0;
+    padding: 5px 7px;
+
+    border-left: 3px solid var(--calendar-primary);
+    border-radius: 5px;
+
+    background-color: #ecfeff;
+    color: #0e7490;
+
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.4;
+
     text-overflow: ellipsis;
     white-space: nowrap;
-    cursor: pointer;
 }
 
-/* 개인 일정 */
-main .calendar_event.personal {
-    border-left-color: #2563eb;
-    background-color: #eff6ff;
-    color: #1e40af;
+/* JavaScript에서 사용할 수 있는 상태 클래스 */
+main .calendar_section .wrap_date.today {
+    background-color: #f0f9ff;
+
+    box-shadow:
+        inset 0 0 0 2px var(--calendar-primary);
 }
 
-/* 셀러 행사 */
-main .calendar_event.seller {
-    border-left-color: #f59e0b;
-    background-color: #fffbeb;
-    color: #92400e;
+main .calendar_section .wrap_date.selected {
+    background-color: #e6faff;
 }
 
-/* 스트리머 일정 */
-main .calendar_event.streamer {
-    border-left-color: #8b5cf6;
-    background-color: #f5f3ff;
-    color: #6d28d9;
+main .calendar_section .wrap_date.other_month {
+    background-color: #f8fafc;
+    color: #b6c0ce;
 }
 
-/* ==============================
-   선택한 날짜의 일정
-============================== */
+/* ==================================================
+   일정 목록 영역
+================================================== */
 
-main .schedule_section {
-    margin-top: 24px;
-    padding: 26px 30px;
-    border: 1px solid #e5e7eb;
-    border-radius: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.07);
+main .schedule_list {
+    min-width: 0;
 }
 
-main .schedule_header {
+/* 일정 목록 상단 */
+main .schedule_list_header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+
+    padding: 25px 24px;
+
+    border-bottom: 1px solid var(--calendar-border);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7fdff 0%,
+            #f8fafc 100%
+        );
+}
+
+main .schedule_label {
+    margin: 0 0 5px;
+
+    color: var(--calendar-primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+main .schedule_list_header h2 {
+    margin: 0 0 7px;
+
+    color: #111827;
+    font-size: 21px;
+}
+
+main .schedule_description {
+    margin: 0;
+
+    color: var(--calendar-subtext);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* 일정 등록 버튼 */
+main .schedule_create_button {
+    flex-shrink: 0;
+
+    padding: 10px 14px;
+
+    border-radius: 9px;
+
+    background-color: var(--calendar-primary);
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+main .schedule_create_button:hover {
+    transform: translateY(-1px);
+
+    background-color: var(--calendar-primary-dark);
+
+    box-shadow:
+        0 7px 16px rgba(0, 168, 199, 0.2);
+}
+
+/* 선택 날짜 요약 */
+main .schedule_summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 15px;
+
+    padding: 16px 24px;
+
+    border-bottom: 1px solid #edf0f3;
 }
 
-main .schedule_header h2 {
-    margin: 0 0 7px;
-    color: #111827;
-    font-size: 20px;
-    font-weight: 700;
+main .summary_label {
+    display: block;
+    margin-bottom: 4px;
+
+    color: #94a3b8;
+    font-size: 11px;
 }
 
 main .selected_date {
-    margin: 0;
-    color: #6b7280;
+    color: #1e293b;
     font-size: 14px;
-}
-
-main .schedule_list {
-    margin-top: 22px;
-}
-
-main .schedule_empty {
-    margin: 0;
-    padding: 36px 20px;
-    border: 1px dashed #cbd5e1;
-    border-radius: 12px;
-    background-color: #f8fafc;
-    color: #94a3b8;
-    font-size: 14px;
-    text-align: center;
-}
-
-/* 일정이 있을 때 사용할 카드 */
-main .schedule_item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 16px;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    background-color: #ffffff;
-}
-
-main .schedule_item + .schedule_item {
-    margin-top: 10px;
-}
-
-main .schedule_item_title {
-    margin: 0 0 6px;
-    color: #111827;
-    font-size: 15px;
     font-weight: 700;
 }
 
-main .schedule_item_time {
+main .schedule_count {
     margin: 0;
-    color: #6b7280;
-    font-size: 13px;
+
+    color: var(--calendar-subtext);
+    font-size: 12px;
 }
 
-/* ==============================
-   일정 등록 dialog
-============================== */
-
-main .schedule_dialog {
-    width: calc(100% - 40px);
-    max-width: 540px;
-    max-height: 90vh;
-    padding: 0;
-    border: 0;
-    border-radius: 18px;
-    background-color: #ffffff;
-    color: #1f2937;
-    box-shadow: 0 25px 70px rgba(15, 23, 42, 0.28);
+main .schedule_count strong {
+    color: var(--calendar-primary-dark);
+    font-size: 15px;
 }
 
-main .schedule_dialog::backdrop {
-    background-color: rgba(15, 23, 42, 0.55);
-    backdrop-filter: blur(3px);
+/* 일정 목록 */
+main .schedule_items {
+    margin: 0;
+    padding: 12px;
+
+    list-style: none;
 }
 
-main .schedule_form {
-    overflow-y: auto;
-    max-height: 90vh;
-    padding: 28px;
+main .schedule_item {
+    margin-bottom: 10px;
 }
 
-main .schedule_form > header {
+main .schedule_item:last-child {
+    margin-bottom: 0;
+}
+
+main .schedule_item_link {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr) 20px;
+    align-items: center;
+    gap: 13px;
+
+    padding: 15px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 11px;
+
+    color: inherit;
+    text-decoration: none;
+
+    transition:
+        border-color 0.2s,
+        background-color 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+main .schedule_item_link:hover {
+    transform: translateY(-1px);
+
+    border-color: #67d6e8;
+    background-color: #f7fdff;
+
+    box-shadow:
+        0 7px 17px rgba(15, 23, 42, 0.06);
+}
+
+/* 일정 날짜 상자 */
+main .schedule_date_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 58px;
+
+    border-radius: 9px;
+
+    background-color: #ecfeff;
+    color: #0e7490;
+}
+
+main .schedule_month {
+    font-size: 10px;
+    font-weight: 700;
+}
+
+main .schedule_day {
+    margin-top: 2px;
+    font-size: 20px;
+    line-height: 1;
+}
+
+/* 일정 정보 */
+main .schedule_information {
+    min-width: 0;
+}
+
+main .schedule_item_header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 25px;
-}
-
-main .schedule_form > header h2 {
-    margin: 0;
-    color: #111827;
-    font-size: 22px;
-}
-
-main .schedule_close_button {
-    min-width: auto;
-    min-height: 36px;
-    padding: 0 12px;
-}
-
-main .schedule_form > div {
-    display: flex;
-    flex-direction: column;
     gap: 8px;
-    margin-bottom: 18px;
+
+    margin-bottom: 6px;
 }
 
-main .schedule_form label {
-    color: #374151;
+main .schedule_category {
+    padding: 3px 7px;
+
+    border-radius: 20px;
+
+    background-color: #f1f5f9;
+    color: #475569;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+main .schedule_time {
+    color: #94a3b8;
+    font-size: 10px;
+}
+
+main .schedule_item_title {
+    overflow: hidden;
+
+    margin: 0 0 5px;
+
+    color: #1e293b;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 750;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-main .schedule_form input,
-main .schedule_form select,
-main .schedule_form textarea {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    outline: none;
-    background-color: #ffffff;
-    color: #111827;
-    font: inherit;
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+main .schedule_item_description {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    margin: 0;
+
+    color: var(--calendar-subtext);
+    font-size: 11px;
+    line-height: 1.5;
 }
 
-main .schedule_form input:focus,
-main .schedule_form select:focus,
-main .schedule_form textarea:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.13);
-}
-
-main .schedule_form textarea {
-    min-height: 110px;
-    resize: vertical;
-}
-
-/* 하루 종일 체크박스 */
-main .schedule_form input[type="checkbox"] {
-    width: auto;
-    margin: 0 7px 0 0;
-    accent-color: #2563eb;
-}
-
-main .schedule_form label:has(input[type="checkbox"]) {
+main .schedule_period {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+
+    margin-top: 8px;
+
+    color: #94a3b8;
+    font-size: 10px;
 }
 
-/* 등록창 하단 */
-main .schedule_form > footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    padding-top: 20px;
-    border-top: 1px solid #e5e7eb;
+main .schedule_arrow {
+    color: #94a3b8;
+    font-size: 17px;
 }
 
-/* ==============================
-   태블릿
-============================== */
+/* 일정이 없을 때 */
+main .schedule_empty {
+    padding: 55px 24px;
 
-@media (max-width: 900px) {
+    color: var(--calendar-subtext);
+    text-align: center;
+}
+
+main .schedule_empty[hidden] {
+    display: none;
+}
+
+main .schedule_empty .empty_icon {
+    margin: 0 0 12px;
+    font-size: 34px;
+}
+
+main .schedule_empty h3 {
+    margin: 0 0 7px;
+
+    color: #334155;
+    font-size: 16px;
+}
+
+main .schedule_empty > p:not(.empty_icon) {
+    margin: 0 0 18px;
+    font-size: 13px;
+}
+
+main .schedule_empty a {
+    display: inline-block;
+    padding: 9px 14px;
+
+    border: 1px solid var(--calendar-primary);
+    border-radius: 8px;
+
+    color: var(--calendar-primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* ==================================================
+   반응형
+================================================== */
+
+@media screen and (max-width: 1100px) {
     main {
-        width: calc(100% - 30px);
-        padding: 25px 0;
-    }
-
-    main .calendar_header {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 22px;
-    }
-
-    main .calendar_actions {
-        width: 100%;
-    }
-
-    main .calendar_actions button {
-        flex: 1;
-    }
-
-    main .calendar_view_menu {
-        padding: 12px 22px;
-    }
-
-    main .calendar_table tbody td {
-        height: 120px;
+        grid-template-columns: 1fr;
+        max-width: 900px;
     }
 }
 
-/* ==============================
-   모바일
-============================== */
-
-@media (max-width: 600px) {
+@media screen and (max-width: 768px) {
     main {
-        width: calc(100% - 20px);
-        padding: 15px 0;
+        width: calc(100% - 24px);
+        gap: 18px;
+        padding: 20px 0;
     }
 
     main .calendar_section,
-    main .schedule_section {
-        border-radius: 14px;
+    main .schedule_list {
+        border-radius: 12px;
     }
 
-    main .calendar_header {
-        padding: 18px;
+    main .calendar_section .header {
+        grid-template-columns: 40px 1fr 40px;
+        padding: 14px 16px;
     }
 
-    main .calendar_navigation {
-        justify-content: space-between;
-        width: 100%;
-        gap: 8px;
+    main .calendar_section .date-last,
+    main .calendar_section .date-next {
+        width: 40px;
+        height: 40px;
     }
 
-    main .calendar_title {
-        min-width: auto;
+    main .calendar_section .date-now {
         font-size: 20px;
     }
 
-    main .calendar_prev,
-    main .calendar_next {
-        min-width: auto;
-        padding: 0 12px;
+    main .calendar_section .main {
+        padding: 12px;
     }
 
-    main .calendar_view_menu {
-        overflow-x: auto;
-        padding: 10px 18px;
-    }
-
-    main .calendar_view_menu button {
-        flex: 0 0 auto;
-    }
-
-    main .calendar_table {
-        min-width: 700px;
-    }
-
-    main .calendar_table tbody td {
-        height: 105px;
+    main .calendar_section .wrap_date {
+        min-height: 78px;
         padding: 8px;
+
+        font-size: 12px;
     }
 
-    main .schedule_section {
-        padding: 20px;
+    main .calendar_section .wrap_date p {
+        padding: 3px 4px;
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    main {
+        width: calc(100% - 16px);
+        padding: 10px 0;
     }
 
-    main .schedule_header {
-        align-items: stretch;
+    main .calendar_section .main {
+        padding: 7px;
+    }
+
+    main .calendar_section .date-title > div {
+        min-height: 36px;
+        font-size: 11px;
+    }
+
+    main .calendar_section .wrap_date {
+        min-height: 58px;
+        padding: 6px;
+
+        font-size: 11px;
+    }
+
+    main .calendar_section .wrap_date p {
+        overflow: hidden;
+        height: 5px;
+        margin-top: 5px;
+        padding: 0;
+
+        border: 0;
+        border-radius: 10px;
+
+        background-color: var(--calendar-primary);
+
+        color: transparent;
+    }
+
+    main .schedule_list_header {
         flex-direction: column;
+        padding: 20px 18px;
     }
 
-    main .schedule_add_button {
+    main .schedule_create_button {
         width: 100%;
+        text-align: center;
     }
 
-    main .schedule_dialog {
-        width: calc(100% - 20px);
+    main .schedule_summary {
+        align-items: flex-end;
+        padding: 14px 18px;
     }
 
-    main .schedule_form {
-        padding: 20px;
+    main .schedule_items {
+        padding: 9px;
     }
 
-    main .schedule_form > footer {
-        flex-direction: column-reverse;
+    main .schedule_item_link {
+        grid-template-columns: 46px minmax(0, 1fr);
+        gap: 11px;
+        padding: 12px;
     }
 
-    main .schedule_form > footer button {
-        width: 100%;
+    main .schedule_date_box {
+        width: 46px;
+        height: 53px;
+    }
+
+    main .schedule_arrow {
+        display: none;
+    }
+
+    main .schedule_period {
+        flex-direction: column;
+        gap: 2px;
     }
 }
