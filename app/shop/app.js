@@ -13,6 +13,7 @@ routes.use("/js", express.static(path.join(__dirname,"./routes","tamplate", "pag
 
 const brendroutes = require("./routes/brend/app");
 const deliveryroutes = require("./routes/delivery/app");
+const productroutes = require("./routes/product/app");
 
 routes.get("/", (req, res) => {
     const pagePath = path.join(PAGES_DIR,"html", "index.html");
@@ -30,6 +31,7 @@ routes.post("/bill",(req,res)=>{
 });
 routes.use("/brend",brendroutes);
 routes.use("/delivery", deliveryroutes);
+routes.use("/product", productroutes);
 
 function renderTemplate(pagePath) {
     const templatePath = path.join(TEMPLATE_PATH);
