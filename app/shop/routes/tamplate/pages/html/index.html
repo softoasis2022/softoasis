@@ -1,79 +1,72 @@
 <!DOCTYPE html>
-<html lang="in">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>소프트오아시스 샵</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sekuya&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/shop/css/header.css">
-    <link rel="stylesheet" href="/shop/css/body.css">
-    <link rel="stylesheet" href="/shop/css/footer.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="shop/css/header.css">
+    <link rel="stylesheet" href="shop/css/body.css">
 </head>
 
 <body>
     <header>
-        <section class="setup">
-            <div class="category">
-                <div class="btn_category">
-                    <img src="/image/UI/menu.svg" alt=""
-                        style="width: fit-content; height: fit-content; min-width: 50px; min-height: 50px;">
+        <div>
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                    <img src="/image/logo/softoasislogo.png" alt="" style="width: 50px; scale: 1/1;">
+                    <h1>softoasis</h1>
                 </div>
-
-                <div class="categorylist">
-                    <ul>
-                        <li><a href="/shop">홈</a></li>
-                        <li><a href="/shop/">인기상품</a></li>
-                        <li><a href="#">신상품</a></li>
-                        <li><a href="#">이벤트</a></li>
-                    </ul>
-                    <ul>
-                        <li>출산용품</li>
-                    </ul>
-                    <ul>
-                        <p>브랜드</p>
-                        <li>
-                            브랜드 샵
-                        </li>
-
-                    </ul>
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                    <a href="/acount/login">로그인</a>
                 </div>
             </div>
-            <div>
-                <p class="logo">softoasis shop</p>
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px;">
+                    <span>for shop</span>
+                    <input type="text" value="">
+                    <button>검색</button>
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                    <nav>
+                        <button>
+                            <img src="" alt="">
+                            <span>
+                                카테고리
+                            </span>
+                        </button>
+                        <button>
+                            <img src="" alt="">
+                            <span>
+                                마이쇼핑
+                            </span>
+                        </button>
+                        <button>
+                            <img src="" alt="">
+                            <span>
+                                장바구니
+                            </span>
+                        </button>
+                    </nav>
+                </div>
             </div>
-            <div class="wrap_search"
-                style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px; padding: 10px;">
-                <input name="query" class="query" id="query" type="text" style="padding: 5px; font-size: 30px;">
-                <button class="btn_search"
-                    style="width: 60px; height: 40px; background-color: #58FFEB; box-shadow: 2px 2px 2px 2px gray; border-radius: 20px;">
-                    <img src="/image/UI/search.svg" alt="검색버튼">
-                </button>
+            <div style="display: flex; flex-direction: row; justify-content: center;">
+                <ul class="wrap_contant"
+                    style="display: flex; flex-direction: row; justify-content: left; padding-inline-start: 0px; width: fit-content;">
+                    <li>홈</li>
+                    <li>오늘의 할인템</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
             </div>
-        </section>
-        <section class="menu">
-            <ul>
-                <li><a href="/shop/category">카테고리별</a></li>
-                <li><a href="/shop/brend">브랜드관</a></li>
-                <li><a href="#">카테고리별</a></li>
-                <li><a href="#">카테고리별</a></li>
-            </ul>
-        </section>
-
+        </div>
+        <div></div>
     </header>
     <!-- MAIN_CONTENT -->
     <footer>
-        <a href="/acount/login">
-            로그인
-        </a>
-        <a href="/acount/signup">
-            회원가입
-        </a>
+
     </footer>
-    
-    <script src="/shop/js/footer.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,12 @@
+{
+    "_id": "ObjectId('...')",
+    "name" : "캘린더 이름",
+    "sharetype" : "private",
+    "sharedUserIds" : [
+        "hang05312",
+        "hang05050505"
+    ],
+    "schedule" : [
+        "_id1","_id2"
+    ]
+}

@@ -6,16 +6,14 @@ routes.use(express.json());
 routes.use(express.urlencoded({ extended: true }));
 const cookieParser = require("cookie-parser");
 
-const PAGES_DIR = path.join(__dirname, "./pages");
+const PAGES_DIR = path.join(__dirname, "../pages");
 const TEMPLATE_DIR = path.join(PAGES_DIR, "html", "tamplate.html");
 routes.use("/css", express.static(path.join(PAGES_DIR, "css")));
 routes.use("/js", express.static(path.join(PAGES_DIR, "js")));
 routes.use(cookieParser());
 
-routes.use("/schedule",require("./routes/schedule"));
-
 routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR, "html", "main.html");
+    const pagePath = path.join(PAGES_DIR, "html", "schedule.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");

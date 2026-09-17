@@ -70,8 +70,38 @@ document.querySelector(`.date-next`).onclick = () => {
 }
 
 
+async function api() {
+    try {
+        const url = new URL("/calender/schedule/read", window.location.href);
+        const params = new URLSearchParams(window.location.search);
+        const calenderid = params.get("calenderid");
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                calenderid: calenderid
+            })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || "API 요청에 실패했습니다.");
+        }
+
+        return result;
+    } catch (error) {
+        console.error("API 오류:", error);
+        throw error;
+    }
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
     //이번달 달력 생성
-    renderCal(date)
+    renderCal(date);
+    api();
 });

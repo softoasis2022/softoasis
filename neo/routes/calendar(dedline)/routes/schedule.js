@@ -4,11 +4,29 @@ const fs = require("fs");
 const routes = express.Router();
 routes.use(express.json());
 routes.use(express.urlencoded({ extended: true }));
+const cookieParser = require("cookie-parser");
 
 const PAGES_DIR = path.join(__dirname, "../pages");
 const TEMPLATE_DIR = path.join(PAGES_DIR, "html", "tamplate.html");
 routes.use("/css", express.static(path.join(PAGES_DIR, "css")));
 routes.use("/js", express.static(path.join(PAGES_DIR, "js")));
+routes.use(cookieParser());
+
+function session() {
+    //.softoasis.org도메인 쿠키에 있는 sessionid값을 가져옴
+    //섹션파일 접근
+    //해당 섹션json에 아이디값을 리턴
+}
+
+function schedule(calendarid, id) {
+    //캘린더의 공유대상 아이디와 요청자의 아이디 비교
+    //아이디가 해당이 되면 true반환
+    //아이디가 해당이 안되면 false로 반환
+
+}
+function databasereq() {
+
+}
 
 const databasePath = path.join(
     process.cwd(),
@@ -68,21 +86,31 @@ routes.get("/create", (req, res) => {
 
 // 일정 조회
 routes.post("/read", async (req, res) => {
+    const { calenderid } = req.body;
+    const sessionId = req.cookies.sessionid;
+    if (!sessionId) {
+        return res.status(401).json({
+            success: false,
+            message: "sessionid 쿠키가 없습니다."
+        });
+    }
+
+    console.log("sessionid:", sessionId);
+    console.log("calendernumber:", calenderid);
+
+    //캘린더의 정보 찾기
+    //찾은 캘린더의 공유 형식 보기
+    //찾은 캘린더의 공유형식이 "퍼블릭"이라면 바로 응답
+    //찾은 캘린더의 공유형식이 "proviced"이라면 요청자의 아이디찾기
+    //찾은 아이디가 캘린더의 공유대상에 있으면 응답 없으면 공유요청 페이지로 리디렉션
+
     try {
         const {
-            creator,
-            creatorType,
-            calendarId,
-            startDate,
-            endDate
+            calenderid
         } = req.body;
 
         const result = await readCalendar({
-            creator,
-            creatorType,
-            calendarId,
-            startDate,
-            endDate
+            calenderid
         });
 
         return res.status(200).json({
@@ -98,6 +126,8 @@ routes.post("/read", async (req, res) => {
             message: error.message
         });
     }
+
+    
 });
 
 
@@ -106,16 +136,18 @@ routes.post("/create", async (req, res) => {
     try {
         //생성자는 컨텐츠id입력
         //생성자 타입은 셀러 유저 어드민
+        const creator = "admin222";
+        const creatorType = "admin"
 
         const {
-            creator,
-            creatorType,
             title,
             description,
             categoryKeywords,
             startDate,
             endDate
         } = req.body;
+
+        console.log(startDate,endDate);
 
         const normalizedTitle = String(
             title || ""
@@ -124,14 +156,6 @@ routes.post("/create", async (req, res) => {
         const normalizedDescription = String(
             description || ""
         ).trim();
-
-        if (!creator) {
-            throw new Error("일정 생성자 정보가 필요합니다.");
-        }
-
-        if (!creatorType) {
-            throw new Error("일정 생성자 유형이 필요합니다.");
-        }
 
         if (!normalizedTitle) {
             throw new Error("일정 제목이 필요합니다.");

@@ -15,60 +15,9 @@
         <form
             class="schedule_create_form"
             id="scheduleCreateForm"
-            action="/calender/create"
+            action="/calender/schedule/create"
             method="post"
         >
-            <!-- 생성자 정보 -->
-            <fieldset class="form_group">
-                <legend>생성자 정보</legend>
-
-                <div class="form_row">
-                    <div class="input_group">
-                        <label for="creator">
-                            생성자 아이디
-                            <span aria-hidden="true">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            id="creator"
-                            name="creator"
-                            placeholder="생성자 아이디"
-                            required
-                        >
-                    </div>
-
-                    <div class="input_group">
-                        <label for="creatorType">
-                            생성자 유형
-                            <span aria-hidden="true">*</span>
-                        </label>
-
-                        <select
-                            id="creatorType"
-                            name="creatorType"
-                            required
-                        >
-                            <option value="">
-                                유형 선택
-                            </option>
-
-                            <option value="personal">
-                                개인
-                            </option>
-
-                            <option value="seller">
-                                셀러
-                            </option>
-
-                            <option value="streamer">
-                                스트리머
-                            </option>
-                        </select>
-                    </div>
-                </div>
-            </fieldset>
-
             <!-- 일정 기본 정보 -->
             <fieldset class="form_group">
                 <legend>일정 정보</legend>
@@ -133,11 +82,13 @@
                         </label>
 
                         <input
-                            type="date"
+                            type="datetime-local"
                             id="startDate"
                             name="startDate"
+                            class="startDate_input"
                             required
                         >
+                        <div class="datechange_button" onclick="startDatetype_change()">시간설정 없이</div>
                     </div>
 
                     <div class="input_group">
@@ -147,11 +98,13 @@
                         </label>
 
                         <input
-                            type="date"
+                            type="datetime-local"
                             id="endDate"
                             name="endDate"
+                            class="endDate_input"
                             required
                         >
+                        <div class="datechange_button" onclick="endDatetype_change()">시간설정 없이</div>
                     </div>
                 </div>
             </fieldset>

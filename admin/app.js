@@ -32,7 +32,8 @@ routes.use((req, res, next) => {
         "127.0.0.1",
         "::1",
         "::ffff:127.0.0.1",
-        "::ffff:106.101.83.58"
+        "::ffff:106.101.83.58",
+        "::ffff:192.168.0.1"
     ];
 
     if (allowedIps.includes(clientIp)) {

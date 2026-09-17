@@ -46,11 +46,9 @@ main .section_header {
     border-bottom: 1px solid #e5e7eb;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #f8fdff 0%,
-            #f8fafc 100%
-        );
+            #f8fafc 100%);
 }
 
 main .section_label {
@@ -117,7 +115,10 @@ main .form_row {
 
 /* 개별 입력 영역 */
 main .input_group {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
+    gap: 10px;
 }
 
 main .input_group:last-child {
@@ -276,11 +277,9 @@ main .submit_button {
     border: 1px solid #00a8c7;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #00b6d6,
-            #1689c7
-        );
+            #1689c7);
 
     color: #ffffff;
 }
@@ -296,6 +295,25 @@ main .submit_button:disabled {
     transform: none;
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+.datechange_button {
+    padding: 0 20px;
+    width: fit-content;
+    
+
+    border-radius: 10px;
+
+    border: 1px solid #00a8c7;
+    font-weight: 700;
+    cursor: pointer;
+
+    background:
+        linear-gradient(135deg,
+            #00b6d6,
+            #1689c7);
+
+    color: #ffffff;
 }
 
 /* 태블릿과 모바일 */

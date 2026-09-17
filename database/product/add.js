@@ -6,8 +6,8 @@ const {
 
 async function addProduct(productData) {
     try {
-        const database = await connectMongoDB("product");
-        const products = database.collection("products");
+        const database = await connectMongoDB("shop");
+        const products = database.collection("product");
 
         // 같은 상품 URL 중복 등록 방지
         await products.createIndex(
@@ -150,8 +150,8 @@ async function addProduct(productData) {
 }
 // 상품 한 개 조회
 async function getProduct(productId) {
-    const database = await connectMongoDB("product");
-    const products = database.collection("products");
+    const database = await connectMongoDB("shop");
+    const products = database.collection("product");
 
     const _id = convertObjectId(productId);
 
@@ -167,8 +167,8 @@ async function getProduct(productId) {
 
 // 상품 전체 조회
 async function getProducts(filter = {}) {
-    const database = await connectMongoDB("product");
-    const products = database.collection("products");
+    const database = await connectMongoDB("shop");
+    const products = database.collection("product");
 
     const query = {};
 
@@ -196,8 +196,8 @@ async function getProducts(filter = {}) {
 // 상품 수정
 async function updateProduct(productId, productData) {
     try {
-        const database = await connectMongoDB("product");
-        const products = database.collection("products");
+        const database = await connectMongoDB("shop");
+        const products = database.collection("product");
 
         const _id = convertObjectId(productId);
         const updateData = {};
@@ -332,8 +332,8 @@ async function updateProduct(productId, productData) {
 
 // 상품 삭제
 async function deleteProduct(productId) {
-    const database = await connectMongoDB("product");
-    const products = database.collection("products");
+    const database = await connectMongoDB("shop");
+    const products = database.collection("product");
 
     const _id = convertObjectId(productId);
 

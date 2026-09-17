@@ -14,7 +14,7 @@ heroBtns.forEach((btn) => {
   btn.addEventListener("mouseenter", () => {
     btn.querySelector(".off").style.opacity = 1;
   });
-  btn.addEventListener("mouseout", () => {
+  btn.addEventListener("mouseleave", () => {
     btn.querySelector(".off").style.opacity = 0;
   });
 });
@@ -42,11 +42,12 @@ const swHero = new Swiper(".sw-hero", {
       // mainVisualBg.style.backgroundImage = `url(assets/images/slide_${activeSilde}.png)`;
       const activeSlide = swiper.slides[swiper.activeIndex];
       // console.log(activeSlide);
-      const activeSlideImgUrl = activeSlide.querySelector(".slide-image img").src;
+      const activeSlideImgUrl =
+        activeSlide.querySelector(".slide-image img").src;
       // console.log(activeSlideImg.src);
       mainVisualBg.style.backgroundImage = `url(${activeSlideImgUrl})`;
-    }
-  }
+    },
+  },
 });
 
 // 재생, 정지 버튼

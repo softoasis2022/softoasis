@@ -7,4 +7,5 @@ function layoutcomplate(){
 document.addEventListener("DOMContentLoaded",()=>{
     document.title = "일정 등록하기"
     
-})
+});
+

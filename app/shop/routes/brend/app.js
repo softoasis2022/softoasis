@@ -1,21 +1,19 @@
 const express = require("express");
+const routes  = express.Router();
 const path = require("path");
 const fs = require("fs");
-const routes = express.Router();
-routes.use(express.json());
-routes.use(express.urlencoded({ extended: true }));
-const cookieParser = require("cookie-parser");
+const { json } = require("stream/consumers");
 
-const PAGES_DIR = path.join(__dirname, "./pages");
-const TEMPLATE_DIR = path.join(PAGES_DIR, "html", "tamplate.html");
-routes.use("/css", express.static(path.join(PAGES_DIR, "css")));
-routes.use("/js", express.static(path.join(PAGES_DIR, "js")));
-routes.use(cookieParser());
+const database = path.join("Z:", "HDD1", "database");
+const developerdatabase = path.join(__dirname,"database");
+const PAGES_DIR = path.join(__dirname,"pages");
+const TEMPLATE_PATH =path.join(__dirname, "./pages", "html", "tamplate.html");
 
-routes.use("/schedule",require("./routes/schedule"));
+routes.use("/css", express.static(path.join(__dirname, "css")));
+routes.use("/js", express.static(path.join(__dirname, "js")));
 
 routes.get("/", (req, res) => {
-    const pagePath = path.join(PAGES_DIR, "html", "main.html");
+    const pagePath = path.join(PAGES_DIR,"html", "main.html");
 
     const result = renderTemplate(pagePath);
     if (!result) return res.status(500).send("템플릿 구성 중 오류");
@@ -23,9 +21,8 @@ routes.get("/", (req, res) => {
     res.send(result);
 });
 
-
 function renderTemplate(pagePath) {
-    const templatePath = path.join(TEMPLATE_DIR);
+    const templatePath = path.join(TEMPLATE_PATH);
 
     try {
         let template = fs.readFileSync(templatePath, "utf-8");
@@ -39,4 +36,5 @@ function renderTemplate(pagePath) {
 }
 
 
-module.exports = routes;
+
+module.exports=routes;
