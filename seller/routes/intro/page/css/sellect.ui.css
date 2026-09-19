@@ -41,6 +41,9 @@ p { margin: 0; }
 
 /* card style */
 .sellect_list li {
+  width: fit-content;
+  height: fit-content;
+  min-width: 300px;
   position: relative;
   overflow: hidden;
 

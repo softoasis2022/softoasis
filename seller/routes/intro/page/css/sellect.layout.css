@@ -29,6 +29,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 /* grid */
@@ -42,7 +43,7 @@ main {
     grid-template-columns: repeat(auto-fit, minmax(var(--card-min), 1fr));
     gap: var(--grid-gap);
 
-    justify-items: stretch;
+    justify-items: center;
     align-items: stretch;
 }
 

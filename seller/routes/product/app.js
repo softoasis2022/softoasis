@@ -32,6 +32,10 @@ routes.get("/", (req, res) => {
     res.send(result);
 });
 
+routes.post("/create",(req,res)=>{
+    const {  } = req.body;
+});
+
 /**
  * 템플릿 렌더링
  */

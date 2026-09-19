@@ -164,7 +164,6 @@ async function getProduct(productId) {
     return product;
 }
 
-
 // 상품 전체 조회
 async function getProducts(filter = {}) {
     const database = await connectMongoDB("shop");
@@ -191,7 +190,6 @@ async function getProducts(filter = {}) {
         .sort({ createdAt: -1 })
         .toArray();
 }
-
 
 // 상품 수정
 async function updateProduct(productId, productData) {
@@ -329,7 +327,6 @@ async function updateProduct(productId, productData) {
     }
 }
 
-
 // 상품 삭제
 async function deleteProduct(productId) {
     const database = await connectMongoDB("shop");
@@ -349,7 +346,6 @@ async function deleteProduct(productId) {
     };
 }
 
-
 // 문자열 ID를 MongoDB ObjectId로 변환
 function convertObjectId(productId) {
     const id = String(productId || "").trim();
@@ -360,7 +356,6 @@ function convertObjectId(productId) {
 
     return new ObjectId(id);
 }
-
 
 // 필수 숫자 변환
 function parseNumber(value, fieldName) {
@@ -383,7 +378,6 @@ function parseNumber(value, fieldName) {
     return number;
 }
 
-
 // 선택 숫자 변환
 function parseOptionalNumber(value, fieldName) {
     const text = String(value ?? "")
@@ -405,7 +399,6 @@ function parseOptionalNumber(value, fieldName) {
     return number;
 }
 
-
 // 특장점 배열 변환
 function normalizeFeatures(features) {
     if (Array.isArray(features)) {
@@ -419,7 +412,6 @@ function normalizeFeatures(features) {
         .map(feature => feature.trim())
         .filter(Boolean);
 }
-
 
 // URL 검사
 function validateUrl(url, fieldName, required) {
@@ -450,7 +442,6 @@ function validateUrl(url, fieldName, required) {
         );
     }
 }
-
 
 module.exports = {
     addProduct

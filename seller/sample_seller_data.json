@@ -1,0 +1,37 @@
+{
+    "name": "한민섭",
+    "sellertype": "국내 사업자",
+    "selleraddress": {
+        "roadaddress": "대구광역시 중구 동덕로 123-11",
+        "addresss": "도담 203호"
+    },
+    "manager": [
+        {
+            "name": "한민섭",
+            "id": "hang05312",
+            "email": "lape9145@gmail.com",
+            "phonenumber": "01045171684"
+        }
+    ],
+    "storecategory": {
+        "name": "잡화",
+        "categorycode": ""
+    },
+    "delivery": {
+        "Shipping_origin": {
+            "roadaddress": "대구광역시 중구 동덕로 123-11",
+            "addresss": "도담 203호"
+        },
+        "Returns_Exchanges" : {
+            "roadaddress": "대구광역시 중구 동덕로 123-11",
+            "addresss": "도담 203호"
+        }
+    },
+    "payment" : [
+        {
+            "bank" : "카카오뱅크",
+            "number" : "3333278810446"
+        }
+    ]
+    
+}

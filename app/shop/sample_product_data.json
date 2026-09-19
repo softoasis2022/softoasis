@@ -1,0 +1,66 @@
+{
+
+    "name" : "상품이름",
+    "description" : "",
+    "image" : [
+        "https://shop-phinf.pstatic.net/20250930_143/17592116347444odDL_JPEG/13799101166394545_914886039.jpg?type=o1000",
+        "https://ai.esmplus.com/singsing8/IMAGE/JW/JW001/M_JW001_01_M.gif"
+    ],
+    "url" : "",
+    "productsessionimage" : [
+        {
+            "imagetype" : "url",
+            "url" : "https://shop-phinf.pstatic.net/20250930_143/17592116347444odDL_JPEG/13799101166394545_914886039.jpg?type=o1000"
+        }
+    ],
+    "purchasePrice" : 1000,
+    "price" : 10000,
+    "originalPrice" : 7000,
+    "productkeywords" : [
+        {
+            "keyword" : "오리로스",
+            "keywordcode" : "키워드가 디비에서 적용된 아이디",
+            "price" : 100
+        }
+    ],
+    "category" : {
+        "name" : "육류",
+        "categorycode" : ""
+    },
+    "brend" : {
+        "name" : "더싱싱",
+        "brendcode" : ""
+    },
+    "option" : [
+        [
+            "옵션1","옵션2",0
+        ],
+        [
+            "옵션1","옵션2"
+        ],
+        [
+            "옵션1","옵션2"
+        ],
+        [
+            "옵션1","옵션2"
+        ],
+        [
+            "옵션1","옵션2"
+        ],
+        [
+            "옵션1","옵션2"
+        ],
+        [
+            "옵션1","옵션2"
+        ]
+    ],
+    "review" : [
+        {
+            "nickname" : "라페",
+            "coment" : "자취생들이 먹기 좋은거 같아요. 소분도 되어있어서 저녁으로만 이틀 해결했어용!!!"
+        }
+    ],
+    "wish" : 284,
+    "MoneyManager" : 124
+    
+}
