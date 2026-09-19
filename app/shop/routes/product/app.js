@@ -7,10 +7,10 @@ const { json } = require("stream/consumers");
 const database = path.join("Z:", "HDD1", "database");
 const developerdatabase = path.join(__dirname,"database");
 const PAGES_DIR = path.join(__dirname,"pages");
-const TEMPLATE_PATH =path.join(__dirname, "./pages", "html", "tamplate.html");
+const TEMPLATE_PATH =path.join(__dirname, "../tamplate", "pages","html", "index.html");
 
-routes.use("/css", express.static(path.join(__dirname, "css")));
-routes.use("/js", express.static(path.join(__dirname, "js")));
+routes.use("/css", express.static(path.join(PAGES_DIR, "css")));
+routes.use("/js", express.static(path.join(PAGES_DIR, "js")));
 
 // {
 //     "name" : "상품이름",
