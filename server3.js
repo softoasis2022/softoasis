@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 
 const server = http.createServer(app);
 
-server.listen(80, "0.0.0.0", () => {
+server.listen(80, () => {
     console.log("================================");
     console.log("HTTP 테스트 서버 실행");
     console.log("PORT : 80");
